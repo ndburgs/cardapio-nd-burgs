@@ -168,18 +168,16 @@ align-self:center;
 background:var(--accent);
 border:0;
 border-radius:10px;
-width:46px;
-height:46px;
-display:flex;
-align-items:center;
-justify-content:center;
+width:44px;
+height:44px;
 padding:0;
 font-weight:900;
-font-size:28px;
-line-height:1;
-color:#111;
+font-size:27px;
+line-height:44px;
+text-align:center;
 cursor:pointer;
 flex-shrink:0;
+color:#111;
 }
 
 .cartbar{
@@ -270,10 +268,18 @@ background:#292930;
 color:white;
 border:0;
 border-radius:7px;
-width:30px;
-height:30px;
-font-size:18px;
+width:32px;
+height:32px;
+font-size:22px;
+line-height:32px;
+padding:0;
 cursor:pointer;
+}
+
+.qty b{
+min-width:20px;
+text-align:center;
+font-size:16px;
 }
 
 input,
@@ -408,7 +414,9 @@ border:0;
 border-radius:10px;
 background:#292930;
 color:white;
-font-size:24px;
+font-size:25px;
+line-height:42px;
+padding:0;
 cursor:pointer;
 }
 
@@ -747,6 +755,7 @@ price:24.9,
 image:"https://i.ibb.co/XfBfGWKv/NUNES.png"
 },
 
+
 /* =========================
    ARTESANAIS
 ========================= */
@@ -792,6 +801,7 @@ cat:"ARTESANAL",
 price:20.9,
 image:"https://i.ibb.co/whY3stGx/GADEIA.jpg"
 },
+
 
 /* =========================
    COMBOS
@@ -860,6 +870,7 @@ price:70.9,
 image:"https://i.ibb.co/7t8m454n/DATE-COM-ND-BURGS.png"
 },
 
+
 /* =========================
    COMBOS ARTESANAIS
 ========================= */
@@ -919,6 +930,7 @@ cat:"COMBOS ARTESANAIS",
 price:96.8,
 image:"https://i.ibb.co/Kxp3JzWB/01-NDBURGS.png"
 },
+
 
 /* =========================
    AÇAÍ
@@ -996,6 +1008,7 @@ cat:"AÇAÍ",
 price:32,
 image:"https://i.ibb.co/x8jHXhzN/TENTA-O-DE-MORANGO.jpg"
 },
+
 
 /* =========================
    PASTÉIS
@@ -1151,6 +1164,7 @@ cat:"PASTEL",
 price:13
 },
 
+
 /* =========================
    PORÇÕES
 ========================= */
@@ -1259,6 +1273,7 @@ cat:"PORÇÕES",
 price:70,
 image:"https://i.ibb.co/gbm9wsGh/FRANGO-PEDA-OS-EMPANADO.png"
 },
+
 
 /* =========================
    MILKSHAKES
@@ -1390,6 +1405,7 @@ price:30,
 image:"https://i.ibb.co/ychZV7dy/milk-a-ai.jpg"
 },
 
+
 /* =========================
    SOBREMESAS
 ========================= */
@@ -1405,6 +1421,7 @@ name:"KITKAT",
 cat:"SOBREMESA",
 price:7
 },
+
 
 /* =========================
    BEBIDAS
@@ -1487,6 +1504,7 @@ name:"DOLLY 2 LITROS GUARANA",
 cat:"BEBIDAS",
 price:9
 },
+
 
 /* =========================
    ADICIONAIS
@@ -1787,7 +1805,6 @@ ${BRL(x.price)}
 <button
 class="add"
 onclick="addById('${safe(x.name)}')"
-aria-label="Adicionar ${x.name}"
 >
 +
 </button>
@@ -1949,25 +1966,19 @@ return "hamburguer";
 
 }
 
-if(
-cat==="PORÇÕES"
-){
+if(cat==="PORÇÕES"){
 
 return "porcao";
 
 }
 
-if(
-cat==="AÇAÍ"
-){
+if(cat==="AÇAÍ"){
 
 return "acai";
 
 }
 
-if(
-cat==="MILKSHAKES"
-){
+if(cat==="MILKSHAKES"){
 
 return "milkshake";
 
@@ -1979,15 +1990,6 @@ cat==="SOBREMESA"
 ){
 
 return "sobremesa";
-
-}
-
-if(
-cat==="COMBO" ||
-cat==="COMBOS ARTESANAIS"
-){
-
-return null;
 
 }
 
@@ -2139,6 +2141,7 @@ Quantidade
 <div class="qtyProduto">
 
 <button
+type="button"
 onclick="alterarQtdProduto(-1)"
 
 >
@@ -2150,6 +2153,7 @@ onclick="alterarQtdProduto(-1)"
 </b>
 
 <button
+type="button"
 onclick="alterarQtdProduto(1)"
 
 >
@@ -2161,6 +2165,7 @@ onclick="alterarQtdProduto(1)"
 </div>
 
 <button
+type="button"
 class="addCart"
 onclick="adicionarConfigurado()"
 
@@ -2190,20 +2195,18 @@ qtdProduto=1;
 
 }
 
-const el=document.getElementById(
-"produtoQtd"
-);
+const qtd=document.getElementById("produtoQtd");
 
-if(el){
+if(qtd){
 
-el.textContent=qtdProduto;
+qtd.textContent=qtdProduto;
 
 }
 
 }
 
 /* =====================================================
-ADICIONAR
+ADICIONAR AO CARRINHO
 ===================================================== */
 
 function adicionarConfigurado(){
@@ -2410,6 +2413,7 @@ margin-top:5px;
 <div class="qty">
 
 <button
+type="button"
 onclick="change('${safe(key)}',-1)"
 
 >
@@ -2421,6 +2425,7 @@ ${x.qty}
 </b>
 
 <button
+type="button"
 onclick="change('${safe(key)}',1)"
 
 >
