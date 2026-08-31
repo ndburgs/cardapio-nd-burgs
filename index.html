@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -7,1790 +8,1639 @@
 <title>ND BURGS | Faça seu pedido</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html{
-    scroll-behavior:smooth;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111;
+    color: #fff;
+    padding-bottom: 100px;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#090909;
-    color:#fff;
-    padding-bottom:100px;
+header {
+    background: #000;
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 2px solid #f5c400;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header{
-    background:#000;
-    padding:12px 20px;
-    text-align:center;
-    border-bottom:2px solid #f5c400;
-    position:sticky;
-    top:0;
-    z-index:1000;
+.logo {
+    width: 150px;
+    max-width: 70%;
+    height: auto;
 }
 
-.logo{
-    width:150px;
-    max-width:70%;
-    height:auto;
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 15px;
 }
 
-/* =========================
-   HORÁRIOS
-========================= */
-
-.horarios{
-    max-width:1100px;
-    margin:15px auto 0;
-    padding:0 15px;
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #f5c400;
 }
 
-.horarios-box{
-    background:linear-gradient(145deg,#151515,#0d0d0d);
-    border:1px solid #f5c400;
-    border-radius:12px;
-    padding:14px 18px;
-    text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,.4);
+h2 {
+    color: #f5c400;
+    margin: 25px 0 12px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
 }
 
-.horarios-titulo{
-    color:#f5c400;
-    font-weight:bold;
-    font-size:17px;
-    margin-bottom:8px;
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
 }
 
-.horarios-linha{
-    font-size:14px;
-    color:#ddd;
-    line-height:1.7;
+.produto {
+    background: #1b1b1b;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.3);
+    overflow: hidden;
 }
 
-.status-aberto{
-    color:#25d366;
-    font-weight:bold;
-    margin-top:5px;
+.produto img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #222;
 }
 
-.status-fechado{
-    color:#ff4b4b;
-    font-weight:bold;
-    margin-top:5px;
+.produto h3 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 19px;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-    width:100%;
-    max-width:1100px;
-    margin:auto;
-    padding:15px;
+.produto p {
+    color: #bbb;
+    min-height: 40px;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
-h1{
-    text-align:center;
-    margin:20px 0;
-    color:#f5c400;
+.preco {
+    color: #f5c400;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 12px 0;
 }
 
-h2{
-    color:#f5c400;
-    margin:25px 0 12px;
-    border-bottom:1px solid #333;
-    padding-bottom:8px;
+.btn {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
 }
 
-/* =========================
-   CATEGORIAS
-========================= */
-
-.categoria{
-    margin-top:20px;
+.btn-add {
+    background: #f5c400;
+    color: #000;
 }
 
-.categoria-titulo{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:#f5c400;
-    font-size:20px;
-    font-weight:bold;
-    border-bottom:1px solid #333;
-    padding-bottom:8px;
-    margin-bottom:12px;
+.btn-add:hover {
+    background: #ffd92b;
 }
 
-/* =========================
-   PRODUTOS
-========================= */
-
-.produtos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
+.carrinho {
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 30px;
 }
 
-.produto{
-    background:linear-gradient(145deg,#1c1c1c,#111);
-    border:1px solid #333;
-    border-radius:12px;
-    padding:12px;
-    box-shadow:0 3px 12px rgba(0,0,0,.35);
-    overflow:hidden;
-    transition:.2s;
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
 }
 
-.produto:hover{
-    transform:translateY(-2px);
-    border-color:#f5c400;
+.item-info {
+    flex: 1;
 }
 
-.produto-imagem{
-    width:100%;
-    height:180px;
-    object-fit:contain;
-    display:block;
-    background:#111;
-    border-radius:9px;
-    margin-bottom:10px;
+.item-info strong {
+    display: block;
+    margin-bottom: 4px;
 }
 
-.produto h3{
-    color:#fff;
-    margin-bottom:7px;
-    font-size:18px;
+.item-info small {
+    color: #aaa;
 }
 
-.produto p{
-    color:#aaa;
-    min-height:40px;
-    font-size:13px;
-    line-height:1.4;
+.controles {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.preco{
-    color:#f5c400;
-    font-weight:bold;
-    font-size:19px;
-    margin:10px 0;
+.controles button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    background: #f5c400;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.btn{
-    width:100%;
-    border:none;
-    border-radius:8px;
-    padding:12px;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:15px;
+.remover {
+    background: #c62828 !important;
+    color: #fff !important;
 }
 
-.btn-add{
-    background:#f5c400;
-    color:#000;
+.resumo {
+    margin-top: 20px;
 }
 
-.btn-add:hover{
-    background:#ffd92b;
+.linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
 }
 
-/* =========================
-   CARRINHO
-========================= */
-
-.carrinho{
-    background:#181818;
-    border:1px solid #333;
-    border-radius:12px;
-    padding:20px;
-    margin-top:30px;
+.total {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f5c400;
+    border-top: 1px solid #555;
+    margin-top: 10px;
+    padding-top: 15px;
 }
 
-.item-carrinho{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid #333;
+.formulario {
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
 }
 
-.item-info{
-    flex:1;
-}
-
-.item-info strong{
-    display:block;
-    margin-bottom:4px;
-}
-
-.item-info small{
-    color:#aaa;
-}
-
-.controles{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.controles button{
-    width:30px;
-    height:30px;
-    border:none;
-    border-radius:6px;
-    background:#f5c400;
-    color:#000;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.remover{
-    background:#c62828 !important;
-    color:#fff !important;
-}
-
-.resumo{
-    margin-top:20px;
-}
-
-.linha{
-    display:flex;
-    justify-content:space-between;
-    padding:8px 0;
-}
-
-.total{
-    font-size:24px;
-    font-weight:bold;
-    color:#f5c400;
-    border-top:1px solid #555;
-    margin-top:10px;
-    padding-top:15px;
-}
-
-.vazio{
-    text-align:center;
-    color:#999;
-    padding:20px;
-}
-
-/* =========================
-   FORMULÁRIO
-========================= */
-
-.formulario{
-    background:#181818;
-    border:1px solid #333;
-    border-radius:12px;
-    padding:20px;
-    margin-top:20px;
-}
-
-label{
-    display:block;
-    margin-top:14px;
-    margin-bottom:6px;
-    font-weight:bold;
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
 }
 
 input,
 select,
-textarea{
-    width:100%;
-    padding:13px;
-    border-radius:8px;
-    border:1px solid #444;
-    background:#0d0d0d;
-    color:#fff;
-    font-size:15px;
+textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #0d0d0d;
+    color: #fff;
+    font-size: 15px;
 }
 
-textarea{
-    resize:vertical;
-    min-height:80px;
+textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
-.endereco-extra{
-    display:none;
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 18px;
 }
 
-.aviso-taxa{
-    background:#292000;
-    border:1px solid #f5c400;
-    color:#f5c400;
-    padding:12px;
-    border-radius:8px;
-    margin-top:12px;
-    display:none;
+.btn-limpar {
+    background: #8b0000;
+    color: #fff;
+    margin-top: 10px;
 }
 
-.btn-whatsapp{
-    background:#25D366;
-    color:#fff;
-    margin-top:20px;
-    font-size:18px;
+.vazio {
+    text-align: center;
+    color: #999;
+    padding: 20px;
 }
 
-.btn-limpar{
-    background:#8b0000;
-    color:#fff;
-    margin-top:10px;
+.aviso-taxa {
+    background: #292000;
+    border: 1px solid #f5c400;
+    color: #f5c400;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    display: none;
 }
 
-/* =========================
-   BLOCO DE CATEGORIAS
-========================= */
+/* ============================================================
+   HORÁRIO
+   ============================================================ */
 
-.categoria-menu{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-bottom:20px;
+.horario {
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px auto 20px;
+    text-align: center;
 }
 
-.categoria-btn{
-    background:#181818;
-    border:1px solid #333;
-    color:#fff;
-    border-radius:10px;
-    padding:13px 10px;
-    cursor:pointer;
-    font-weight:bold;
+.horario-titulo {
+    color: #f5c400;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 8px;
 }
 
-.categoria-btn:hover{
-    border-color:#f5c400;
-    color:#f5c400;
+.horario-texto {
+    color: #ccc;
+    line-height: 1.6;
 }
 
-/* =========================
-   AVATAR / CRIADOR
-========================= */
-
-.criador{
-    max-width:1100px;
-    margin:40px auto 10px;
-    padding:20px 15px;
-    text-align:center;
+.status-aberto {
+    color: #25D366;
+    font-weight: bold;
+    margin-top: 8px;
 }
 
-.criador img{
-    width:105px;
-    height:105px;
-    object-fit:contain;
-    display:block;
-    margin:0 auto 8px;
-    filter:drop-shadow(0 0 8px rgba(245,196,0,.45));
+.status-fechado {
+    color: #ff5252;
+    font-weight: bold;
+    margin-top: 8px;
 }
 
-.criador-texto{
-    color:#fff;
-    font-size:15px;
-    font-weight:bold;
-    letter-spacing:.5px;
+.bloqueio {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.94);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.criador-texto span{
-    color:#f5c400;
+.bloqueio-box {
+    width: 100%;
+    max-width: 450px;
+    background: #181818;
+    border: 2px solid #f5c400;
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,.7);
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    text-align:center;
-    padding:20px 15px;
-    color:#777;
-    font-size:13px;
+.bloqueio-box h2 {
+    border: none;
+    margin: 0 0 15px;
+    font-size: 26px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.bloqueio-box p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
 
-@media(max-width:600px){
+.bloqueio-horario {
+    color: #f5c400 !important;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
-    .item-carrinho{
-        flex-direction:column;
-        align-items:flex-start;
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #777;
+}
+
+@media(max-width:600px) {
+
+    .item-carrinho {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .controles{
-        width:100%;
+    .controles {
+        width: 100%;
     }
 
-    .controles button{
-        width:35px;
-        height:35px;
+    .controles button {
+        width: 35px;
+        height: 35px;
     }
 
-    .produtos{
-        grid-template-columns:repeat(2,1fr);
-        gap:8px;
-    }
-
-    .produto{
-        padding:9px;
-    }
-
-    .produto-imagem{
-        height:125px;
-    }
-
-    .produto h3{
-        font-size:14px;
-    }
-
-    .produto p{
-        font-size:11px;
-        min-height:45px;
-    }
-
-    .preco{
-        font-size:16px;
-    }
-
-    .btn{
-        padding:10px 5px;
-        font-size:12px;
-    }
-
-    .categoria-titulo{
-        font-size:17px;
-    }
-
-    .categoria-menu{
-        grid-template-columns:1fr 1fr;
+    .produto img {
+        height: 210px;
     }
 }
-
 </style>
+
 </head>
 
 <body>
 
-<!-- =========================
-     BLOQUEIO DE HORÁRIO
-========================= -->
-
-<div id="bloqueioHorario">
-
-    <div class="bloqueio-box">
-
-        <img
-            class="bloqueio-logo"
-            src="https://i.ibb.co/5gsVbBcb/corretooo.jpg"
-            alt="ND BURGS"
-        >
-
-        <h2>🔒 PEDIDOS FECHADOS</h2>
-
-        <p>
-            A ND BURGS está fechada no momento.
-            <br>
-            Volte durante nosso horário de atendimento.
-        </p>
-
-        <div class="bloqueio-horarios">
-
-            <strong style="color:#f5c400;">
-                🕐 HORÁRIO DE ATENDIMENTO
-            </strong>
-
-            <br>
-
-            Terça a sábado:
-            <strong>18:00 às 00:30</strong>
-
-            <br>
-
-            Domingo:
-            <strong>18:00 às 00:00</strong>
-
-            <br>
-
-            Segunda-feira:
-            <strong style="color:#ff4444;">
-                FECHADO
-            </strong>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
-
     <img
         class="logo"
         src="https://i.ibb.co/5gsVbBcb/corretooo.jpg"
         alt="ND BURGS"
     >
-
 </header>
-
-
-<!-- =========================
-     HORÁRIOS
-========================= -->
-
-<div class="horarios">
-
-    <div class="horarios-box">
-
-        <div class="horarios-titulo">
-            🕐 HORÁRIOS DE ATENDIMENTO
-        </div>
-
-        <div class="horarios-linha">
-
-            📅 Terça a sábado:
-            <strong>18:00 às 00:30</strong>
-
-            <br>
-
-            📅 Domingo:
-            <strong>18:00 às 00:00</strong>
-
-            <br>
-
-            📅 Segunda-feira:
-            <strong>FECHADO</strong>
-
-        </div>
-
-        <div id="statusHorario"></div>
-
-    </div>
-
-</div>
-
 
 <div class="container">
 
-
 <h1>🍔 FAÇA SEU PEDIDO</h1>
 
+<div class="horario">
 
-<!-- =========================
-     MENU DE CATEGORIAS
-========================= -->
+```
+<div class="horario-titulo">
+    🕐 HORÁRIO DE ATENDIMENTO
+</div>
 
-<div class="categoria-menu">
+<div class="horario-texto">
+    Terça a sábado: <strong>18:00 às 00:30</strong><br>
+    Domingo: <strong>18:00 às 00:00</strong><br>
+    Segunda-feira: <strong>FECHADO</strong>
+</div>
 
-    <button class="categoria-btn" onclick="irPara('tradicionais')">
-        🍔 Tradicionais
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('artesanais')">
-        🍔 Artesanais
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('combos')">
-        📦 Combos
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('combosArtesanais')">
-        🔥 Combos Artesanais
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('acai')">
-        🥤 Açaí
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('pasteis')">
-        🥟 Pastéis
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('porcoes')">
-        🍟 Porções
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('milkshakes')">
-        🥤 Milkshakes
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('sobremesas')">
-        🍓 Sobremesas
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('bebidas')">
-        🥤 Bebidas
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('adicionais')">
-        ➕ Adicionais
-    </button>
+<div id="statusHorario" class="status-fechado">
+    VERIFICANDO...
+</div>
+```
 
 </div>
 
-
-<!-- =========================
+<!-- ============================================================
      TRADICIONAIS
-========================= -->
+     ============================================================ -->
 
-<section id="tradicionais" class="categoria">
-
-<div class="categoria-titulo">
-🍔 TRADICIONAIS
-</div>
+<h2>🍔 TRADICIONAIS</h2>
 
 <div class="produtos">
 
-<script>
-</script>
-
+```
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/ds9Qr0PD/BURGUER.jpg">
-<h3>X-BURGUER</h3>
-<p>Hambúrguer tradicional.</p>
-<div class="preco">R$ 10,90</div>
-<button class="btn btn-add" onclick="adicionar('X-BURGUER',10.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/k2KQwpjp/BACON.jpg">
-<h3>X-BACON</h3>
-<p>Hambúrguer tradicional com bacon.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('X-BACON',11.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/ds9Qr0PD/BURGUER.jpg" alt="X-BURGUER">
+    <h3>X-BURGUER</h3>
+    <p>Hambúrguer tradicional.</p>
+    <div class="preco">R$ 10,90</div>
+    <button class="btn btn-add" onclick="adicionar('X-BURGUER',10.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/390n5BZv/SALADA.png">
-<h3>X-SALADA</h3>
-<p>Hambúrguer tradicional com salada.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('X-SALADA',11.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/3m1Bjw2w/BACON.jpg" alt="X-BACON">
+    <h3>X-BACON</h3>
+    <p>Hambúrguer tradicional com bacon.</p>
+    <div class="preco">R$ 11,90</div>
+    <button class="btn btn-add" onclick="adicionar('X-BACON',11.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/NgWQv5Nm/EGG.png">
-<h3>X-EGG</h3>
-<p>Hambúrguer tradicional com ovo.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('X-EGG',11.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/0RfxphbK/SALADA.png" alt="X-SALADA">
+    <h3>X-SALADA</h3>
+    <p>Hambúrguer tradicional com salada.</p>
+    <div class="preco">R$ 11,90</div>
+    <button class="btn btn-add" onclick="adicionar('X-SALADA',11.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/fGHQ9NrW/SELLIS.png">
-<h3>SELLIS</h3>
-<p>Hambúrguer tradicional especial ND BURGS.</p>
-<div class="preco">R$ 13,90</div>
-<button class="btn btn-add" onclick="adicionar('SELLIS',13.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/xKzPkWgf/EGG.png" alt="X-EGG">
+    <h3>X-EGG</h3>
+    <p>Hambúrguer tradicional com ovo.</p>
+    <div class="preco">R$ 11,90</div>
+    <button class="btn btn-add" onclick="adicionar('X-EGG',11.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Vszxw7h/NUNES.png">
-<h3>NUNES</h3>
-<p>Hambúrguer especial tradicional.</p>
-<div class="preco">R$ 24,90</div>
-<button class="btn btn-add" onclick="adicionar('NUNES',24.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/6JFN8tDS/SELLIS.png" alt="SELLIS">
+    <h3>SELLIS</h3>
+    <p>Hambúrguer tradicional especial ND BURGS.</p>
+    <div class="preco">R$ 13,90</div>
+    <button class="btn btn-add" onclick="adicionar('SELLIS',13.90)">
+        ADICIONAR
+    </button>
 </div>
 
+<div class="produto">
+    <img src="https://i.ibb.co/zzBF6yL/NUNES.png" alt="NUNES">
+    <h3>NUNES</h3>
+    <p>Hambúrguer especial tradicional.</p>
+    <div class="preco">R$ 24,90</div>
+    <button class="btn btn-add" onclick="adicionar('NUNES',24.90)">
+        ADICIONAR
+    </button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      ARTESANAIS
-========================= -->
+     ============================================================ -->
 
-<section id="artesanais" class="categoria">
-
-<div class="categoria-titulo">
-🍔 ARTESANAIS
-</div>
+<h2>🍔 ARTESANAIS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/zW8gbZpK/BERENICE.jpg">
-<h3>BERENICE</h3>
-<p>Pão de brioche, carne artesanal, cheddar, maionese verde, alface e cebola roxa.</p>
-<div class="preco">R$ 22,90</div>
-<button class="btn btn-add" onclick="adicionar('BERENICE',22.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/tTWqZ9ST/PATAO.png">
-<h3>PATAO</h3>
-<p>Pão de brioche, carne artesanal, bacon, barbecue e onion rings.</p>
-<div class="preco">R$ 23,90</div>
-<button class="btn btn-add" onclick="adicionar('PATAO',23.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/zW8gbZpK/BERENICE.jpg" alt="BERENICE">
+    <h3>BERENICE</h3>
+    <p>Pão de brioche, carne artesanal, cheddar, maionese verde, alface e cebola roxa.</p>
+    <div class="preco">R$ 22,90</div>
+    <button class="btn btn-add" onclick="adicionar('BERENICE',22.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/d4pD5bNc/DINA.jpg">
-<h3>DINA</h3>
-<p>Pão de brioche, frango empanado, cheddar, maionese verde, alface e tomate.</p>
-<div class="preco">R$ 20,90</div>
-<button class="btn btn-add" onclick="adicionar('DINA',20.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/tTWqZ9ST/PATAO.png" alt="PATAO">
+    <h3>PATAO</h3>
+    <p>Pão de brioche, carne artesanal, bacon, barbecue e onion rings.</p>
+    <div class="preco">R$ 23,90</div>
+    <button class="btn btn-add" onclick="adicionar('PATAO',23.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/qLK7hWYs/GADEIA.jpg">
-<h3>GADEIA</h3>
-<p>Pão de hambúrguer, carne artesanal, maionese verde e queijo cheddar.</p>
-<div class="preco">R$ 20,90</div>
-<button class="btn btn-add" onclick="adicionar('GADEIA',20.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/d4pD5bNc/DINA.jpg" alt="DINA">
+    <h3>DINA</h3>
+    <p>Pão de brioche, frango empanado, cheddar, maionese verde, alface e tomate.</p>
+    <div class="preco">R$ 20,90</div>
+    <button class="btn btn-add" onclick="adicionar('DINA',20.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/ymQ7sFZn/GAROTINHO.png">
-<h3>GAROTINHO</h3>
-<p>Pão de brioche, carne artesanal, molho cheddar cremoso e bacon.</p>
-<div class="preco">R$ 22,90</div>
-<button class="btn btn-add" onclick="adicionar('GAROTINHO',22.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/qLK7hWYs/GADEIA.jpg" alt="GADEIA">
+    <h3>GADEIA</h3>
+    <p>Pão de hambúrguer, carne artesanal, maionese verde e queijo cheddar.</p>
+    <div class="preco">R$ 20,90</div>
+    <button class="btn btn-add" onclick="adicionar('GADEIA',20.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/0yTLwY4b/PEZAO.jpg">
-<h3>PÉZÃO</h3>
-<p>Pão de brioche dividido em 3, 2 carnes artesanais, maionese, cheddar, ovo, cebola, bacon, alface e tomate.</p>
-<div class="preco">R$ 32,90</div>
-<button class="btn btn-add" onclick="adicionar('PÉZÃO',32.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/ymQ7sFZn/GAROTINHO.png" alt="GAROTINHO">
+    <h3>GAROTINHO</h3>
+    <p>Pão de brioche, carne artesanal, molho cheddar cremoso e bacon.</p>
+    <div class="preco">R$ 22,90</div>
+    <button class="btn btn-add" onclick="adicionar('GAROTINHO',22.90)">
+        ADICIONAR
+    </button>
 </div>
 
+<div class="produto">
+    <img src="https://i.ibb.co/0yTLwY4b/PEZAO.jpg" alt="PÉZÃO">
+    <h3>PÉZÃO</h3>
+    <p>Pão de brioche dividido em 3, 2 carnes artesanais, maionese, cheddar, ovo, cebola, bacon, alface e tomate.</p>
+    <div class="preco">R$ 32,90</div>
+    <button class="btn btn-add" onclick="adicionar('PÉZÃO',32.90)">
+        ADICIONAR
+    </button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      COMBOS
-========================= -->
+     ============================================================ -->
 
-<section id="combos" class="categoria">
-
-<div class="categoria-titulo">
-📦 COMBOS
-</div>
+<h2>📦 COMBOS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png">
-<h3>COMBO DOCE</h3>
-<p>Combo especial ND BURGS.</p>
-<div class="preco">R$ 32,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO DOCE',32.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png">
-<h3>COMBO GELADO</h3>
-<p>Combo especial ND BURGS.</p>
-<div class="preco">R$ 40,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO GELADO',40.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png" alt="COMBO DOCE">
+    <h3>COMBO DOCE</h3>
+    <p>Combo especial ND BURGS.</p>
+    <div class="preco">R$ 32,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO DOCE',32.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png">
-<h3>COMBO 5 ESTRELAS</h3>
-<p>Combo especial ND BURGS.</p>
-<div class="preco">R$ 45,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO 5 ESTRELAS',45.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png" alt="COMBO GELADO">
+    <h3>COMBO GELADO</h3>
+    <p>Combo especial ND BURGS.</p>
+    <div class="preco">R$ 40,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO GELADO',40.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/twFJ6Vwt/COMBO-DIETA-SO-SEGUNDA.png">
-<h3>COMBO DIETA SÓ SEGUNDA</h3>
-<p>Coca lata + doce surpresa + pastel.</p>
-<div class="preco">R$ 27,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO DIETA SÓ SEGUNDA',27.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png" alt="COMBO 5 ESTRELAS">
+    <h3>COMBO 5 ESTRELAS</h3>
+    <p>Combo especial ND BURGS.</p>
+    <div class="preco">R$ 45,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO 5 ESTRELAS',45.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png">
-<h3>COMBO MAIS VENDIDO</h3>
-<p>Um dos combos especiais da ND BURGS.</p>
-<div class="preco">R$ 20,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO MAIS VENDIDO',20.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/twFJ6Vwt/COMBO-DIETA-SO-SEGUNDA.png" alt="COMBO DIETA SÓ SEGUNDA">
+    <h3>COMBO DIETA SÓ SEGUNDA</h3>
+    <p>Coca lata + doce surpresa + pastel.</p>
+    <div class="preco">R$ 27,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO DIETA SÓ SEGUNDA',27.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png">
-<h3>COMBO MOTOCA ND</h3>
-<p>Combo especial ND BURGS.</p>
-<div class="preco">R$ 32,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO MOTOCA ND',32.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png" alt="COMBO MAIS VENDIDO">
+    <h3>COMBO MAIS VENDIDO</h3>
+    <p>Um dos combos especiais da ND BURGS.</p>
+    <div class="preco">R$ 20,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO MAIS VENDIDO',20.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png">
-<h3>COMBO SÓ LOVE</h3>
-<p>Combo especial para compartilhar.</p>
-<div class="preco">R$ 71,90</div>
-<button class="btn btn-add" onclick="adicionar('COMBO SÓ LOVE',71.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png" alt="COMBO MOTOCA ND">
+    <h3>COMBO MOTOCA ND</h3>
+    <p>Combo especial ND BURGS.</p>
+    <div class="preco">R$ 32,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO MOTOCA ND',32.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png">
-<h3>DATE COM NDBURGS</h3>
-<p>Combo especial para o seu date.</p>
-<div class="preco">R$ 70,90</div>
-<button class="btn btn-add" onclick="adicionar('DATE COM NDBURGS',70.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png" alt="COMBO SÓ LOVE">
+    <h3>COMBO SÓ LOVE</h3>
+    <p>Combo especial para compartilhar.</p>
+    <div class="preco">R$ 71,90</div>
+    <button class="btn btn-add" onclick="adicionar('COMBO SÓ LOVE',71.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png">
-<h3>01 ND BURGS</h3>
-<p>Combo especial.</p>
-<div class="preco">R$ 50,90</div>
-<button class="btn btn-add" onclick="adicionar('01 ND BURGS',50.90)">ADICIONAR</button>
+    <img src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png" alt="DATE COM NDBURGS">
+    <h3>DATE COM NDBURGS</h3>
+    <p>Combo especial para o seu date.</p>
+    <div class="preco">R$ 70,90</div>
+    <button class="btn btn-add" onclick="adicionar('DATE COM NDBURGS',70.90)">
+        ADICIONAR
+    </button>
 </div>
 
+<div class="produto">
+    <img src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png" alt="01 ND BURGS">
+    <h3>01 ND BURGS</h3>
+    <p>Combo especial.</p>
+    <div class="preco">R$ 50,90</div>
+    <button class="btn btn-add" onclick="adicionar('01 ND BURGS',50.90)">
+        ADICIONAR
+    </button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      COMBOS ARTESANAIS
-========================= -->
+     ============================================================ -->
 
-<section id="combosArtesanais" class="categoria">
-
-<div class="categoria-titulo">
-🔥 COMBOS ARTESANAIS
-</div>
+<h2>🔥 COMBOS ARTESANAIS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>ARTESANAL COMBO SÓ LOVE</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 90,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO SÓ LOVE',90.80)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<h3>ARTESANAL COMBO 5 ESTRELAS</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 70,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO 5 ESTRELAS',70.80)">ADICIONAR</button>
+    <h3>ARTESANAL COMBO SÓ LOVE</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 90,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO SÓ LOVE',90.80)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>ARTESANAL COMBO MAIS VENDIDO</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 34,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO MAIS VENDIDO',34.80)">ADICIONAR</button>
+    <h3>ARTESANAL COMBO 5 ESTRELAS</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 70,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO 5 ESTRELAS',70.80)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>ARTESANAL COMBO DOCE</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 44,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO DOCE',44.80)">ADICIONAR</button>
+    <h3>ARTESANAL COMBO MAIS VENDIDO</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 34,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO MAIS VENDIDO',34.80)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>ARTESANAL COMBO GELADO</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 52,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO GELADO',52.80)">ADICIONAR</button>
+    <h3>ARTESANAL COMBO DOCE</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 44,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO DOCE',44.80)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>ARTESANAL DATE COM NDBURGS</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 91,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL DATE COM NDBURGS',91.80)">ADICIONAR</button>
+    <h3>ARTESANAL COMBO GELADO</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 52,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO GELADO',52.80)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>ARTESANAL MOTOCA ND</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 41,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL MOTOCA ND',41.80)">ADICIONAR</button>
+    <h3>ARTESANAL DATE COM NDBURGS</h3>
+    <p>Combo artesanal especial para compartilhar.</p>
+    <div class="preco">R$ 91,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL DATE COM NDBURGS',91.80)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>ARTESANAL 01 ND BURGS</h3>
-<p>Combo artesanal especial.</p>
-<div class="preco">R$ 96,80</div>
-<button class="btn btn-add" onclick="adicionar('ARTESANAL 01 ND BURGS',96.80)">ADICIONAR</button>
+    <h3>ARTESANAL MOTOCA ND</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 41,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL MOTOCA ND',41.80)">
+        ADICIONAR
+    </button>
 </div>
 
+<div class="produto">
+    <h3>ARTESANAL 01 ND BURGS</h3>
+    <p>Combo artesanal especial.</p>
+    <div class="preco">R$ 96,80</div>
+    <button class="btn btn-add" onclick="adicionar('ARTESANAL 01 ND BURGS',96.80)">
+        ADICIONAR
+    </button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      AÇAÍ
-========================= -->
+     ============================================================ -->
 
-<section id="acai" class="categoria">
-
-<div class="categoria-titulo">
-🥤 AÇAÍ
-</div>
+<h2>🥤 AÇAÍ</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>AÇAÍ 200ML</h3>
-<p>Açaí.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ 200ML',11.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<h3>CASADINHO 200ML</h3>
-<p>Açaí casadinho.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('CASADINHO 200ML',11.90)">ADICIONAR</button>
+    <h3>AÇAÍ 200ML</h3>
+    <p>Açaí.</p>
+    <div class="preco">R$ 11,90</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ 200ML',11.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>AÇAÍ 300ML</h3>
-<p>Açaí.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ 300ML',15.00)">ADICIONAR</button>
+    <h3>CASADINHO 200ML</h3>
+    <p>Açaí casadinho.</p>
+    <div class="preco">R$ 11,90</div>
+    <button class="btn btn-add" onclick="adicionar('CASADINHO 200ML',11.90)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>AÇAÍ 400ML</h3>
-<p>Açaí.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ 400ML',18.00)">ADICIONAR</button>
+    <h3>AÇAÍ 300ML</h3>
+    <p>Açaí.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ 300ML',15.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>AÇAÍ TRUFFADO 300ML</h3>
-<p>Açaí truffado.</p>
-<div class="preco">R$ 26,00</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ TRUFFADO 300ML',26.00)">ADICIONAR</button>
+    <h3>AÇAÍ 400ML</h3>
+    <p>Açaí.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ 400ML',18.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>AÇAÍ TRUFFADO 400ML</h3>
-<p>Açaí truffado.</p>
-<div class="preco">R$ 29,00</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ TRUFFADO 400ML',29.00)">ADICIONAR</button>
+    <h3>AÇAÍ TRUFFADO 300ML</h3>
+    <p>Açaí truffado.</p>
+    <div class="preco">R$ 26,00</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ TRUFFADO 300ML',26.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>TENTAÇÃO DE MORANGO 300ML</h3>
-<p>Açaí com combinação especial.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('TENTAÇÃO DE MORANGO 300ML',18.00)">ADICIONAR</button>
+    <h3>AÇAÍ TRUFFADO 400ML</h3>
+    <p>Açaí truffado.</p>
+    <div class="preco">R$ 29,00</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ TRUFFADO 400ML',29.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>TENTAÇÃO DE MORANGO 400ML</h3>
-<p>Açaí com combinação especial.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('TENTAÇÃO DE MORANGO 400ML',18.00)">ADICIONAR</button>
+    <h3>TENTAÇÃO DE MORANGO 300ML</h3>
+    <p>Açaí com sabor especial.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('TENTAÇÃO DE MORANGO 300ML',18.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>AÇAÍ 700ML</h3>
-<p>Açaí.</p>
-<div class="preco">R$ 32,00</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ 700ML',32.00)">ADICIONAR</button>
+    <h3>TENTAÇÃO DE MORANGO 400ML</h3>
+    <p>Açaí com sabor especial.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('TENTAÇÃO DE MORANGO 400ML',18.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>AÇAÍ TRUFFADO 700ML</h3>
-<p>Açaí truffado.</p>
-<div class="preco">R$ 43,00</div>
-<button class="btn btn-add" onclick="adicionar('AÇAÍ TRUFFADO 700ML',43.00)">ADICIONAR</button>
+    <h3>AÇAÍ 700ML</h3>
+    <p>Açaí.</p>
+    <div class="preco">R$ 32,00</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ 700ML',32.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>TENTAÇÃO DE MORANGO 700ML</h3>
-<p>Açaí com combinação especial.</p>
-<div class="preco">R$ 32,00</div>
-<button class="btn btn-add" onclick="adicionar('TENTAÇÃO DE MORANGO 700ML',32.00)">ADICIONAR</button>
+    <h3>AÇAÍ TRUFFADO 700ML</h3>
+    <p>Açaí truffado.</p>
+    <div class="preco">R$ 43,00</div>
+    <button class="btn btn-add" onclick="adicionar('AÇAÍ TRUFFADO 700ML',43.00)">
+        ADICIONAR
+    </button>
 </div>
 
+<div class="produto">
+    <h3>TENTAÇÃO DE MORANGO 700ML</h3>
+    <p>Açaí com sabor especial.</p>
+    <div class="preco">R$ 32,00</div>
+    <button class="btn btn-add" onclick="adicionar('TENTAÇÃO DE MORANGO 700ML',32.00)">
+        ADICIONAR
+    </button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      PASTÉIS
-========================= -->
+     ============================================================ -->
 
-<section id="pasteis" class="categoria">
-
-<div class="categoria-titulo">
-🥟 PASTÉIS
-</div>
+<h2>🥟 PASTÉIS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>PASTEL DE CARNE</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE',11)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<h3>PASTEL DE CARNE COM QUEIJO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM QUEIJO',11)">ADICIONAR</button>
+    <h3>PASTEL DE CARNE</h3>
+    <p>Pastel recheado com carne.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE CARNE COM CHEDDAR</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM CHEDDAR',11)">ADICIONAR</button>
+    <h3>PASTEL DE CARNE COM QUEIJO</h3>
+    <p>Carne com queijo.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM QUEIJO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE CARNE COM CATUPIRY</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM CATUPIRY',11)">ADICIONAR</button>
+    <h3>PASTEL DE CARNE COM CHEDDAR</h3>
+    <p>Carne com cheddar.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM CHEDDAR',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE QUEIJO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE QUEIJO',11)">ADICIONAR</button>
+    <h3>PASTEL DE CARNE COM CATUPIRY</h3>
+    <p>Carne com catupiry.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM CATUPIRY',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE FRANGO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO',11)">ADICIONAR</button>
+    <h3>PASTEL DE QUEIJO</h3>
+    <p>Pastel de queijo.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE QUEIJO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE FRANGO COM QUEIJO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM QUEIJO',11)">ADICIONAR</button>
+    <h3>PASTEL DE FRANGO</h3>
+    <p>Pastel de frango.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE FRANGO COM CATUPIRY</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM CATUPIRY',11)">ADICIONAR</button>
+    <h3>PASTEL DE FRANGO COM QUEIJO</h3>
+    <p>Frango com queijo.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM QUEIJO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE FRANGO COM CHEDDAR</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM CHEDDAR',11)">ADICIONAR</button>
+    <h3>PASTEL DE FRANGO COM CATUPIRY</h3>
+    <p>Frango com catupiry.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM CATUPIRY',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE BAURU</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE BAURU',11)">ADICIONAR</button>
+    <h3>PASTEL DE FRANGO COM CHEDDAR</h3>
+    <p>Frango com cheddar.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM CHEDDAR',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE PIZZA</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE PIZZA',11)">ADICIONAR</button>
+    <h3>PASTEL DE BAURU</h3>
+    <p>Pastel especial.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE BAURU',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE FRANGO COM QUEIJO E OVO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM QUEIJO E OVO',11)">ADICIONAR</button>
+    <h3>PASTEL DE PIZZA</h3>
+    <p>Pastel sabor pizza.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE PIZZA',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE CARNE COM OVO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM OVO',11)">ADICIONAR</button>
+    <h3>PASTEL DE FRANGO COM QUEIJO E OVO</h3>
+    <p>Frango, queijo e ovo.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE FRANGO COM QUEIJO E OVO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE PRESUNTO COM QUEIJO</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE PRESUNTO COM QUEIJO',11)">ADICIONAR</button>
+    <h3>PASTEL DE CARNE COM OVO</h3>
+    <p>Carne com ovo.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE CARNE COM OVO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL 3 QUEIJOS</h3>
-<p>Pastel recheado.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL 3 QUEIJOS',11)">ADICIONAR</button>
+    <h3>PASTEL DE PRESUNTO COM QUEIJO</h3>
+    <p>Presunto e queijo.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE PRESUNTO COM QUEIJO',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL ND</h3>
-<p>Pastel especial ND BURGS.</p>
-<div class="preco">R$ 11,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL ND',11)">ADICIONAR</button>
+    <h3>PASTEL 3 QUEIJOS</h3>
+    <p>Pastel especial com três queijos.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL 3 QUEIJOS',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL ESPECIAL</h3>
-<p>Pastel especial.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL ESPECIAL',15)">ADICIONAR</button>
+    <h3>PASTEL ND</h3>
+    <p>Pastel especial ND BURGS.</p>
+    <div class="preco">R$ 11,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL ND',11.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL A MODA CAROL</h3>
-<p>Pastel especial.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL A MODA CAROL',15)">ADICIONAR</button>
+    <h3>PASTEL ESPECIAL</h3>
+    <p>Pastel especial.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL ESPECIAL',15.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE NUTELLA COM MORANGO</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE NUTELLA COM MORANGO',13)">ADICIONAR</button>
+    <h3>PASTEL A MODA CAROL</h3>
+    <p>Pastel especial.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL A MODA CAROL',15.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE NUTELLA COM BANANA</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE NUTELLA COM BANANA',13)">ADICIONAR</button>
+    <h3>PASTEL DE NUTELLA COM MORANGO</h3>
+    <p>Pastel doce com Nutella e morango.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE NUTELLA COM MORANGO',13.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE DOCE DE LEITE COM BANANA</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE DOCE DE LEITE COM BANANA',13)">ADICIONAR</button>
+    <h3>PASTEL DE NUTELLA COM BANANA</h3>
+    <p>Pastel doce com Nutella e banana.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE NUTELLA COM BANANA',13.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE NINHO COM MORANGO</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE NINHO COM MORANGO',13)">ADICIONAR</button>
+    <h3>PASTEL DE DOCE DE LEITE COM BANANA</h3>
+    <p>Pastel doce com doce de leite e banana.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE DOCE DE LEITE COM BANANA',13.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE NINHO</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE NINHO',13)">ADICIONAR</button>
+    <h3>PASTEL DE NINHO COM MORANGO</h3>
+    <p>Pastel doce com Ninho e morango.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE NINHO COM MORANGO',13.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE KITKAT COM NINHO</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE KITKAT COM NINHO',13)">ADICIONAR</button>
+    <h3>PASTEL DE NINHO</h3>
+    <p>Pastel doce com creme de Ninho.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE NINHO',13.00)">
+        ADICIONAR
+    </button>
 </div>
 
 <div class="produto">
-<h3>PASTEL DE NINHO COM OREO</h3>
-<p>Pastel doce.</p>
-<div class="preco">R$ 13,00</div>
-<button class="btn btn-add" onclick="adicionar('PASTEL DE NINHO COM OREO',13)">ADICIONAR</button>
+    <h3>PASTEL DE KITKAT COM NINHO</h3>
+    <p>Pastel doce com KitKat e Ninho.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE KITKAT COM NINHO',13.00)">
+        ADICIONAR
+    </button>
 </div>
 
+<div class="produto">
+    <h3>PASTEL DE NINHO COM OREO</h3>
+    <p>Pastel doce com Ninho e Oreo.</p>
+    <div class="preco">R$ 13,00</div>
+    <button class="btn btn-add" onclick="adicionar('PASTEL DE NINHO COM OREO',13.00)">
+        ADICIONAR
+    </button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      PORÇÕES
-========================= -->
+     ============================================================ -->
 
-<section id="porcoes" class="categoria">
-
-<div class="categoria-titulo">
-🍟 PORÇÕES
-</div>
+<h2>🍟 PORÇÕES</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png">
-<h3>BATATA P</h3>
-<p>Porção de batata.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('BATATA P',6)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png">
-<h3>BATATA M</h3>
-<p>Porção de batata.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('BATATA M',15)">ADICIONAR</button>
+    <img src="https://i.ibb.co/JT71z1Y/BATATA.png" alt="BATATA">
+    <h3>BATATA P</h3>
+    <p>Porção de batata frita.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('BATATA P',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png">
-<h3>BATATA G</h3>
-<p>Porção de batata.</p>
-<div class="preco">R$ 32,00</div>
-<button class="btn btn-add" onclick="adicionar('BATATA G',32)">ADICIONAR</button>
+    <img src="https://i.ibb.co/JT71z1Y/BATATA.png" alt="BATATA">
+    <h3>BATATA M</h3>
+    <p>Porção de batata frita.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('BATATA M',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png">
-<h3>BATATA P COMPLETA</h3>
-<p>Batata completa.</p>
-<div class="preco">R$ 12,00</div>
-<button class="btn btn-add" onclick="adicionar('BATATA P COMPLETA',12)">ADICIONAR</button>
+    <img src="https://i.ibb.co/JT71z1Y/BATATA.png" alt="BATATA">
+    <h3>BATATA G</h3>
+    <p>Porção de batata frita.</p>
+    <div class="preco">R$ 32,00</div>
+    <button class="btn btn-add" onclick="adicionar('BATATA G',32.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png">
-<h3>BATATA M COMPLETA</h3>
-<p>Batata completa.</p>
-<div class="preco">R$ 21,00</div>
-<button class="btn btn-add" onclick="adicionar('BATATA M COMPLETA',21)">ADICIONAR</button>
+    <img src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png" alt="BATATA COMPLETA">
+    <h3>BATATA P COMPLETA</h3>
+    <p>Batata com cheddar e bacon.</p>
+    <div class="preco">R$ 12,00</div>
+    <button class="btn btn-add" onclick="adicionar('BATATA P COMPLETA',12.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png">
-<h3>BATATA G COMPLETA</h3>
-<p>Batata completa.</p>
-<div class="preco">R$ 57,00</div>
-<button class="btn btn-add" onclick="adicionar('BATATA G COMPLETA',57)">ADICIONAR</button>
+    <img src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png" alt="BATATA COMPLETA">
+    <h3>BATATA M COMPLETA</h3>
+    <p>Batata com cheddar e bacon.</p>
+    <div class="preco">R$ 21,00</div>
+    <button class="btn btn-add" onclick="adicionar('BATATA M COMPLETA',21.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png">
-<h3>NUGGETS P</h3>
-<p>Porção de nuggets.</p>
-<div class="preco">R$ 9,00</div>
-<button class="btn btn-add" onclick="adicionar('NUGGETS P',9)">ADICIONAR</button>
+    <img src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png" alt="BATATA COMPLETA">
+    <h3>BATATA G COMPLETA</h3>
+    <p>Batata com cheddar e bacon.</p>
+    <div class="preco">R$ 57,00</div>
+    <button class="btn btn-add" onclick="adicionar('BATATA G COMPLETA',57.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png">
-<h3>NUGGETS M</h3>
-<p>Porção de nuggets.</p>
-<div class="preco">R$ 16,00</div>
-<button class="btn btn-add" onclick="adicionar('NUGGETS M',16)">ADICIONAR</button>
+    <img src="https://i.ibb.co/39SVqYJP/NUGGETS.png" alt="NUGGETS">
+    <h3>NUGGETS P</h3>
+    <p>Porção de nuggets.</p>
+    <div class="preco">R$ 9,00</div>
+    <button class="btn btn-add" onclick="adicionar('NUGGETS P',9.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png">
-<h3>NUGGETS G</h3>
-<p>Porção de nuggets.</p>
-<div class="preco">R$ 55,00</div>
-<button class="btn btn-add" onclick="adicionar('NUGGETS G',55)">ADICIONAR</button>
+    <img src="https://i.ibb.co/39SVqYJP/NUGGETS.png" alt="NUGGETS">
+    <h3>NUGGETS M</h3>
+    <p>Porção de nuggets.</p>
+    <div class="preco">R$ 16,00</div>
+    <button class="btn btn-add" onclick="adicionar('NUGGETS M',16.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png">
-<h3>ANEL DE CEBOLA P</h3>
-<p>Porção de anéis de cebola.</p>
-<div class="preco">R$ 9,00</div>
-<button class="btn btn-add" onclick="adicionar('ANEL DE CEBOLA P',9)">ADICIONAR</button>
+    <img src="https://i.ibb.co/39SVqYJP/NUGGETS.png" alt="NUGGETS">
+    <h3>NUGGETS G</h3>
+    <p>Porção de nuggets.</p>
+    <div class="preco">R$ 55,00</div>
+    <button class="btn btn-add" onclick="adicionar('NUGGETS G',55.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png">
-<h3>ANEL DE CEBOLA M</h3>
-<p>Porção de anéis de cebola.</p>
-<div class="preco">R$ 16,00</div>
-<button class="btn btn-add" onclick="adicionar('ANEL DE CEBOLA M',16)">ADICIONAR</button>
+    <img src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png" alt="ANEL DE CEBOLA">
+    <h3>ANEL DE CEBOLA P</h3>
+    <p>Porção de onion rings.</p>
+    <div class="preco">R$ 9,00</div>
+    <button class="btn btn-add" onclick="adicionar('ANEL DE CEBOLA P',9.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png">
-<h3>ANEL DE CEBOLA G</h3>
-<p>Porção de anéis de cebola.</p>
-<div class="preco">R$ 55,00</div>
-<button class="btn btn-add" onclick="adicionar('ANEL DE CEBOLA G',55)">ADICIONAR</button>
+    <img src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png" alt="ANEL DE CEBOLA">
+    <h3>ANEL DE CEBOLA M</h3>
+    <p>Porção de onion rings.</p>
+    <div class="preco">R$ 16,00</div>
+    <button class="btn btn-add" onclick="adicionar('ANEL DE CEBOLA M',16.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png">
-<h3>FRANGO FRITO P</h3>
-<p>Porção de frango frito.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('FRANGO FRITO P',15)">ADICIONAR</button>
+    <img src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png" alt="ANEL DE CEBOLA">
+    <h3>ANEL DE CEBOLA G</h3>
+    <p>Porção de onion rings.</p>
+    <div class="preco">R$ 55,00</div>
+    <button class="btn btn-add" onclick="adicionar('ANEL DE CEBOLA G',55.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png">
-<h3>FRANGO FRITO M</h3>
-<p>Porção de frango frito.</p>
-<div class="preco">R$ 27,00</div>
-<button class="btn btn-add" onclick="adicionar('FRANGO FRITO M',27)">ADICIONAR</button>
+    <img src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png" alt="FRANGO FRITO">
+    <h3>FRANGO FRITO P</h3>
+    <p>Porção de frango frito.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('FRANGO FRITO P',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png">
-<h3>FRANGO FRITO G</h3>
-<p>Porção de frango frito.</p>
-<div class="preco">R$ 70,00</div>
-<button class="btn btn-add" onclick="adicionar('FRANGO FRITO G',70)">ADICIONAR</button>
+    <img src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png" alt="FRANGO FRITO">
+    <h3>FRANGO FRITO M</h3>
+    <p>Porção de frango frito.</p>
+    <div class="preco">R$ 27,00</div>
+    <button class="btn btn-add" onclick="adicionar('FRANGO FRITO M',27.00)">ADICIONAR</button>
 </div>
 
+<div class="produto">
+    <img src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png" alt="FRANGO FRITO">
+    <h3>FRANGO FRITO G</h3>
+    <p>Porção de frango frito.</p>
+    <div class="preco">R$ 70,00</div>
+    <button class="btn btn-add" onclick="adicionar('FRANGO FRITO G',70.00)">ADICIONAR</button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      MILKSHAKES
-========================= -->
+     ============================================================ -->
 
-<section id="milkshakes" class="categoria">
-
-<div class="categoria-titulo">
-🥤 MILKSHAKES
-</div>
+<h2>🥤 MILKSHAKES</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>MILKSHAKE OVOMALTINE 300ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE OVOMALTINE 300ML',15)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<h3>MILKSHAKE OVOMALTINE 400ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE OVOMALTINE 400ML',18)">ADICIONAR</button>
+    <h3>NINHO 300ML</h3>
+    <p>Milkshake de leite Ninho.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('NINHO 300ML',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE OVOMALTINE 700ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 30,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE OVOMALTINE 700ML',30)">ADICIONAR</button>
+    <h3>NINHO 400ML</h3>
+    <p>Milkshake de leite Ninho.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('NINHO 400ML',18.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE OREO 300ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE OREO 300ML',15)">ADICIONAR</button>
+    <h3>NINHO 700ML</h3>
+    <p>Milkshake de leite Ninho.</p>
+    <div class="preco">R$ 32,00</div>
+    <button class="btn btn-add" onclick="adicionar('NINHO 700ML',32.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE OREO 400ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE OREO 400ML',18)">ADICIONAR</button>
+    <h3>MILKSHAKE OVOMALTINE 300ML</h3>
+    <p>Milkshake de Ovomaltine.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE OVOMALTINE 300ML',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE OREO 700ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 30,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE OREO 700ML',30)">ADICIONAR</button>
+    <h3>MILKSHAKE OVOMALTINE 400ML</h3>
+    <p>Milkshake de Ovomaltine.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE OVOMALTINE 400ML',18.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE PAÇOCA 300ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE PAÇOCA 300ML',15)">ADICIONAR</button>
+    <h3>MILKSHAKE OVOMALTINE 700ML</h3>
+    <p>Milkshake de Ovomaltine.</p>
+    <div class="preco">R$ 30,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE OVOMALTINE 700ML',30.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE PAÇOCA 400ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE PAÇOCA 400ML',18)">ADICIONAR</button>
+    <h3>MILKSHAKE OREO 300ML</h3>
+    <p>Milkshake de Oreo.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE OREO 300ML',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE PAÇOCA 700ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 30,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE PAÇOCA 700ML',30)">ADICIONAR</button>
+    <h3>MILKSHAKE OREO 400ML</h3>
+    <p>Milkshake de Oreo.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE OREO 400ML',18.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE NESQUIK 300ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE NESQUIK 300ML',15)">ADICIONAR</button>
+    <h3>MILKSHAKE OREO 700ML</h3>
+    <p>Milkshake de Oreo.</p>
+    <div class="preco">R$ 30,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE OREO 700ML',30.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE NESQUIK 400ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE NESQUIK 400ML',18)">ADICIONAR</button>
+    <h3>MILKSHAKE PAÇOCA 300ML</h3>
+    <p>Milkshake de paçoca.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE PAÇOCA 300ML',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE NESQUIK 700ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 30,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE NESQUIK 700ML',30)">ADICIONAR</button>
+    <h3>MILKSHAKE PAÇOCA 400ML</h3>
+    <p>Milkshake de paçoca.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE PAÇOCA 400ML',18.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE LEITE NINHO 300ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE LEITE NINHO 300ML',15)">ADICIONAR</button>
+    <h3>MILKSHAKE PAÇOCA 700ML</h3>
+    <p>Milkshake de paçoca.</p>
+    <div class="preco">R$ 30,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE PAÇOCA 700ML',30.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE LEITE NINHO 400ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE LEITE NINHO 400ML',18)">ADICIONAR</button>
+    <h3>MILKSHAKE NESQUIK 300ML</h3>
+    <p>Milkshake de Nesquik.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE NESQUIK 300ML',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE LEITE NINHO 700ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 30,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE LEITE NINHO 700ML',30)">ADICIONAR</button>
+    <h3>MILKSHAKE NESQUIK 400ML</h3>
+    <p>Milkshake de Nesquik.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE NESQUIK 400ML',18.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE DE AÇAI 300ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE DE AÇAI 300ML',15)">ADICIONAR</button>
+    <h3>MILKSHAKE NESQUIK 700ML</h3>
+    <p>Milkshake de Nesquik.</p>
+    <div class="preco">R$ 30,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE NESQUIK 700ML',30.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE DE AÇAI 400ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 18,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE DE AÇAI 400ML',18)">ADICIONAR</button>
+    <h3>MILKSHAKE LEITE NINHO 300ML</h3>
+    <p>Milkshake de leite Ninho.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE LEITE NINHO 300ML',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>MILKSHAKE DE AÇAI 700ML</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">R$ 30,00</div>
-<button class="btn btn-add" onclick="adicionar('MILKSHAKE DE AÇAI 700ML',30)">ADICIONAR</button>
+    <h3>MILKSHAKE LEITE NINHO 400ML</h3>
+    <p>Milkshake de leite Ninho.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE LEITE NINHO 400ML',18.00)">ADICIONAR</button>
 </div>
 
+<div class="produto">
+    <h3>MILKSHAKE LEITE NINHO 700ML</h3>
+    <p>Milkshake de leite Ninho.</p>
+    <div class="preco">R$ 30,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE LEITE NINHO 700ML',30.00)">ADICIONAR</button>
 </div>
-</section>
 
+<div class="produto">
+    <h3>MILKSHAKE DE AÇAI 300ML</h3>
+    <p>Milkshake de açaí.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE DE AÇAI 300ML',15.00)">ADICIONAR</button>
+</div>
 
-<!-- =========================
+<div class="produto">
+    <h3>MILKSHAKE DE AÇAI 400ML</h3>
+    <p>Milkshake de açaí.</p>
+    <div class="preco">R$ 18,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE DE AÇAI 400ML',18.00)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+    <h3>MILKSHAKE DE AÇAI 700ML</h3>
+    <p>Milkshake de açaí.</p>
+    <div class="preco">R$ 30,00</div>
+    <button class="btn btn-add" onclick="adicionar('MILKSHAKE DE AÇAI 700ML',30.00)">ADICIONAR</button>
+</div>
+```
+
+</div>
+
+<!-- ============================================================
      SOBREMESAS
-========================= -->
+     ============================================================ -->
 
-<section id="sobremesas" class="categoria">
-
-<div class="categoria-titulo">
-🍓 SOBREMESAS
-</div>
+<h2>🍓 SOBREMESAS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>KITKAT</h3>
-<p>Doce especial.</p>
-<div class="preco">R$ 7,00</div>
-<button class="btn btn-add" onclick="adicionar('KITKAT',7)">ADICIONAR</button>
+    <h3>KITKAT</h3>
+    <p>Doce KitKat.</p>
+    <div class="preco">R$ 7,00</div>
+    <button class="btn btn-add" onclick="adicionar('KITKAT',7.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>SURPRESA DE UVA</h3>
-<p>Sobremesa especial.</p>
-<div class="preco">R$ 12,00</div>
-<button class="btn btn-add" onclick="adicionar('SURPRESA DE UVA',12)">ADICIONAR</button>
+    <h3>SURPRESA DE UVA</h3>
+    <p>Sobremesa especial.</p>
+    <div class="preco">R$ 12,00</div>
+    <button class="btn btn-add" onclick="adicionar('SURPRESA DE UVA',12.00)">ADICIONAR</button>
+</div>
+```
+
 </div>
 
-</div>
-</section>
-
-
-<!-- =========================
+<!-- ============================================================
      BEBIDAS
-========================= -->
+     ============================================================ -->
 
-<section id="bebidas" class="categoria">
-
-<div class="categoria-titulo">
-🥤 BEBIDAS
-</div>
+<h2>🥤 BEBIDAS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>COCA COLA LATA</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('COCA COLA LATA',6)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<h3>COCA COLA ZERO LATA</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('COCA COLA ZERO LATA',6)">ADICIONAR</button>
+    <h3>COCA COLA LATA</h3>
+    <p>Refrigerante lata.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('COCA COLA LATA',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>SPRITE LATA</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('SPRITE LATA',6)">ADICIONAR</button>
+    <h3>COCA COLA ZERO LATA</h3>
+    <p>Refrigerante lata.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('COCA COLA ZERO LATA',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>FANTA UVA LATA</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('FANTA UVA LATA',6)">ADICIONAR</button>
+    <h3>SPRITE LATA</h3>
+    <p>Refrigerante lata.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('SPRITE LATA',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>FANTA LARANJA LATA</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('FANTA LARANJA LATA',6)">ADICIONAR</button>
+    <h3>FANTA UVA LATA</h3>
+    <p>Refrigerante lata.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('FANTA UVA LATA',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>GUARANA LATA</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 6,00</div>
-<button class="btn btn-add" onclick="adicionar('GUARANA LATA',6)">ADICIONAR</button>
+    <h3>FANTA LARANJA LATA</h3>
+    <p>Refrigerante lata.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('FANTA LARANJA LATA',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>DELL VALE LATA</h3>
-<p>Bebida.</p>
-<div class="preco">R$ 7,00</div>
-<button class="btn btn-add" onclick="adicionar('DELL VALE LATA',7)">ADICIONAR</button>
+    <h3>GUARANA LATA</h3>
+    <p>Refrigerante lata.</p>
+    <div class="preco">R$ 6,00</div>
+    <button class="btn btn-add" onclick="adicionar('GUARANA LATA',6.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ÁGUA MINERAL</h3>
-<p>Água mineral.</p>
-<div class="preco">R$ 3,50</div>
-<button class="btn btn-add" onclick="adicionar('ÁGUA MINERAL',3.50)">ADICIONAR</button>
+    <h3>DELL VALE LATA</h3>
+    <p>Bebida.</p>
+    <div class="preco">R$ 7,00</div>
+    <button class="btn btn-add" onclick="adicionar('DELL VALE LATA',7.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>COCA COLA 600ML</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 10,00</div>
-<button class="btn btn-add" onclick="adicionar('COCA COLA 600ML',10)">ADICIONAR</button>
+    <h3>AGUA MINERAL</h3>
+    <p>Água mineral.</p>
+    <div class="preco">R$ 3,50</div>
+    <button class="btn btn-add" onclick="adicionar('AGUA MINERAL',3.50)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>COCA COLA 2 LITROS</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('COCA COLA 2 LITROS',15)">ADICIONAR</button>
+    <h3>COCA COLA 600ML</h3>
+    <p>Refrigerante.</p>
+    <div class="preco">R$ 10,00</div>
+    <button class="btn btn-add" onclick="adicionar('COCA COLA 600ML',10.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>COCA COLA ZERO 2 LITROS</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 15,00</div>
-<button class="btn btn-add" onclick="adicionar('COCA COLA ZERO 2 LITROS',15)">ADICIONAR</button>
+    <h3>COCA COLA 2 LITROS</h3>
+    <p>Refrigerante.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('COCA COLA 2 LITROS',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>DOLLY 2 LITROS LIMÃO</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 9,00</div>
-<button class="btn btn-add" onclick="adicionar('DOLLY 2 LITROS LIMÃO',9)">ADICIONAR</button>
+    <h3>COCA COLA ZERO 2 LITROS</h3>
+    <p>Refrigerante.</p>
+    <div class="preco">R$ 15,00</div>
+    <button class="btn btn-add" onclick="adicionar('COCA COLA ZERO 2 LITROS',15.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>DOLLY 2 LITROS GUARANÁ</h3>
-<p>Refrigerante.</p>
-<div class="preco">R$ 9,00</div>
-<button class="btn btn-add" onclick="adicionar('DOLLY 2 LITROS GUARANÁ',9)">ADICIONAR</button>
+    <h3>DOLLY 2 LITROS LIMAO</h3>
+    <p>Refrigerante.</p>
+    <div class="preco">R$ 9,00</div>
+    <button class="btn btn-add" onclick="adicionar('DOLLY 2 LITROS LIMAO',9.00)">ADICIONAR</button>
 </div>
 
+<div class="produto">
+    <h3>DOLLY 2 LITROS GUARANA</h3>
+    <p>Refrigerante.</p>
+    <div class="preco">R$ 9,00</div>
+    <button class="btn btn-add" onclick="adicionar('DOLLY 2 LITROS GUARANA',9.00)">ADICIONAR</button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      ADICIONAIS
-========================= -->
+     ============================================================ -->
 
-<section id="adicionais" class="categoria">
-
-<div class="categoria-titulo">
-➕ ADICIONAIS
-</div>
+<h2>➕ ADICIONAIS</h2>
 
 <div class="produtos">
 
+```
 <div class="produto">
-<h3>FATIA QUEIJO CHEDDAR EXTRA</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('FATIA QUEIJO CHEDDAR EXTRA',3)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<h3>HAMBURGUER EXTRA ARTESANAL</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 9,00</div>
-<button class="btn btn-add" onclick="adicionar('HAMBURGUER EXTRA ARTESANAL',9)">ADICIONAR</button>
+    <h3>FATIA QUEIJO CHEDDAR EXTRA</h3>
+    <p>Adicional.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('FATIA QUEIJO CHEDDAR EXTRA',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>HAMBURGUER EXTRA TRADICIONAL</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 2,50</div>
-<button class="btn btn-add" onclick="adicionar('HAMBURGUER EXTRA TRADICIONAL',2.50)">ADICIONAR</button>
+    <h3>HAMBURGUER EXTRA ARTESANAL</h3>
+    <p>Hambúrguer artesanal extra.</p>
+    <div class="preco">R$ 9,00</div>
+    <button class="btn btn-add" onclick="adicionar('HAMBURGUER EXTRA ARTESANAL',9.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>BACON</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('BACON',3)">ADICIONAR</button>
+    <h3>HAMBURGUER EXTRA TRADICIONAL</h3>
+    <p>Hambúrguer tradicional extra.</p>
+    <div class="preco">R$ 2,50</div>
+    <button class="btn btn-add" onclick="adicionar('HAMBURGUER EXTRA TRADICIONAL',2.50)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>POTINHO BARBECUE</h3>
-<p>Molho extra.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('POTINHO BARBECUE',3)">ADICIONAR</button>
+    <h3>BACON</h3>
+    <p>Adicional de bacon.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('BACON',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>POTINHO MAIONESE VERDE</h3>
-<p>Molho extra.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('POTINHO MAIONESE VERDE',3)">ADICIONAR</button>
+    <h3>POTINHO BARBECUE</h3>
+    <p>Molho barbecue.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('POTINHO BARBECUE',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>POTINHO CHEDDAR</h3>
-<p>Molho extra.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('POTINHO CHEDDAR',3)">ADICIONAR</button>
+    <h3>POTINHO MAIONESE VERDE</h3>
+    <p>Maionese verde.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('POTINHO MAIONESE VERDE',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>POTINHO MAIONESE ARTESANAL</h3>
-<p>Molho extra.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('POTINHO MAIONESE ARTESANAL',3)">ADICIONAR</button>
+    <h3>POTINHO CHEDDAR</h3>
+    <p>Molho cheddar.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('POTINHO CHEDDAR',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ADICIONAL NUTELLA</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 5,00</div>
-<button class="btn btn-add" onclick="adicionar('ADICIONAL NUTELLA',5)">ADICIONAR</button>
+    <h3>POTINHO MAIONESE ARTESANAL</h3>
+    <p>Maionese artesanal.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('POTINHO MAIONESE ARTESANAL',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ADICIONAL CREME DE NINHO</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('ADICIONAL CREME DE NINHO',3)">ADICIONAR</button>
+    <h3>ADICIONAL NUTELLA</h3>
+    <p>Nutella adicional.</p>
+    <div class="preco">R$ 5,00</div>
+    <button class="btn btn-add" onclick="adicionar('ADICIONAL NUTELLA',5.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ADICIONAL KITKAT</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('ADICIONAL KITKAT',3)">ADICIONAR</button>
+    <h3>ADICIONAL CREME DE NINHO</h3>
+    <p>Creme de Ninho.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('ADICIONAL CREME DE NINHO',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ACOMPANHAMENTO EXTRA</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('ACOMPANHAMENTO EXTRA',3)">ADICIONAR</button>
+    <h3>ADICIONAL KITKAT</h3>
+    <p>KitKat adicional.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('ADICIONAL KITKAT',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ADICIONAL BACON</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('ADICIONAL BACON',3)">ADICIONAR</button>
+    <h3>ACOMPANHAMENTO EXTRA</h3>
+    <p>Acompanhamento adicional.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('ACOMPANHAMENTO EXTRA',3.00)">ADICIONAR</button>
 </div>
 
 <div class="produto">
-<h3>ADICIONAL CHEDDAR</h3>
-<p>Adicional.</p>
-<div class="preco">R$ 3,00</div>
-<button class="btn btn-add" onclick="adicionar('ADICIONAL CHEDDAR',3)">ADICIONAR</button>
+    <h3>ADICIONAL BACON</h3>
+    <p>Bacon adicional.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('ADICIONAL BACON',3.00)">ADICIONAR</button>
 </div>
 
+<div class="produto">
+    <h3>ADICIONAL CHEDDAR</h3>
+    <p>Cheddar adicional.</p>
+    <div class="preco">R$ 3,00</div>
+    <button class="btn btn-add" onclick="adicionar('ADICIONAL CHEDDAR',3.00)">ADICIONAR</button>
 </div>
-</section>
+```
 
+</div>
 
-<!-- =========================
+<!-- ============================================================
      CARRINHO
-========================= -->
+     ============================================================ -->
 
 <div class="carrinho">
 
 <h2>🛒 SEU CARRINHO</h2>
 
 <div id="carrinhoItens">
-
     <div class="vazio">
         Seu carrinho está vazio.
     </div>
-
 </div>
 
 <div class="resumo">
 
+```
 <div class="linha">
-<span>Subtotal</span>
-<strong id="subtotal">R$ 0,00</strong>
+    <span>Subtotal</span>
+    <strong id="subtotal">R$ 0,00</strong>
 </div>
 
 <div class="linha">
-<span>Taxa de entrega</span>
-<strong id="taxa">R$ 0,00</strong>
+    <span>Taxa de entrega</span>
+    <strong id="taxa">R$ 0,00</strong>
 </div>
 
 <div class="linha total">
-<span>TOTAL</span>
-<strong id="total">R$ 0,00</strong>
+    <span>TOTAL</span>
+    <strong id="total">R$ 0,00</strong>
+</div>
+```
+
 </div>
 
 </div>
 
-</div>
-
-
-<!-- =========================
-     DADOS DO PEDIDO
-========================= -->
+<!-- ============================================================
+     DADOS DO CLIENTE
+     ============================================================ -->
 
 <div class="formulario">
 
@@ -1802,8 +1652,8 @@ footer{
 type="text"
 id="nome"
 placeholder="Digite seu nome"
->
 
+>
 
 <label>Telefone</label>
 
@@ -1811,23 +1661,24 @@ placeholder="Digite seu nome"
 type="tel"
 id="telefone"
 placeholder="Digite seu telefone"
->
 
+>
 
 <label>Tipo do pedido</label>
 
 <select id="tipoPedido" onchange="alterarTipoPedido()">
 
+```
 <option value="ENTREGA">
-🚚 DELIVERY
+    DELIVERY
 </option>
 
 <option value="RETIRADA">
-🏪 RETIRADA
+    RETIRADA
 </option>
+```
 
 </select>
-
 
 <div id="enderecoArea">
 
@@ -1841,15 +1692,14 @@ Selecione sua rua
 
 </select>
 
-
 <label>Número</label>
 
 <input
 type="text"
 id="numero"
 placeholder="Número da residência"
->
 
+>
 
 <label>Complemento</label>
 
@@ -1857,44 +1707,43 @@ placeholder="Número da residência"
 type="text"
 id="complemento"
 placeholder="Apartamento, casa, bloco..."
->
 
+>
 
 <div id="avisoTaxa" class="aviso-taxa"></div>
 
 </div>
 
-
 <label>Forma de pagamento</label>
 
 <select id="pagamento">
 
+```
 <option value="">
-Selecione
-</option>
+```
 
+Selecione </option>
+
+```
 <option value="PIX">
-PIX
-</option>
+```
 
+PIX </option>
+
+```
 <option value="DINHEIRO">
-DINHEIRO
-</option>
+```
 
+DINHEIRO </option>
+
+```
 <option value="CARTÃO">
-CARTÃO
-</option>
+```
 
-<option value="IFOOD">
-IFOOD
-</option>
+CARTÃO </option>
 
-<option value="99FOOD">
-99FOOD
-</option>
 
 </select>
-
 
 <div id="trocoArea" style="display:none;">
 
@@ -1905,1042 +1754,1108 @@ type="number"
 id="troco"
 placeholder="Ex: 50"
 step="0.01"
+
 >
 
 </div>
-
 
 <label>Observação</label>
 
 <textarea
-id="observacao"
-placeholder="Ex: Sem cebola, tocar campainha..."
+    id="observacao"
+    placeholder="Ex: Sem cebola, tocar campainha..."
 ></textarea>
 
-
 <button
+id="btnEnviar"
 class="btn btn-whatsapp"
 onclick="finalizarPedido()"
->
-📲 ENVIAR PEDIDO PELO WHATSAPP
-</button>
 
+>
+
+```
+📲 ENVIAR PEDIDO PELO WHATSAPP
+```
+
+</button>
 
 <button
 class="btn btn-limpar"
 onclick="limparCarrinho()"
+
 >
+
+```
 🗑️ LIMPAR CARRINHO
+```
+
 </button>
 
 </div>
 
 </div>
 
-
-<!-- =========================
-     AVATAR
-========================= -->
-
-<div class="criador">
-
-<img
-id="avatarCriador"
-alt="Neeh Diiniz"
->
-
-<div class="criador-texto">
-SITE CRIADO POR : <span>NEEH DIINIZ</span>
-</div>
-
-</div>
-
-
 <footer>
-
-ND BURGS © 2026<br>
-Obrigado pela preferência ❤️
-
+    ND BURGS © 2026<br>
+    Obrigado pela preferência ❤️
 </footer>
 
+<!-- ============================================================
+     BLOQUEIO FORA DO HORÁRIO
+     ============================================================ -->
+
+<div id="bloqueio" class="bloqueio">
+
+```
+<div class="bloqueio-box">
+
+    <h2>🔒 ESTAMOS FECHADOS</h2>
+
+    <p>
+        No momento a ND BURGS não está recebendo pedidos.
+    </p>
+
+    <p>
+        Nosso atendimento começa às <strong>18:00</strong>.
+    </p>
+
+    <p class="bloqueio-horario">
+        TERÇA A SÁBADO: 18:00 ÀS 00:30<br>
+        DOMINGO: 18:00 ÀS 00:00<br>
+        SEGUNDA: FECHADO
+    </p>
+
+</div>
+```
+
+</div>
 
 <script>
 
 /* ============================================================
-   AVATAR
-   ============================================================ */
-
-/*
-   Avatar incorporado no próprio HTML.
-   Não depende de outro arquivo do GitHub.
-*/
-
-const avatarBase64 =
-"data:image/webp;base64,UklGRipaAABXRUJQVlA4WAoAAAAQAAAAPwEA3AAAQUxQSCkPAAABDAVt20gJf9h77q5HICImgD+t75wfuX7i4QN/qTnGECqXPeZ6";
-
-
-/*
-   Caso o navegador não consiga carregar a versão
-   incorporada acima, o espaço continua reservado.
-*/
-
-document.getElementById("avatarCriador").src = avatarBase64;
-
-
-/* ============================================================
    TAXAS DE ENTREGA
-============================================================ */
+   ============================================================ */
 
 const taxas = {
 
-"AV ATLETICO":9,
-"AV LYONS":5,
-"AV MARABAS":4,
-"AV MARAMBAIA":4,
-"AV TORRE ALBERT MUNCK":6,
-"AVENIDA BRASIL":5,
-"AVENIDA PROFESSOR MANOEL JOSE PEDROSO":7,
-"BALCAO":0,
-"CONDOMINIO PARQUE REAL":9,
-"CONDOMINIO VALE VERDE":10,
-"ESTRADA DO ATALAIA":6,
-"ESTRADA DO MORRO GRANDE":9,
-"ESTRADA DO PADRE INACIO":6,
-"ESTRADA DOS FISCHER'S":7,
-"ESTRADA VELHA DA OLARIA":5,
-"MANDELINHA KENKIT":5,
-"MANDELINHA PARTE DE CIMA":5,
-"MANDELINHA PORTO ALEGRE":5,
-"POINT DO DIGO":6,
-"RETIRADA":0,
-"RUA 7":6,
-"RUA ACLIMACAO":6,
-"RUA ADOVEL QUINTINO":6,
-"RUA AGULHAS NEGRAS":7,
-"RUA ALAGOINHAS":6,
-"RUA ARCO DOURADO":5,
-"RUA ARCO VERDE":5,
-"RUA BELMONTE":5,
-"RUA BENEDITO MARIA DE JESUS":5,
-"RUA BRASILIA":7,
-"RUA BRUMADO":6,
-"RUA CAETETE":6,
-"RUA CAIAPO":7,
-"RUA CAIO GRACO":5,
-"RUA CALIL FILHO":8,
-"RUA CAMINHO EXISTENTE":4,
-"RUA CARMEN MIRANDA":9,
-"RUA CIRO MONTEIRO":9,
-"RUA COAPA":6,
-"RUA COMODORO":5,
-"RUA DAS AMEIXEIRAS":3,
-"RUA DAS BANANEIRAS":3,
-"RUA DOS COQUEIRAIS":3,
-"RUA DAS DAMASQUEIRAS":3,
-"RUA DAS MACIEIRAS":3,
-"RUA DAS MORANGUEIRAS":3,
-"RUA DESPORTIVA":9,
-"RUA DR APARECIDA J DOMINGUES":4,
-"RUA DR ODAIR PACHECO PEDROSO":8,
-"RUA ERICO VERISSIMO":7,
-"RUA ERIVELTON MARTINS":7,
-"RUA ESPLANADA":5,
-"RUA EXISTENTE":4,
-"RUA FELISBINO DE OLIVEIRA":8,
-"RUA FRANCISCO ALVES":9,
-"RUA FUGI":8,
-"RUA GRACIANO SOARES DE ARAUJO":5,
-"RUA INDUSQUIMICA":5,
-"RUA IPIRANGA":6,
-"RUA ISMENIA":6,
-"RUA ITABUNA":6,
-"RUA ITAGUAI":6,
-"RUA ITAPETI":7,
-"RUA ITARIRI":4,
-"RUA JACOBINA":5,
-"RUA JOAQUIM RUAS":6,
-"RUA JUQUITIBA":4,
-"RUA LAMARTINE BABO":9,
-"RUA LEVER":6,
-"RUA PADRE LUIZ MARTINE":5,
-"RUA MADRESSILVAS":6,
-"RUA MARIO ANDREATINI":4,
-"RUA METAL LEVER":5,
-"RUA MIL FOLHAS":9,
-"RUA MIRAMAR":5,
-"RUA MOÇAMBIQUE":9,
-"RUA NILO":9,
-"RUA NOGAM":6,
-"RUA NOVA ODESSA":6,
-"RUA NOVA OLINDA":6,
-"RUA NOVA PATRIA":6,
-"RUA NOVA SAO PAULO":6,
-"RUA ODETE":6,
-"RUA OMA":9,
-"RUA OTELO ZELONI":7,
-"RUA PACARAIMA":8,
-"RUA PALMAS":9,
-"RUA PARANA":7,
-"RUA PAULO SERGIO LEMOS":7,
-"RUA PENHA":6,
-"RUA PIRINEUS":8,
-"RUA PONTA GROSSA":4,
-"RUA PORTO ALEGRE":5,
-"RUA PROFESSOR ZOE PEREIRA BENIAMINO":6,
-"RUA REGISTRO":4,
-"RUA RIBEIRAO PIRES":4,
-"RUA RIO BRANCO":5,
-"RUA RIO CLARO":5,
-"RUA MARANHAO":7,
-"RUA SANTA MARIA IMACULADA":5,
-"RUA SANTA MATILDE":6,
-"RUA SANTO AGOSTINO":7,
-"RUA SAO BENEDITO":7,
-"RUA SAO CIPRIANO":6,
-"RUA SAO CRISTOVAO":6,
-"RUA SAO GEREMIAS":6,
-"RUA SAO PAULO":6,
-"RUA SAO PAULO DAS MISSOES":7,
-"RUA SAO SERAFIM":6,
-"RUA SERGIO CARDOSO":6,
-"RUA SILVA TELES":9,
-"RUA TIBERIO":5,
-"RUA TORQUARO NETO":6,
-"RUA UGANDA":9,
-"RUA VICENTE CELESTINO":9,
-"RUA VICENTE STRIFEZZI":15,
-"RUA VILA VERDE":5,
-"RUA VOTURAMA":7,
-"RUA WELCOME":5,
-"RUA ZIEMBINSKI":7,
-"VIELA DOS FISCHERS":9,
-"ESTRADA DAS GRAÇAS":4,
-"IFOOD":0,
-"RUA NOVA TRINDADE":6,
-"99FOOD":0,
-"RUA APENINOS":12,
-"RUA VERA CRUZ":5,
-"MERCADO LIVRE":15,
-"RUA SANTA QUITERIA":6,
-"RUA ITAPETININGA":5,
-"RUA MELGAXE":9,
-"RUA GETULIO VARGAS":8,
-"IDOMINEU ANTUNES CALDEIRA":9,
-"RUA PATATIVA":7,
-"RUA MOEMA":6
-
+    "AV ATLETICO": 9,
+    "AV LYONS": 5,
+    "AV MARABAS": 4,
+    "AV MARAMBAIA": 4,
+    "AV TORRE ALBERT MUNCK": 6,
+    "AVENIDA BRASIL": 5,
+    "AVENIDA PROFESSOR MANOEL JOSE PEDROSO": 7,
+    "BALCAO": 0,
+    "CONDOMINIO PARQUE REAL": 9,
+    "CONDOMINIO VALE VERDE": 10,
+    "ESTRADA DO ATALAIA": 6,
+    "ESTRADA DO MORRO GRANDE": 9,
+    "ESTRADA DO PADRE INACIO": 6,
+    "ESTRADA DOS FISCHER'S": 7,
+    "ESTRADA VELHA DA OLARIA": 5,
+    "MANDELINHA KENKIT": 5,
+    "MANDELINHA PARTE DE CIMA": 5,
+    "MANDELINHA PORTO ALEGRE": 5,
+    "POINT DO DIGO": 6,
+    "RETIRADA": 0,
+    "RUA 7": 6,
+    "RUA ACLIMACAO": 6,
+    "RUA ADOVEL QUINTINO": 6,
+    "RUA AGULHAS NEGRAS": 7,
+    "RUA ALAGOINHAS": 6,
+    "RUA ARCO DOURADO": 5,
+    "RUA ARCO VERDE": 5,
+    "RUA BELMONTE": 5,
+    "RUA BENEDITO MARIA DE JESUS": 5,
+    "RUA BRASILIA": 7,
+    "RUA BRUMADO": 6,
+    "RUA CAETETE": 6,
+    "RUA CAIAPO": 7,
+    "RUA CAIO GRACO": 5,
+    "RUA CALIL FILHO": 8,
+    "RUA CAMINHO EXISTENTE": 4,
+    "RUA CARMEN MIRANDA": 9,
+    "RUA CIRO MONTEIRO": 9,
+    "RUA COAPA": 6,
+    "RUA COMODORO": 5,
+    "RUA DAS AMEIXEIRAS": 3,
+    "RUA DAS BANANEIRAS": 3,
+    "RUA DOS COQUEIRAIS": 3,
+    "RUA DAS DAMASQUEIRAS": 3,
+    "RUA DAS MACIEIRAS": 3,
+    "RUA DAS MORANGUEIRAS": 3,
+    "RUA DESPORTIVA": 9,
+    "RUA DR APARECIDA J DOMINGUES": 4,
+    "RUA DR ODAIR PACHECO PEDROSO": 8,
+    "RUA ERICO VERISSIMO": 7,
+    "RUA ERIVELTON MARTINS": 7,
+    "RUA ESPLANADA": 5,
+    "RUA EXISTENTE": 4,
+    "RUA FELISBINO DE OLIVEIRA": 8,
+    "RUA FRANCISCO ALVES": 9,
+    "RUA FUGI": 8,
+    "RUA GRACIANO SOARES DE ARAUJO": 5,
+    "RUA INDUSQUIMICA": 5,
+    "RUA IPIRANGA": 6,
+    "RUA ISMENIA": 6,
+    "RUA ITABUNA": 6,
+    "RUA ITAGUAI": 6,
+    "RUA ITAPETI": 7,
+    "RUA ITARIRI": 4,
+    "RUA JACOBINA": 5,
+    "RUA JOAQUIM RUAS": 6,
+    "RUA JUQUITIBA": 4,
+    "RUA LAMARTINE BABO": 9,
+    "RUA LEVER": 6,
+    "RUA PADRE LUIZ MARTINE": 5,
+    "RUA MADRESSILVAS": 6,
+    "RUA MARIO ANDREATINI": 4,
+    "RUA METAL LEVER": 5,
+    "RUA MIL FOLHAS": 9,
+    "RUA MIRAMAR": 5,
+    "RUA MOÇAMBIQUE": 9,
+    "RUA NILO": 9,
+    "RUA NOGAM": 6,
+    "RUA NOVA ODESSA": 6,
+    "RUA NOVA OLINDA": 6,
+    "RUA NOVA PATRIA": 6,
+    "RUA NOVA SAO PAULO": 6,
+    "RUA ODETE": 6,
+    "RUA OMA": 9,
+    "RUA OTELO ZELONI": 7,
+    "RUA PACARAIMA": 8,
+    "RUA PALMAS": 9,
+    "RUA PARANA": 7,
+    "RUA PAULO SERGIO LEMOS": 7,
+    "RUA PENHA": 6,
+    "RUA PIRINEUS": 8,
+    "RUA PONTA GROSSA": 4,
+    "RUA PORTO ALEGRE": 5,
+    "RUA PROFESSOR ZOE PEREIRA BENIAMINO": 6,
+    "RUA REGISTRO": 4,
+    "RUA RIBEIRAO PIRES": 4,
+    "RUA RIO BRANCO": 5,
+    "RUA RIO CLARO": 5,
+    "RUA MARANHAO": 7,
+    "RUA SANTA MARIA IMACULADA": 5,
+    "RUA SANTA MATILDE": 6,
+    "RUA SANTO AGOSTINO": 7,
+    "RUA SAO BENEDITO": 7,
+    "RUA SAO CIPRIANO": 6,
+    "RUA SAO CRISTOVAO": 6,
+    "RUA SAO GEREMIAS": 6,
+    "RUA SAO PAULO": 6,
+    "RUA SAO PAULO DAS MISSOES": 7,
+    "RUA SAO SERAFIM": 6,
+    "RUA SERGIO CARDOSO": 6,
+    "RUA SILVA TELES": 9,
+    "RUA TIBERIO": 5,
+    "RUA TORQUARO NETO": 6,
+    "RUA UGANDA": 9,
+    "RUA VICENTE CELESTINO": 9,
+    "RUA VICENTE STRIFEZZI": 15,
+    "RUA VILA VERDE": 5,
+    "RUA VOTURAMA": 7,
+    "RUA WELCOME": 5,
+    "RUA ZIEMBINSKI": 7,
+    "VIELA DOS FISCHERS": 9,
+    "ESTRADA DAS GRAÇAS": 4,
+    "IFOOD": 0,
+    "RUA NOVA TRINDADE": 6,
+    "99FOOD": 0,
+    "RUA APENINOS": 12,
+    "RUA VERA CRUZ": 5,
+    "MERCADO LIVRE": 15,
+    "RUA SANTA QUITERIA": 6,
+    "RUA ITAPETININGA": 5,
+    "RUA MELGAXE": 9,
+    "RUA GETULIO VARGAS": 8,
+    "IDOMINEU ANTUNES CALDEIRA": 9,
+    "RUA PATATIVA": 7,
+    "RUA MOEMA": 6
 };
 
 
 /* ============================================================
    CARRINHO
-============================================================ */
+   ============================================================ */
 
 let carrinho = [];
 
 
 /* ============================================================
-   MOEDA
-============================================================ */
-
-function moeda(valor){
-
-return valor.toLocaleString("pt-BR",{
-style:"currency",
-currency:"BRL"
-});
-
-}
-
-
-/* ============================================================
-   ADICIONAR
-============================================================ */
-
-function adicionar(nome,preco){
-
-const existente =
-carrinho.find(item => item.nome === nome);
-
-if(existente){
-
-existente.quantidade++;
-
-}else{
-
-carrinho.push({
-nome:nome,
-preco:preco,
-quantidade:1
-});
-
-}
-
-atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   ALTERAR QUANTIDADE
-============================================================ */
-
-function alterarQuantidade(index,valor){
-
-carrinho[index].quantidade += valor;
-
-if(carrinho[index].quantidade <= 0){
-
-carrinho.splice(index,1);
-
-}
-
-atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   REMOVER
-============================================================ */
-
-function removerItem(index){
-
-carrinho.splice(index,1);
-
-atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   ATUALIZAR CARRINHO
-============================================================ */
-
-function atualizarCarrinho(){
-
-const area =
-document.getElementById("carrinhoItens");
-
-area.innerHTML = "";
-
-if(carrinho.length === 0){
-
-area.innerHTML =
-`
-<div class="vazio">
-Seu carrinho está vazio.
-</div>
-`;
-
-}
-
-let subtotal = 0;
-
-carrinho.forEach((item,index)=>{
-
-const totalItem =
-item.preco * item.quantidade;
-
-subtotal += totalItem;
-
-area.innerHTML +=
-`
-<div class="item-carrinho">
-
-<div class="item-info">
-
-<strong>${item.nome}</strong>
-
-<small>
-${moeda(item.preco)} cada
-</small>
-
-</div>
-
-<div class="controles">
-
-<button onclick="alterarQuantidade(${index},-1)">
-−
-</button>
-
-<strong>
-${item.quantidade}
-</strong>
-
-<button onclick="alterarQuantidade(${index},1)">
-+
-</button>
-
-<button
-class="remover"
-onclick="removerItem(${index})"
->
-X
-</button>
-
-</div>
-
-<strong>
-${moeda(totalItem)}
-</strong>
-
-</div>
-`;
-
-});
-
-document.getElementById("subtotal").innerText =
-moeda(subtotal);
-
-calcularTaxa();
-
-}
-
-
-/* ============================================================
-   CALCULAR TAXA
-============================================================ */
-
-function calcularTaxa(){
-
-const tipo =
-document.getElementById("tipoPedido").value;
-
-let taxa = 0;
-
-if(tipo === "ENTREGA"){
-
-const rua =
-document.getElementById("rua").value;
-
-if(rua && taxas[rua] !== undefined){
-
-taxa = taxas[rua];
-
-}
-
-}
-
-const subtotal =
-carrinho.reduce(
-(soma,item)=>
-soma + item.preco * item.quantidade,
-0
-);
-
-const total =
-subtotal + taxa;
-
-document.getElementById("taxa").innerText =
-moeda(taxa);
-
-document.getElementById("total").innerText =
-moeda(total);
-
-const aviso =
-document.getElementById("avisoTaxa");
-
-if(tipo === "ENTREGA" && rua){
-
-aviso.style.display = "block";
-
-aviso.innerHTML =
-"🚚 Taxa para <strong>" +
-rua +
-"</strong>: <strong>" +
-moeda(taxa) +
-"</strong>";
-
-}else{
-
-aviso.style.display = "none";
-
-}
-
-}
-
-
-/* ============================================================
-   TIPO DO PEDIDO
-============================================================ */
-
-function alterarTipoPedido(){
-
-const tipo =
-document.getElementById("tipoPedido").value;
-
-const enderecoArea =
-document.getElementById("enderecoArea");
-
-if(tipo === "ENTREGA"){
-
-enderecoArea.style.display = "block";
-
-}else{
-
-enderecoArea.style.display = "none";
-
-}
-
-calcularTaxa();
-
-}
-
-
-/* ============================================================
-   TROCO
-============================================================ */
-
-document
-.getElementById("pagamento")
-.addEventListener("change",function(){
-
-const trocoArea =
-document.getElementById("trocoArea");
-
-if(this.value === "DINHEIRO"){
-
-trocoArea.style.display = "block";
-
-}else{
-
-trocoArea.style.display = "none";
-
-}
-
-});
-
-
-/* ============================================================
-   RUAS
-============================================================ */
-
-function carregarRuas(){
-
-const select =
-document.getElementById("rua");
-
-const ruas =
-Object.keys(taxas)
-.filter(rua =>
-rua !== "BALCAO" &&
-rua !== "RETIRADA" &&
-rua !== "IFOOD" &&
-rua !== "99FOOD"
-)
-.sort((a,b)=>
-a.localeCompare(b,"pt-BR")
-);
-
-ruas.forEach(rua=>{
-
-const option =
-document.createElement("option");
-
-option.value = rua;
-
-option.textContent =
-rua + " — " + moeda(taxas[rua]);
-
-select.appendChild(option);
-
-});
-
-}
-
-
-/* ============================================================
-   LIMPAR CARRINHO
-============================================================ */
-
-function limparCarrinho(){
-
-if(carrinho.length === 0){
-
-return;
-
-}
-
-if(!confirm("Deseja realmente limpar o carrinho?")){
-
-return;
-
-}
-
-carrinho = [];
-
-atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   IR PARA CATEGORIA
-============================================================ */
-
-function irPara(id){
-
-const elemento =
-document.getElementById(id);
-
-if(elemento){
-
-elemento.scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
-}
+   FORMATAÇÃO
+   ============================================================ */
+
+function moeda(valor) {
+
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
 
 }
 
 
 /* ============================================================
    HORÁRIO DE FUNCIONAMENTO
-============================================================ */
+   ============================================================
 
-function verificarHorario(){
-
-const agora = new Date();
-
-const dia = agora.getDay();
-
-const hora =
-agora.getHours() * 60 +
-agora.getMinutes();
-
-
-/*
-
-DOMINGO = 0
-SEGUNDA = 1
-TERÇA = 2
-QUARTA = 3
-QUINTA = 4
-SEXTA = 5
-SÁBADO = 6
-
-*/
-
-let aberto = false;
-
-
-/*
-   TERÇA A SÁBADO
+   TERÇA A SÁBADO:
    18:00 até 00:30
 
-   Também mantém aberto os primeiros
-   30 minutos do dia seguinte.
-*/
-
-if(
-dia >= 2 &&
-dia <= 6 &&
-hora >= 1080
-){
-
-aberto = true;
-
-}
-
-
-/*
-   DOMINGO
+   DOMINGO:
    18:00 até 00:00
-*/
 
-if(
-dia === 0 &&
-hora >= 1080
-){
+   SEGUNDA:
+   FECHADO
 
-aberto = true;
+   A lógica também considera corretamente o período
+   depois da meia-noite como continuação do dia anterior.
+   ============================================================ */
+
+function verificarHorario() {
+
+    const agora = new Date();
+
+    const dia = agora.getDay();
+
+    const hora = agora.getHours();
+
+    const minuto = agora.getMinutes();
+
+    const minutosAgora = hora * 60 + minuto;
+
+    let aberto = false;
+
+    /*
+       Domingo:
+       18:00 até 00:00.
+    */
+
+    if (dia === 0) {
+
+        if (minutosAgora >= 18 * 60) {
+
+            aberto = true;
+
+        }
+
+    }
+
+    /*
+       Terça a sábado:
+       18:00 até 00:30.
+
+       Depois da meia-noite:
+       quarta a domingo até 00:30 continuam
+       sendo o expediente iniciado no dia anterior.
+    */
+
+    else if (dia >= 2 && dia <= 6) {
+
+        if (minutosAgora >= 18 * 60) {
+
+            aberto = true;
+
+        }
+
+        else if (minutosAgora <= 30) {
+
+            /*
+               Terça 00:xx não é continuação de segunda,
+               portanto continua fechado.
+            */
+
+            if (dia >= 3) {
+
+                aberto = true;
+
+            }
+
+        }
+
+    }
+
+    /*
+       Segunda-feira:
+       fechado o dia inteiro.
+    */
+
+    else {
+
+        aberto = false;
+
+    }
+
+
+    const status = document.getElementById("statusHorario");
+
+    const bloqueio = document.getElementById("bloqueio");
+
+    const botao = document.getElementById("btnEnviar");
+
+
+    if (aberto) {
+
+        status.innerHTML = "🟢 ESTAMOS ABERTOS — PEDIDOS LIBERADOS";
+
+        status.className = "status-aberto";
+
+        bloqueio.style.display = "none";
+
+        botao.disabled = false;
+
+        botao.style.opacity = "1";
+
+    } else {
+
+        status.innerHTML = "🔴 ESTAMOS FECHADOS";
+
+        status.className = "status-fechado";
+
+        bloqueio.style.display = "flex";
+
+        botao.disabled = true;
+
+        botao.style.opacity = ".5";
+
+    }
 
 }
 
 
-/*
-   MADRUGADA DE TERÇA A SÁBADO
+/* ============================================================
+   ADICIONAR PRODUTO
+   ============================================================ */
 
-   Exemplo:
-   terça 18:00 → quarta 00:30
+function adicionar(nome, preco) {
 
-   Portanto quarta-feira 00:15
-   ainda pertence ao expediente de terça.
+    if (!verificarSePodePedir()) {
+        return;
+    }
 
-*/
+    const existente =
+        carrinho.find(item => item.nome === nome);
 
-if(
-dia >= 3 &&
-dia <= 6 &&
-hora < 30
-){
+    if (existente) {
 
-aberto = true;
+        existente.quantidade++;
 
-}
+    } else {
 
+        carrinho.push({
+            nome: nome,
+            preco: preco,
+            quantidade: 1
+        });
 
-/*
-   DOMINGO 00:00 NÃO É ABERTO
-   porque o expediente de sábado
-   terminou às 00:30 de domingo.
+    }
 
-   Segunda-feira também permanece fechado.
-*/
-
-if(dia === 1){
-
-aberto = false;
+    atualizarCarrinho();
 
 }
 
 
-/*
-   BLOQUEIO
-*/
+/* ============================================================
+   VERIFICAR HORÁRIO ANTES DO PEDIDO
+   ============================================================ */
 
-const bloqueio =
-document.getElementById("bloqueioHorario");
+function verificarSePodePedir() {
 
-const status =
-document.getElementById("statusHorario");
+    const agora = new Date();
 
-if(aberto){
+    const dia = agora.getDay();
 
-bloqueio.style.display = "none";
+    const hora = agora.getHours();
 
-status.className =
-"status-aberto";
+    const minuto = agora.getMinutes();
 
-status.innerHTML =
-"🟢 ESTAMOS ABERTOS";
+    const minutosAgora = hora * 60 + minuto;
 
-}else{
+    let aberto = false;
 
-bloqueio.style.display = "flex";
 
-status.className =
-"status-fechado";
+    if (dia === 0) {
 
-status.innerHTML =
-"🔴 ESTAMOS FECHADOS";
+        if (minutosAgora >= 1080) {
+
+            aberto = true;
+
+        }
+
+    }
+
+    else if (dia >= 2 && dia <= 6) {
+
+        if (minutosAgora >= 1080) {
+
+            aberto = true;
+
+        } else if (minutosAgora <= 30 && dia >= 3) {
+
+            aberto = true;
+
+        }
+
+    }
+
+
+    if (!aberto) {
+
+        document.getElementById("bloqueio").style.display = "flex";
+
+        return false;
+
+    }
+
+    return true;
 
 }
+
+
+/* ============================================================
+   ALTERAR QUANTIDADE
+   ============================================================ */
+
+function alterarQuantidade(index, valor) {
+
+    carrinho[index].quantidade += valor;
+
+    if (carrinho[index].quantidade <= 0) {
+
+        carrinho.splice(index, 1);
+
+    }
+
+    atualizarCarrinho();
+
+}
+
+
+/* ============================================================
+   ATUALIZAR CARRINHO
+   ============================================================ */
+
+function atualizarCarrinho() {
+
+    const area =
+        document.getElementById("carrinhoItens");
+
+    area.innerHTML = "";
+
+    if (carrinho.length === 0) {
+
+        area.innerHTML = `
+            <div class="vazio">
+                Seu carrinho está vazio.
+            </div>
+        `;
+
+    }
+
+    let subtotal = 0;
+
+
+    carrinho.forEach((item, index) => {
+
+        const totalItem =
+            item.preco * item.quantidade;
+
+        subtotal += totalItem;
+
+        area.innerHTML += `
+
+            <div class="item-carrinho">
+
+                <div class="item-info">
+
+                    <strong>${item.nome}</strong>
+
+                    <small>
+                        ${moeda(item.preco)} cada
+                    </small>
+
+                </div>
+
+                <div class="controles">
+
+                    <button onclick="alterarQuantidade(${index}, -1)">
+                        −
+                    </button>
+
+                    <strong>
+                        ${item.quantidade}
+                    </strong>
+
+                    <button onclick="alterarQuantidade(${index}, 1)">
+                        +
+                    </button>
+
+                    <button
+                        class="remover"
+                        onclick="removerItem(${index})"
+                    >
+                        X
+                    </button>
+
+                </div>
+
+                <strong>
+                    ${moeda(totalItem)}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("subtotal").innerText =
+        moeda(subtotal);
+
+    calcularTaxa();
+
+}
+
+
+/* ============================================================
+   REMOVER ITEM
+   ============================================================ */
+
+function removerItem(index) {
+
+    carrinho.splice(index, 1);
+
+    atualizarCarrinho();
+
+}
+
+
+/* ============================================================
+   CALCULAR TAXA
+   ============================================================ */
+
+function calcularTaxa() {
+
+    const tipo =
+        document.getElementById("tipoPedido").value;
+
+    let taxa = 0;
+
+    if (tipo === "ENTREGA") {
+
+        const rua =
+            document.getElementById("rua").value;
+
+        if (rua && taxas[rua] !== undefined) {
+
+            taxa = taxas[rua];
+
+        }
+
+    }
+
+
+    const subtotal =
+        carrinho.reduce(
+            (soma, item) =>
+                soma + item.preco * item.quantidade,
+            0
+        );
+
+
+    const total =
+        subtotal + taxa;
+
+
+    document.getElementById("taxa").innerText =
+        moeda(taxa);
+
+    document.getElementById("total").innerText =
+        moeda(total);
+
+
+    const aviso =
+        document.getElementById("avisoTaxa");
+
+
+    const ruaAtual =
+        document.getElementById("rua").value;
+
+
+    if (tipo === "ENTREGA" && ruaAtual) {
+
+        aviso.style.display = "block";
+
+        aviso.innerHTML =
+            "🚚 Taxa para <strong>" +
+            ruaAtual +
+            "</strong>: <strong>" +
+            moeda(taxa) +
+            "</strong>";
+
+    } else {
+
+        aviso.style.display = "none";
+
+    }
+
+}
+
+
+/* ============================================================
+   ALTERAR TIPO DO PEDIDO
+   ============================================================ */
+
+function alterarTipoPedido() {
+
+    const tipo =
+        document.getElementById("tipoPedido").value;
+
+    const enderecoArea =
+        document.getElementById("enderecoArea");
+
+
+    if (tipo === "ENTREGA") {
+
+        enderecoArea.style.display = "block";
+
+    } else {
+
+        enderecoArea.style.display = "none";
+
+    }
+
+
+    calcularTaxa();
+
+}
+
+
+/* ============================================================
+   PAGAMENTO / TROCO
+   ============================================================ */
+
+document
+.getElementById("pagamento")
+.addEventListener("change", function() {
+
+    const trocoArea =
+        document.getElementById("trocoArea");
+
+
+    if (this.value === "DINHEIRO") {
+
+        trocoArea.style.display = "block";
+
+    } else {
+
+        trocoArea.style.display = "none";
+
+    }
+
+});
+
+
+/* ============================================================
+   PREENCHER LISTA DE RUAS
+   ============================================================ */
+
+function carregarRuas() {
+
+    const select =
+        document.getElementById("rua");
+
+
+    const ruas =
+        Object.keys(taxas)
+        .filter(rua =>
+            rua !== "BALCAO" &&
+            rua !== "RETIRADA" &&
+            rua !== "IFOOD" &&
+            rua !== "99FOOD"
+        )
+        .sort((a,b) =>
+            a.localeCompare(b, "pt-BR")
+        );
+
+
+    ruas.forEach(rua => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = rua;
+
+        option.textContent =
+            rua + " — " + moeda(taxas[rua]);
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+/* ============================================================
+   LIMPAR CARRINHO
+   ============================================================ */
+
+function limparCarrinho() {
+
+    if (carrinho.length === 0) {
+
+        return;
+
+    }
+
+
+    if (!confirm(
+        "Deseja realmente limpar o carrinho?"
+    )) {
+
+        return;
+
+    }
+
+
+    carrinho = [];
+
+    atualizarCarrinho();
 
 }
 
 
 /* ============================================================
    FINALIZAR PEDIDO
-============================================================ */
+   ============================================================ */
 
-function finalizarPedido(){
+function finalizarPedido() {
 
-if(carrinho.length === 0){
+    if (!verificarSePodePedir()) {
 
-alert(
-"Adicione pelo menos um produto ao carrinho."
-);
+        return;
 
-return;
+    }
 
-}
 
-const nome =
-document.getElementById("nome")
-.value.trim();
+    if (carrinho.length === 0) {
 
-const telefone =
-document.getElementById("telefone")
-.value.trim();
+        alert(
+            "Adicione pelo menos um produto ao carrinho."
+        );
 
-const tipo =
-document.getElementById("tipoPedido")
-.value;
+        return;
 
-const rua =
-document.getElementById("rua")
-.value;
+    }
 
-const numero =
-document.getElementById("numero")
-.value.trim();
 
-const complemento =
-document.getElementById("complemento")
-.value.trim();
+    const nome =
+        document.getElementById("nome").value.trim();
 
-const pagamento =
-document.getElementById("pagamento")
-.value;
 
-const troco =
-document.getElementById("troco")
-.value;
+    const telefone =
+        document.getElementById("telefone").value.trim();
 
-const observacao =
-document.getElementById("observacao")
-.value.trim();
 
+    const tipo =
+        document.getElementById("tipoPedido").value;
 
-if(!nome){
 
-alert("Digite seu nome.");
+    const rua =
+        document.getElementById("rua").value;
 
-return;
 
-}
+    const numero =
+        document.getElementById("numero").value.trim();
 
 
-if(!telefone){
+    const complemento =
+        document.getElementById("complemento").value.trim();
 
-alert("Digite seu telefone.");
 
-return;
+    const pagamento =
+        document.getElementById("pagamento").value;
 
-}
 
+    const troco =
+        document.getElementById("troco").value;
 
-if(tipo === "ENTREGA"){
 
-if(!rua){
+    const observacao =
+        document.getElementById("observacao").value.trim();
 
-alert("Selecione sua rua.");
 
-return;
+    if (!nome) {
 
-}
+        alert("Digite seu nome.");
 
-if(!numero){
+        return;
 
-alert(
-"Digite o número do endereço."
-);
+    }
 
-return;
 
-}
+    if (!telefone) {
 
-}
+        alert("Digite seu telefone.");
 
+        return;
 
-if(!pagamento){
+    }
 
-alert(
-"Selecione a forma de pagamento."
-);
 
-return;
+    if (tipo === "ENTREGA") {
 
-}
+        if (!rua) {
 
+            alert("Selecione sua rua.");
 
-let subtotal = 0;
+            return;
 
-let mensagem = "";
+        }
 
-mensagem +=
-"🍔 *NOVO PEDIDO - ND BURGS*%0A";
 
-mensagem +=
-"==============================%0A%0A";
+        if (!numero) {
 
+            alert(
+                "Digite o número do endereço."
+            );
 
-mensagem +=
-"👤 *CLIENTE:* " +
-encodeURIComponent(nome) +
-"%0A";
+            return;
 
+        }
 
-mensagem +=
-"📱 *TELEFONE:* " +
-encodeURIComponent(telefone) +
-"%0A";
+    }
 
 
-mensagem +=
-"🚚 *TIPO:* " +
-encodeURIComponent(
-tipo === "ENTREGA"
-? "DELIVERY"
-: "RETIRADA"
-) +
-"%0A";
+    if (!pagamento) {
 
+        alert(
+            "Selecione a forma de pagamento."
+        );
 
-if(tipo === "ENTREGA"){
+        return;
 
-mensagem +=
-"📍 *ENDEREÇO:* " +
-encodeURIComponent(
-rua +
-", Nº " +
-numero
-) +
-"%0A";
+    }
 
 
-if(complemento){
+    let subtotal = 0;
 
-mensagem +=
-"🏠 *COMPLEMENTO:* " +
-encodeURIComponent(complemento) +
-"%0A";
+    let mensagem = "";
 
-}
 
-}
+    mensagem +=
+        "🍔 *NOVO PEDIDO - ND BURGS*%0A";
 
+    mensagem +=
+        "==============================%0A%0A";
 
-mensagem +=
-"%0A🛒 *ITENS DO PEDIDO*%0A";
 
-mensagem +=
-"------------------------------%0A";
+    mensagem +=
+        "👤 *CLIENTE:* " +
+        encodeURIComponent(nome) +
+        "%0A";
 
 
-carrinho.forEach(item=>{
+    mensagem +=
+        "📱 *TELEFONE:* " +
+        encodeURIComponent(telefone) +
+        "%0A";
 
-const totalItem =
-item.preco *
-item.quantidade;
 
-subtotal += totalItem;
+    mensagem +=
+        "🚚 *TIPO:* " +
+        encodeURIComponent(
+            tipo === "ENTREGA"
+            ? "DELIVERY"
+            : "RETIRADA"
+        ) +
+        "%0A";
 
-mensagem +=
-encodeURIComponent(
-item.quantidade +
-"x " +
-item.nome +
-" — " +
-moeda(totalItem)
-) +
-"%0A";
 
-});
+    if (tipo === "ENTREGA") {
 
+        mensagem +=
+            "📍 *ENDEREÇO:* " +
+            encodeURIComponent(
+                rua + ", Nº " + numero
+            ) +
+            "%0A";
 
-let taxa = 0;
 
-if(tipo === "ENTREGA"){
+        if (complemento) {
 
-taxa = taxas[rua] || 0;
+            mensagem +=
+                "🏠 *COMPLEMENTO:* " +
+                encodeURIComponent(
+                    complemento
+                ) +
+                "%0A";
 
-}
+        }
 
+    }
 
-const total =
-subtotal + taxa;
 
+    mensagem +=
+        "%0A🛒 *ITENS DO PEDIDO*%0A";
 
-mensagem += "%0A";
+    mensagem +=
+        "------------------------------%0A";
 
 
-mensagem +=
-"💰 *SUBTOTAL:* " +
-encodeURIComponent(
-moeda(subtotal)
-) +
-"%0A";
+    carrinho.forEach(item => {
 
+        const totalItem =
+            item.preco * item.quantidade;
 
-mensagem +=
-"🚚 *TAXA:* " +
-encodeURIComponent(
-moeda(taxa)
-) +
-"%0A";
 
+        subtotal += totalItem;
 
-mensagem +=
-"💵 *TOTAL:* " +
-encodeURIComponent(
-moeda(total)
-) +
-"%0A";
 
+        mensagem +=
+            encodeURIComponent(
+                item.quantidade +
+                "x " +
+                item.nome +
+                " — " +
+                moeda(totalItem)
+            ) +
+            "%0A";
 
-mensagem +=
-"💳 *PAGAMENTO:* " +
-encodeURIComponent(pagamento) +
-"%0A";
+    });
 
 
-if(
-pagamento === "DINHEIRO" &&
-troco
-){
+    let taxa = 0;
 
-mensagem +=
-"💵 *TROCO PARA:* " +
-encodeURIComponent(
-moeda(parseFloat(troco))
-) +
-"%0A";
 
-}
+    if (tipo === "ENTREGA") {
 
+        taxa = taxas[rua] || 0;
 
-if(observacao){
+    }
 
-mensagem +=
-"%0A📝 *OBSERVAÇÃO:*%0A";
 
-mensagem +=
-encodeURIComponent(observacao) +
-"%0A";
+    const total =
+        subtotal + taxa;
 
-}
 
+    mensagem += "%0A";
 
-mensagem +=
-"%0A==============================%0A";
 
-mensagem +=
-"ND BURGS 🍔";
+    mensagem +=
+        "💰 *SUBTOTAL:* " +
+        encodeURIComponent(
+            moeda(subtotal)
+        ) +
+        "%0A";
 
 
-/*
-   WHATSAPP DA ND BURGS
-*/
+    mensagem +=
+        "🚚 *TAXA:* " +
+        encodeURIComponent(
+            moeda(taxa)
+        ) +
+        "%0A";
 
-const whatsapp =
-"5511963973846";
 
+    mensagem +=
+        "💵 *TOTAL:* " +
+        encodeURIComponent(
+            moeda(total)
+        ) +
+        "%0A";
 
-window.open(
-"https://wa.me/" +
-whatsapp +
-"?text=" +
-mensagem,
-"_blank"
-);
+
+    mensagem +=
+        "💳 *PAGAMENTO:* " +
+        encodeURIComponent(
+            pagamento
+        ) +
+        "%0A";
+
+
+    if (
+        pagamento === "DINHEIRO" &&
+        troco
+    ) {
+
+        mensagem +=
+            "💵 *TROCO PARA:* " +
+            encodeURIComponent(
+                moeda(
+                    parseFloat(troco)
+                )
+            ) +
+            "%0A";
+
+    }
+
+
+    if (observacao) {
+
+        mensagem +=
+            "%0A📝 *OBSERVAÇÃO:*%0A";
+
+
+        mensagem +=
+            encodeURIComponent(
+                observacao
+            ) +
+            "%0A";
+
+    }
+
+
+    mensagem +=
+        "%0A==============================%0A";
+
+    mensagem +=
+        "ND BURGS 🍔";
+
+
+    /*
+       WHATSAPP DA ND BURGS
+    */
+
+    const whatsapp =
+        "5511963973846";
+
+
+    window.open(
+        "https://wa.me/" +
+        whatsapp +
+        "?text=" +
+        mensagem,
+        "_blank"
+    );
 
 }
 
 
 /* ============================================================
    INICIALIZAÇÃO
-============================================================ */
+   ============================================================ */
 
 carregarRuas();
 
 atualizarCarrinho();
 
-alterarTipoPedido();
-
 verificarHorario();
 
 
 /*
-   Verifica novamente a cada 30 segundos.
+   Atualiza o status automaticamente.
+   Assim, se a pessoa deixar a página aberta,
+   quando chegar no horário de fechar/abrir,
+   o site muda sozinho.
 */
 
 setInterval(
-verificarHorario,
-30000
+    verificarHorario,
+    30000
 );
 
 </script>
