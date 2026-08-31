@@ -1,270 +1,607 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ND BURGS | Faça seu pedido</title>
+<title>ND BURGS | Cardápio Online</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root{
+    --bg:#0b0b0d;
+    --card:#151519;
+    --card2:#1b1b20;
+    --line:#29292f;
+    --text:#fff;
+    --muted:#a8a8b0;
+    --yellow:#ffc400;
+    --yellow2:#ffda32;
+    --green:#25d366;
+    --red:#e53935;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #111;
-    color: #fff;
-    padding-bottom: 100px;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-header {
-    background: #000;
-    padding: 15px 20px;
-    text-align: center;
-    border-bottom: 2px solid #f5c400;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+html{
+    scroll-behavior:smooth;
 }
 
-.logo {
-    width: 150px;
-    max-width: 70%;
-    height: auto;
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    padding-bottom:95px;
 }
 
-.container {
-    width: 100%;
-    max-width: 1100px;
-    margin: auto;
-    padding: 15px;
+/* =========================================================
+   TOPO
+========================================================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(8,8,10,.97);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--line);
 }
 
-h1 {
-    text-align: center;
-    margin: 20px 0;
-    color: #f5c400;
+.top{
+    max-width:1150px;
+    margin:auto;
+    padding:12px 15px;
 }
 
-h2 {
-    color: #f5c400;
-    margin: 25px 0 12px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 8px;
+.logo-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-.produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+.logo{
+    width:145px;
+    max-width:48vw;
+    height:auto;
+    display:block;
 }
 
-.produto {
-    background: #1b1b1b;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,.3);
+.search-box{
+    position:relative;
 }
 
-.produto h3 {
-    color: #fff;
-    margin-bottom: 8px;
-    font-size: 19px;
+.search{
+    width:100%;
+    background:#202025;
+    border:1px solid #33333a;
+    color:white;
+    border-radius:14px;
+    padding:14px 45px 14px 16px;
+    font-size:15px;
+    outline:none;
 }
 
-.produto p {
-    color: #bbb;
-    min-height: 40px;
-    font-size: 14px;
-    line-height: 1.4;
+.search:focus{
+    border-color:var(--yellow);
 }
 
-.preco {
-    color: #f5c400;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 12px 0;
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:20px;
 }
 
-.btn {
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
+/* =========================================================
+   CATEGORIAS
+========================================================= */
+
+.categories{
+    max-width:1150px;
+    margin:auto;
+    padding:10px 15px 5px;
 }
 
-.btn-add {
-    background: #f5c400;
-    color: #000;
+.cats{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:5px;
 }
 
-.btn-add:hover {
-    background: #ffd92b;
+.cats::-webkit-scrollbar{
+    display:none;
 }
 
-.carrinho {
-    background: #181818;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 30px;
+.cat-btn{
+    flex-shrink:0;
+    border:1px solid #33333a;
+    background:#151519;
+    color:#ddd;
+    border-radius:999px;
+    padding:10px 14px;
+    font-weight:bold;
+    font-size:13px;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.item-carrinho {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #333;
+.cat-btn.active{
+    background:var(--yellow);
+    border-color:var(--yellow);
+    color:#111;
 }
 
-.item-info {
-    flex: 1;
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+main{
+    width:100%;
+    max-width:1150px;
+    margin:auto;
+    padding:10px 15px 110px;
 }
 
-.item-info strong {
-    display: block;
-    margin-bottom: 4px;
+.category-section{
+    margin-top:25px;
+    scroll-margin-top:155px;
 }
 
-.item-info small {
-    color: #aaa;
+.category-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:21px;
+    margin-bottom:12px;
 }
 
-.controles {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.category-title::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:var(--line);
 }
 
-.controles button {
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 6px;
-    background: #f5c400;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
+/* =========================================================
+   PRODUTOS
+========================================================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
 }
 
-.remover {
-    background: #c62828 !important;
-    color: #fff !important;
+.product{
+    background:linear-gradient(145deg,#18181d,#121216);
+    border:1px solid var(--line);
+    border-radius:17px;
+    padding:14px;
+    min-height:130px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    box-shadow:0 5px 18px rgba(0,0,0,.18);
+    transition:.18s;
 }
 
-.resumo {
-    margin-top: 20px;
+.product:hover{
+    border-color:#44444c;
+    transform:translateY(-1px);
 }
 
-.linha {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
+.product-info{
+    min-width:0;
+    flex:1;
 }
 
-.total {
-    font-size: 24px;
-    font-weight: bold;
-    color: #f5c400;
-    border-top: 1px solid #555;
-    margin-top: 10px;
-    padding-top: 15px;
+.product-name{
+    font-size:15px;
+    line-height:1.25;
+    font-weight:900;
+    margin-bottom:7px;
 }
 
-.formulario {
-    background: #181818;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 20px;
+.product-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.4;
+    min-height:17px;
 }
 
-label {
-    display: block;
-    margin-top: 14px;
-    margin-bottom: 6px;
-    font-weight: bold;
+.product-price{
+    color:var(--yellow);
+    font-size:17px;
+    font-weight:900;
+    margin-top:10px;
+}
+
+.add-button{
+    align-self:flex-end;
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    border:none;
+    border-radius:13px;
+    background:var(--yellow);
+    color:#111;
+    font-size:25px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(255,196,0,.15);
+}
+
+.add-button:active{
+    transform:scale(.93);
+}
+
+/* =========================================================
+   CARRINHO FIXO
+========================================================= */
+
+.cart-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:2000;
+    background:rgba(17,17,21,.97);
+    backdrop-filter:blur(12px);
+    border-top:1px solid #303038;
+    padding:10px 15px;
+}
+
+.cart-inner{
+    max-width:1150px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.cart-total{
+    font-size:18px;
+    font-weight:900;
+}
+
+.cart-count{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:2px;
+}
+
+.cart-button{
+    border:0;
+    background:var(--green);
+    color:#061008;
+    border-radius:13px;
+    padding:13px 18px;
+    font-size:14px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+dialog{
+    width:min(570px,94vw);
+    max-height:92vh;
+    border:1px solid #36363d;
+    border-radius:22px;
+    padding:0;
+    background:#151519;
+    color:white;
+    box-shadow:0 25px 100px rgba(0,0,0,.75);
+}
+
+dialog::backdrop{
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(3px);
+}
+
+.modal{
+    padding:20px;
+    max-height:92vh;
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.modal-header h2{
+    font-size:22px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:50%;
+    background:#29292f;
+    color:#fff;
+    font-size:23px;
+    cursor:pointer;
+}
+
+.cart-items{
+    max-height:270px;
+    overflow-y:auto;
+    margin-bottom:15px;
+}
+
+.cart-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.cart-row-name{
+    flex:1;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.cart-row-price{
+    color:var(--yellow);
+    font-weight:bold;
+    font-size:13px;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.quantity button{
+    width:30px;
+    height:30px;
+    border:0;
+    border-radius:8px;
+    background:#303038;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.quantity .plus{
+    background:var(--yellow);
+    color:#111;
+}
+
+.summary{
+    background:#101014;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:13px;
+    margin:12px 0 18px;
+}
+
+.summary-line{
+    display:flex;
+    justify-content:space-between;
+    padding:5px 0;
+    color:#ddd;
+}
+
+.summary-total{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #393940;
+    margin-top:7px;
+    padding-top:11px;
+    font-size:21px;
+    font-weight:900;
+    color:var(--yellow);
+}
+
+.form-title{
+    color:var(--yellow);
+    font-size:17px;
+    font-weight:900;
+    margin:18px 0 10px;
+}
+
+label{
+    display:block;
+    color:#ddd;
+    font-size:13px;
+    font-weight:bold;
+    margin:12px 0 6px;
 }
 
 input,
 select,
-textarea {
-    width: 100%;
-    padding: 13px;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background: #0d0d0d;
-    color: #fff;
-    font-size: 15px;
+textarea{
+    width:100%;
+    background:#0d0d10;
+    border:1px solid #37373e;
+    color:white;
+    border-radius:11px;
+    padding:13px;
+    font-size:14px;
+    outline:none;
 }
 
-textarea {
-    resize: vertical;
-    min-height: 80px;
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--yellow);
 }
 
-.endereco-extra {
-    display: none;
+textarea{
+    resize:vertical;
+    min-height:75px;
 }
 
-.btn-whatsapp {
-    background: #25D366;
-    color: #fff;
-    margin-top: 20px;
-    font-size: 18px;
+.delivery-type{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
 }
 
-.btn-limpar {
-    background: #8b0000;
-    color: #fff;
-    margin-top: 10px;
+.type-option{
+    background:#101014;
+    border:1px solid #38383f;
+    color:#ddd;
+    border-radius:11px;
+    padding:12px 5px;
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.vazio {
-    text-align: center;
-    color: #999;
-    padding: 20px;
+.type-option.active{
+    background:var(--yellow);
+    border-color:var(--yellow);
+    color:#111;
 }
 
-.aviso-taxa {
-    background: #292000;
-    border: 1px solid #f5c400;
-    color: #f5c400;
-    padding: 12px;
-    border-radius: 8px;
-    margin-top: 12px;
-    display: none;
+.hidden{
+    display:none!important;
 }
 
-footer {
-    text-align: center;
-    padding: 30px 15px;
-    color: #777;
+.rate-notice{
+    margin-top:8px;
+    background:#292000;
+    border:1px solid var(--yellow);
+    color:var(--yellow);
+    padding:11px;
+    border-radius:10px;
+    font-size:13px;
 }
 
-@media(max-width:600px) {
-    .item-carrinho {
-        flex-direction: column;
-        align-items: flex-start;
+.send-button{
+    width:100%;
+    border:0;
+    background:var(--green);
+    color:#061008;
+    border-radius:13px;
+    padding:15px;
+    margin-top:18px;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.clear-button{
+    width:100%;
+    border:0;
+    background:#690000;
+    color:white;
+    border-radius:13px;
+    padding:12px;
+    margin-top:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.empty{
+    text-align:center;
+    color:var(--muted);
+    padding:25px 10px;
+}
+
+/* =========================================================
+   DESTAQUE
+========================================================= */
+
+.hero{
+    background:linear-gradient(135deg,#1c1c20,#101014);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:17px;
+    margin:10px 0 5px;
+}
+
+.hero-title{
+    color:var(--yellow);
+    font-size:20px;
+    font-weight:900;
+}
+
+.hero-text{
+    color:var(--muted);
+    margin-top:5px;
+    font-size:13px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px){
+
+    .top{
+        padding:10px 12px;
     }
 
-    .controles {
-        width: 100%;
+    .logo{
+        width:125px;
     }
 
-    .controles button {
-        width: 35px;
-        height: 35px;
+    main{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .categories{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:9px;
+    }
+
+    .product{
+        min-height:112px;
+    }
+
+    .product-name{
+        font-size:15px;
+    }
+
+    .product-price{
+        font-size:16px;
+    }
+
+    .cart-button{
+        padding:12px 14px;
+    }
+
+    .cart-total{
+        font-size:16px;
+    }
+
+    .delivery-type{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+}
+
+@media(min-width:900px){
+
+    .grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
     }
 }
 </style>
@@ -272,766 +609,2200 @@ footer {
 
 <body>
 
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header>
-    <img
-        class="logo"
-        src="https://i.ibb.co/5gsVbBcb/corretooo.jpg"
-        alt="ND BURGS"
-    >
+
+    <div class="top">
+
+        <div class="logo-area">
+
+            <img
+                class="logo"
+                src="https://i.ibb.co/5gsVbBcb/corretooo.jpg"
+                alt="ND BURGS"
+            >
+
+        </div>
+
+        <div class="search-box">
+
+            <input
+                id="search"
+                class="search"
+                type="text"
+                placeholder="🔎 Buscar no cardápio..."
+                autocomplete="off"
+            >
+
+            <span class="search-icon">🍔</span>
+
+        </div>
+
+    </div>
+
 </header>
 
-<div class="container">
 
-<h1>🍔 FAÇA SEU PEDIDO</h1>
+<!-- =========================================================
+     CATEGORIAS
+========================================================= -->
 
-<h2>🍔 BURGERS</h2>
+<div class="categories">
 
-<div class="produtos">
-
-    <div class="produto">
-        <h3>X-BURGUER</h3>
-        <p>Hambúrguer tradicional.</p>
-        <div class="preco">R$ 10,90</div>
-        <button class="btn btn-add" onclick="adicionar('X-BURGUER',10.90)">
-            ADICIONAR
-        </button>
-    </div>
-
-    <div class="produto">
-        <h3>X-SALADA</h3>
-        <p>Hambúrguer tradicional com salada.</p>
-        <div class="preco">R$ 11,00</div>
-        <button class="btn btn-add" onclick="adicionar('X-SALADA',11.00)">
-            ADICIONAR
-        </button>
-    </div>
-
-    <div class="produto">
-        <h3>X-EGG</h3>
-        <p>Hambúrguer tradicional com ovo.</p>
-        <div class="preco">R$ 11,00</div>
-        <button class="btn btn-add" onclick="adicionar('X-EGG',11.00)">
-            ADICIONAR
-        </button>
-    </div>
-
-    <div class="produto">
-        <h3>X-BACON</h3>
-        <p>Hambúrguer tradicional com bacon.</p>
-        <div class="preco">R$ 11,00</div>
-        <button class="btn btn-add" onclick="adicionar('X-BACON',11.00)">
-            ADICIONAR
-        </button>
-    </div>
-
-    <div class="produto">
-        <h3>SELLIS</h3>
-        <p>Hambúrguer especial ND BURGS.</p>
-        <div class="preco">R$ 13,00</div>
-        <button class="btn btn-add" onclick="adicionar('SELLIS',13.00)">
-            ADICIONAR
-        </button>
-    </div>
-
-    <div class="produto">
-        <h3>NUNES</h3>
-        <p>Hambúrguer especial artesanal.</p>
-        <div class="preco">R$ 24,00</div>
-        <button class="btn btn-add" onclick="adicionar('NUNES',24.00)">
-            ADICIONAR
-        </button>
-    </div>
+    <div id="categories" class="cats"></div>
 
 </div>
 
 
-<h2>🍟 COMBOS</h2>
+<!-- =========================================================
+     CARDÁPIO
+========================================================= -->
 
-<div class="produtos">
+<main>
 
-    <div class="produto">
-        <h3>COMBO GELADO</h3>
-        <p>Combo ND BURGS.</p>
-        <div class="preco">R$ 40,90</div>
-        <button class="btn btn-add" onclick="adicionar('COMBO GELADO',40.90)">
-            ADICIONAR
-        </button>
+    <div class="hero">
+
+        <div class="hero-title">
+            🍔 ND BURGS
+        </div>
+
+        <div class="hero-text">
+            Escolha seus favoritos, monte seu pedido e receba em casa.
+        </div>
+
     </div>
 
-    <div class="produto">
-        <h3>MOTOCA ND</h3>
-        <p>Combo ND BURGS.</p>
-        <div class="preco">R$ 32,90</div>
-        <button class="btn btn-add" onclick="adicionar('MOTOCA ND',32.90)">
-            ADICIONAR
-        </button>
-    </div>
+    <div id="menu"></div>
 
-    <div class="produto">
-        <h3>TIME NDBURGS</h3>
-        <p>Combo com 4 burgers.</p>
-        <div class="preco">R$ 50,90</div>
-        <button class="btn btn-add" onclick="adicionar('TIME NDBURGS',50.90)">
-            ADICIONAR
-        </button>
-    </div>
+</main>
 
-    <div class="produto">
-        <h3>SÓ LOVE S2</h3>
-        <p>Combo especial.</p>
-        <div class="preco">R$ 71,90</div>
-        <button class="btn btn-add" onclick="adicionar('SÓ LOVE S2',71.90)">
-            ADICIONAR
-        </button>
-    </div>
 
-    <div class="produto">
-        <h3>DIETA SÓ SEGUNDA</h3>
-        <p>Coca lata + doce surpresa + pastel.</p>
-        <div class="preco">R$ 27,90</div>
-        <button class="btn btn-add" onclick="adicionar('DIETA SÓ SEGUNDA',27.90)">
-            ADICIONAR
-        </button>
-    </div>
+<!-- =========================================================
+     CARRINHO FIXO
+========================================================= -->
 
-</div>
+<div class="cart-bar">
 
+    <div class="cart-inner">
 
-<!-- CARRINHO -->
+        <div>
 
-<div class="carrinho">
-
-<h2>🛒 SEU CARRINHO</h2>
-
-<div id="carrinhoItens">
-    <div class="vazio">
-        Seu carrinho está vazio.
-    </div>
-</div>
-
-<div class="resumo">
-
-    <div class="linha">
-        <span>Subtotal</span>
-        <strong id="subtotal">R$ 0,00</strong>
-    </div>
-
-    <div class="linha">
-        <span>Taxa de entrega</span>
-        <strong id="taxa">R$ 0,00</strong>
-    </div>
-
-    <div class="linha total">
-        <span>TOTAL</span>
-        <strong id="total">R$ 0,00</strong>
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- DADOS DO CLIENTE -->
-
-<div class="formulario">
-
-<h2>📍 DADOS DO PEDIDO</h2>
-
-<label>Nome</label>
-<input
-    type="text"
-    id="nome"
-    placeholder="Digite seu nome"
->
-
-<label>Telefone</label>
-<input
-    type="tel"
-    id="telefone"
-    placeholder="Digite seu telefone"
->
-
-<label>Tipo do pedido</label>
-
-<select id="tipoPedido" onchange="alterarTipoPedido()">
-
-    <option value="ENTREGA">
-        ENTREGA
-    </option>
-
-    <option value="RETIRADA">
-        RETIRADA
-    </option>
-
-    <option value="BALCAO">
-        BALCÃO
-    </option>
-
-</select>
-
-
-<div id="enderecoArea">
-
-<label>Rua</label>
-
-<select id="rua" onchange="calcularTaxa()">
-
-<option value="">
-Selecione sua rua
-</option>
-
-</select>
-
-<label>Número</label>
-
-<input
-    type="text"
-    id="numero"
-    placeholder="Número da residência"
->
-
-<label>Complemento</label>
-
-<input
-    type="text"
-    id="complemento"
-    placeholder="Apartamento, casa, bloco..."
->
-
-<div id="avisoTaxa" class="aviso-taxa"></div>
-
-</div>
-
-
-<label>Forma de pagamento</label>
-
-<select id="pagamento">
-
-    <option value="">
-Selecione
-    </option>
-
-    <option value="PIX">
-PIX
-    </option>
-
-    <option value="DINHEIRO">
-DINHEIRO
-    </option>
-
-    <option value="CARTÃO">
-CARTÃO
-    </option>
-
-    <option value="IFOOD">
-IFOOD
-    </option>
-
-    <option value="99FOOD">
-99FOOD
-    </option>
-
-</select>
-
-
-<div id="trocoArea" style="display:none;">
-
-<label>Troco para quanto?</label>
-
-<input
-    type="number"
-    id="troco"
-    placeholder="Ex: 50"
-    step="0.01"
->
-
-</div>
-
-
-<label>Observação</label>
-
-<textarea
-    id="observacao"
-    placeholder="Ex: Sem cebola, tocar campainha..."
-></textarea>
-
-
-<button
-    class="btn btn-whatsapp"
-    onclick="finalizarPedido()"
->
-    📲 ENVIAR PEDIDO PELO WHATSAPP
-</button>
-
-<button
-    class="btn btn-limpar"
-    onclick="limparCarrinho()"
->
-    🗑️ LIMPAR CARRINHO
-</button>
-
-</div>
-
-</div>
-
-<footer>
-    ND BURGS © 2026<br>
-    Obrigado pela preferência ❤️
-</footer>
-
-
-<script>
-
-/* ============================================================
-   TAXAS DE ENTREGA
-   ============================================================ */
-
-const taxas = {
-
-    "AV ATLETICO": 9,
-    "AV LYONS": 5,
-    "AV MARABAS": 4,
-    "AV MARAMBAIA": 4,
-    "AV TORRE ALBERT MUNCK": 6,
-    "AVENIDA BRASIL": 5,
-    "AVENIDA PROFESSOR MANOEL JOSE PEDROSO": 7,
-    "BALCAO": 0,
-    "CONDOMINIO PARQUE REAL": 9,
-    "CONDOMINIO VALE VERDE": 10,
-    "ESTRADA DO ATALAIA": 6,
-    "ESTRADA DO MORRO GRANDE": 9,
-    "ESTRADA DO PADRE INACIO": 6,
-    "ESTRADA DOS FISCHER'S": 7,
-    "ESTRADA VELHA DA OLARIA": 5,
-    "MANDELINHA KENKIT": 5,
-    "MANDELINHA PARTE DE CIMA": 5,
-    "MANDELINHA PORTO ALEGRE": 5,
-    "POINT DO DIGO": 6,
-    "RETIRADA": 0,
-    "RUA 7": 6,
-    "RUA ACLIMACAO": 6,
-    "RUA ADOVEL QUINTINO": 6,
-    "RUA AGULHAS NEGRAS": 7,
-    "RUA ALAGOINHAS": 6,
-    "RUA ARCO DOURADO": 5,
-    "RUA ARCO VERDE": 5,
-    "RUA BELMONTE": 5,
-    "RUA BENEDITO MARIA DE JESUS": 5,
-    "RUA BRASILIA": 7,
-    "RUA BRUMADO": 6,
-    "RUA CAETETE": 6,
-    "RUA CAIAPO": 7,
-    "RUA CAIO GRACO": 5,
-    "RUA CALIL FILHO": 8,
-    "RUA CAMINHO EXISTENTE": 4,
-    "RUA CARMEN MIRANDA": 9,
-    "RUA CIRO MONTEIRO": 9,
-    "RUA COAPA": 6,
-    "RUA COMODORO": 5,
-    "RUA DAS AMEIXEIRAS": 3,
-    "RUA DAS BANANEIRAS": 3,
-    "RUA DOS COQUEIRAIS": 3,
-    "RUA DAS DAMASQUEIRAS": 3,
-    "RUA DAS MACIEIRAS": 3,
-    "RUA DAS MORANGUEIRAS": 3,
-    "RUA DESPORTIVA": 9,
-    "RUA DR APARECIDA J DOMINGUES": 4,
-    "RUA DR ODAIR PACHECO PEDROSO": 8,
-    "RUA ERICO VERISSIMO": 7,
-    "RUA ERIVELTON MARTINS": 7,
-    "RUA ESPLANADA": 5,
-    "RUA EXISTENTE": 4,
-    "RUA FELISBINO DE OLIVEIRA": 8,
-    "RUA FRANCISCO ALVES": 9,
-    "RUA FUGI": 8,
-    "RUA GRACIANO SOARES DE ARAUJO": 5,
-    "RUA INDUSQUIMICA": 5,
-    "RUA IPIRANGA": 6,
-    "RUA ISMENIA": 6,
-    "RUA ITABUNA": 6,
-    "RUA ITAGUAI": 6,
-    "RUA ITAPETI": 7,
-    "RUA ITARIRI": 4,
-    "RUA JACOBINA": 5,
-    "RUA JOAQUIM RUAS": 6,
-    "RUA JUQUITIBA": 4,
-    "RUA LAMARTINE BABO": 9,
-    "RUA LEVER": 6,
-    "RUA PADRE LUIZ MARTINE": 5,
-    "RUA MADRESSILVAS": 6,
-    "RUA MARIO ANDREATINI": 4,
-    "RUA METAL LEVER": 5,
-    "RUA MIL FOLHAS": 9,
-    "RUA MIRAMAR": 5,
-    "RUA MOÇAMBIQUE": 9,
-    "RUA NILO": 9,
-    "RUA NOGAM": 6,
-    "RUA NOVA ODESSA": 6,
-    "RUA NOVA OLINDA": 6,
-    "RUA NOVA PATRIA": 6,
-    "RUA NOVA SAO PAULO": 6,
-    "RUA ODETE": 6,
-    "RUA OMA": 9,
-    "RUA OTELO ZELONI": 7,
-    "RUA PACARAIMA": 8,
-    "RUA PALMAS": 9,
-    "RUA PARANA": 7,
-    "RUA PAULO SERGIO LEMOS": 7,
-    "RUA PENHA": 6,
-    "RUA PIRINEUS": 8,
-    "RUA PONTA GROSSA": 4,
-    "RUA PORTO ALEGRE": 5,
-    "RUA PROFESSOR ZOE PEREIRA BENIAMINO": 6,
-    "RUA REGISTRO": 4,
-    "RUA RIBEIRAO PIRES": 4,
-    "RUA RIO BRANCO": 5,
-    "RUA RIO CLARO": 5,
-    "RUA MARANHAO": 7,
-    "RUA SANTA MARIA IMACULADA": 5,
-    "RUA SANTA MATILDE": 6,
-    "RUA SANTO AGOSTINO": 7,
-    "RUA SAO BENEDITO": 7,
-    "RUA SAO CIPRIANO": 6,
-    "RUA SAO CRISTOVAO": 6,
-    "RUA SAO GEREMIAS": 6,
-    "RUA SAO PAULO": 6,
-    "RUA SAO PAULO DAS MISSOES": 7,
-    "RUA SAO SERAFIM": 6,
-    "RUA SERGIO CARDOSO": 6,
-    "RUA SILVA TELES": 9,
-    "RUA TIBERIO": 5,
-    "RUA TORQUARO NETO": 6,
-    "RUA UGANDA": 9,
-    "RUA VICENTE CELESTINO": 9,
-    "RUA VICENTE STRIFEZZI": 15,
-    "RUA VILA VERDE": 5,
-    "RUA VOTURAMA": 7,
-    "RUA WELCOME": 5,
-    "RUA ZIEMBINSKI": 7,
-    "VIELA DOS FISCHERS": 9,
-    "ESTRADA DAS GRAÇAS": 4,
-    "IFOOD": 0,
-    "RUA NOVA TRINDADE": 6,
-    "99FOOD": 0,
-    "RUA APENINOS": 12,
-    "RUA VERA CRUZ": 5,
-    "MERCADO LIVRE": 15,
-    "RUA SANTA QUITERIA": 6,
-    "RUA ITAPETININGA": 5,
-    "RUA MELGAXE": 9,
-    "RUA GETULIO VARGAS": 8,
-    "IDOMINEU ANTUNES CALDEIRA": 9,
-    "RUA PATATIVA": 7,
-    "RUA MOEMA": 6
-};
-
-
-/* ============================================================
-   CARRINHO
-   ============================================================ */
-
-let carrinho = [];
-
-
-/* ============================================================
-   FORMATAÇÃO
-   ============================================================ */
-
-function moeda(valor) {
-
-    return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    });
-
-}
-
-
-/* ============================================================
-   ADICIONAR PRODUTO
-   ============================================================ */
-
-function adicionar(nome, preco) {
-
-    const existente = carrinho.find(item => item.nome === nome);
-
-    if (existente) {
-
-        existente.quantidade++;
-
-    } else {
-
-        carrinho.push({
-            nome: nome,
-            preco: preco,
-            quantidade: 1
-        });
-
-    }
-
-    atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   ALTERAR QUANTIDADE
-   ============================================================ */
-
-function alterarQuantidade(index, valor) {
-
-    carrinho[index].quantidade += valor;
-
-    if (carrinho[index].quantidade <= 0) {
-
-        carrinho.splice(index, 1);
-
-    }
-
-    atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   ATUALIZAR CARRINHO
-   ============================================================ */
-
-function atualizarCarrinho() {
-
-    const area = document.getElementById("carrinhoItens");
-
-    area.innerHTML = "";
-
-    if (carrinho.length === 0) {
-
-        area.innerHTML = `
-            <div class="vazio">
-                Seu carrinho está vazio.
+            <div
+                id="cartTotal"
+                class="cart-total"
+            >
+                R$ 0,00
             </div>
-        `;
 
-    }
+            <div
+                id="cartCount"
+                class="cart-count"
+            >
+                0 itens
+            </div>
 
-    let subtotal = 0;
+        </div>
 
-    carrinho.forEach((item, index) => {
+        <button
+            class="cart-button"
+            onclick="abrirCarrinho()"
+        >
+            🛒 VER CARRINHO
+        </button>
 
-        const totalItem = item.preco * item.quantidade;
+    </div>
 
-        subtotal += totalItem;
+</div>
 
-        area.innerHTML += `
 
-            <div class="item-carrinho">
+<!-- =========================================================
+     MODAL CARRINHO
+========================================================= -->
 
-                <div class="item-info">
+<dialog id="cartDialog">
 
-                    <strong>${item.nome}</strong>
+    <div class="modal">
 
-                    <small>
-                        ${moeda(item.preco)} cada
-                    </small>
+        <div class="modal-header">
 
-                </div>
+            <h2>🛒 Seu pedido</h2>
 
-                <div class="controles">
+            <button
+                class="close"
+                onclick="cartDialog.close()"
+            >
+                ×
+            </button>
 
-                    <button onclick="alterarQuantidade(${index}, -1)">
-                        −
-                    </button>
+        </div>
 
-                    <strong>
-                        ${item.quantidade}
-                    </strong>
 
-                    <button onclick="alterarQuantidade(${index}, 1)">
-                        +
-                    </button>
+        <div
+            id="cartItems"
+            class="cart-items"
+        ></div>
 
-                    <button
-                        class="remover"
-                        onclick="removerItem(${index})"
-                    >
-                        X
-                    </button>
 
-                </div>
+        <div class="summary">
 
-                <strong>
-                    ${moeda(totalItem)}
+            <div class="summary-line">
+
+                <span>Subtotal</span>
+
+                <strong id="modalSubtotal">
+                    R$ 0,00
                 </strong>
 
             </div>
 
-        `;
+            <div class="summary-line">
 
-    });
+                <span>Taxa de entrega</span>
 
-    document.getElementById("subtotal").innerText =
-        moeda(subtotal);
+                <strong id="modalTaxa">
+                    R$ 0,00
+                </strong>
 
-    calcularTaxa();
+            </div>
+
+            <div class="summary-total">
+
+                <span>TOTAL</span>
+
+                <span id="modalTotal">
+                    R$ 0,00
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DADOS
+        ================================================= -->
+
+        <div class="form-title">
+            📍 Dados do pedido
+        </div>
+
+
+        <label>
+            Nome *
+        </label>
+
+        <input
+            id="nome"
+            type="text"
+            placeholder="Digite seu nome"
+            autocomplete="name"
+        >
+
+
+        <label>
+            WhatsApp *
+        </label>
+
+        <input
+            id="telefone"
+            type="tel"
+            placeholder="(11) 99999-9999"
+            autocomplete="tel"
+        >
+
+
+        <label>
+            Tipo do pedido *
+        </label>
+
+        <div class="delivery-type">
+
+            <button
+                type="button"
+                id="tipoEntrega"
+                class="type-option active"
+                onclick="selecionarTipo('ENTREGA')"
+            >
+                🚚<br>
+                ENTREGA
+            </button>
+
+            <button
+                type="button"
+                id="tipoRetirada"
+                class="type-option"
+                onclick="selecionarTipo('RETIRADA')"
+            >
+                🛍️<br>
+                RETIRADA
+            </button>
+
+            <button
+                type="button"
+                id="tipoBalcao"
+                class="type-option"
+                onclick="selecionarTipo('BALCAO')"
+            >
+                🏪<br>
+                BALCÃO
+            </button>
+
+        </div>
+
+
+        <!-- ENDEREÇO -->
+
+        <div id="addressArea">
+
+            <label>
+                Rua *
+            </label>
+
+            <select
+                id="rua"
+                onchange="calcularTaxa()"
+            >
+
+                <option value="">
+                    Selecione sua rua
+                </option>
+
+            </select>
+
+
+            <label>
+                Número *
+            </label>
+
+            <input
+                id="numero"
+                type="text"
+                placeholder="Número da residência"
+            >
+
+
+            <label>
+                Complemento
+            </label>
+
+            <input
+                id="complemento"
+                type="text"
+                placeholder="Casa, apartamento, referência..."
+            >
+
+
+            <div
+                id="rateNotice"
+                class="rate-notice hidden"
+            ></div>
+
+        </div>
+
+
+        <!-- PAGAMENTO -->
+
+        <label>
+            Forma de pagamento *
+        </label>
+
+        <select
+            id="pagamento"
+            onchange="verTroco()"
+        >
+
+            <option value="">
+                Selecione
+            </option>
+
+            <option value="PIX">
+                PIX
+            </option>
+
+            <option value="DINHEIRO">
+                DINHEIRO
+            </option>
+
+            <option value="CARTÃO">
+                CARTÃO
+            </option>
+
+            <option value="IFOOD">
+                IFOOD
+            </option>
+
+            <option value="99FOOD">
+                99FOOD
+            </option>
+
+        </select>
+
+
+        <div
+            id="trocoArea"
+            class="hidden"
+        >
+
+            <label>
+                Troco para quanto?
+            </label>
+
+            <input
+                id="troco"
+                type="text"
+                inputmode="decimal"
+                placeholder="Ex.: 50,00"
+            >
+
+        </div>
+
+
+        <!-- OBSERVAÇÃO -->
+
+        <label>
+            Observação
+        </label>
+
+        <textarea
+            id="observacao"
+            placeholder="Ex.: sem cebola, tocar campainha..."
+        ></textarea>
+
+
+        <button
+            class="send-button"
+            onclick="finalizarPedido()"
+        >
+            📲 ENVIAR PEDIDO PELO WHATSAPP
+        </button>
+
+
+        <button
+            class="clear-button"
+            onclick="limparCarrinho()"
+        >
+            🗑️ LIMPAR CARRINHO
+        </button>
+
+    </div>
+
+</dialog>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURAÇÕES
+========================================================= */
+
+const WHATSAPP = "5511963973846";
+
+
+/* =========================================================
+   CATEGORIAS
+========================================================= */
+
+const CATEGORIAS = [
+
+    {
+        id:"TRADICIONAL",
+        nome:"🍔 Tradicionais"
+    },
+
+    {
+        id:"ARTESANAL",
+        nome:"🍔 Artesanais"
+    },
+
+    {
+        id:"COMBO",
+        nome:"📦 Combos"
+    },
+
+    {
+        id:"COMBO_ARTESANAL",
+        nome:"🔥 Combos Artesanais"
+    },
+
+    {
+        id:"AÇAI",
+        nome:"🥤 Açaí"
+    },
+
+    {
+        id:"PASTEL",
+        nome:"🥟 Pastéis"
+    },
+
+    {
+        id:"PORÇÕES",
+        nome:"🍟 Porções"
+    },
+
+    {
+        id:"MILKSHAKE",
+        nome:"🥤 Milkshakes"
+    },
+
+    {
+        id:"SOBREMESA",
+        nome:"🍓 Sobremesas"
+    },
+
+    {
+        id:"BEBIDAS",
+        nome:"🥤 Bebidas"
+    },
+
+    {
+        id:"ADICIONAIS",
+        nome:"➕ Adicionais"
+    }
+
+];
+
+
+/* =========================================================
+   PRODUTOS COMPLETOS
+========================================================= */
+
+const ITEMS = [
+
+/* =========================
+   TRADICIONAIS
+========================= */
+
+{
+    name:"X BURGUER",
+    cat:"TRADICIONAL",
+    price:10.90,
+    desc:"Hambúrguer tradicional."
+},
+
+{
+    name:"X BACON",
+    cat:"TRADICIONAL",
+    price:11.90,
+    desc:"Hambúrguer tradicional com bacon."
+},
+
+{
+    name:"X SALADA",
+    cat:"TRADICIONAL",
+    price:11.90,
+    desc:"Hambúrguer tradicional com salada."
+},
+
+{
+    name:"X EGG",
+    cat:"TRADICIONAL",
+    price:11.90,
+    desc:"Hambúrguer tradicional com ovo."
+},
+
+{
+    name:"SELLIS",
+    cat:"TRADICIONAL",
+    price:13.90,
+    desc:"Hambúrguer especial ND BURGS."
+},
+
+{
+    name:"NUNES",
+    cat:"TRADICIONAL",
+    price:24.90,
+    desc:"Hambúrguer especial."
+},
+
+
+/* =========================
+   ARTESANAIS
+========================= */
+
+{
+    name:"BERENICE",
+    cat:"ARTESANAL",
+    price:22.90,
+    desc:"Hambúrguer artesanal ND BURGS."
+},
+
+{
+    name:"PATAO",
+    cat:"ARTESANAL",
+    price:23.90,
+    desc:"Hambúrguer artesanal ND BURGS."
+},
+
+{
+    name:"DINA",
+    cat:"ARTESANAL",
+    price:20.90,
+    desc:"Hambúrguer artesanal ND BURGS."
+},
+
+{
+    name:"PÉZÃO",
+    cat:"ARTESANAL",
+    price:32.90,
+    desc:"Hambúrguer artesanal especial."
+},
+
+{
+    name:"GAROTINHO",
+    cat:"ARTESANAL",
+    price:22.90,
+    desc:"Hambúrguer artesanal com cheddar e bacon."
+},
+
+{
+    name:"GADEIA",
+    cat:"ARTESANAL",
+    price:20.90,
+    desc:"Hambúrguer artesanal ND BURGS."
+},
+
+
+/* =========================
+   COMBOS
+========================= */
+
+{
+    name:"01 ND BURGS",
+    cat:"COMBO",
+    price:50.90,
+    desc:"Combo ND BURGS."
+},
+
+{
+    name:"COMBO SÓ LOVE",
+    cat:"COMBO",
+    price:71.90,
+    desc:"Combo especial para compartilhar."
+},
+
+{
+    name:"COMBO 5 ESTRELAS",
+    cat:"COMBO",
+    price:45.90,
+    desc:"Combo especial ND BURGS."
+},
+
+{
+    name:"COMBO DIETA SÓ SEGUNDA",
+    cat:"COMBO",
+    price:27.90,
+    desc:"Coca lata + doce surpresa + pastel."
+},
+
+{
+    name:"COMBO MAIS VENDIDO",
+    cat:"COMBO",
+    price:20.90,
+    desc:"Um dos favoritos da ND BURGS."
+},
+
+{
+    name:"COMBO MOTOCA ND",
+    cat:"COMBO",
+    price:32.90,
+    desc:"Combo ND BURGS."
+},
+
+{
+    name:"COMBO DOCE",
+    cat:"COMBO",
+    price:32.90,
+    desc:"Combo com sobremesa."
+},
+
+{
+    name:"COMBO GELADO",
+    cat:"COMBO",
+    price:40.90,
+    desc:"Combo especial ND BURGS."
+},
+
+{
+    name:"DATE COM NDBURGS",
+    cat:"COMBO",
+    price:70.90,
+    desc:"Combo especial para dois."
+},
+
+
+/* =========================
+   COMBOS ARTESANAIS
+========================= */
+
+{
+    name:"ARTESANAL COMBO SÓ LOVE",
+    cat:"COMBO_ARTESANAL",
+    price:90.80,
+    desc:"Combo artesanal especial."
+},
+
+{
+    name:"ARTESANAL COMBO 5 ESTRELAS",
+    cat:"COMBO_ARTESANAL",
+    price:70.80,
+    desc:"Combo artesanal especial."
+},
+
+{
+    name:"ARTESANAL COMBO MAIS VENDIDO",
+    cat:"COMBO_ARTESANAL",
+    price:34.80,
+    desc:"Combo artesanal mais vendido."
+},
+
+{
+    name:"ARTESANAL COMBO DOCE",
+    cat:"COMBO_ARTESANAL",
+    price:44.80,
+    desc:"Combo artesanal com sobremesa."
+},
+
+{
+    name:"ARTESANAL COMBO GELADO",
+    cat:"COMBO_ARTESANAL",
+    price:52.80,
+    desc:"Combo artesanal especial."
+},
+
+{
+    name:"ARTESANAL DATE COM NDBURGS",
+    cat:"COMBO_ARTESANAL",
+    price:91.80,
+    desc:"Combo artesanal para dois."
+},
+
+{
+    name:"ARTESANAL MOTOCA ND",
+    cat:"COMBO_ARTESANAL",
+    price:41.80,
+    desc:"Combo artesanal ND BURGS."
+},
+
+{
+    name:"ARTESANAL 01 ND BURGS",
+    cat:"COMBO_ARTESANAL",
+    price:96.80,
+    desc:"Combo artesanal especial."
+},
+
+
+/* =========================
+   AÇAÍ
+========================= */
+
+{
+    name:"AÇAI 200ML",
+    cat:"AÇAI",
+    price:11.90,
+    desc:"Açaí."
+},
+
+{
+    name:"CASADINHO 200ML",
+    cat:"AÇAI",
+    price:11.90,
+    desc:"Açaí casadinho."
+},
+
+{
+    name:"AÇAI 300ML",
+    cat:"AÇAI",
+    price:15.00,
+    desc:"Açaí 300ml."
+},
+
+{
+    name:"AÇAI 400ML",
+    cat:"AÇAI",
+    price:18.00,
+    desc:"Açaí 400ml."
+},
+
+{
+    name:"AÇAI 700ML",
+    cat:"AÇAI",
+    price:32.00,
+    desc:"Açaí 700ml."
+},
+
+{
+    name:"AÇAI TRUFFADO 300ML",
+    cat:"AÇAI",
+    price:26.00,
+    desc:"Açaí truffado 300ml."
+},
+
+{
+    name:"AÇAI TRUFFADO 400ML",
+    cat:"AÇAI",
+    price:29.00,
+    desc:"Açaí truffado 400ml."
+},
+
+{
+    name:"AÇAI TRUFFADO 700ML",
+    cat:"AÇAI",
+    price:43.00,
+    desc:"Açaí truffado 700ml."
+},
+
+{
+    name:"TENTAÇÃO DE MORANGO 300ML",
+    cat:"AÇAI",
+    price:19.00,
+    desc:"Açaí tentação de morango."
+},
+
+{
+    name:"TENTAÇÃO DE MORANGO 400ML",
+    cat:"AÇAI",
+    price:22.00,
+    desc:"Açaí tentação de morango."
+},
+
+{
+    name:"TENTAÇÃO DE MORANGO 700ML",
+    cat:"AÇAI",
+    price:32.00,
+    desc:"Açaí tentação de morango."
+},
+
+
+/* =========================
+   PASTÉIS
+========================= */
+
+{
+    name:"PASTEL DE CARNE",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE CARNE COM QUEIJO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE CARNE COM CHEDDAR",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE CARNE COM CATUPIRY",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE QUEIJO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE FRANGO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE FRANGO COM QUEIJO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE FRANGO COM CATUPIRY",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE FRANGO COM CHEDDAR",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE BAURU",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE PIZZA",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE FRANGO COM QUEIJO E OVO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE CARNE COM OVO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL DE PRESUNTO COM QUEIJO",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL 3 QUEIJOS",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL ND",
+    cat:"PASTEL",
+    price:11.00
+},
+
+{
+    name:"PASTEL ESPECIAL",
+    cat:"PASTEL",
+    price:15.00
+},
+
+{
+    name:"PASTEL A MODA CAROL",
+    cat:"PASTEL",
+    price:15.00
+},
+
+{
+    name:"PASTEL DE NUTELLA COM BANANA",
+    cat:"PASTEL",
+    price:13.00
+},
+
+{
+    name:"PASTEL DE NUTELLA COM MORANGO",
+    cat:"PASTEL",
+    price:13.00
+},
+
+{
+    name:"PASTEL DE DOCE DE LEITE COM BANANA",
+    cat:"PASTEL",
+    price:13.00
+},
+
+{
+    name:"PASTEL DE NINHO COM MORANGO",
+    cat:"PASTEL",
+    price:13.00
+},
+
+{
+    name:"PASTEL DE NINHO",
+    cat:"PASTEL",
+    price:13.00
+},
+
+{
+    name:"PASTEL DE KITKAT COM NINHO",
+    cat:"PASTEL",
+    price:13.00
+},
+
+{
+    name:"PASTEL DE NINHO COM OREO",
+    cat:"PASTEL",
+    price:13.00
+},
+
+
+/* =========================
+   PORÇÕES
+========================= */
+
+{
+    name:"BATATA P",
+    cat:"PORÇÕES",
+    price:6.00
+},
+
+{
+    name:"BATATA M",
+    cat:"PORÇÕES",
+    price:15.00
+},
+
+{
+    name:"BATATA G",
+    cat:"PORÇÕES",
+    price:32.00
+},
+
+{
+    name:"BATATA P COMPLETA",
+    cat:"PORÇÕES",
+    price:12.00
+},
+
+{
+    name:"BATATA M COMPLETA",
+    cat:"PORÇÕES",
+    price:21.00
+},
+
+{
+    name:"BATATA G COMPLETA",
+    cat:"PORÇÕES",
+    price:57.00
+},
+
+{
+    name:"NUGGETS P",
+    cat:"PORÇÕES",
+    price:9.00
+},
+
+{
+    name:"NUGGETS M",
+    cat:"PORÇÕES",
+    price:16.00
+},
+
+{
+    name:"NUGGETS G",
+    cat:"PORÇÕES",
+    price:55.00
+},
+
+{
+    name:"ANEL DE CEBOLA P",
+    cat:"PORÇÕES",
+    price:9.00
+},
+
+{
+    name:"ANEL DE CEBOLA M",
+    cat:"PORÇÕES",
+    price:16.00
+},
+
+{
+    name:"ANEL DE CEBOLA G",
+    cat:"PORÇÕES",
+    price:55.00
+},
+
+{
+    name:"FRANGO GRITO P",
+    cat:"PORÇÕES",
+    price:15.00
+},
+
+{
+    name:"FRANGO FRITO M",
+    cat:"PORÇÕES",
+    price:27.00
+},
+
+{
+    name:"FRANGO FRITO G",
+    cat:"PORÇÕES",
+    price:70.00
+},
+
+
+/* =========================
+   MILKSHAKES
+========================= */
+
+{
+    name:"MILKSHAKE LEITE NINHO 300ML",
+    cat:"MILKSHAKE",
+    price:15.00
+},
+
+{
+    name:"MILKSHAKE LEITE NINHO 400ML",
+    cat:"MILKSHAKE",
+    price:18.00
+},
+
+{
+    name:"MILKSHAKE LEITE NINHO 700ML",
+    cat:"MILKSHAKE",
+    price:30.00
+},
+
+{
+    name:"MILKSHAKE PAÇOCA 300ML",
+    cat:"MILKSHAKE",
+    price:15.00
+},
+
+{
+    name:"MILKSHAKE PAÇOCA 400ML",
+    cat:"MILKSHAKE",
+    price:18.00
+},
+
+{
+    name:"MILKSHAKE PAÇOCA 700ML",
+    cat:"MILKSHAKE",
+    price:30.00
+},
+
+{
+    name:"MILKSHAKE OREO 300ML",
+    cat:"MILKSHAKE",
+    price:15.00
+},
+
+{
+    name:"MILKSHAKE OREO 400ML",
+    cat:"MILKSHAKE",
+    price:18.00
+},
+
+{
+    name:"MILKSHAKE OREO 700ML",
+    cat:"MILKSHAKE",
+    price:30.00
+},
+
+{
+    name:"MILKSHAKE OVOMALTINE 300ML",
+    cat:"MILKSHAKE",
+    price:15.00
+},
+
+{
+    name:"MILKSHAKE OVOMALTINE 400ML",
+    cat:"MILKSHAKE",
+    price:18.00
+},
+
+{
+    name:"MILKSHAKE OVOMALTINE 700ML",
+    cat:"MILKSHAKE",
+    price:30.00
+},
+
+{
+    name:"MILKSHAKE NESQUIK 300ML",
+    cat:"MILKSHAKE",
+    price:15.00
+},
+
+{
+    name:"MILKSHAKE NESQUIK 400ML",
+    cat:"MILKSHAKE",
+    price:18.00
+},
+
+{
+    name:"MILKSHAKE NESQUIK 700ML",
+    cat:"MILKSHAKE",
+    price:30.00
+},
+
+{
+    name:"MILKSHAKE DE AÇAI 300ML",
+    cat:"MILKSHAKE",
+    price:15.00
+},
+
+{
+    name:"MILKSHAKE DE AÇAI 400ML",
+    cat:"MILKSHAKE",
+    price:18.00
+},
+
+{
+    name:"MILKSHAKE DE AÇAI 700ML",
+    cat:"MILKSHAKE",
+    price:30.00
+},
+
+
+/* =========================
+   SOBREMESAS
+========================= */
+
+{
+    name:"SURPRESA DE UVA",
+    cat:"SOBREMESA",
+    price:12.00
+},
+
+{
+    name:"KITKAT",
+    cat:"SOBREMESA",
+    price:7.00
+},
+
+
+/* =========================
+   BEBIDAS
+========================= */
+
+{
+    name:"COCA COLA LATA",
+    cat:"BEBIDAS",
+    price:6.00
+},
+
+{
+    name:"COCA COLA ZERO LATA",
+    cat:"BEBIDAS",
+    price:6.00
+},
+
+{
+    name:"SPRITE LATA",
+    cat:"BEBIDAS",
+    price:6.00
+},
+
+{
+    name:"FANTA UVA LATA",
+    cat:"BEBIDAS",
+    price:6.00
+},
+
+{
+    name:"FANTA LARANJA LATA",
+    cat:"BEBIDAS",
+    price:6.00
+},
+
+{
+    name:"GUARANA LATA",
+    cat:"BEBIDAS",
+    price:6.00
+},
+
+{
+    name:"DELL VALE LATA",
+    cat:"BEBIDAS",
+    price:7.00
+},
+
+{
+    name:"AGUA MINERAL",
+    cat:"BEBIDAS",
+    price:3.50
+},
+
+{
+    name:"COCA COLA 600ML",
+    cat:"BEBIDAS",
+    price:10.00
+},
+
+{
+    name:"COCA COLA 2 LITROS",
+    cat:"BEBIDAS",
+    price:15.00
+},
+
+{
+    name:"COCA COLA ZERO 2 LITROS",
+    cat:"BEBIDAS",
+    price:15.00
+},
+
+{
+    name:"DOLLY 2 LITROS LIMAO",
+    cat:"BEBIDAS",
+    price:9.00
+},
+
+{
+    name:"DOLLY 2 LITROS GUARANA",
+    cat:"BEBIDAS",
+    price:9.00
+},
+
+
+/* =========================
+   ADICIONAIS
+========================= */
+
+{
+    name:"FATIA QUEIJO CHEDDAR EXTRA",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"HAMBURGUER EXTRA ARTESANAL",
+    cat:"ADICIONAIS",
+    price:9.00
+},
+
+{
+    name:"HAMBURGUER EXTRA TRADICIONAL",
+    cat:"ADICIONAIS",
+    price:2.50
+},
+
+{
+    name:"BACON",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"MOLHO CHEDDAR",
+    cat:"ADICIONAIS",
+    price:0
+},
+
+{
+    name:"MOLHO BARBECUE",
+    cat:"ADICIONAIS",
+    price:0
+},
+
+{
+    name:"MOLHO MAIONESE VERDE",
+    cat:"ADICIONAIS",
+    price:0
+},
+
+{
+    name:"MOLHO CATUPIRY",
+    cat:"ADICIONAIS",
+    price:0
+},
+
+{
+    name:"MOLHO MAIONESE ARTESANAL",
+    cat:"ADICIONAIS",
+    price:0
+},
+
+{
+    name:"POTINHO CHEDDAR",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"POTINHO BARBECUE",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"POTINHO MAIONESE VERDE",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"POTINHO MAIONESE ARTESANAL",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"ADICIONAL NUTELLA",
+    cat:"ADICIONAIS",
+    price:5.00
+},
+
+{
+    name:"ADICIONAL CREME DE NINHO",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"ADICIONAL KITKAT",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"ACOMPANHAMENTO EXTRA",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"ADICIONAL BACON",
+    cat:"ADICIONAIS",
+    price:3.00
+},
+
+{
+    name:"ADICIONAL CHEDDAR",
+    cat:"ADICIONAIS",
+    price:3.00
+}
+
+];
+
+
+/* =========================================================
+   TAXAS DE ENTREGA
+========================================================= */
+
+const TAXAS = {
+
+"AV ATLETICO":9,
+"AV LYONS":5,
+"AV MARABAS":4,
+"AV MARAMBAIA":4,
+"AV TORRE ALBERT MUNCK":6,
+"AVENIDA BRASIL":5,
+"AVENIDA PROFESSOR MANOEL JOSE PEDROSO":7,
+"CONDOMINIO PARQUE REAL":9,
+"CONDOMINIO VALE VERDE":10,
+"ESTRADA DO ATALAIA":6,
+"ESTRADA DO MORRO GRANDE":9,
+"ESTRADA DO PADRE INACIO":6,
+"ESTRADA DOS FISCHER'S":7,
+"ESTRADA VELHA DA OLARIA":5,
+"MANDELINHA KENKIT":5,
+"MANDELINHA PARTE DE CIMA":5,
+"MANDELINHA PORTO ALEGRE":5,
+"POINT DO DIGO":6,
+"RUA 7":6,
+"RUA ACLIMACAO":6,
+"RUA ADOVEL QUINTINO":6,
+"RUA AGULHAS NEGRAS":7,
+"RUA ALAGOINHAS":6,
+"RUA ARCO DOURADO":5,
+"RUA ARCO VERDE":5,
+"RUA BELMONTE":5,
+"RUA BENEDITO MARIA DE JESUS":5,
+"RUA BRASILIA":7,
+"RUA BRUMADO":6,
+"RUA CAETETE":6,
+"RUA CAIAPO":7,
+"RUA CAIO GRACO":5,
+"RUA CALIL FILHO":8,
+"RUA CAMINHO EXISTENTE":4,
+"RUA CARMEN MIRANDA":9,
+"RUA CIRO MONTEIRO":9,
+"RUA COAPA":6,
+"RUA COMODORO":5,
+"RUA DAS AMEIXEIRAS":3,
+"RUA DAS BANANEIRAS":3,
+"RUA DOS COQUEIRAIS":3,
+"RUA DAS DAMASQUEIRAS":3,
+"RUA DAS MACIEIRAS":3,
+"RUA DAS MORANGUEIRAS":3,
+"RUA DESPORTIVA":9,
+"RUA DR APARECIDA J DOMINGUES":4,
+"RUA DR ODAIR PACHECO PEDROSO":8,
+"RUA ERICO VERISSIMO":7,
+"RUA ERIVELTON MARTINS":7,
+"RUA ESPLANADA":5,
+"RUA EXISTENTE":4,
+"RUA FELISBINO DE OLIVEIRA":8,
+"RUA FRANCISCO ALVES":9,
+"RUA FUGI":8,
+"RUA GRACIANO SOARES DE ARAUJO":5,
+"RUA INDUSQUIMICA":5,
+"RUA IPIRANGA":6,
+"RUA ISMENIA":6,
+"RUA ITABUNA":6,
+"RUA ITAGUAI":6,
+"RUA ITAPETI":7,
+"RUA ITARIRI":4,
+"RUA JACOBINA":5,
+"RUA JOAQUIM RUAS":6,
+"RUA JUQUITIBA":4,
+"RUA LAMARTINE BABO":9,
+"RUA LEVER":6,
+"RUA PADRE LUIZ MARTINE":5,
+"RUA MADRESSILVAS":6,
+"RUA MARIO ANDREATINI":4,
+"RUA METAL LEVER":5,
+"RUA MIL FOLHAS":9,
+"RUA MIRAMAR":5,
+"RUA MOÇAMBIQUE":9,
+"RUA NILO":9,
+"RUA NOGAM":6,
+"RUA NOVA ODESSA":6,
+"RUA NOVA OLINDA":6,
+"RUA NOVA PATRIA":6,
+"RUA NOVA SAO PAULO":6,
+"RUA ODETE":6,
+"RUA OMA":9,
+"RUA OTELO ZELONI":7,
+"RUA PACARAIMA":8,
+"RUA PALMAS":9,
+"RUA PARANA":7,
+"RUA PAULO SERGIO LEMOS":7,
+"RUA PENHA":6,
+"RUA PIRINEUS":8,
+"RUA PONTA GROSSA":4,
+"RUA PORTO ALEGRE":5,
+"RUA PROFESSOR ZOE PEREIRA BENIAMINO":6,
+"RUA REGISTRO":4,
+"RUA RIBEIRAO PIRES":4,
+"RUA RIO BRANCO":5,
+"RUA RIO CLARO":5,
+"RUA MARANHAO":7,
+"RUA SANTA MARIA IMACULADA":5,
+"RUA SANTA MATILDE":6,
+"RUA SANTO AGOSTINO":7,
+"RUA SAO BENEDITO":7,
+"RUA SAO CIPRIANO":6,
+"RUA SAO CRISTOVAO":6,
+"RUA SAO GEREMIAS":6,
+"RUA SAO PAULO":6,
+"RUA SAO PAULO DAS MISSOES":7,
+"RUA SAO SERAFIM":6,
+"RUA SERGIO CARDOSO":6,
+"RUA SILVA TELES":9,
+"RUA TIBERIO":5,
+"RUA TORQUARO NETO":6,
+"RUA UGANDA":9,
+"RUA VICENTE CELESTINO":9,
+"RUA VICENTE STRIFEZZI":15,
+"RUA VILA VERDE":5,
+"RUA VOTURAMA":7,
+"RUA WELCOME":5,
+"RUA ZIEMBINSKI":7,
+"VIELA DOS FISCHERS":9,
+"ESTRADA DAS GRAÇAS":4,
+"RUA NOVA TRINDADE":6,
+"RUA APENINOS":12,
+"RUA VERA CRUZ":5,
+"MERCADO LIVRE":15,
+"RUA SANTA QUITERIA":6,
+"RUA ITAPETININGA":5,
+"RUA MELGAXE":9,
+"RUA GETULIO VARGAS":8,
+"IDOMINEU ANTUNES CALDEIRA":9,
+"RUA PATATIVA":7,
+"RUA MOEMA":6
+
+};
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+let carrinho = {};
+
+let tipoPedido = "ENTREGA";
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const categoriesEl =
+    document.getElementById("categories");
+
+const menuEl =
+    document.getElementById("menu");
+
+const searchEl =
+    document.getElementById("search");
+
+const cartDialog =
+    document.getElementById("cartDialog");
+
+
+/* =========================================================
+   MOEDA
+========================================================= */
+
+function BRL(valor){
+
+    return Number(valor).toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
 
 }
 
 
-/* ============================================================
-   REMOVER ITEM
-   ============================================================ */
+/* =========================================================
+   CATEGORIAS
+========================================================= */
 
-function removerItem(index) {
+function renderCategorias(){
 
-    carrinho.splice(index, 1);
+    categoriesEl.innerHTML =
+
+        `<button
+            class="cat-btn active"
+            onclick="mostrarCategoria('TODOS',this)"
+        >
+            🏠 Todos
+        </button>`
+
+        +
+
+        CATEGORIAS.map(cat => `
+
+            <button
+                class="cat-btn"
+                onclick="mostrarCategoria('${cat.id}',this)"
+            >
+                ${cat.nome}
+            </button>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   RENDER CARDÁPIO
+========================================================= */
+
+function renderMenu(filtroCategoria="TODOS"){
+
+    const busca =
+        searchEl.value
+        .trim()
+        .toLowerCase();
+
+    let produtos =
+        ITEMS.filter(item => {
+
+            const categoriaOk =
+                filtroCategoria === "TODOS"
+                ||
+                item.cat === filtroCategoria;
+
+            const buscaOk =
+                !busca
+                ||
+                item.name
+                    .toLowerCase()
+                    .includes(busca);
+
+            return categoriaOk && buscaOk;
+
+        });
+
+
+    if(produtos.length === 0){
+
+        menuEl.innerHTML = `
+
+            <div class="empty">
+
+                😕<br><br>
+
+                Nenhum produto encontrado.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    if(filtroCategoria === "TODOS"){
+
+        CATEGORIAS.forEach(cat => {
+
+            const lista =
+                produtos.filter(
+                    x => x.cat === cat.id
+                );
+
+            if(!lista.length) return;
+
+
+            html += `
+
+                <section
+                    id="cat-${cat.id}"
+                    class="category-section"
+                >
+
+                    <h2 class="category-title">
+                        ${cat.nome}
+                    </h2>
+
+                    <div class="grid">
+
+                        ${lista
+                            .map(produtoCard)
+                            .join("")}
+
+                    </div>
+
+                </section>
+
+            `;
+
+        });
+
+    }else{
+
+        const cat =
+            CATEGORIAS.find(
+                x => x.id === filtroCategoria
+            );
+
+        html = `
+
+            <section class="category-section">
+
+                <h2 class="category-title">
+                    ${cat ? cat.nome : filtroCategoria}
+                </h2>
+
+                <div class="grid">
+
+                    ${produtos
+                        .map(produtoCard)
+                        .join("")}
+
+                </div>
+
+            </section>
+
+        `;
+
+    }
+
+
+    menuEl.innerHTML = html;
+
+}
+
+
+/* =========================================================
+   CARD PRODUTO
+========================================================= */
+
+function produtoCard(item){
+
+    const descricao =
+        item.desc
+        ||
+        "Produto ND BURGS.";
+
+
+    return `
+
+        <article class="product">
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    ${item.name}
+                </div>
+
+                <div class="product-description">
+                    ${descricao}
+                </div>
+
+                <div class="product-price">
+                    ${BRL(item.price)}
+                </div>
+
+            </div>
+
+            <button
+                class="add-button"
+                onclick="adicionar('${escapeJS(item.name)}')"
+                aria-label="Adicionar ${item.name}"
+            >
+                +
+            </button>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ESCAPAR TEXTO
+========================================================= */
+
+function escapeJS(text){
+
+    return text
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'");
+
+}
+
+
+/* =========================================================
+   MOSTRAR CATEGORIA
+========================================================= */
+
+function mostrarCategoria(categoria,botao){
+
+    document
+        .querySelectorAll(".cat-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    botao.classList.add("active");
+
+    renderMenu(categoria);
+
+}
+
+
+/* =========================================================
+   ADICIONAR
+========================================================= */
+
+function adicionar(nome){
+
+    const produto =
+        ITEMS.find(
+            x => x.name === nome
+        );
+
+    if(!produto) return;
+
+
+    if(!carrinho[nome]){
+
+        carrinho[nome] = {
+
+            name:produto.name,
+            price:produto.price,
+            qty:0
+
+        };
+
+    }
+
+
+    carrinho[nome].qty++;
 
     atualizarCarrinho();
 
 }
 
 
-/* ============================================================
+/* =========================================================
+   ALTERAR QUANTIDADE
+========================================================= */
+
+function alterarQuantidade(nome,delta){
+
+    if(!carrinho[nome]) return;
+
+
+    carrinho[nome].qty += delta;
+
+
+    if(carrinho[nome].qty <= 0){
+
+        delete carrinho[nome];
+
+    }
+
+
+    atualizarCarrinho();
+
+    abrirCarrinho();
+
+}
+
+
+/* =========================================================
+   CALCULAR SUBTOTAL
+========================================================= */
+
+function calcularSubtotal(){
+
+    return Object.values(carrinho)
+        .reduce(
+            (soma,item) =>
+                soma + item.price * item.qty,
+            0
+        );
+
+}
+
+
+/* =========================================================
+   TAXA
+========================================================= */
+
+function obterTaxa(){
+
+    if(tipoPedido !== "ENTREGA"){
+
+        return 0;
+
+    }
+
+
+    const rua =
+        document.getElementById("rua").value;
+
+
+    if(!rua) return 0;
+
+
+    return TAXAS[rua] || 0;
+
+}
+
+
+/* =========================================================
    CALCULAR TAXA
-   ============================================================ */
+========================================================= */
 
-function calcularTaxa() {
+function calcularTaxa(){
 
-    const tipo = document.getElementById("tipoPedido").value;
+    const taxa =
+        obterTaxa();
 
-    let taxa = 0;
 
-    if (tipo === "ENTREGA") {
+    const notice =
+        document.getElementById("rateNotice");
 
-        const rua = document.getElementById("rua").value;
 
-        if (rua && taxas[rua] !== undefined) {
+    const rua =
+        document.getElementById("rua").value;
 
-            taxa = taxas[rua];
 
-        }
+    if(tipoPedido === "ENTREGA" && rua){
 
-    }
+        notice.classList.remove("hidden");
 
-    const subtotal = carrinho.reduce(
-        (soma, item) =>
-            soma + item.preco * item.quantidade,
-        0
-    );
+        notice.innerHTML =
 
-    const total = subtotal + taxa;
+            `🚚 Taxa para <strong>${rua}</strong>:
+            <strong>${BRL(taxa)}</strong>`;
 
-    document.getElementById("taxa").innerText =
-        moeda(taxa);
+    }else{
 
-    document.getElementById("total").innerText =
-        moeda(total);
-
-    const aviso = document.getElementById("avisoTaxa");
-
-    if (tipo === "ENTREGA" && ruaSelecionada()) {
-
-        aviso.style.display = "block";
-
-        aviso.innerHTML =
-            "🚚 Taxa para <strong>" +
-            ruaSelecionada() +
-            "</strong>: <strong>" +
-            moeda(taxa) +
-            "</strong>";
-
-    } else {
-
-        aviso.style.display = "none";
+        notice.classList.add("hidden");
 
     }
+
+
+    atualizarResumo();
 
 }
 
 
-/* ============================================================
-   PEGAR RUA SELECIONADA
-   ============================================================ */
+/* =========================================================
+   RESUMO
+========================================================= */
 
-function ruaSelecionada() {
+function atualizarResumo(){
 
-    return document.getElementById("rua").value;
+    const subtotal =
+        calcularSubtotal();
+
+    const taxa =
+        obterTaxa();
+
+    const total =
+        subtotal + taxa;
+
+
+    document.getElementById("modalSubtotal")
+        .textContent = BRL(subtotal);
+
+    document.getElementById("modalTaxa")
+        .textContent = BRL(taxa);
+
+    document.getElementById("modalTotal")
+        .textContent = BRL(total);
 
 }
 
 
-/* ============================================================
-   ALTERAR TIPO DO PEDIDO
-   ============================================================ */
+/* =========================================================
+   ATUALIZAR BARRA
+========================================================= */
 
-function alterarTipoPedido() {
+function atualizarCarrinho(){
 
-    const tipo =
-        document.getElementById("tipoPedido").value;
+    const itens =
+        Object.values(carrinho);
 
-    const enderecoArea =
-        document.getElementById("enderecoArea");
+    const quantidade =
+        itens.reduce(
+            (soma,item) =>
+                soma + item.qty,
+            0
+        );
 
-    if (tipo === "ENTREGA") {
+    const subtotal =
+        calcularSubtotal();
 
-        enderecoArea.style.display = "block";
 
-    } else {
+    document.getElementById("cartTotal")
+        .textContent = BRL(subtotal);
 
-        enderecoArea.style.display = "none";
+    document.getElementById("cartCount")
+        .textContent =
+            `${quantidade} ${
+                quantidade === 1
+                ? "item"
+                : "itens"
+            }`;
+
+}
+
+
+/* =========================================================
+   ABRIR CARRINHO
+========================================================= */
+
+function abrirCarrinho(){
+
+    renderCarrinho();
+
+    atualizarResumo();
+
+    cartDialog.showModal();
+
+}
+
+
+/* =========================================================
+   RENDER CARRINHO
+========================================================= */
+
+function renderCarrinho(){
+
+    const area =
+        document.getElementById("cartItems");
+
+    const itens =
+        Object.values(carrinho);
+
+
+    if(!itens.length){
+
+        area.innerHTML = `
+
+            <div class="empty">
+
+                🛒<br><br>
+
+                Seu carrinho está vazio.<br>
+
+                Adicione produtos ao seu pedido.
+
+            </div>
+
+        `;
+
+        return;
 
     }
+
+
+    area.innerHTML =
+
+        itens.map(item => `
+
+            <div class="cart-row">
+
+                <div class="cart-row-name">
+
+                    ${item.name}
+
+                    <div class="cart-row-price">
+
+                        ${BRL(item.price)}
+                        cada
+
+                    </div>
+
+                </div>
+
+                <div class="quantity">
+
+                    <button
+                        onclick="alterarQuantidade(
+                            '${escapeJS(item.name)}',
+                            -1
+                        )"
+                    >
+                        −
+                    </button>
+
+                    <strong>
+                        ${item.qty}
+                    </strong>
+
+                    <button
+                        class="plus"
+                        onclick="alterarQuantidade(
+                            '${escapeJS(item.name)}',
+                            1
+                        )"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   TIPO PEDIDO
+========================================================= */
+
+function selecionarTipo(tipo){
+
+    tipoPedido = tipo;
+
+
+    document
+        .querySelectorAll(".type-option")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    if(tipo === "ENTREGA"){
+
+        document
+            .getElementById("tipoEntrega")
+            .classList.add("active");
+
+        document
+            .getElementById("addressArea")
+            .classList.remove("hidden");
+
+    }
+
+
+    if(tipo === "RETIRADA"){
+
+        document
+            .getElementById("tipoRetirada")
+            .classList.add("active");
+
+        document
+            .getElementById("addressArea")
+            .classList.add("hidden");
+
+    }
+
+
+    if(tipo === "BALCAO"){
+
+        document
+            .getElementById("tipoBalcao")
+            .classList.add("active");
+
+        document
+            .getElementById("addressArea")
+            .classList.add("hidden");
+
+    }
+
 
     calcularTaxa();
 
 }
 
 
-/* ============================================================
-   PAGAMENTO / TROCO
-   ============================================================ */
+/* =========================================================
+   TROCO
+========================================================= */
 
-document
-.getElementById("pagamento")
-.addEventListener("change", function() {
+function verTroco(){
 
-    const trocoArea =
+    const pagamento =
+        document.getElementById("pagamento")
+        .value;
+
+
+    const area =
         document.getElementById("trocoArea");
 
-    if (this.value === "DINHEIRO") {
 
-        trocoArea.style.display = "block";
+    if(pagamento === "DINHEIRO"){
 
-    } else {
+        area.classList.remove("hidden");
 
-        trocoArea.style.display = "none";
+    }else{
+
+        area.classList.add("hidden");
 
     }
 
-});
+}
 
 
-/* ============================================================
-   PREENCHER LISTA DE RUAS
-   ============================================================ */
+/* =========================================================
+   CARREGAR RUAS
+========================================================= */
 
-function carregarRuas() {
+function carregarRuas(){
 
     const select =
         document.getElementById("rua");
 
+
     const ruas =
-        Object.keys(taxas).sort((a,b) =>
-            a.localeCompare(b, "pt-BR")
-        );
+        Object.keys(TAXAS)
+            .sort((a,b) =>
+                a.localeCompare(
+                    b,
+                    "pt-BR"
+                )
+            );
+
 
     ruas.forEach(rua => {
 
         const option =
             document.createElement("option");
 
+
         option.value = rua;
 
+
         option.textContent =
-            rua + " — " + moeda(taxas[rua]);
+            `${rua} — ${BRL(TAXAS[rua])}`;
+
 
         select.appendChild(option);
 
@@ -1040,74 +2811,92 @@ function carregarRuas() {
 }
 
 
-/* ============================================================
+/* =========================================================
    LIMPAR CARRINHO
-   ============================================================ */
+========================================================= */
 
-function limparCarrinho() {
+function limparCarrinho(){
 
-    if (carrinho.length === 0) {
+    if(!Object.keys(carrinho).length){
 
-        return;
-
-    }
-
-    if (!confirm("Deseja realmente limpar o carrinho?")) {
+        alert(
+            "Seu carrinho já está vazio."
+        );
 
         return;
 
     }
 
-    carrinho = [];
+
+    if(
+        !confirm(
+            "Deseja realmente limpar o carrinho?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    carrinho = {};
 
     atualizarCarrinho();
+
+    renderCarrinho();
+
+    atualizarResumo();
 
 }
 
 
-/* ============================================================
+/* =========================================================
    FINALIZAR PEDIDO
-   ============================================================ */
+========================================================= */
 
-function finalizarPedido() {
+function finalizarPedido(){
 
-    if (carrinho.length === 0) {
+    const itens =
+        Object.values(carrinho);
 
-        alert("Adicione pelo menos um produto ao carrinho.");
+
+    if(!itens.length){
+
+        alert(
+            "Adicione pelo menos um produto ao carrinho."
+        );
 
         return;
 
     }
 
+
     const nome =
-        document.getElementById("nome").value.trim();
+        document.getElementById("nome")
+            .value.trim();
+
 
     const telefone =
-        document.getElementById("telefone").value.trim();
+        document.getElementById("telefone")
+            .value.trim();
 
-    const tipo =
-        document.getElementById("tipoPedido").value;
-
-    const rua =
-        document.getElementById("rua").value;
-
-    const numero =
-        document.getElementById("numero").value.trim();
-
-    const complemento =
-        document.getElementById("complemento").value.trim();
 
     const pagamento =
-        document.getElementById("pagamento").value;
+        document.getElementById("pagamento")
+            .value;
 
-    const troco =
-        document.getElementById("troco").value;
 
     const observacao =
-        document.getElementById("observacao").value.trim();
+        document.getElementById("observacao")
+            .value.trim();
 
 
-    if (!nome) {
+    const troco =
+        document.getElementById("troco")
+            .value.trim();
+
+
+    if(!nome){
 
         alert("Digite seu nome.");
 
@@ -1116,195 +2905,286 @@ function finalizarPedido() {
     }
 
 
-    if (!telefone) {
+    if(!telefone){
 
-        alert("Digite seu telefone.");
-
-        return;
-
-    }
-
-
-    if (tipo === "ENTREGA") {
-
-        if (!rua) {
-
-            alert("Selecione sua rua.");
-
-            return;
-
-        }
-
-        if (!numero) {
-
-            alert("Digite o número do endereço.");
-
-            return;
-
-        }
-
-    }
-
-
-    if (!pagamento) {
-
-        alert("Selecione a forma de pagamento.");
+        alert("Digite seu WhatsApp.");
 
         return;
 
     }
 
 
-    let subtotal = 0;
+    if(tipoPedido === "ENTREGA"){
 
-    let mensagem = "";
-
-    mensagem += "🍔 *NOVO PEDIDO - ND BURGS*%0A";
-    mensagem += "==============================%0A%0A";
-
-    mensagem += "👤 *CLIENTE:* " +
-        encodeURIComponent(nome) +
-        "%0A";
-
-    mensagem += "📱 *TELEFONE:* " +
-        encodeURIComponent(telefone) +
-        "%0A";
+        const rua =
+            document.getElementById("rua")
+                .value;
 
 
-    mensagem += "🚚 *TIPO:* " +
-        encodeURIComponent(tipo) +
-        "%0A";
+        const numero =
+            document.getElementById("numero")
+                .value.trim();
 
 
-    if (tipo === "ENTREGA") {
+        if(!rua){
 
-        mensagem += "📍 *ENDEREÇO:* " +
-            encodeURIComponent(
-                rua + ", Nº " + numero
-            ) +
-            "%0A";
+            alert(
+                "Selecione sua rua."
+            );
 
-        if (complemento) {
+            return;
 
-            mensagem += "🏠 *COMPLEMENTO:* " +
-                encodeURIComponent(complemento) +
-                "%0A";
+        }
+
+
+        if(!numero){
+
+            alert(
+                "Digite o número da residência."
+            );
+
+            return;
 
         }
 
     }
 
 
-    mensagem += "%0A🛒 *ITENS DO PEDIDO*%0A";
-    mensagem += "------------------------------%0A";
+    if(!pagamento){
 
+        alert(
+            "Selecione a forma de pagamento."
+        );
 
-    carrinho.forEach(item => {
-
-        const totalItem =
-            item.preco * item.quantidade;
-
-        subtotal += totalItem;
-
-        mensagem +=
-            encodeURIComponent(
-                item.quantidade +
-                "x " +
-                item.nome +
-                " — " +
-                moeda(totalItem)
-            ) +
-            "%0A";
-
-    });
-
-
-    let taxa = 0;
-
-    if (tipo === "ENTREGA") {
-
-        taxa = taxas[rua] || 0;
+        return;
 
     }
+
+
+    if(
+        pagamento === "DINHEIRO"
+        &&
+        !troco
+    ){
+
+        alert(
+            "Informe o valor para o troco."
+        );
+
+        return;
+
+    }
+
+
+    const subtotal =
+        calcularSubtotal();
+
+
+    const taxa =
+        obterTaxa();
 
 
     const total =
         subtotal + taxa;
 
 
-    mensagem += "%0A";
-    mensagem += "💰 *SUBTOTAL:* " +
-        encodeURIComponent(moeda(subtotal)) +
-        "%0A";
-
-    mensagem += "🚚 *TAXA:* " +
-        encodeURIComponent(moeda(taxa)) +
-        "%0A";
-
-    mensagem += "💵 *TOTAL:* " +
-        encodeURIComponent(moeda(total)) +
-        "%0A";
-
-    mensagem += "💳 *PAGAMENTO:* " +
-        encodeURIComponent(pagamento) +
-        "%0A";
+    let mensagem = "";
 
 
-    if (pagamento === "DINHEIRO" && troco) {
+    mensagem +=
+        "🍔 *NOVO PEDIDO — ND BURGS*\n";
+
+    mensagem +=
+        "━━━━━━━━━━━━━━━━━━\n\n";
+
+
+    mensagem +=
+        "👤 *CLIENTE:*\n";
+
+    mensagem +=
+        nome + "\n\n";
+
+
+    mensagem +=
+        "📱 *WHATSAPP:*\n";
+
+    mensagem +=
+        telefone + "\n\n";
+
+
+    mensagem +=
+        "📦 *TIPO DO PEDIDO:*\n";
+
+    mensagem +=
+        tipoPedido === "ENTREGA"
+        ? "ENTREGA"
+        : tipoPedido === "RETIRADA"
+        ? "RETIRADA"
+        : "BALCÃO";
+
+
+    mensagem += "\n";
+
+
+    if(tipoPedido === "ENTREGA"){
+
+        const rua =
+            document.getElementById("rua")
+                .value;
+
+
+        const numero =
+            document.getElementById("numero")
+                .value.trim();
+
+
+        const complemento =
+            document.getElementById("complemento")
+                .value.trim();
+
 
         mensagem +=
-            "💵 *TROCO PARA:* " +
-            encodeURIComponent(
-                moeda(parseFloat(troco))
-            ) +
-            "%0A";
+            "\n\n📍 *ENDEREÇO:*\n";
+
+        mensagem +=
+            rua +
+            ", Nº " +
+            numero;
+
+
+        if(complemento){
+
+            mensagem +=
+                "\n🏠 *COMPLEMENTO:*\n" +
+                complemento;
+
+        }
 
     }
 
 
-    if (observacao) {
+    mensagem +=
+        "\n\n━━━━━━━━━━━━━━━━━━\n";
 
-        mensagem += "%0A📝 *OBSERVAÇÃO:*%0A";
+    mensagem +=
+        "🛒 *ITENS DO PEDIDO*\n";
+
+    mensagem +=
+        "━━━━━━━━━━━━━━━━━━\n";
+
+
+    itens.forEach(item => {
+
+        const totalItem =
+            item.price * item.qty;
+
 
         mensagem +=
-            encodeURIComponent(observacao) +
-            "%0A";
+            `${item.qty}x ${item.name} — ${BRL(totalItem)}\n`;
+
+    });
+
+
+    mensagem +=
+        "\n━━━━━━━━━━━━━━━━━━\n";
+
+
+    mensagem +=
+        `💰 *SUBTOTAL:* ${BRL(subtotal)}\n`;
+
+
+    mensagem +=
+        `🚚 *TAXA:* ${BRL(taxa)}\n`;
+
+
+    mensagem +=
+        `💵 *TOTAL:* ${BRL(total)}\n\n`;
+
+
+    mensagem +=
+        "💳 *PAGAMENTO:*\n" +
+        pagamento;
+
+
+    if(
+        pagamento === "DINHEIRO"
+        &&
+        troco
+    ){
+
+        mensagem +=
+            "\n\n💵 *TROCO PARA:*\n" +
+            troco;
 
     }
 
 
-    mensagem += "%0A==============================%0A";
-    mensagem += "ND BURGS 🍔";
+    mensagem +=
+        "\n\n📝 *OBSERVAÇÃO:*\n";
 
 
-    /*
-       COLOQUE AQUI O NÚMERO DO WHATSAPP DA ND BURGS.
-       FORMATO:
-       5511999999999
+    mensagem +=
+        observacao ||
+        "Nenhuma";
 
-       Exemplo:
-       const whatsapp = "5511963973846";
-    */
 
-    const whatsapp = "5511963973846";
+    mensagem +=
+        "\n\n━━━━━━━━━━━━━━━━━━\n";
+
+    mensagem +=
+        "🍔 *Pedido realizado pelo Cardápio Online ND BURGS*";
+
+
+    const url =
+        "https://wa.me/" +
+        WHATSAPP +
+        "?text=" +
+        encodeURIComponent(mensagem);
 
 
     window.open(
-        "https://wa.me/" +
-        whatsapp +
-        "?text=" +
-        mensagem,
+        url,
         "_blank"
     );
 
 }
 
 
-/* ============================================================
+/* =========================================================
+   BUSCA
+========================================================= */
+
+searchEl.addEventListener(
+    "input",
+    function(){
+
+        renderMenu("TODOS");
+
+
+        document
+            .querySelectorAll(".cat-btn")
+            .forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+
+        document
+            .querySelector(".cat-btn")
+            .classList.add("active");
+
+    }
+);
+
+
+/* =========================================================
    INICIALIZAÇÃO
-   ============================================================ */
+========================================================= */
+
+renderCategorias();
 
 carregarRuas();
+
+renderMenu();
 
 atualizarCarrinho();
 
@@ -1312,4 +3192,3 @@ atualizarCarrinho();
 
 </body>
 </html>
-```
