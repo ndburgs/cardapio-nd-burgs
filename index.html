@@ -1,5 +1,5 @@
+```html
 <!doctype html>
-
 <html lang="pt-BR">
 
 <head>
@@ -168,16 +168,17 @@ align-self:center;
 background:var(--accent);
 border:0;
 border-radius:10px;
-width:44px;
-height:44px;
-padding:0;
+padding:10px 15px;
 font-weight:900;
-font-size:27px;
-line-height:44px;
-text-align:center;
+font-size:22px;
+line-height:1;
 cursor:pointer;
 flex-shrink:0;
-color:#111;
+width:48px;
+height:44px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .cartbar{
@@ -270,16 +271,9 @@ border:0;
 border-radius:7px;
 width:32px;
 height:32px;
-font-size:22px;
-line-height:32px;
-padding:0;
+font-size:21px;
+line-height:1;
 cursor:pointer;
-}
-
-.qty b{
-min-width:20px;
-text-align:center;
-font-size:16px;
 }
 
 input,
@@ -415,8 +409,7 @@ border-radius:10px;
 background:#292930;
 color:white;
 font-size:25px;
-line-height:42px;
-padding:0;
+line-height:1;
 cursor:pointer;
 }
 
@@ -482,7 +475,6 @@ height:95px;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -499,7 +491,6 @@ ND<span>BURGS</span>
 id="search"
 class="search"
 placeholder="Buscar no cardápio..."
-
 >
 
 </div>
@@ -531,10 +522,9 @@ placeholder="Buscar no cardápio..."
 <button
 class="checkout"
 onclick="openCart()"
-
 >
-
-🛒 VER CARRINHO </button>
+🛒 VER CARRINHO
+</button>
 
 </div>
 
@@ -549,10 +539,9 @@ onclick="openCart()"
 <button
 class="close"
 onclick="produtoDlg.close()"
-
 >
-
-× </button>
+×
+</button>
 
 <div id="produtoConteudo"></div>
 
@@ -569,10 +558,9 @@ onclick="produtoDlg.close()"
 <button
 class="close"
 onclick="dlg.close()"
-
 >
-
-× </button>
+×
+</button>
 
 <h2>Seu pedido</h2>
 
@@ -597,7 +585,6 @@ R$ 0,00
 id="nome"
 placeholder="Digite seu nome"
 autocomplete="name"
-
 >
 
 <label>WhatsApp *</label>
@@ -607,7 +594,6 @@ id="whatsapp"
 type="tel"
 placeholder="(11) 99999-9999"
 autocomplete="tel"
-
 >
 
 <label>Endereço *</label>
@@ -624,7 +610,6 @@ placeholder="Rua, avenida, bairro..."
 id="numero"
 type="text"
 placeholder="Número da residência"
-
 >
 
 <label>Complemento</label>
@@ -633,7 +618,6 @@ placeholder="Número da residência"
 id="complemento"
 type="text"
 placeholder="Casa, apartamento, referência..."
-
 >
 
 <label>Forma de pagamento *</label>
@@ -641,7 +625,6 @@ placeholder="Casa, apartamento, referência..."
 <select
 id="pag"
 onchange="verTroco()"
-
 >
 
 <option value="">
@@ -676,7 +659,6 @@ id="troco"
 type="text"
 inputmode="decimal"
 placeholder="Ex.: 50,00"
-
 >
 
 </div>
@@ -692,10 +674,9 @@ placeholder="Ex.: sem cebola, tocar campainha..."
 <button
 class="send"
 onclick="finalizar()"
-
 >
-
-🟢 FINALIZAR PEDIDO </button>
+🟢 FINALIZAR PEDIDO
+</button>
 
 </div>
 
@@ -709,9 +690,7 @@ onclick="finalizar()"
 
 const ITEMS = [
 
-/* =========================
-   TRADICIONAIS
-========================= */
+/* TRADICIONAIS */
 
 {
 name:"X BURGUER",
@@ -755,10 +734,7 @@ price:24.9,
 image:"https://i.ibb.co/XfBfGWKv/NUNES.png"
 },
 
-
-/* =========================
-   ARTESANAIS
-========================= */
+/* ARTESANAIS */
 
 {
 name:"BERENICE",
@@ -802,10 +778,7 @@ price:20.9,
 image:"https://i.ibb.co/whY3stGx/GADEIA.jpg"
 },
 
-
-/* =========================
-   COMBOS
-========================= */
+/* COMBOS */
 
 {
 name:"01 ND BURGS",
@@ -870,10 +843,7 @@ price:70.9,
 image:"https://i.ibb.co/7t8m454n/DATE-COM-ND-BURGS.png"
 },
 
-
-/* =========================
-   COMBOS ARTESANAIS
-========================= */
+/* COMBOS ARTESANAIS */
 
 {
 name:"ARTESANAL COMBO SÓ LOVE",
@@ -931,10 +901,7 @@ price:96.8,
 image:"https://i.ibb.co/Kxp3JzWB/01-NDBURGS.png"
 },
 
-
-/* =========================
-   AÇAÍ
-========================= */
+/* AÇAÍ */
 
 {
 name:"AÇAI 200ML",
@@ -1009,10 +976,7 @@ price:32,
 image:"https://i.ibb.co/x8jHXhzN/TENTA-O-DE-MORANGO.jpg"
 },
 
-
-/* =========================
-   PASTÉIS
-========================= */
+/* PASTÉIS */
 
 {
 name:"PASTEL DE CARNE",
@@ -1164,10 +1128,7 @@ cat:"PASTEL",
 price:13
 },
 
-
-/* =========================
-   PORÇÕES
-========================= */
+/* PORÇÕES */
 
 {
 name:"BATATA P",
@@ -1274,10 +1235,7 @@ price:70,
 image:"https://i.ibb.co/gbm9wsGh/FRANGO-PEDA-OS-EMPANADO.png"
 },
 
-
-/* =========================
-   MILKSHAKES
-========================= */
+/* MILKSHAKES */
 
 {
 name:"MILKSHAKE OVOMALTINE 300ML",
@@ -1405,10 +1363,7 @@ price:30,
 image:"https://i.ibb.co/ychZV7dy/milk-a-ai.jpg"
 },
 
-
-/* =========================
-   SOBREMESAS
-========================= */
+/* SOBREMESAS */
 
 {
 name:"SURPRESA DE UVA",
@@ -1422,10 +1377,7 @@ cat:"SOBREMESA",
 price:7
 },
 
-
-/* =========================
-   BEBIDAS
-========================= */
+/* BEBIDAS */
 
 {
 name:"COCA COLA LATA",
@@ -1505,10 +1457,7 @@ cat:"BEBIDAS",
 price:9
 },
 
-
-/* =========================
-   ADICIONAIS
-========================= */
+/* ADICIONAIS */
 
 {
 name:"FATIA QUEIJO CHEDDAR EXTRA",
@@ -1643,11 +1592,6 @@ let cart={};
 let produtoAtual=null;
 let qtdProduto=1;
 
-
-/* =====================================================
-   ELEMENTOS
-===================================================== */
-
 const catsEl=document.getElementById("cats");
 const menu=document.getElementById("menu");
 const search=document.getElementById("search");
@@ -1710,7 +1654,6 @@ ${c}
 
 }
 
-
 function setCat(c){
 
 active=c;
@@ -1730,13 +1673,9 @@ renderCats();
 const q=search.value.toLowerCase().trim();
 
 const filtered=ITEMS.filter(x=>
-
 (active==="TODOS" || x.cat===active)
-
 &&
-
 x.name.toLowerCase().includes(q)
-
 );
 
 const groups={};
@@ -1750,7 +1689,6 @@ groups[x.cat]=[];
 groups[x.cat].push(x);
 
 });
-
 
 menu.innerHTML=
 
@@ -1805,8 +1743,9 @@ ${BRL(x.price)}
 <button
 class="add"
 onclick="addById('${safe(x.name)}')"
+aria-label="Adicionar ${x.name}"
 >
-+
+&#43;
 </button>
 
 </div>
@@ -2036,7 +1975,6 @@ const adicionais=ADDONS.filter(a=>
 
 let html="";
 
-
 if(produto.image){
 
 html+=`
@@ -2051,7 +1989,6 @@ onerror="this.style.display='none'"
 `;
 
 }
-
 
 html+=`
 
@@ -2073,13 +2010,12 @@ ${BRL(produto.price)}
 
 `;
 
-
 if(adicionais.length){
 
 html+=`
 
 <h3>
-➕ Adicionais
+&#43; Adicionais
 </h3>
 
 <div class="addonArea">
@@ -2105,8 +2041,8 @@ ${a.name}
 
 ${
 a.price>0
-? "+"+BRL(a.price)
-: "GRÁTIS"
+?"&#43;"+BRL(a.price)
+:"GRÁTIS"
 }
 
 </span>
@@ -2120,7 +2056,6 @@ a.price>0
 `;
 
 }
-
 
 html+=`
 
@@ -2141,37 +2076,31 @@ Quantidade
 <div class="qtyProduto">
 
 <button
-type="button"
 onclick="alterarQtdProduto(-1)"
-
+aria-label="Diminuir quantidade"
 >
-
-− </button>
+&#8722;
+</button>
 
 <b id="produtoQtd">
 1
 </b>
 
 <button
-type="button"
 onclick="alterarQtdProduto(1)"
-
+aria-label="Aumentar quantidade"
 >
-
-*
-
+&#43;
 </button>
 
 </div>
 
 <button
-type="button"
 class="addCart"
 onclick="adicionarConfigurado()"
-
 >
-
-ADICIONAR AO CARRINHO </button>
+ADICIONAR AO CARRINHO
+</button>
 
 `;
 
@@ -2181,8 +2110,9 @@ produtoDlg.showModal();
 
 }
 
+
 /* =====================================================
-QUANTIDADE
+   QUANTIDADE
 ===================================================== */
 
 function alterarQtdProduto(valor){
@@ -2195,18 +2125,15 @@ qtdProduto=1;
 
 }
 
-const qtd=document.getElementById("produtoQtd");
-
-if(qtd){
-
-qtd.textContent=qtdProduto;
+document.getElementById(
+"produtoQtd"
+).textContent=qtdProduto;
 
 }
 
-}
 
 /* =====================================================
-ADICIONAR AO CARRINHO
+   ADICIONAR
 ===================================================== */
 
 function adicionarConfigurado(){
@@ -2284,8 +2211,9 @@ update();
 
 }
 
+
 /* =====================================================
-ATUALIZAR
+   ATUALIZAR
 ===================================================== */
 
 function update(){
@@ -2309,8 +2237,9 @@ count.textContent=
 
 }
 
+
 /* =====================================================
-ALTERAR CARRINHO
+   ALTERAR CARRINHO
 ===================================================== */
 
 function change(key,d){
@@ -2335,8 +2264,9 @@ openCart();
 
 }
 
+
 /* =====================================================
-CARRINHO
+   CARRINHO
 ===================================================== */
 
 function openCart(){
@@ -2367,16 +2297,14 @@ x.addons.length
 ?
 
 `
-
 <div style="
 color:#ffc400;
 font-size:12px;
 margin-top:5px;
 ">
 
-*
-
-${x.addons.map(a=>a.name).join("<br>+ ")}
+&#43;
+${x.addons.map(a=>a.name).join("<br>&#43; ")}
 
 </div>
 `
@@ -2391,7 +2319,6 @@ x.obs
 ?
 
 `
-
 <div style="
 color:#aaa;
 font-size:12px;
@@ -2413,25 +2340,21 @@ margin-top:5px;
 <div class="qty">
 
 <button
-type="button"
 onclick="change('${safe(key)}',-1)"
-
+aria-label="Diminuir"
 >
-
-− </button>
+&#8722;
+</button>
 
 <b>
 ${x.qty}
 </b>
 
 <button
-type="button"
 onclick="change('${safe(key)}',1)"
-
+aria-label="Aumentar"
 >
-
-*
-
+&#43;
 </button>
 
 </div>
@@ -2458,8 +2381,9 @@ dlg.showModal();
 
 }
 
+
 /* =====================================================
-TROCO
+   TROCO
 ===================================================== */
 
 function verTroco(){
@@ -2488,8 +2412,9 @@ document.getElementById(
 
 }
 
+
 /* =====================================================
-FINALIZAR
+   FINALIZAR
 ===================================================== */
 
 function finalizar(){
@@ -2584,9 +2509,8 @@ return;
 
 }
 
-/* =====================================================
-WHATSAPP
-===================================================== */
+
+/* WHATSAPP */
 
 const phone="5511963973846";
 
@@ -2686,8 +2610,9 @@ window.location.href=url;
 
 }
 
+
 /* =====================================================
-BUSCA
+   BUSCA
 ===================================================== */
 
 search.addEventListener(
@@ -2695,8 +2620,9 @@ search.addEventListener(
 render
 );
 
+
 /* =====================================================
-INICIAR
+   INICIAR
 ===================================================== */
 
 render();
@@ -2707,3 +2633,4 @@ update();
 
 </body>
 </html>
+```
