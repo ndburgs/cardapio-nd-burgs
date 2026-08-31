@@ -790,7 +790,12 @@ const ITEMS = [
 {"name":"ADICIONAL BACON","cat":"ADICIONAIS","price":3},
 {"name":"ADICIONAL CHEDDAR","cat":"ADICIONAIS","price":3},
 
-{"name":"01 ND BURGS","cat":"COMBO","price":50.9},
+{
+    name:"01 ND BURGS",
+    cat:"COMBO",
+    price:50.9,
+    image:"https://i.ibb.co/Kxp3JzWB/01-NDBURGS.png"
+},
 {"name":"COMBO SÓ LOVE","cat":"COMBO","price":71.9},
 {"name":"COMBO 5 ESTRELAS","cat":"COMBO","price":45.9},
 {"name":"COMBO DIETA SÓ SEGUNDA","cat":"COMBO","price":27.9},
@@ -961,12 +966,27 @@ Object.entries(groups)
 <div class="grid">
 
 ${arr.map(x=>`
-
 <div class="item">
+
+<div style="display:flex;align-items:center;gap:12px">
+
+${x.image ? `
+<img
+src="${x.image}"
+alt="${x.name}"
+style="
+width:85px;
+height:85px;
+object-fit:cover;
+border-radius:12px;
+border:1px solid #29292f;
+"
+>
+` : ""}
 
 <div>
 
-<h3>
+<h3>${x.name}</h3>
 ${x.name}
 </h3>
 
