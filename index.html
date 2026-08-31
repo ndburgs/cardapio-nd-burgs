@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ND BURGS | Cardápio</title>
+<title>ND BURGS | Cardápio Online</title>
 
 <style>
 *{
@@ -17,12 +17,9 @@
 :root{
     --amarelo:#f5c400;
     --amarelo2:#ffd92b;
-    --preto:#080808;
-    --fundo:#101010;
-    --card:#191919;
-    --card2:#222;
-    --borda:#303030;
-    --texto:#fff;
+    --preto:#090909;
+    --fundo:#111;
+    --card:#1b1b1b;
     --cinza:#aaa;
     --verde:#25D366;
     --vermelho:#c62828;
@@ -34,171 +31,43 @@ html{
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#0c0c0c;
+    background:#111;
     color:#fff;
-    padding-bottom:90px;
+    padding-bottom:100px;
 }
 
-button,
-input,
-select,
-textarea{
-    font-family:inherit;
-}
+/* ================= HEADER ================= */
 
-button{
-    cursor:pointer;
-}
-
-/* =========================================================
-   TOPO
-========================================================= */
-
-.topo{
+header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(5,5,5,.97);
-    border-bottom:1px solid #292929;
+    background:rgba(0,0,0,.96);
+    border-bottom:2px solid var(--amarelo);
+    padding:10px 15px;
+    text-align:center;
     backdrop-filter:blur(10px);
 }
 
-.topo-principal{
-    max-width:1200px;
-    margin:auto;
-    min-height:76px;
-    padding:10px 16px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-}
-
 .logo{
-    width:125px;
-    max-height:60px;
-    object-fit:contain;
-}
-
-.topo-titulo{
-    flex:1;
-}
-
-.topo-titulo strong{
+    width:130px;
+    max-width:65%;
+    height:auto;
     display:block;
-    font-size:18px;
-}
-
-.topo-titulo span{
-    color:#999;
-    font-size:12px;
-}
-
-.botao-carrinho-topo{
-    position:relative;
-    border:0;
-    background:var(--amarelo);
-    color:#000;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    font-size:21px;
-    font-weight:bold;
-}
-
-.contador{
-    position:absolute;
-    right:-2px;
-    top:-3px;
-    min-width:20px;
-    height:20px;
-    padding:0 5px;
-    border-radius:20px;
-    background:#e53935;
-    color:#fff;
-    font-size:11px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:2px solid #080808;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    max-width:1200px;
     margin:auto;
-    padding:20px 15px 10px;
 }
 
-.hero-box{
-    background:linear-gradient(135deg,#1b1b1b,#0e0e0e);
-    border:1px solid #292929;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 8px 30px rgba(0,0,0,.25);
-}
-
-.hero-box h1{
-    color:var(--amarelo);
-    font-size:25px;
-    margin-bottom:7px;
-}
-
-.hero-box p{
-    color:#aaa;
-    font-size:14px;
-}
-
-.busca{
-    margin-top:15px;
-    position:relative;
-}
-
-.busca input{
-    width:100%;
-    height:48px;
-    border-radius:13px;
-    border:1px solid #333;
-    background:#080808;
-    color:#fff;
-    padding:0 15px 0 45px;
-    outline:none;
-    font-size:15px;
-}
-
-.busca input:focus{
-    border-color:var(--amarelo);
-}
-
-.busca span{
-    position:absolute;
-    left:15px;
-    top:14px;
-    font-size:18px;
-}
-
-/* =========================================================
-   CATEGORIAS
-========================================================= */
-
-.categorias-wrap{
-    position:sticky;
-    top:76px;
-    z-index:900;
-    background:#0c0c0c;
-    border-bottom:1px solid #222;
-}
+/* ================= CATEGORIAS ================= */
 
 .categorias{
-    max-width:1200px;
-    margin:auto;
-    padding:11px 15px;
-    display:flex;
-    gap:9px;
+    position:sticky;
+    top:77px;
+    z-index:900;
+    background:#111;
+    border-bottom:1px solid #333;
     overflow-x:auto;
+    white-space:nowrap;
+    padding:10px;
     scrollbar-width:none;
 }
 
@@ -206,280 +75,160 @@ button{
     display:none;
 }
 
-.cat-btn{
-    flex:0 0 auto;
-    border:1px solid #333;
-    background:#181818;
-    color:#ddd;
-    border-radius:30px;
-    padding:10px 14px;
+.categorias button{
+    border:1px solid #444;
+    background:#1c1c1c;
+    color:#fff;
+    border-radius:22px;
+    padding:10px 15px;
+    margin-right:6px;
     font-size:13px;
     font-weight:bold;
-    white-space:nowrap;
+    cursor:pointer;
 }
 
-.cat-btn:hover,
-.cat-btn.ativo{
+.categorias button:hover,
+.categorias button.ativo{
     background:var(--amarelo);
     color:#000;
     border-color:var(--amarelo);
 }
 
-/* =========================================================
-   CONTEÚDO
-========================================================= */
+/* ================= CONTAINER ================= */
 
 .container{
-    max-width:1200px;
+    width:100%;
+    max-width:1150px;
     margin:auto;
-    padding:10px 15px 40px;
+    padding:15px;
 }
 
-.categoria{
-    scroll-margin-top:145px;
-    margin-top:25px;
+h1{
+    text-align:center;
+    color:var(--amarelo);
+    margin:18px 0;
+    font-size:25px;
 }
 
-.categoria-titulo{
+.titulo-categoria{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:12px;
-}
-
-.categoria-titulo h2{
+    gap:8px;
+    margin:28px 0 14px;
+    padding-bottom:9px;
+    border-bottom:1px solid #333;
+    color:var(--amarelo);
     font-size:21px;
 }
 
-.categoria-titulo span{
-    color:#777;
-    font-size:12px;
-}
+/* ================= PRODUTOS ================= */
 
 .produtos{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:13px;
+    grid-template-columns:repeat(auto-fill,minmax(245px,1fr));
+    gap:14px;
 }
-
-/* =========================================================
-   PRODUTO
-========================================================= */
 
 .produto{
     background:var(--card);
-    border:1px solid #292929;
+    border:1px solid #333;
     border-radius:15px;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    min-width:0;
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
     transition:.2s;
 }
 
 .produto:hover{
     transform:translateY(-2px);
-    border-color:#444;
+    border-color:#555;
 }
 
-.produto-foto{
+.produto-imagem{
     width:100%;
-    aspect-ratio:1/1;
-    background:#111;
-    position:relative;
-    overflow:hidden;
-}
-
-.produto-foto img{
-    width:100%;
-    height:100%;
+    height:190px;
     object-fit:cover;
     display:block;
-}
-
-.sem-foto{
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:42px;
-    color:#444;
+    background:#222;
 }
 
 .produto-conteudo{
-    padding:13px;
-    display:flex;
-    flex-direction:column;
-    flex:1;
+    padding:14px;
 }
 
 .produto h3{
-    font-size:16px;
-    line-height:1.2;
-    margin-bottom:5px;
+    font-size:17px;
+    margin-bottom:7px;
+    color:#fff;
 }
 
-.produto-desc{
-    color:#999;
-    font-size:12px;
-    line-height:1.35;
-    min-height:31px;
-}
-
-.produto-final{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    margin-top:auto;
-    padding-top:12px;
+.produto p{
+    color:#aaa;
+    font-size:13px;
+    line-height:1.4;
+    min-height:36px;
 }
 
 .preco{
     color:var(--amarelo);
-    font-size:17px;
+    font-size:19px;
     font-weight:bold;
-    white-space:nowrap;
+    margin:11px 0;
 }
 
 .btn-add{
-    border:0;
+    width:100%;
+    border:none;
+    border-radius:9px;
+    padding:12px;
     background:var(--amarelo);
     color:#000;
     font-weight:bold;
-    border-radius:9px;
-    padding:9px 12px;
-    font-size:12px;
+    cursor:pointer;
+    font-size:14px;
 }
 
 .btn-add:hover{
     background:var(--amarelo2);
 }
 
-/* =========================================================
-   CARRINHO FLUTUANTE
-========================================================= */
+/* ================= CARRINHO ================= */
 
-.carrinho-flutuante{
-    position:fixed;
-    left:50%;
-    bottom:15px;
-    transform:translateX(-50%);
-    width:calc(100% - 30px);
-    max-width:520px;
-    height:58px;
-    border:0;
-    border-radius:15px;
-    background:var(--amarelo);
-    color:#000;
-    z-index:1200;
-    box-shadow:0 8px 30px rgba(0,0,0,.55);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 18px;
-    font-weight:bold;
-}
-
-.carrinho-flutuante small{
-    font-size:12px;
-}
-
-.carrinho-flutuante strong{
-    font-size:15px;
-}
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.78);
-    z-index:2000;
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
-}
-
-.overlay.aberto{
-    display:flex;
-}
-
-.modal{
-    width:100%;
-    max-width:650px;
-    max-height:92vh;
-    background:#141414;
+.carrinho{
+    background:#181818;
     border:1px solid #333;
-    border-radius:22px 22px 0 0;
-    overflow-y:auto;
-    padding:20px;
-    animation:subir .2s ease;
+    border-radius:15px;
+    padding:18px;
+    margin-top:30px;
 }
 
-@keyframes subir{
-    from{transform:translateY(100%)}
-    to{transform:translateY(0)}
-}
-
-.modal-topo{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
+.carrinho h2,
+.formulario h2{
+    color:var(--amarelo);
+    font-size:20px;
     margin-bottom:15px;
 }
-
-.modal-topo h2{
-    font-size:21px;
-}
-
-.fechar{
-    border:0;
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    background:#292929;
-    color:#fff;
-    font-size:18px;
-}
-
-/* =========================================================
-   ITENS DO CARRINHO
-========================================================= */
 
 .item-carrinho{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
     padding:13px 0;
-    border-bottom:1px solid #292929;
+    border-bottom:1px solid #333;
 }
 
 .item-info{
     flex:1;
-    min-width:0;
 }
 
 .item-info strong{
     display:block;
     font-size:14px;
-    margin-bottom:4px;
 }
 
 .item-info small{
-    color:#888;
-    font-size:11px;
-}
-
-.item-total{
-    min-width:72px;
-    text-align:right;
-    font-size:13px;
+    color:#999;
+    display:block;
+    margin-top:4px;
 }
 
 .controles{
@@ -489,94 +238,84 @@ button{
 }
 
 .controles button{
-    width:30px;
-    height:30px;
+    width:31px;
+    height:31px;
     border:0;
     border-radius:7px;
-    background:#292929;
-    color:#fff;
-    font-weight:bold;
-}
-
-.controles button:hover{
     background:var(--amarelo);
     color:#000;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .controles .remover{
-    color:#ff6b6b;
+    background:var(--vermelho);
+    color:#fff;
 }
 
-.carrinho-vazio{
-    text-align:center;
-    padding:35px 10px;
-    color:#777;
+.valor-item{
+    min-width:75px;
+    text-align:right;
 }
 
 .resumo{
-    margin-top:15px;
-    background:#1b1b1b;
-    border-radius:13px;
-    padding:13px;
+    margin-top:18px;
 }
 
 .linha{
     display:flex;
     justify-content:space-between;
-    padding:6px 0;
-    color:#bbb;
-    font-size:14px;
+    padding:7px 0;
+    color:#ccc;
 }
 
-.linha strong{
+.total{
+    border-top:1px solid #555;
+    margin-top:8px;
+    padding-top:14px;
     color:#fff;
+    font-size:23px;
+    font-weight:bold;
 }
 
-.linha-total{
-    border-top:1px solid #3a3a3a;
-    margin-top:7px;
-    padding-top:13px;
-    font-size:19px;
-    color:#fff;
-}
-
-.linha-total strong{
+.total strong{
     color:var(--amarelo);
 }
 
-/* =========================================================
-   CHECKOUT
-========================================================= */
-
-.checkout{
-    margin-top:20px;
+.vazio{
+    text-align:center;
+    color:#888;
+    padding:20px 5px;
 }
 
-.checkout h3{
-    color:var(--amarelo);
-    font-size:18px;
-    margin:20px 0 10px;
+/* ================= FORMULARIO ================= */
+
+.formulario{
+    background:#181818;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:18px;
+    margin-top:18px;
 }
 
 label{
     display:block;
-    color:#ddd;
+    margin:13px 0 6px;
+    font-size:14px;
     font-weight:bold;
-    font-size:13px;
-    margin:12px 0 6px;
 }
 
 input,
 select,
 textarea{
     width:100%;
-    background:#090909;
-    color:#fff;
-    border:1px solid #363636;
+    background:#0d0d0d;
+    border:1px solid #444;
     border-radius:9px;
-    padding:12px;
+    padding:13px;
+    color:#fff;
+    font-size:15px;
     outline:none;
-    font-size:14px;
 }
 
 input:focus,
@@ -586,134 +325,127 @@ textarea:focus{
 }
 
 textarea{
-    min-height:80px;
+    min-height:85px;
     resize:vertical;
 }
 
-.linha-form{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+.endereco-extra{
+    display:block;
 }
 
 .aviso-taxa{
+    display:none;
     background:#292000;
     border:1px solid var(--amarelo);
     color:var(--amarelo);
-    border-radius:10px;
     padding:11px;
+    border-radius:9px;
     margin-top:10px;
-    display:none;
-    font-size:13px;
+    font-size:14px;
 }
 
-.troco-area{
-    display:none;
-}
-
-.botao-whatsapp{
+.btn{
     width:100%;
     border:0;
-    background:var(--verde);
-    color:#fff;
-    border-radius:11px;
-    padding:15px;
-    margin-top:18px;
+    border-radius:10px;
+    padding:14px;
+    cursor:pointer;
     font-size:16px;
     font-weight:bold;
 }
 
-.botao-whatsapp:hover{
-    filter:brightness(1.08);
+.btn-whatsapp{
+    background:var(--verde);
+    color:#fff;
+    margin-top:18px;
 }
 
-.botao-limpar{
-    width:100%;
-    border:1px solid #522;
-    background:#250909;
-    color:#ff7777;
-    border-radius:10px;
-    padding:12px;
+.btn-limpar{
+    background:#8b0000;
+    color:#fff;
     margin-top:9px;
-    font-weight:bold;
 }
-
-/* =========================================================
-   RODAPÉ
-========================================================= */
 
 footer{
     text-align:center;
-    padding:30px 15px 110px;
-    color:#666;
-    font-size:12px;
+    color:#777;
+    padding:30px 15px;
 }
 
-/* =========================================================
-   RESPONSIVO
-========================================================= */
+/* ================= BOTAO FLUTUANTE ================= */
 
-@media(max-width:1000px){
-    .produtos{
-        grid-template-columns:repeat(3,1fr);
-    }
+.botao-carrinho{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:2000;
+    width:calc(100% - 30px);
+    max-width:500px;
+    border:0;
+    border-radius:14px;
+    background:var(--amarelo);
+    color:#000;
+    padding:14px 18px;
+    font-weight:bold;
+    font-size:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.6);
+    cursor:pointer;
 }
 
-@media(max-width:700px){
-    .topo-titulo{
-        display:none;
+.botao-carrinho span{
+    float:right;
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:600px){
+
+    .logo{
+        width:115px;
+    }
+
+    .categorias{
+        top:68px;
     }
 
     .produtos{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .produto-imagem{
+        height:145px;
     }
 
     .produto-conteudo{
-        padding:11px;
+        padding:10px;
     }
 
     .produto h3{
         font-size:14px;
     }
 
-    .produto-desc{
+    .produto p{
         font-size:11px;
+        min-height:31px;
     }
 
     .preco{
-        font-size:15px;
+        font-size:17px;
     }
 
     .btn-add{
-        padding:8px 9px;
-        font-size:11px;
+        padding:10px 5px;
+        font-size:12px;
     }
 
-    .categorias-wrap{
-        top:76px;
+    .item-carrinho{
+        flex-wrap:wrap;
     }
 
-    .linha-form{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:430px){
-    .produtos{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .produto-foto{
-        aspect-ratio:1/1;
-    }
-
-    .hero-box{
-        padding:16px;
-    }
-
-    .hero-box h1{
-        font-size:21px;
+    .valor-item{
+        margin-left:auto;
     }
 }
 </style>
@@ -721,1966 +453,927 @@ footer{
 
 <body>
 
-<!-- =======================================================
-     TOPO
-======================================================= -->
-
-<header class="topo">
-
-    <div class="topo-principal">
-
-        <img
-            class="logo"
-            src="https://i.ibb.co/5gsVbBcb/corretooo.jpg"
-            alt="ND BURGS"
-        >
-
-        <div class="topo-titulo">
-            <strong>ND BURGS 🍔</strong>
-            <span>Hambúrgueria • Faça seu pedido</span>
-        </div>
-
-        <button
-            class="botao-carrinho-topo"
-            onclick="abrirCarrinho()"
-            aria-label="Abrir carrinho"
-        >
-            🛒
-            <span
-                id="contadorCarrinho"
-                class="contador"
-            >0</span>
-        </button>
-
-    </div>
-
+<header>
+<img
+    class="logo"
+    src="https://i.ibb.co/5gsVbBcb/corretooo.jpg"
+    alt="ND BURGS"
+>
 </header>
 
+<nav class="categorias">
+    <button onclick="irPara('tradicionais')">🍔 Tradicionais</button>
+    <button onclick="irPara('artesanais')">🍔 Artesanais</button>
+    <button onclick="irPara('combos')">📦 Combos</button>
+    <button onclick="irPara('combos-artesanais')">🔥 Combos Artesanais</button>
+    <button onclick="irPara('acai')">🥤 Açaí</button>
+    <button onclick="irPara('pasteis')">🥟 Pastéis</button>
+    <button onclick="irPara('porcoes')">🍟 Porções</button>
+    <button onclick="irPara('milkshakes')">🥤 Milkshakes</button>
+    <button onclick="irPara('sobremesas')">🍓 Sobremesas</button>
+    <button onclick="irPara('bebidas')">🥤 Bebidas</button>
+    <button onclick="irPara('adicionais')">➕ Adicionais</button>
+</nav>
 
-<!-- =======================================================
-     HERO
-======================================================= -->
+<div class="container">
 
-<section class="hero">
+<h1>🍔 FAÇA SEU PEDIDO</h1>
 
-    <div class="hero-box">
+<!-- =========================================================
+     TRADICIONAIS
+========================================================= -->
 
-        <h1>🍔 FAÇA SEU PEDIDO</h1>
+<section id="tradicionais">
 
-        <p>
-            Escolha seus produtos, monte seu pedido e envie pelo WhatsApp.
-        </p>
+<h2 class="titulo-categoria">🍔 Tradicionais</h2>
 
-        <div class="busca">
+<div class="produtos">
 
-            <span>🔎</span>
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/ds9Qr0PD/BURGUER.jpg" alt="X-BURGUER">
+<div class="produto-conteudo">
+<h3>X-BURGUER</h3>
+<p>Hambúrguer tradicional.</p>
+<div class="preco">R$ 10,90</div>
+<button class="btn-add" onclick="adicionar('X-BURGUER',10.90)">ADICIONAR</button>
+</div>
+</div>
 
-            <input
-                type="search"
-                id="busca"
-                placeholder="Buscar produto..."
-                oninput="filtrarProdutos()"
-            >
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/3m1Bjw2w/BACON.jpg" alt="X-BACON">
+<div class="produto-conteudo">
+<h3>X-BACON</h3>
+<p>Hambúrguer tradicional com bacon.</p>
+<div class="preco">R$ 11,90</div>
+<button class="btn-add" onclick="adicionar('X-BACON',11.90)">ADICIONAR</button>
+</div>
+</div>
 
-        </div>
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/0RfxphbK/SALADA.png" alt="X-SALADA">
+<div class="produto-conteudo">
+<h3>X-SALADA</h3>
+<p>Hambúrguer tradicional com salada.</p>
+<div class="preco">R$ 11,90</div>
+<button class="btn-add" onclick="adicionar('X-SALADA',11.90)">ADICIONAR</button>
+</div>
+</div>
 
-    </div>
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/xKzPkWgf/EGG.png" alt="X-EGG">
+<div class="produto-conteudo">
+<h3>X-EGG</h3>
+<p>Hambúrguer tradicional com ovo.</p>
+<div class="preco">R$ 11,90</div>
+<button class="btn-add" onclick="adicionar('X-EGG',11.90)">ADICIONAR</button>
+</div>
+</div>
 
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/6JFN8tDS/SELLIS.png" alt="SELLIS">
+<div class="produto-conteudo">
+<h3>SELLIS</h3>
+<p>Hambúrguer tradicional especial ND BURGS.</p>
+<div class="preco">R$ 13,90</div>
+<button class="btn-add" onclick="adicionar('SELLIS',13.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/zzBF6yL/NUNES.png" alt="NUNES">
+<div class="produto-conteudo">
+<h3>NUNES</h3>
+<p>Hambúrguer tradicional especial.</p>
+<div class="preco">R$ 24,90</div>
+<button class="btn-add" onclick="adicionar('NUNES',24.90)">ADICIONAR</button>
+</div>
+</div>
+
+</div>
 </section>
 
+<!-- =========================================================
+     ARTESANAIS
+========================================================= -->
 
-<!-- =======================================================
-     CATEGORIAS
-======================================================= -->
+<section id="artesanais">
 
-<div class="categorias-wrap">
+<h2 class="titulo-categoria">🍔 Artesanais</h2>
 
-    <nav
-        class="categorias"
-        id="categorias"
-    ></nav>
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/zW8gbZpK/BERENICE.jpg" alt="BERENICE">
+<div class="produto-conteudo">
+<h3>BERENICE</h3>
+<p>Pão de brioche, carne artesanal, cheddar, maionese verde, alface e cebola roxa.</p>
+<div class="preco">R$ 22,90</div>
+<button class="btn-add" onclick="adicionar('BERENICE',22.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/tTWqZ9ST/PATAO.png" alt="PATAO">
+<div class="produto-conteudo">
+<h3>PATAO</h3>
+<p>Pão de brioche, carne artesanal, bacon, barbecue e onion rings.</p>
+<div class="preco">R$ 23,90</div>
+<button class="btn-add" onclick="adicionar('PATAO',23.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/d4pD5bNc/DINA.jpg" alt="DINA">
+<div class="produto-conteudo">
+<h3>DINA</h3>
+<p>Pão de brioche, frango empanado, cheddar, maionese verde, alface e tomate.</p>
+<div class="preco">R$ 20,90</div>
+<button class="btn-add" onclick="adicionar('DINA',20.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/qLK7hWYs/GADEIA.jpg" alt="GADEIA">
+<div class="produto-conteudo">
+<h3>GADEIA</h3>
+<p>Pão de hambúrguer, carne artesanal, maionese verde e queijo cheddar.</p>
+<div class="preco">R$ 20,90</div>
+<button class="btn-add" onclick="adicionar('GADEIA',20.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/ymQ7sFZn/GAROTINHO.png" alt="GAROTINHO">
+<div class="produto-conteudo">
+<h3>GAROTINHO</h3>
+<p>Pão de brioche, carne artesanal, cheddar cremoso e bacon.</p>
+<div class="preco">R$ 22,90</div>
+<button class="btn-add" onclick="adicionar('GAROTINHO',22.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/0yTLwY4b/PEZAO.jpg" alt="PÉZÃO">
+<div class="produto-conteudo">
+<h3>PÉZÃO</h3>
+<p>Pão de brioche dividido em 3, carnes artesanais, cheddar, ovo, bacon e salada.</p>
+<div class="preco">R$ 32,90</div>
+<button class="btn-add" onclick="adicionar('PÉZÃO',32.90)">ADICIONAR</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================================================
+     COMBOS
+========================================================= -->
+
+<section id="combos">
+
+<h2 class="titulo-categoria">📦 Combos</h2>
+
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/xKd7bxK0/COMBO-DIETA-SO-SEGUNDA.png" alt="COMBO DIETA SÓ SEGUNDA">
+<div class="produto-conteudo">
+<h3>COMBO DIETA SÓ SEGUNDA</h3>
+<p>Combo especial ND BURGS.</p>
+<div class="preco">R$ 27,90</div>
+<button class="btn-add" onclick="adicionar('COMBO DIETA SÓ SEGUNDA',27.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png" alt="COMBO DOCE">
+<div class="produto-conteudo">
+<h3>COMBO DOCE</h3>
+<p>Combo especial.</p>
+<div class="preco">R$ 32,90</div>
+<button class="btn-add" onclick="adicionar('COMBO DOCE',32.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png" alt="COMBO GELADO">
+<div class="produto-conteudo">
+<h3>COMBO GELADO</h3>
+<p>Combo ND BURGS.</p>
+<div class="preco">R$ 40,90</div>
+<button class="btn-add" onclick="adicionar('COMBO GELADO',40.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png" alt="COMBO MAIS VENDIDO">
+<div class="produto-conteudo">
+<h3>COMBO MAIS VENDIDO</h3>
+<p>Um dos combos especiais da ND BURGS.</p>
+<div class="preco">R$ 20,90</div>
+<button class="btn-add" onclick="adicionar('COMBO MAIS VENDIDO',20.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png" alt="COMBO SÓ LOVE">
+<div class="produto-conteudo">
+<h3>COMBO SÓ LOVE</h3>
+<p>Combo especial para compartilhar.</p>
+<div class="preco">R$ 71,90</div>
+<button class="btn-add" onclick="adicionar('COMBO SÓ LOVE',71.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png" alt="COMBO MOTOCA ND">
+<div class="produto-conteudo">
+<h3>COMBO MOTOCA ND</h3>
+<p>Combo ND BURGS.</p>
+<div class="preco">R$ 32,90</div>
+<button class="btn-add" onclick="adicionar('COMBO MOTOCA ND',32.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png" alt="DATE COM NDBURGS">
+<div class="produto-conteudo">
+<h3>DATE COM NDBURGS</h3>
+<p>Combo especial.</p>
+<div class="preco">R$ 70,90</div>
+<button class="btn-add" onclick="adicionar('DATE COM NDBURGS',70.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png" alt="COMBO 5 ESTRELAS">
+<div class="produto-conteudo">
+<h3>COMBO 5 ESTRELAS</h3>
+<p>Combo especial.</p>
+<div class="preco">R$ 45,90</div>
+<button class="btn-add" onclick="adicionar('COMBO 5 ESTRELAS',45.90)">ADICIONAR</button>
+</div>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png" alt="01 ND BURGS">
+<div class="produto-conteudo">
+<h3>01 ND BURGS</h3>
+<p>Combo especial.</p>
+<div class="preco">R$ 50,90</div>
+<button class="btn-add" onclick="adicionar('01 ND BURGS',50.90)">ADICIONAR</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================================================
+     COMBOS ARTESANAIS
+========================================================= -->
+
+<section id="combos-artesanais">
+
+<h2 class="titulo-categoria">🔥 Combos Artesanais</h2>
+
+<div class="produtos">
+
+<script>
+const combosArtesanais = [
+["ARTESANAL COMBO SÓ LOVE",90.80],
+["ARTESANAL COMBO 5 ESTRELAS",70.80],
+["ARTESANAL COMBO MAIS VENDIDO",34.80],
+["ARTESANAL COMBO DOCE",44.80],
+["ARTESANAL COMBO GELADO",52.80],
+["ARTESANAL DATE COM NDBURGS",91.80],
+["ARTESANAL MOTOCA ND",41.80],
+["ARTESANAL 01 ND BURGS",96.80]
+];
+
+combosArtesanais.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Combo artesanal ND BURGS.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     AÇAI
+========================================================= -->
+
+<section id="acai">
+
+<h2 class="titulo-categoria">🥤 Açaí</h2>
+
+<div class="produtos">
+
+<script>
+const acais = [
+["AÇAI 200ML",11.90],
+["CASADINHO 200ML",11.90],
+["AÇAI 300ML",15],
+["AÇAI 400ML",18],
+["AÇAI TRUFFADO 300ML",26],
+["AÇAI TRUFFADO 400ML",29],
+["TENTAÇÃO DE MORANGO 300ML",18],
+["TENTAÇÃO DE MORANGO 400ML",18],
+["AÇAI 700ML",32],
+["AÇAI TRUFFADO 700ML",43],
+["TENTAÇÃO DE MORANGO 700ML",32]
+];
+
+acais.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Açaí ND BURGS.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     PASTEIS
+========================================================= -->
+
+<section id="pasteis">
+
+<h2 class="titulo-categoria">🥟 Pastéis</h2>
+
+<div class="produtos">
+
+<script>
+const pasteis = [
+["PASTEL DE CARNE",11],
+["PASTEL DE CARNE COM QUEIJO",11],
+["PASTEL DE CARNE COM CHEDDAR",11],
+["PASTEL DE CARNE COM CATUPIRY",11],
+["PASTEL DE QUEIJO",11],
+["PASTEL DE FRANGO",11],
+["PASTEL DE FRANGO COM QUEIJO",11],
+["PASTEL DE FRANGO COM CATUPIRY",11],
+["PASTEL DE FRANGO COM CHEDDAR",11],
+["PASTEL DE BAURU",11],
+["PASTEL DE PIZZA",11],
+["PASTEL DE FRANGO COM QUEIJO E OVO",11],
+["PASTEL DE CARNE COM OVO",11],
+["PASTEL DE PRESUNTO COM QUEIJO",11],
+["PASTEL 3 QUEIJOS",11],
+["PASTEL ND",11],
+["PASTEL ESPECIAL",15],
+["PASTEL A MODA CAROL",15],
+["PASTEL DE NUTELLA COM BANANA",13],
+["PASTEL DE NUTELLA COM MORANGO",13],
+["PASTEL DE DOCE DE LEITE COM BANANA",13],
+["PASTEL DE NINHO COM MORANGO",13],
+["PASTEL DE NINHO",13],
+["PASTEL DE KITKAT COM NINHO",13],
+["PASTEL DE NINHO COM OREO",13]
+];
+
+pasteis.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Pastel ND BURGS.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     PORÇÕES
+========================================================= -->
+
+<section id="porcoes">
+
+<h2 class="titulo-categoria">🍟 Porções</h2>
+
+<div class="produtos">
+
+<script>
+const porcoes = [
+["BATATA P",6],
+["BATATA M",15],
+["BATATA G",32],
+["BATATA P COMPLETA",12],
+["BATATA M COMPLETA",21],
+["BATATA G COMPLETA",57],
+["NUGGETS P",9],
+["NUGGETS M",16],
+["NUGGETS G",55],
+["ANEL DE CEBOLA P",9],
+["ANEL DE CEBOLA M",16],
+["ANEL DE CEBOLA G",55],
+["FRANGO FRITO P",15],
+["FRANGO FRITO M",27],
+["FRANGO FRITO G",70]
+];
+
+porcoes.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Porção ND BURGS.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     MILKSHAKES
+========================================================= -->
+
+<section id="milkshakes">
+
+<h2 class="titulo-categoria">🥤 Milkshakes</h2>
+
+<div class="produtos">
+
+<script>
+const milkshakes = [
+["NINHO 300ML",15],
+["NINHO 400ML",18],
+["NINHO 700ML",32]
+];
+
+milkshakes.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Milkshake de Leite Ninho.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     SOBREMESAS
+========================================================= -->
+
+<section id="sobremesas">
+
+<h2 class="titulo-categoria">🍓 Sobremesas</h2>
+
+<div class="produtos">
+
+<script>
+const sobremesas = [
+["SURPRESA DE UVA",12],
+["KITKAT",7],
+["MILKSHAKE OVOMALTINE 300ML",15],
+["MILKSHAKE OVOMALTINE 400ML",18],
+["MILKSHAKE OVOMALTINE 700ML",30],
+["MILKSHAKE OREO 300ML",15],
+["MILKSHAKE OREO 400ML",18],
+["MILKSHAKE OREO 700ML",30],
+["MILKSHAKE PAÇOCA 300ML",15],
+["MILKSHAKE PAÇOCA 400ML",18],
+["MILKSHAKE PAÇOCA 700ML",30],
+["MILKSHAKE NESQUIK 300ML",15],
+["MILKSHAKE NESQUIK 400ML",18],
+["MILKSHAKE NESQUIK 700ML",30],
+["MILKSHAKE LEITE NINHO 300ML",15],
+["MILKSHAKE LEITE NINHO 400ML",18],
+["MILKSHAKE LEITE NINHO 700ML",30],
+["MILKSHAKE DE AÇAI 300ML",15],
+["MILKSHAKE DE AÇAI 400ML",18],
+["MILKSHAKE DE AÇAI 700ML",30]
+];
+
+sobremesas.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Sobremesa ND BURGS.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     BEBIDAS
+========================================================= -->
+
+<section id="bebidas">
+
+<h2 class="titulo-categoria">🥤 Bebidas</h2>
+
+<div class="produtos">
+
+<script>
+const bebidas = [
+["COCA COLA LATA",6],
+["COCA COLA ZERO LATA",6],
+["SPRITE LATA",6],
+["FANTA UVA LATA",6],
+["FANTA LARANJA LATA",6],
+["GUARANA LATA",6],
+["DELL VALE LATA",7],
+["AGUA MINERAL",3.50],
+["COCA COLA 600ML",10],
+["COCA COLA 2 LITROS",15],
+["COCA COLA ZERO 2 LITROS",15],
+["DOLLY 2 LITROS LIMAO",9],
+["DOLLY 2 LITROS GUARANA",9]
+];
+
+bebidas.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Bebida.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     ADICIONAIS
+========================================================= -->
+
+<section id="adicionais">
+
+<h2 class="titulo-categoria">➕ Adicionais</h2>
+
+<div class="produtos">
+
+<script>
+const adicionais = [
+["FATIA QUEIJO CHEDDAR EXTRA",3],
+["HAMBURGUER EXTRA ARTESANAL",9],
+["HAMBURGUER EXTRA TRADICIONAL",2.50],
+["BACON",3],
+["POTINHO BARBECUE",3],
+["POTINHO MAIONESE VERDE",3],
+["POTINHO CHEDDAR",3],
+["POTINHO MAIONESE ARTESANAL",3],
+["ADICIONAL NUTELLA",5],
+["ADICIONAL CREME DE NINHO",3],
+["ADICIONAL KITKAT",3],
+["ACOMPANHAMENTO EXTRA",3],
+["ADICIONAL BACON",3],
+["ADICIONAL CHEDDAR",3]
+];
+
+adicionais.forEach(item=>{
+    document.write(`
+    <div class="produto">
+        <div class="produto-conteudo">
+            <h3>${item[0]}</h3>
+            <p>Adicional.</p>
+            <div class="preco">${moeda(item[1])}</div>
+            <button class="btn-add" onclick="adicionar('${item[0]}',${item[1]})">
+                ADICIONAR
+            </button>
+        </div>
+    </div>
+    `);
+});
+</script>
+
+</div>
+</section>
+
+<!-- =========================================================
+     CARRINHO
+========================================================= -->
+
+<div class="carrinho" id="carrinho">
+
+<h2>🛒 SEU CARRINHO</h2>
+
+<div id="carrinhoItens">
+    <div class="vazio">Seu carrinho está vazio.</div>
+</div>
+
+<div class="resumo">
+
+<div class="linha">
+<span>Subtotal</span>
+<strong id="subtotal">R$ 0,00</strong>
+</div>
+
+<div class="linha">
+<span>Taxa de entrega</span>
+<strong id="taxa">R$ 0,00</strong>
+</div>
+
+<div class="linha total">
+<span>TOTAL</span>
+<strong id="total">R$ 0,00</strong>
+</div>
+
+</div>
+</div>
+
+<!-- =========================================================
+     FORMULARIO
+========================================================= -->
+
+<div class="formulario">
+
+<h2>📍 DADOS DO PEDIDO</h2>
+
+<label>Nome</label>
+<input id="nome" type="text" placeholder="Digite seu nome">
+
+<label>Telefone</label>
+<input id="telefone" type="tel" placeholder="Digite seu telefone">
+
+<label>Tipo do pedido</label>
+
+<select id="tipoPedido" onchange="alterarTipoPedido()">
+<option value="ENTREGA">ENTREGA</option>
+<option value="RETIRADA">RETIRADA</option>
+<option value="BALCAO">BALCÃO</option>
+</select>
+
+<div id="enderecoArea">
+
+<label>Rua</label>
+
+<select id="rua" onchange="calcularTaxa()">
+<option value="">Selecione sua rua</option>
+</select>
+
+<label>Número</label>
+<input id="numero" type="text" placeholder="Número da residência">
+
+<label>Complemento</label>
+<input id="complemento" type="text" placeholder="Apartamento, casa, bloco...">
+
+<div id="avisoTaxa" class="aviso-taxa"></div>
 
 </div>
 
+<label>Forma de pagamento</label>
 
-<!-- =======================================================
-     PRODUTOS
-======================================================= -->
+<select id="pagamento">
+<option value="">Selecione</option>
+<option value="PIX">PIX</option>
+<option value="DINHEIRO">DINHEIRO</option>
+<option value="CARTÃO">CARTÃO</option>
+<option value="IFOOD">IFOOD</option>
+<option value="99FOOD">99FOOD</option>
+</select>
 
-<main
-    class="container"
-    id="produtosContainer"
-></main>
+<div id="trocoArea" style="display:none;">
 
+<label>Troco para quanto?</label>
+<input id="troco" type="number" step="0.01" placeholder="Ex: 50">
 
-<footer>
+</div>
 
-    <strong>ND BURGS © 2026</strong><br><br>
+<label>Observação</label>
 
-    Faça seu pedido diretamente conosco 🍔<br>
+<textarea id="observacao" placeholder="Ex: Sem cebola, tocar campainha..."></textarea>
 
-    Obrigado pela preferência ❤️
-
-</footer>
-
-
-<!-- =======================================================
-     BOTÃO CARRINHO
-======================================================= -->
-
-<button
-    class="carrinho-flutuante"
-    onclick="abrirCarrinho()"
->
-
-    <span>
-        🛒 <small>SEU CARRINHO</small>
-    </span>
-
-    <strong id="botaoCarrinhoTexto">
-        R$ 0,00
-    </strong>
-
+<button class="btn btn-whatsapp" onclick="finalizarPedido()">
+📲 ENVIAR PEDIDO PELO WHATSAPP
 </button>
 
-
-<!-- =======================================================
-     MODAL CARRINHO
-======================================================= -->
-
-<div
-    class="overlay"
-    id="overlay"
-    onclick="fecharAoClicarFora(event)"
->
-
-    <div
-        class="modal"
-        onclick="event.stopPropagation()"
-    >
-
-        <div class="modal-topo">
-
-            <h2>🛒 Seu carrinho</h2>
-
-            <button
-                class="fechar"
-                onclick="fecharCarrinho()"
-            >
-                ✕
-            </button>
-
-        </div>
-
-
-        <div id="carrinhoItens">
-
-            <div class="carrinho-vazio">
-                Seu carrinho está vazio.
-            </div>
-
-        </div>
-
-
-        <div class="resumo">
-
-            <div class="linha">
-                <span>Subtotal</span>
-                <strong id="subtotal">R$ 0,00</strong>
-            </div>
-
-            <div class="linha">
-                <span>Taxa de entrega</span>
-                <strong id="taxa">R$ 0,00</strong>
-            </div>
-
-            <div class="linha linha-total">
-                <span>TOTAL</span>
-                <strong id="total">R$ 0,00</strong>
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             CHECKOUT
-        ================================================== -->
-
-        <div class="checkout">
-
-            <h3>📍 Dados do pedido</h3>
-
-            <div class="linha-form">
-
-                <div>
-
-                    <label for="nome">
-                        Nome
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nome"
-                        placeholder="Seu nome"
-                    >
-
-                </div>
-
-                <div>
-
-                    <label for="telefone">
-                        Telefone
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="telefone"
-                        placeholder="Seu telefone"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <label for="tipoPedido">
-                Tipo do pedido
-            </label>
-
-            <select
-                id="tipoPedido"
-                onchange="alterarTipoPedido()"
-            >
-
-                <option value="ENTREGA">
-                    🚚 ENTREGA
-                </option>
-
-                <option value="RETIRADA">
-                    🛍️ RETIRADA
-                </option>
-
-                <option value="BALCAO">
-                    🏪 BALCÃO
-                </option>
-
-            </select>
-
-
-            <div id="enderecoArea">
-
-                <label for="rua">
-                    Rua / Localidade
-                </label>
-
-                <select
-                    id="rua"
-                    onchange="calcularTaxa()"
-                >
-
-                    <option value="">
-                        Selecione sua rua
-                    </option>
-
-                </select>
-
-
-                <div class="linha-form">
-
-                    <div>
-
-                        <label for="numero">
-                            Número
-                        </label>
-
-                        <input
-                            type="text"
-                            id="numero"
-                            placeholder="Nº"
-                        >
-
-                    </div>
-
-                    <div>
-
-                        <label for="complemento">
-                            Complemento
-                        </label>
-
-                        <input
-                            type="text"
-                            id="complemento"
-                            placeholder="Casa, apto..."
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="avisoTaxa"
-                    class="aviso-taxa"
-                ></div>
-
-            </div>
-
-
-            <label for="pagamento">
-                Forma de pagamento
-            </label>
-
-            <select
-                id="pagamento"
-                onchange="alterarPagamento()"
-            >
-
-                <option value="">
-                    Selecione
-                </option>
-
-                <option value="PIX">
-                    PIX
-                </option>
-
-                <option value="DINHEIRO">
-                    DINHEIRO
-                </option>
-
-                <option value="CARTÃO">
-                    CARTÃO
-                </option>
-
-                <option value="IFOOD">
-                    IFOOD
-                </option>
-
-                <option value="99FOOD">
-                    99FOOD
-                </option>
-
-            </select>
-
-
-            <div
-                id="trocoArea"
-                class="troco-area"
-            >
-
-                <label for="troco">
-                    Troco para quanto?
-                </label>
-
-                <input
-                    type="number"
-                    id="troco"
-                    min="0"
-                    step="0.01"
-                    placeholder="Ex: 50,00"
-                >
-
-            </div>
-
-
-            <label for="observacao">
-                Observação
-            </label>
-
-            <textarea
-                id="observacao"
-                placeholder="Ex: sem cebola, tocar campainha..."
-            ></textarea>
-
-
-            <button
-                class="botao-whatsapp"
-                onclick="finalizarPedido()"
-            >
-                📲 ENVIAR PEDIDO PELO WHATSAPP
-            </button>
-
-
-            <button
-                class="botao-limpar"
-                onclick="limparCarrinho()"
-            >
-                🗑️ LIMPAR CARRINHO
-            </button>
-
-        </div>
-
-    </div>
+<button class="btn btn-limpar" onclick="limparCarrinho()">
+🗑️ LIMPAR CARRINHO
+</button>
 
 </div>
 
+</div>
+
+<button class="botao-carrinho" onclick="irPara('carrinho')">
+🛒 VER CARRINHO
+<span id="quantidadeCarrinho">0 itens</span>
+</button>
+
+<footer>
+ND BURGS © 2026<br>
+Obrigado pela preferência ❤️
+</footer>
 
 <script>
 
 /* ============================================================
-   CONFIGURAÇÕES
+   MOEDA
 ============================================================ */
 
-const WHATSAPP = "5511963973846";
-
+function moeda(valor){
+    return valor.toLocaleString("pt-BR",{
+        style:"currency",
+        currency:"BRL"
+    });
+}
 
 /* ============================================================
-   TAXAS DE ENTREGA
+   TAXAS
 ============================================================ */
 
 const taxas = {
 
-    "AV ATLETICO":9,
-    "AV LYONS":5,
-    "AV MARABAS":4,
-    "AV MARAMBAIA":4,
-    "AV TORRE ALBERT MUNCK":6,
-    "AVENIDA BRASIL":5,
-    "AVENIDA PROFESSOR MANOEL JOSE PEDROSO":7,
-    "BALCAO":0,
-    "CONDOMINIO PARQUE REAL":9,
-    "CONDOMINIO VALE VERDE":10,
-    "ESTRADA DO ATALAIA":6,
-    "ESTRADA DO MORRO GRANDE":9,
-    "ESTRADA DO PADRE INACIO":6,
-    "ESTRADA DOS FISCHER'S":7,
-    "ESTRADA VELHA DA OLARIA":5,
-    "MANDELINHA KENKIT":5,
-    "MANDELINHA PARTE DE CIMA":5,
-    "MANDELINHA PORTO ALEGRE":5,
-    "POINT DO DIGO":6,
-    "RETIRADA":0,
-    "RUA 7":6,
-    "RUA ACLIMACAO":6,
-    "RUA ADOVEL QUINTINO":6,
-    "RUA AGULHAS NEGRAS":7,
-    "RUA ALAGOINHAS":6,
-    "RUA ARCO DOURADO":5,
-    "RUA ARCO VERDE":5,
-    "RUA BELMONTE":5,
-    "RUA BENEDITO MARIA DE JESUS":5,
-    "RUA BRASILIA":7,
-    "RUA BRUMADO":6,
-    "RUA CAETETE":6,
-    "RUA CAIAPO":7,
-    "RUA CAIO GRACO":5,
-    "RUA CALIL FILHO":8,
-    "RUA CAMINHO EXISTENTE":4,
-    "RUA CARMEN MIRANDA":9,
-    "RUA CIRO MONTEIRO":9,
-    "RUA COAPA":6,
-    "RUA COMODORO":5,
-    "RUA DAS AMEIXEIRAS":3,
-    "RUA DAS BANANEIRAS":3,
-    "RUA DOS COQUEIRAIS":3,
-    "RUA DAS DAMASQUEIRAS":3,
-    "RUA DAS MACIEIRAS":3,
-    "RUA DAS MORANGUEIRAS":3,
-    "RUA DESPORTIVA":9,
-    "RUA DR APARECIDA J DOMINGUES":4,
-    "RUA DR ODAIR PACHECO PEDROSO":8,
-    "RUA ERICO VERISSIMO":7,
-    "RUA ERIVELTON MARTINS":7,
-    "RUA ESPLANADA":5,
-    "RUA EXISTENTE":4,
-    "RUA FELISBINO DE OLIVEIRA":8,
-    "RUA FRANCISCO ALVES":9,
-    "RUA FUGI":8,
-    "RUA GRACIANO SOARES DE ARAUJO":5,
-    "RUA INDUSQUIMICA":5,
-    "RUA IPIRANGA":6,
-    "RUA ISMENIA":6,
-    "RUA ITABUNA":6,
-    "RUA ITAGUAI":6,
-    "RUA ITAPETI":7,
-    "RUA ITARIRI":4,
-    "RUA JACOBINA":5,
-    "RUA JOAQUIM RUAS":6,
-    "RUA JUQUITIBA":4,
-    "RUA LAMARTINE BABO":9,
-    "RUA LEVER":6,
-    "RUA PADRE LUIZ MARTINE":5,
-    "RUA MADRESSILVAS":6,
-    "RUA MARIO ANDREATINI":4,
-    "RUA METAL LEVER":5,
-    "RUA MIL FOLHAS":9,
-    "RUA MIRAMAR":5,
-    "RUA MOÇAMBIQUE":9,
-    "RUA NILO":9,
-    "RUA NOGAM":6,
-    "RUA NOVA ODESSA":6,
-    "RUA NOVA OLINDA":6,
-    "RUA NOVA PATRIA":6,
-    "RUA NOVA SAO PAULO":6,
-    "RUA ODETE":6,
-    "RUA OMA":9,
-    "RUA OTELO ZELONI":7,
-    "RUA PACARAIMA":8,
-    "RUA PALMAS":9,
-    "RUA PARANA":7,
-    "RUA PAULO SERGIO LEMOS":7,
-    "RUA PENHA":6,
-    "RUA PIRINEUS":8,
-    "RUA PONTA GROSSA":4,
-    "RUA PORTO ALEGRE":5,
-    "RUA PROFESSOR ZOE PEREIRA BENIAMINO":6,
-    "RUA REGISTRO":4,
-    "RUA RIBEIRAO PIRES":4,
-    "RUA RIO BRANCO":5,
-    "RUA RIO CLARO":5,
-    "RUA MARANHAO":7,
-    "RUA SANTA MARIA IMACULADA":5,
-    "RUA SANTA MATILDE":6,
-    "RUA SANTO AGOSTINO":7,
-    "RUA SAO BENEDITO":7,
-    "RUA SAO CIPRIANO":6,
-    "RUA SAO CRISTOVAO":6,
-    "RUA SAO GEREMIAS":6,
-    "RUA SAO PAULO":6,
-    "RUA SAO PAULO DAS MISSOES":7,
-    "RUA SAO SERAFIM":6,
-    "RUA SERGIO CARDOSO":6,
-    "RUA SILVA TELES":9,
-    "RUA TIBERIO":5,
-    "RUA TORQUARO NETO":6,
-    "RUA UGANDA":9,
-    "RUA VICENTE CELESTINO":9,
-    "RUA VICENTE STRIFEZZI":15,
-    "RUA VILA VERDE":5,
-    "RUA VOTURAMA":7,
-    "RUA WELCOME":5,
-    "RUA ZIEMBINSKI":7,
-    "VIELA DOS FISCHERS":9,
-    "ESTRADA DAS GRAÇAS":4,
-    "IFOOD":0,
-    "RUA NOVA TRINDADE":6,
-    "99FOOD":0,
-    "RUA APENINOS":12,
-    "RUA VERA CRUZ":5,
-    "MERCADO LIVRE":15,
-    "RUA SANTA QUITERIA":6,
-    "RUA ITAPETININGA":5,
-    "RUA MELGAXE":9,
-    "RUA GETULIO VARGAS":8,
-    "IDOMINEU ANTUNES CALDEIRA":9,
-    "RUA PATATIVA":7,
-    "RUA MOEMA":6
+"AV ATLETICO":9,
+"AV LYONS":5,
+"AV MARABAS":4,
+"AV MARAMBAIA":4,
+"AV TORRE ALBERT MUNCK":6,
+"AVENIDA BRASIL":5,
+"AVENIDA PROFESSOR MANOEL JOSE PEDROSO":7,
+"CONDOMINIO PARQUE REAL":9,
+"CONDOMINIO VALE VERDE":10,
+"ESTRADA DO ATALAIA":6,
+"ESTRADA DO MORRO GRANDE":9,
+"ESTRADA DO PADRE INACIO":6,
+"ESTRADA DOS FISCHER'S":7,
+"ESTRADA VELHA DA OLARIA":5,
+"MANDELINHA KENKIT":5,
+"MANDELINHA PARTE DE CIMA":5,
+"MANDELINHA PORTO ALEGRE":5,
+"POINT DO DIGO":6,
+"RUA 7":6,
+"RUA ACLIMACAO":6,
+"RUA ADOVEL QUINTINO":6,
+"RUA AGULHAS NEGRAS":7,
+"RUA ALAGOINHAS":6,
+"RUA ARCO DOURADO":5,
+"RUA ARCO VERDE":5,
+"RUA BELMONTE":5,
+"RUA BENEDITO MARIA DE JESUS":5,
+"RUA BRASILIA":7,
+"RUA BRUMADO":6,
+"RUA CAETETE":6,
+"RUA CAIAPO":7,
+"RUA CAIO GRACO":5,
+"RUA CALIL FILHO":8,
+"RUA CAMINHO EXISTENTE":4,
+"RUA CARMEN MIRANDA":9,
+"RUA CIRO MONTEIRO":9,
+"RUA COAPA":6,
+"RUA COMODORO":5,
+"RUA DAS AMEIXEIRAS":3,
+"RUA DAS BANANEIRAS":3,
+"RUA DOS COQUEIRAIS":3,
+"RUA DAS DAMASQUEIRAS":3,
+"RUA DAS MACIEIRAS":3,
+"RUA DAS MORANGUEIRAS":3,
+"RUA DESPORTIVA":9,
+"RUA DR APARECIDA J DOMINGUES":4,
+"RUA DR ODAIR PACHECO PEDROSO":8,
+"RUA ERICO VERISSIMO":7,
+"RUA ERIVELTON MARTINS":7,
+"RUA ESPLANADA":5,
+"RUA EXISTENTE":4,
+"RUA FELISBINO DE OLIVEIRA":8,
+"RUA FRANCISCO ALVES":9,
+"RUA FUGI":8,
+"RUA GRACIANO SOARES DE ARAUJO":5,
+"RUA INDUSQUIMICA":5,
+"RUA IPIRANGA":6,
+"RUA ISMENIA":6,
+"RUA ITABUNA":6,
+"RUA ITAGUAI":6,
+"RUA ITAPETI":7,
+"RUA ITARIRI":4,
+"RUA JACOBINA":5,
+"RUA JOAQUIM RUAS":6,
+"RUA JUQUITIBA":4,
+"RUA LAMARTINE BABO":9,
+"RUA LEVER":6,
+"RUA PADRE LUIZ MARTINE":5,
+"RUA MADRESSILVAS":6,
+"RUA MARIO ANDREATINI":4,
+"RUA METAL LEVER":5,
+"RUA MIL FOLHAS":9,
+"RUA MIRAMAR":5,
+"RUA MOÇAMBIQUE":9,
+"RUA NILO":9,
+"RUA NOGAM":6,
+"RUA NOVA ODESSA":6,
+"RUA NOVA OLINDA":6,
+"RUA NOVA PATRIA":6,
+"RUA NOVA SAO PAULO":6,
+"RUA ODETE":6,
+"RUA OMA":9,
+"RUA OTELO ZELONI":7,
+"RUA PACARAIMA":8,
+"RUA PALMAS":9,
+"RUA PARANA":7,
+"RUA PAULO SERGIO LEMOS":7,
+"RUA PENHA":6,
+"RUA PIRINEUS":8,
+"RUA PONTA GROSSA":4,
+"RUA PORTO ALEGRE":5,
+"RUA PROFESSOR ZOE PEREIRA BENIAMINO":6,
+"RUA REGISTRO":4,
+"RUA RIBEIRAO PIRES":4,
+"RUA RIO BRANCO":5,
+"RUA RIO CLARO":5,
+"RUA MARANHAO":7,
+"RUA SANTA MARIA IMACULADA":5,
+"RUA SANTA MATILDE":6,
+"RUA SANTO AGOSTINO":7,
+"RUA SAO BENEDITO":7,
+"RUA SAO CIPRIANO":6,
+"RUA SAO CRISTOVAO":6,
+"RUA SAO GEREMIAS":6,
+"RUA SAO PAULO":6,
+"RUA SAO PAULO DAS MISSOES":7,
+"RUA SAO SERAFIM":6,
+"RUA SERGIO CARDOSO":6,
+"RUA SILVA TELES":9,
+"RUA TIBERIO":5,
+"RUA TORQUARO NETO":6,
+"RUA UGANDA":9,
+"RUA VICENTE CELESTINO":9,
+"RUA VICENTE STRIFEZZI":15,
+"RUA VILA VERDE":5,
+"RUA VOTURAMA":7,
+"RUA WELCOME":5,
+"RUA ZIEMBINSKI":7,
+"VIELA DOS FISCHERS":9,
+"ESTRADA DAS GRAÇAS":4,
+"RUA NOVA TRINDADE":6,
+"RUA APENINOS":12,
+"RUA VERA CRUZ":5,
+"MERCADO LIVRE":15,
+"RUA SANTA QUITERIA":6,
+"RUA ITAPETININGA":5,
+"RUA MELGAXE":9,
+"RUA GETULIO VARGAS":8,
+"IDOMINEU ANTUNES CALDEIRA":9,
+"RUA PATATIVA":7,
+"RUA MOEMA":6
 };
-
-
-/* ============================================================
-   FOTOS DISPONÍVEIS
-============================================================ */
-
-const fotos = {
-
-    "X BURGUER":
-    "https://i.ibb.co/20nZkG09/Chat-GPT-Image-22-de-ago-de-2026-19-03-42.png",
-
-    "X BACON":
-    "https://i.ibb.co/k2KQwpjp/BACON.jpg",
-
-    "X SALADA":
-    "https://i.ibb.co/390n5BZv/SALADA.png",
-
-    "X EGG":
-    "https://i.ibb.co/NgWQv5Nm/EGG.png",
-
-    "SELLIS":
-    "https://i.ibb.co/fGHQ9NrW/SELLIS.png",
-
-    "NUNES":
-    "https://i.ibb.co/Vszxw7h/NUNES.png",
-
-    "BATATA P":
-    "https://i.ibb.co/JT71z1Y/BATATA.png",
-
-    "BATATA M":
-    "https://i.ibb.co/JT71z1Y/BATATA.png",
-
-    "BATATA G":
-    "https://i.ibb.co/JT71z1Y/BATATA.png",
-
-    "BATATA P COMPLETA":
-    "https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png",
-
-    "BATATA M COMPLETA":
-    "https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png",
-
-    "BATATA G COMPLETA":
-    "https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png",
-
-    "NUGGETS P":
-    "https://i.ibb.co/39SVqYJP/NUGGETS.png",
-
-    "NUGGETS M":
-    "https://i.ibb.co/39SVqYJP/NUGGETS.png",
-
-    "NUGGETS G":
-    "https://i.ibb.co/39SVqYJP/NUGGETS.png",
-
-    "ANEL DE CEBOLA P":
-    "https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png",
-
-    "ANEL DE CEBOLA M":
-    "https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png",
-
-    "ANEL DE CEBOLA G":
-    "https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png",
-
-    "FRANGO FRITO P":
-    "https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png",
-
-    "FRANGO FRITO M":
-    "https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png",
-
-    "FRANGO FRITO G":
-    "https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png",
-
-    "01 ND BURGS":
-    "https://i.ibb.co/xSzfm1DQ/01-NDBURGS.png",
-
-    "COMBO 5 ESTRELAS":
-    "https://i.ibb.co/5WM7335K/5-ESTRELAS.png",
-
-    "COMBO DIETA SÓ SEGUNDA":
-    "https://i.ibb.co/twFJ6Vwt/COMBO-DIETA-SO-SEGUNDA.png",
-
-    "COMBO DOCE":
-    "https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png",
-
-    "COMBO GELADO":
-    "https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png",
-
-    "COMBO MAIS VENDIDO":
-    "https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png",
-
-    "COMBO SÓ LOVE":
-    "https://i.ibb.co/QR0388c/COMBO-S-LOVE.png",
-
-    "DATE COM NDBURGS":
-    "https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png",
-
-    "COMBO MOTOCA ND":
-    "https://i.ibb.co/PvJqcwzb/MOTACA-ND.png",
-
-    "BERENICE":
-    "https://i.ibb.co/zW8gbZpK/BERENICE.jpg",
-
-    "DINA":
-    "https://i.ibb.co/d4pD5bNc/DINA.jpg",
-
-    "GADEIA":
-    "https://i.ibb.co/qLK7hWYs/GADEIA.jpg",
-
-    "GAROTINHO":
-    "https://i.ibb.co/ymQ7sFZn/GAROTINHO.png",
-
-    "PATAO":
-    "https://i.ibb.co/tTWqZ9ST/PATAO.png",
-
-    "PÉZÃO":
-    "https://i.ibb.co/0yTLwY4b/PEZAO.jpg"
-
-};
-
-
-/* ============================================================
-   PRODUTOS
-============================================================ */
-
-const produtos = [
-
-/* ================= TRADICIONAIS ================= */
-
-{
-    nome:"X BURGUER",
-    categoria:"Tradicionais",
-    preco:10.90,
-    desc:"Hambúrguer tradicional."
-},
-
-{
-    nome:"X BACON",
-    categoria:"Tradicionais",
-    preco:11.90,
-    desc:"Hambúrguer tradicional com bacon."
-},
-
-{
-    nome:"X SALADA",
-    categoria:"Tradicionais",
-    preco:11.90,
-    desc:"Hambúrguer tradicional com salada."
-},
-
-{
-    nome:"X EGG",
-    categoria:"Tradicionais",
-    preco:11.90,
-    desc:"Hambúrguer tradicional com ovo."
-},
-
-{
-    nome:"SELLIS",
-    categoria:"Tradicionais",
-    preco:13.90,
-    desc:"Hambúrguer tradicional especial ND."
-},
-
-{
-    nome:"NUNES",
-    categoria:"Tradicionais",
-    preco:24.90,
-    desc:"Hambúrguer especial ND BURGS."
-},
-
-
-/* ================= ARTESANAIS ================= */
-
-{
-    nome:"BERENICE",
-    categoria:"Artesanais",
-    preco:22.90,
-    desc:"Hambúrguer artesanal especial."
-},
-
-{
-    nome:"PATAO",
-    categoria:"Artesanais",
-    preco:23.90,
-    desc:"Hambúrguer artesanal especial."
-},
-
-{
-    nome:"DINA",
-    categoria:"Artesanais",
-    preco:20.90,
-    desc:"Hambúrguer artesanal especial."
-},
-
-{
-    nome:"PÉZÃO",
-    categoria:"Artesanais",
-    preco:32.90,
-    desc:"Hambúrguer artesanal especial ND."
-},
-
-{
-    nome:"GAROTINHO",
-    categoria:"Artesanais",
-    preco:22.90,
-    desc:"Hambúrguer artesanal com cheddar e bacon."
-},
-
-{
-    nome:"GADEIA",
-    categoria:"Artesanais",
-    preco:20.90,
-    desc:"Hambúrguer artesanal especial."
-},
-
-
-/* ================= COMBOS ================= */
-
-{
-    nome:"01 ND BURGS",
-    categoria:"Combos",
-    preco:50.90,
-    desc:"Combo ND BURGS."
-},
-
-{
-    nome:"COMBO SÓ LOVE",
-    categoria:"Combos",
-    preco:71.90,
-    desc:"Combo especial Só Love."
-},
-
-{
-    nome:"COMBO 5 ESTRELAS",
-    categoria:"Combos",
-    preco:45.90,
-    desc:"Combo especial 5 Estrelas."
-},
-
-{
-    nome:"COMBO DIETA SÓ SEGUNDA",
-    categoria:"Combos",
-    preco:27.90,
-    desc:"Coca lata + doce surpresa + pastel."
-},
-
-{
-    nome:"COMBO MAIS VENDIDO",
-    categoria:"Combos",
-    preco:20.90,
-    desc:"Um dos combos mais pedidos."
-},
-
-{
-    nome:"COMBO MOTOCA ND",
-    categoria:"Combos",
-    preco:32.90,
-    desc:"Combo especial ND."
-},
-
-{
-    nome:"COMBO DOCE",
-    categoria:"Combos",
-    preco:32.90,
-    desc:"Combo especial com sobremesa."
-},
-
-{
-    nome:"COMBO GELADO",
-    categoria:"Combos",
-    preco:40.90,
-    desc:"Combo especial ND BURGS."
-},
-
-{
-    nome:"DATE COM NDBURGS",
-    categoria:"Combos",
-    preco:70.90,
-    desc:"Combo especial para compartilhar."
-},
-
-
-/* ================= COMBOS ARTESANAIS ================= */
-
-{
-    nome:"ARTESANAL COMBO SÓ LOVE",
-    categoria:"Combos Artesanais",
-    preco:90.80,
-    desc:"Combo artesanal especial."
-},
-
-{
-    nome:"ARTESANAL COMBO 5 ESTRELAS",
-    categoria:"Combos Artesanais",
-    preco:70.80,
-    desc:"Combo artesanal especial."
-},
-
-{
-    nome:"ARTESANAL COMBO MAIS VENDIDO",
-    categoria:"Combos Artesanais",
-    preco:34.80,
-    desc:"Combo artesanal mais vendido."
-},
-
-{
-    nome:"ARTESANAL COMBO DOCE",
-    categoria:"Combos Artesanais",
-    preco:44.80,
-    desc:"Combo artesanal com doce."
-},
-
-{
-    nome:"ARTESANAL COMBO GELADO",
-    categoria:"Combos Artesanais",
-    preco:52.80,
-    desc:"Combo artesanal especial."
-},
-
-{
-    nome:"ARTESANAL DATE COM NDBURGS",
-    categoria:"Combos Artesanais",
-    preco:91.80,
-    desc:"Combo artesanal para compartilhar."
-},
-
-{
-    nome:"ARTESANAL MOTOCA ND",
-    categoria:"Combos Artesanais",
-    preco:41.80,
-    desc:"Combo artesanal especial."
-},
-
-{
-    nome:"ARTESANAL 01 ND BURGS",
-    categoria:"Combos Artesanais",
-    preco:96.80,
-    desc:"Combo artesanal especial ND."
-},
-
-
-/* ================= AÇAÍ ================= */
-
-{
-    nome:"AÇAI 200ML",
-    categoria:"Açaí",
-    preco:11.90,
-    desc:"Açaí cremoso."
-},
-
-{
-    nome:"CASADINHO 200ML",
-    categoria:"Açaí",
-    preco:11.90,
-    desc:"Casadinho cremoso."
-},
-
-{
-    nome:"AÇAI 300ML",
-    categoria:"Açaí",
-    preco:15.00,
-    desc:"Açaí cremoso."
-},
-
-{
-    nome:"AÇAI 400ML",
-    categoria:"Açaí",
-    preco:18.00,
-    desc:"Açaí cremoso."
-},
-
-{
-    nome:"AÇAI TRUFFADO 300ML",
-    categoria:"Açaí",
-    preco:26.00,
-    desc:"Açaí truffado."
-},
-
-{
-    nome:"AÇAI TRUFFADO 400ML",
-    categoria:"Açaí",
-    preco:29.00,
-    desc:"Açaí truffado."
-},
-
-{
-    nome:"AÇAI TRUFFADO 700ML",
-    categoria:"Açaí",
-    preco:43.00,
-    desc:"Açaí truffado."
-},
-
-{
-    nome:"TENTAÇÃO DE MORANGO 300ML",
-    categoria:"Açaí",
-    preco:18.00,
-    desc:"Açaí com sabor tentação de morango."
-},
-
-{
-    nome:"TENTAÇÃO DE MORANGO 400ML",
-    categoria:"Açaí",
-    preco:18.00,
-    desc:"Açaí com sabor tentação de morango."
-},
-
-{
-    nome:"TENTAÇÃO DE MORANGO 700ML",
-    categoria:"Açaí",
-    preco:32.00,
-    desc:"Açaí com sabor tentação de morango."
-},
-
-{
-    nome:"AÇAI 700ML",
-    categoria:"Açaí",
-    preco:32.00,
-    desc:"Açaí cremoso."
-},
-
-
-/* ================= PASTÉIS ================= */
-
-{
-    nome:"PASTEL DE CARNE",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel recheado com carne."
-},
-
-{
-    nome:"PASTEL DE CARNE COM QUEIJO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Carne com queijo."
-},
-
-{
-    nome:"PASTEL DE CARNE COM CHEDDAR",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Carne com cheddar."
-},
-
-{
-    nome:"PASTEL DE CARNE COM CATUPIRY",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Carne com catupiry."
-},
-
-{
-    nome:"PASTEL DE QUEIJO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel recheado com queijo."
-},
-
-{
-    nome:"PASTEL DE FRANGO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel recheado com frango."
-},
-
-{
-    nome:"PASTEL DE FRANGO COM QUEIJO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Frango com queijo."
-},
-
-{
-    nome:"PASTEL DE FRANGO COM CATUPIRY",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Frango com catupiry."
-},
-
-{
-    nome:"PASTEL DE FRANGO COM CHEDDAR",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Frango com cheddar."
-},
-
-{
-    nome:"PASTEL DE BAURU",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel sabor Bauru."
-},
-
-{
-    nome:"PASTEL DE PIZZA",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel sabor pizza."
-},
-
-{
-    nome:"PASTEL DE FRANGO COM QUEIJO E OVO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Frango, queijo e ovo."
-},
-
-{
-    nome:"PASTEL DE CARNE COM OVO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Carne com ovo."
-},
-
-{
-    nome:"PASTEL DE PRESUNTO COM QUEIJO",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Presunto e queijo."
-},
-
-{
-    nome:"PASTEL 3 QUEIJOS",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel com três queijos."
-},
-
-{
-    nome:"PASTEL ND",
-    categoria:"Pastéis",
-    preco:11.00,
-    desc:"Pastel especial ND."
-},
-
-{
-    nome:"PASTEL ESPECIAL",
-    categoria:"Pastéis",
-    preco:15.00,
-    desc:"Pastel especial da casa."
-},
-
-{
-    nome:"PASTEL A MODA CAROL",
-    categoria:"Pastéis",
-    preco:15.00,
-    desc:"Pastel especial à moda Carol."
-},
-
-{
-    nome:"PASTEL DE NUTELLA COM MORANGO",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"Nutella com morango."
-},
-
-{
-    nome:"PASTEL DE NUTELLA COM BANANA",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"Nutella com banana."
-},
-
-{
-    nome:"PASTEL DE DOCE DE LEITE COM BANANA",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"Doce de leite com banana."
-},
-
-{
-    nome:"PASTEL DE NINHO COM MORANGO",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"Leite Ninho com morango."
-},
-
-{
-    nome:"PASTEL DE NINHO",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"Pastel de leite Ninho."
-},
-
-{
-    nome:"PASTEL DE KITKAT COM NINHO",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"KitKat com leite Ninho."
-},
-
-{
-    nome:"PASTEL DE NINHO COM OREO",
-    categoria:"Pastéis",
-    preco:13.00,
-    desc:"Leite Ninho com Oreo."
-},
-
-
-/* ================= PORÇÕES ================= */
-
-{
-    nome:"BATATA P",
-    categoria:"Porções",
-    preco:6.00,
-    desc:"Porção de batata."
-},
-
-{
-    nome:"BATATA M",
-    categoria:"Porções",
-    preco:15.00,
-    desc:"Porção de batata."
-},
-
-{
-    nome:"BATATA G",
-    categoria:"Porções",
-    preco:32.00,
-    desc:"Porção de batata."
-},
-
-{
-    nome:"BATATA P COMPLETA",
-    categoria:"Porções",
-    preco:12.00,
-    desc:"Batata completa com cheddar e bacon."
-},
-
-{
-    nome:"BATATA M COMPLETA",
-    categoria:"Porções",
-    preco:21.00,
-    desc:"Batata completa com cheddar e bacon."
-},
-
-{
-    nome:"BATATA G COMPLETA",
-    categoria:"Porções",
-    preco:57.00,
-    desc:"Batata completa com cheddar e bacon."
-},
-
-{
-    nome:"NUGGETS P",
-    categoria:"Porções",
-    preco:9.00,
-    desc:"Porção de nuggets."
-},
-
-{
-    nome:"NUGGETS M",
-    categoria:"Porções",
-    preco:16.00,
-    desc:"Porção de nuggets."
-},
-
-{
-    nome:"NUGGETS G",
-    categoria:"Porções",
-    preco:55.00,
-    desc:"Porção de nuggets."
-},
-
-{
-    nome:"ANEL DE CEBOLA P",
-    categoria:"Porções",
-    preco:9.00,
-    desc:"Porção de anéis de cebola."
-},
-
-{
-    nome:"ANEL DE CEBOLA M",
-    categoria:"Porções",
-    preco:16.00,
-    desc:"Porção de anéis de cebola."
-},
-
-{
-    nome:"ANEL DE CEBOLA G",
-    categoria:"Porções",
-    preco:55.00,
-    desc:"Porção de anéis de cebola."
-},
-
-{
-    nome:"FRANGO FRITO P",
-    categoria:"Porções",
-    preco:15.00,
-    desc:"Porção de frango frito."
-},
-
-{
-    nome:"FRANGO FRITO M",
-    categoria:"Porções",
-    preco:27.00,
-    desc:"Porção de frango frito."
-},
-
-{
-    nome:"FRANGO FRITO G",
-    categoria:"Porções",
-    preco:70.00,
-    desc:"Porção de frango frito."
-},
-
-
-/* ================= MILKSHAKES ================= */
-
-{
-    nome:"NINHO 300ML",
-    categoria:"Milkshakes",
-    preco:15.00,
-    desc:"Milkshake de Ninho."
-},
-
-{
-    nome:"NINHO 400ML",
-    categoria:"Milkshakes",
-    preco:18.00,
-    desc:"Milkshake de Ninho."
-},
-
-{
-    nome:"NINHO 700ML",
-    categoria:"Milkshakes",
-    preco:32.00,
-    desc:"Milkshake de Ninho."
-},
-
-
-/* ================= SOBREMESAS ================= */
-
-{
-    nome:"KITKAT",
-    categoria:"Sobremesas",
-    preco:7.00,
-    desc:"Sobremesa KitKat."
-},
-
-{
-    nome:"SURPRESA DE UVA",
-    categoria:"Sobremesas",
-    preco:12.00,
-    desc:"Sobremesa especial."
-},
-
-{
-    nome:"MILKSHAKE OVOMALTINE 300ML",
-    categoria:"Sobremesas",
-    preco:15.00,
-    desc:"Milkshake de Ovomaltine."
-},
-
-{
-    nome:"MILKSHAKE OVOMALTINE 400ML",
-    categoria:"Sobremesas",
-    preco:18.00,
-    desc:"Milkshake de Ovomaltine."
-},
-
-{
-    nome:"MILKSHAKE OVOMALTINE 700ML",
-    categoria:"Sobremesas",
-    preco:30.00,
-    desc:"Milkshake de Ovomaltine."
-},
-
-{
-    nome:"MILKSHAKE OREO 300ML",
-    categoria:"Sobremesas",
-    preco:15.00,
-    desc:"Milkshake de Oreo."
-},
-
-{
-    nome:"MILKSHAKE OREO 400ML",
-    categoria:"Sobremesas",
-    preco:18.00,
-    desc:"Milkshake de Oreo."
-},
-
-{
-    nome:"MILKSHAKE OREO 700ML",
-    categoria:"Sobremesas",
-    preco:30.00,
-    desc:"Milkshake de Oreo."
-},
-
-{
-    nome:"MILKSHAKE PAÇOCA 300ML",
-    categoria:"Sobremesas",
-    preco:15.00,
-    desc:"Milkshake de paçoca."
-},
-
-{
-    nome:"MILKSHAKE PAÇOCA 400ML",
-    categoria:"Sobremesas",
-    preco:18.00,
-    desc:"Milkshake de paçoca."
-},
-
-{
-    nome:"MILKSHAKE PAÇOCA 700ML",
-    categoria:"Sobremesas",
-    preco:30.00,
-    desc:"Milkshake de paçoca."
-},
-
-{
-    nome:"MILKSHAKE NESQUIK 300ML",
-    categoria:"Sobremesas",
-    preco:15.00,
-    desc:"Milkshake de Nesquik."
-},
-
-{
-    nome:"MILKSHAKE NESQUIK 400ML",
-    categoria:"Sobremesas",
-    preco:18.00,
-    desc:"Milkshake de Nesquik."
-},
-
-{
-    nome:"MILKSHAKE NESQUIK 700ML",
-    categoria:"Sobremesas",
-    preco:30.00,
-    desc:"Milkshake de Nesquik."
-},
-
-{
-    nome:"MILKSHAKE LEITE NINHO 300ML",
-    categoria:"Sobremesas",
-    preco:15.00,
-    desc:"Milkshake de leite Ninho."
-},
-
-{
-    nome:"MILKSHAKE LEITE NINHO 400ML",
-    categoria:"Sobremesas",
-    preco:18.00,
-    desc:"Milkshake de leite Ninho."
-},
-
-{
-    nome:"MILKSHAKE LEITE NINHO 700ML",
-    categoria:"Sobremesas",
-    preco:30.00,
-    desc:"Milkshake de leite Ninho."
-},
-
-{
-    nome:"MILKSHAKE DE AÇAI 300ML",
-    categoria:"Sobremesas",
-    preco:15.00,
-    desc:"Milkshake de açaí."
-},
-
-{
-    nome:"MILKSHAKE DE AÇAI 400ML",
-    categoria:"Sobremesas",
-    preco:18.00,
-    desc:"Milkshake de açaí."
-},
-
-{
-    nome:"MILKSHAKE DE AÇAI 700ML",
-    categoria:"Sobremesas",
-    preco:30.00,
-    desc:"Milkshake de açaí."
-},
-
-
-/* ================= BEBIDAS ================= */
-
-{
-    nome:"COCA COLA LATA",
-    categoria:"Bebidas",
-    preco:6.00,
-    desc:"Refrigerante lata."
-},
-
-{
-    nome:"COCA COLA ZERO LATA",
-    categoria:"Bebidas",
-    preco:6.00,
-    desc:"Refrigerante lata."
-},
-
-{
-    nome:"SPRITE LATA",
-    categoria:"Bebidas",
-    preco:6.00,
-    desc:"Refrigerante lata."
-},
-
-{
-    nome:"FANTA UVA LATA",
-    categoria:"Bebidas",
-    preco:6.00,
-    desc:"Refrigerante lata."
-},
-
-{
-    nome:"FANTA LARANJA LATA",
-    categoria:"Bebidas",
-    preco:6.00,
-    desc:"Refrigerante lata."
-},
-
-{
-    nome:"GUARANA LATA",
-    categoria:"Bebidas",
-    preco:6.00,
-    desc:"Refrigerante lata."
-},
-
-{
-    nome:"DELL VALE LATA",
-    categoria:"Bebidas",
-    preco:7.00,
-    desc:"Bebida lata."
-},
-
-{
-    nome:"AGUA MINERAL",
-    categoria:"Bebidas",
-    preco:3.50,
-    desc:"Água mineral."
-},
-
-{
-    nome:"COCA COLA 600ML",
-    categoria:"Bebidas",
-    preco:10.00,
-    desc:"Coca-Cola 600ml."
-},
-
-{
-    nome:"COCA COLA 2 LITROS",
-    categoria:"Bebidas",
-    preco:15.00,
-    desc:"Coca-Cola 2 litros."
-},
-
-{
-    nome:"COCA COLA ZERO 2 LITROS",
-    categoria:"Bebidas",
-    preco:15.00,
-    desc:"Coca-Cola Zero 2 litros."
-},
-
-{
-    nome:"DOLLY 2 LITROS LIMAO",
-    categoria:"Bebidas",
-    preco:9.00,
-    desc:"Dolly limão 2 litros."
-},
-
-{
-    nome:"DOLLY 2 LITROS GUARANA",
-    categoria:"Bebidas",
-    preco:9.00,
-    desc:"Dolly guaraná 2 litros."
-},
-
-
-/* ================= ADICIONAIS ================= */
-
-{
-    nome:"FATIA QUEIJO CHEDDAR EXTRA",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Adicional de queijo cheddar."
-},
-
-{
-    nome:"HAMBURGUER EXTRA ARTESANAL",
-    categoria:"Adicionais",
-    preco:9.00,
-    desc:"Hambúrguer artesanal extra."
-},
-
-{
-    nome:"HAMBURGUER EXTRA TRADICIONAL",
-    categoria:"Adicionais",
-    preco:2.50,
-    desc:"Hambúrguer tradicional extra."
-},
-
-{
-    nome:"BACON",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Adicional de bacon."
-},
-
-{
-    nome:"POTINHO BARBECUE",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Molho barbecue."
-},
-
-{
-    nome:"POTINHO MAIONESE VERDE",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Maionese verde."
-},
-
-{
-    nome:"POTINHO CHEDDAR",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Molho cheddar."
-},
-
-{
-    nome:"POTINHO MAIONESE ARTESANAL",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Maionese artesanal."
-},
-
-{
-    nome:"ADICIONAL NUTELLA",
-    categoria:"Adicionais",
-    preco:5.00,
-    desc:"Adicional de Nutella."
-},
-
-{
-    nome:"ADICIONAL CREME DE NINHO",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Creme de Ninho."
-},
-
-{
-    nome:"ADICIONAL KITKAT",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Adicional de KitKat."
-},
-
-{
-    nome:"ACOMPANHAMENTO EXTRA",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Acompanhamento extra."
-},
-
-{
-    nome:"ADICIONAL BACON",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Adicional de bacon."
-},
-
-{
-    nome:"ADICIONAL CHEDDAR",
-    categoria:"Adicionais",
-    preco:3.00,
-    desc:"Adicional de cheddar."
-}
-
-];
-
 
 /* ============================================================
    CARRINHO
 ============================================================ */
 
-let carrinho = [];
-
-
-/* ============================================================
-   FORMATAÇÃO
-============================================================ */
-
-function moeda(valor){
-
-    return Number(valor).toLocaleString("pt-BR",{
-        style:"currency",
-        currency:"BRL"
-    });
-
-}
-
-
-/* ============================================================
-   CATEGORIAS
-============================================================ */
-
-const categorias = [
-    {
-        nome:"Tradicionais",
-        icone:"🍔"
-    },
-    {
-        nome:"Artesanais",
-        icone:"🍔"
-    },
-    {
-        nome:"Combos",
-        icone:"📦"
-    },
-    {
-        nome:"Combos Artesanais",
-        icone:"🔥"
-    },
-    {
-        nome:"Açaí",
-        icone:"🥤"
-    },
-    {
-        nome:"Pastéis",
-        icone:"🥟"
-    },
-    {
-        nome:"Porções",
-        icone:"🍟"
-    },
-    {
-        nome:"Milkshakes",
-        icone:"🥤"
-    },
-    {
-        nome:"Sobremesas",
-        icone:"🍓"
-    },
-    {
-        nome:"Bebidas",
-        icone:"🥤"
-    },
-    {
-        nome:"Adicionais",
-        icone:"➕"
-    }
-];
-
-
-/* ============================================================
-   CARREGAR CATEGORIAS
-============================================================ */
-
-function carregarCategorias(){
-
-    const area =
-        document.getElementById("categorias");
-
-    area.innerHTML = "";
-
-    categorias.forEach((cat,index)=>{
-
-        const botao =
-            document.createElement("button");
-
-        botao.className =
-            "cat-btn" +
-            (index === 0 ? " ativo" : "");
-
-        botao.innerHTML =
-            cat.icone + " " + cat.nome;
-
-        botao.onclick = function(){
-
-            document
-                .querySelectorAll(".cat-btn")
-                .forEach(btn =>
-                    btn.classList.remove("ativo")
-                );
-
-            botao.classList.add("ativo");
-
-            const alvo =
-                document.getElementById(
-                    "categoria-" +
-                    slug(cat.nome)
-                );
-
-            if(alvo){
-
-                alvo.scrollIntoView({
-                    behavior:"smooth",
-                    block:"start"
-                });
-
-            }
-
-        };
-
-        area.appendChild(botao);
-
-    });
-
-}
-
-
-/* ============================================================
-   SLUG
-============================================================ */
-
-function slug(texto){
-
-    return texto
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .replace(/[^a-zA-Z0-9]+/g,"-")
-        .replace(/^-|-$/g,"")
-        .toLowerCase();
-
-}
-
-
-/* ============================================================
-   RENDERIZAR PRODUTOS
-============================================================ */
-
-function renderizarProdutos(lista = produtos){
-
-    const container =
-        document.getElementById("produtosContainer");
-
-    container.innerHTML = "";
-
-    const busca =
-        document.getElementById("busca").value
-        .trim()
-        .toLowerCase();
-
-    let encontrou = false;
-
-    categorias.forEach(cat=>{
-
-        const listaCategoria =
-            lista.filter(item =>
-                item.categoria === cat.nome
-            );
-
-        if(listaCategoria.length === 0){
-
-            return;
-
-        }
-
-        encontrou = true;
-
-        const secao =
-            document.createElement("section");
-
-        secao.className = "categoria";
-
-        secao.id =
-            "categoria-" + slug(cat.nome);
-
-        secao.innerHTML = `
-
-            <div class="categoria-titulo">
-
-                <h2>
-                    ${cat.icone} ${cat.nome}
-                </h2>
-
-                <span>
-                    ${listaCategoria.length} itens
-                </span>
-
-            </div>
-
-            <div class="produtos"></div>
-
-        `;
-
-        const grid =
-            secao.querySelector(".produtos");
-
-        listaCategoria.forEach(item=>{
-
-            const card =
-                document.createElement("article");
-
-            card.className = "produto";
-
-            const imagem =
-                fotos[item.nome];
-
-            card.innerHTML = `
-
-                <div class="produto-foto">
-
-                    ${
-                        imagem
-                        ?
-                        `<img
-                            src="${imagem}"
-                            alt="${item.nome}"
-                            loading="lazy"
-                            onerror="this.style.display='none';this.parentNode.querySelector('.sem-foto').style.display='flex';"
-                        >`
-                        :
-                        ""
-                    }
-
-                    <div
-                        class="sem-foto"
-                        style="display:${imagem ? "none" : "flex"}"
-                    >
-                        ${cat.icone}
-                    </div>
-
-                </div>
-
-                <div class="produto-conteudo">
-
-                    <h3>
-                        ${item.nome}
-                    </h3>
-
-                    <p class="produto-desc">
-                        ${item.desc}
-                    </p>
-
-                    <div class="produto-final">
-
-                        <span class="preco">
-                            ${moeda(item.preco)}
-                        </span>
-
-                        <button
-                            class="btn-add"
-                            onclick="adicionar('${escaparJS(item.nome)}',${item.preco})"
-                        >
-                            ADICIONAR
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-            grid.appendChild(card);
-
-        });
-
-        container.appendChild(secao);
-
-    });
-
-
-    if(!encontrou){
-
-        container.innerHTML = `
-
-            <div class="carrinho-vazio">
-
-                😕<br><br>
-
-                Nenhum produto encontrado.
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* ============================================================
-   ESCAPAR TEXTO
-============================================================ */
-
-function escaparJS(texto){
-
-    return texto
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'");
-
-}
-
-
-/* ============================================================
-   BUSCA
-============================================================ */
-
-function filtrarProdutos(){
-
-    const termo =
-        document
-            .getElementById("busca")
-            .value
-            .trim()
-            .toLowerCase();
-
-    if(!termo){
-
-        renderizarProdutos();
-
-        return;
-
-    }
-
-    const resultado =
-        produtos.filter(item =>
-            item.nome.toLowerCase().includes(termo) ||
-            item.categoria.toLowerCase().includes(termo) ||
-            item.desc.toLowerCase().includes(termo)
-        );
-
-    renderizarProdutos(resultado);
-
-}
-
+let carrinho=[];
 
 /* ============================================================
    ADICIONAR
@@ -2688,47 +1381,23 @@ function filtrarProdutos(){
 
 function adicionar(nome,preco){
 
-    const existente =
-        carrinho.find(item =>
-            item.nome === nome
-        );
+    const existente=carrinho.find(
+        item=>item.nome===nome
+    );
 
     if(existente){
-
         existente.quantidade++;
-
     }else{
-
         carrinho.push({
             nome:nome,
-            preco:Number(preco),
+            preco:preco,
             quantidade:1
         });
-
     }
 
     atualizarCarrinho();
 
-    /* Pequeno feedback visual */
-
-    const botaoTopo =
-        document.querySelector(
-            ".botao-carrinho-topo"
-        );
-
-    botaoTopo.animate(
-        [
-            {transform:"scale(1)"},
-            {transform:"scale(1.15)"},
-            {transform:"scale(1)"}
-        ],
-        {
-            duration:250
-        }
-    );
-
 }
-
 
 /* ============================================================
    ALTERAR QUANTIDADE
@@ -2736,24 +1405,14 @@ function adicionar(nome,preco){
 
 function alterarQuantidade(index,valor){
 
-    if(!carrinho[index]){
+    carrinho[index].quantidade+=valor;
 
-        return;
-
-    }
-
-    carrinho[index].quantidade += valor;
-
-    if(carrinho[index].quantidade <= 0){
-
+    if(carrinho[index].quantidade<=0){
         carrinho.splice(index,1);
-
     }
 
     atualizarCarrinho();
-
 }
-
 
 /* ============================================================
    REMOVER
@@ -2767,22 +1426,79 @@ function removerItem(index){
 
 }
 
-
 /* ============================================================
-   SUBTOTAL
+   ATUALIZAR
 ============================================================ */
 
-function calcularSubtotal(){
+function atualizarCarrinho(){
 
-    return carrinho.reduce(
-        (total,item)=>
-            total +
-            (item.preco * item.quantidade),
-        0
-    );
+    const area=document.getElementById("carrinhoItens");
+
+    area.innerHTML="";
+
+    let subtotal=0;
+    let quantidadeTotal=0;
+
+    if(carrinho.length===0){
+
+        area.innerHTML=
+        '<div class="vazio">Seu carrinho está vazio.</div>';
+
+    }
+
+    carrinho.forEach((item,index)=>{
+
+        const totalItem=item.preco*item.quantidade;
+
+        subtotal+=totalItem;
+        quantidadeTotal+=item.quantidade;
+
+        area.innerHTML+=`
+
+        <div class="item-carrinho">
+
+            <div class="item-info">
+                <strong>${item.nome}</strong>
+                <small>${moeda(item.preco)} cada</small>
+            </div>
+
+            <div class="controles">
+
+                <button onclick="alterarQuantidade(${index},-1)">
+                    −
+                </button>
+
+                <strong>${item.quantidade}</strong>
+
+                <button onclick="alterarQuantidade(${index},1)">
+                    +
+                </button>
+
+                <button
+                    class="remover"
+                    onclick="removerItem(${index})">
+                    X
+                </button>
+
+            </div>
+
+            <strong class="valor-item">
+                ${moeda(totalItem)}
+            </strong>
+
+        </div>
+        `;
+    });
+
+    document.getElementById("subtotal").innerText=moeda(subtotal);
+
+    document.getElementById("quantidadeCarrinho").innerText=
+        quantidadeTotal+
+        (quantidadeTotal===1?" item":" itens");
+
+    calcularTaxa();
 
 }
-
 
 /* ============================================================
    CALCULAR TAXA
@@ -2790,280 +1506,88 @@ function calcularSubtotal(){
 
 function calcularTaxa(){
 
-    const tipo =
-        document.getElementById("tipoPedido").value;
+    const tipo=document.getElementById("tipoPedido").value;
 
-    let taxa = 0;
+    let taxa=0;
 
-    const rua =
-        document.getElementById("rua").value;
+    if(tipo==="ENTREGA"){
 
-    if(tipo === "ENTREGA" && rua){
+        const rua=document.getElementById("rua").value;
 
-        if(taxas[rua] !== undefined){
-
-            taxa =
-                Number(taxas[rua]);
-
+        if(rua && taxas[rua]!==undefined){
+            taxa=taxas[rua];
         }
 
     }
 
-    const subtotal =
-        calcularSubtotal();
+    const subtotal=carrinho.reduce(
+        (soma,item)=>
+        soma+(item.preco*item.quantidade),
+        0
+    );
 
-    const total =
-        subtotal + taxa;
+    const total=subtotal+taxa;
 
-    document.getElementById("subtotal").innerText =
-        moeda(subtotal);
+    document.getElementById("taxa").innerText=moeda(taxa);
+    document.getElementById("total").innerText=moeda(total);
 
-    document.getElementById("taxa").innerText =
-        moeda(taxa);
+    const aviso=document.getElementById("avisoTaxa");
 
-    document.getElementById("total").innerText =
-        moeda(total);
+    if(tipo==="ENTREGA" && document.getElementById("rua").value){
 
-    document.getElementById("botaoCarrinhoTexto").innerText =
-        moeda(total);
+        aviso.style.display="block";
 
-    const aviso =
-        document.getElementById("avisoTaxa");
-
-    if(
-        tipo === "ENTREGA" &&
-        rua &&
-        taxas[rua] !== undefined
-    ){
-
-        aviso.style.display = "block";
-
-        aviso.innerHTML =
-            "🚚 Taxa de entrega para <strong>" +
-            rua +
-            "</strong>: <strong>" +
-            moeda(taxa) +
-            "</strong>";
+        aviso.innerHTML=
+        "🚚 Taxa para <strong>"+
+        document.getElementById("rua").value+
+        "</strong>: <strong>"+
+        moeda(taxa)+
+        "</strong>";
 
     }else{
 
-        aviso.style.display = "none";
+        aviso.style.display="none";
 
     }
 
 }
 
-
 /* ============================================================
-   ATUALIZAR CARRINHO
-============================================================ */
-
-function atualizarCarrinho(){
-
-    const area =
-        document.getElementById("carrinhoItens");
-
-    area.innerHTML = "";
-
-    if(carrinho.length === 0){
-
-        area.innerHTML = `
-
-            <div class="carrinho-vazio">
-
-                🛒<br><br>
-
-                Seu carrinho está vazio.
-
-            </div>
-
-        `;
-
-    }else{
-
-        carrinho.forEach((item,index)=>{
-
-            const totalItem =
-                item.preco * item.quantidade;
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "item-carrinho";
-
-            div.innerHTML = `
-
-                <div class="item-info">
-
-                    <strong>
-                        ${item.nome}
-                    </strong>
-
-                    <small>
-                        ${moeda(item.preco)} cada
-                    </small>
-
-                </div>
-
-                <div class="controles">
-
-                    <button
-                        onclick="alterarQuantidade(${index},-1)"
-                    >
-                        −
-                    </button>
-
-                    <strong>
-                        ${item.quantidade}
-                    </strong>
-
-                    <button
-                        onclick="alterarQuantidade(${index},1)"
-                    >
-                        +
-                    </button>
-
-                    <button
-                        class="remover"
-                        onclick="removerItem(${index})"
-                        title="Remover"
-                    >
-                        ✕
-                    </button>
-
-                </div>
-
-                <div class="item-total">
-
-                    <strong>
-                        ${moeda(totalItem)}
-                    </strong>
-
-                </div>
-
-            `;
-
-            area.appendChild(div);
-
-        });
-
-    }
-
-    const quantidade =
-        carrinho.reduce(
-            (total,item)=>
-                total + item.quantidade,
-            0
-        );
-
-    document.getElementById(
-        "contadorCarrinho"
-    ).innerText = quantidade;
-
-    calcularTaxa();
-
-}
-
-
-/* ============================================================
-   ABRIR / FECHAR CARRINHO
-============================================================ */
-
-function abrirCarrinho(){
-
-    document
-        .getElementById("overlay")
-        .classList.add("aberto");
-
-    document.body.style.overflow = "hidden";
-
-    atualizarCarrinho();
-
-}
-
-
-function fecharCarrinho(){
-
-    document
-        .getElementById("overlay")
-        .classList.remove("aberto");
-
-    document.body.style.overflow = "";
-
-}
-
-
-function fecharAoClicarFora(event){
-
-    if(event.target.id === "overlay"){
-
-        fecharCarrinho();
-
-    }
-
-}
-
-
-/* ============================================================
-   TIPO DO PEDIDO
+   TIPO PEDIDO
 ============================================================ */
 
 function alterarTipoPedido(){
 
-    const tipo =
-        document.getElementById("tipoPedido").value;
+    const tipo=document.getElementById("tipoPedido").value;
 
-    const endereco =
-        document.getElementById("enderecoArea");
+    const endereco=document.getElementById("enderecoArea");
 
-    if(tipo === "ENTREGA"){
-
-        endereco.style.display = "block";
-
+    if(tipo==="ENTREGA"){
+        endereco.style.display="block";
     }else{
-
-        endereco.style.display = "none";
-
-        document.getElementById("rua").value = "";
-
-        document.getElementById("numero").value = "";
-
-        document.getElementById("complemento").value = "";
-
+        endereco.style.display="none";
     }
 
     calcularTaxa();
 
 }
-
 
 /* ============================================================
    PAGAMENTO
 ============================================================ */
 
-function alterarPagamento(){
+document.getElementById("pagamento")
+.addEventListener("change",function(){
 
-    const pagamento =
-        document.getElementById("pagamento").value;
+    const area=document.getElementById("trocoArea");
 
-    const area =
-        document.getElementById("trocoArea");
-
-    if(pagamento === "DINHEIRO"){
-
-        area.style.display = "block";
-
+    if(this.value==="DINHEIRO"){
+        area.style.display="block";
     }else{
-
-        area.style.display = "none";
-
-        document.getElementById("troco").value = "";
-
+        area.style.display="none";
     }
 
-}
-
+});
 
 /* ============================================================
    CARREGAR RUAS
@@ -3071,31 +1595,18 @@ function alterarPagamento(){
 
 function carregarRuas(){
 
-    const select =
-        document.getElementById("rua");
+    const select=document.getElementById("rua");
 
-    const ruas =
-        Object.keys(taxas)
-            .filter(rua =>
-                rua !== "BALCAO" &&
-                rua !== "RETIRADA" &&
-                rua !== "IFOOD" &&
-                rua !== "99FOOD"
-            )
-            .sort((a,b)=>
-                a.localeCompare(b,"pt-BR")
-            );
+    Object.keys(taxas)
+    .sort((a,b)=>a.localeCompare(b,"pt-BR"))
+    .forEach(rua=>{
 
-    ruas.forEach(rua=>{
+        const option=document.createElement("option");
 
-        const option =
-            document.createElement("option");
+        option.value=rua;
 
-        option.value = rua;
-
-        option.textContent =
-            rua + " — " +
-            moeda(taxas[rua]);
+        option.textContent=
+            rua+" — "+moeda(taxas[rua]);
 
         select.appendChild(option);
 
@@ -3103,234 +1614,156 @@ function carregarRuas(){
 
 }
 
+/* ============================================================
+   IR PARA SEÇÃO
+============================================================ */
+
+function irPara(id){
+
+    const elemento=document.getElementById(id);
+
+    if(elemento){
+
+        elemento.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
+}
 
 /* ============================================================
-   LIMPAR CARRINHO
+   LIMPAR
 ============================================================ */
 
 function limparCarrinho(){
 
-    if(carrinho.length === 0){
-
+    if(carrinho.length===0){
         return;
-
     }
 
-    const confirmar =
-        confirm(
-            "Deseja realmente limpar o carrinho?"
-        );
-
-    if(!confirmar){
-
+    if(!confirm("Deseja realmente limpar o carrinho?")){
         return;
-
     }
 
-    carrinho = [];
+    carrinho=[];
 
     atualizarCarrinho();
 
 }
 
-
 /* ============================================================
-   FINALIZAR PEDIDO
+   FINALIZAR WHATSAPP
 ============================================================ */
 
 function finalizarPedido(){
 
-    if(carrinho.length === 0){
+    if(carrinho.length===0){
 
-        alert(
-            "Adicione pelo menos um produto ao carrinho."
-        );
+        alert("Adicione pelo menos um produto ao carrinho.");
 
         return;
 
     }
 
+    const nome=
+        document.getElementById("nome").value.trim();
 
-    const nome =
-        document
-            .getElementById("nome")
-            .value
-            .trim();
+    const telefone=
+        document.getElementById("telefone").value.trim();
 
-    const telefone =
-        document
-            .getElementById("telefone")
-            .value
-            .trim();
+    const tipo=
+        document.getElementById("tipoPedido").value;
 
-    const tipo =
-        document
-            .getElementById("tipoPedido")
-            .value;
+    const rua=
+        document.getElementById("rua").value;
 
-    const rua =
-        document
-            .getElementById("rua")
-            .value;
+    const numero=
+        document.getElementById("numero").value.trim();
 
-    const numero =
-        document
-            .getElementById("numero")
-            .value
-            .trim();
+    const complemento=
+        document.getElementById("complemento").value.trim();
 
-    const complemento =
-        document
-            .getElementById("complemento")
-            .value
-            .trim();
+    const pagamento=
+        document.getElementById("pagamento").value;
 
-    const pagamento =
-        document
-            .getElementById("pagamento")
-            .value;
+    const troco=
+        document.getElementById("troco").value;
 
-    const troco =
-        document
-            .getElementById("troco")
-            .value
-            .trim();
+    const observacao=
+        document.getElementById("observacao").value.trim();
 
-    const observacao =
-        document
-            .getElementById("observacao")
-            .value
-            .trim();
-
-
-    /* ================= VALIDAÇÕES ================= */
 
     if(!nome){
-
         alert("Digite seu nome.");
-
-        document.getElementById("nome").focus();
-
         return;
-
     }
-
 
     if(!telefone){
-
         alert("Digite seu telefone.");
-
-        document.getElementById("telefone").focus();
-
         return;
-
     }
 
-
-    if(tipo === "ENTREGA"){
+    if(tipo==="ENTREGA"){
 
         if(!rua){
-
             alert("Selecione sua rua.");
-
-            document.getElementById("rua").focus();
-
             return;
-
         }
 
         if(!numero){
-
             alert("Digite o número do endereço.");
-
-            document.getElementById("numero").focus();
-
             return;
-
         }
 
     }
-
 
     if(!pagamento){
 
         alert("Selecione a forma de pagamento.");
 
-        document.getElementById("pagamento").focus();
-
         return;
 
     }
 
 
-    if(
-        pagamento === "DINHEIRO" &&
-        troco &&
-        Number(troco) <= 0
-    ){
+    let subtotal=0;
 
-        alert("Informe um valor válido para o troco.");
-
-        return;
-
-    }
-
-
-    /* ================= VALORES ================= */
-
-    let subtotal = 0;
-
-    let mensagem = "";
-
-    mensagem +=
-        "🍔 *NOVO PEDIDO - ND BURGS*%0A";
-
-    mensagem +=
+    let mensagem=
+        "🍔 *NOVO PEDIDO - ND BURGS*%0A"+
         "==============================%0A%0A";
 
+    mensagem+=
+        "👤 *CLIENTE:* "+
+        encodeURIComponent(nome)+
+        "%0A";
 
-    mensagem +=
-        "👤 *CLIENTE:* " +
-        encodeURIComponent(nome) +
+    mensagem+=
+        "📱 *TELEFONE:* "+
+        encodeURIComponent(telefone)+
+        "%0A";
+
+    mensagem+=
+        "🚚 *TIPO:* "+
+        encodeURIComponent(tipo)+
         "%0A";
 
 
-    mensagem +=
-        "📱 *TELEFONE:* " +
-        encodeURIComponent(telefone) +
-        "%0A";
+    if(tipo==="ENTREGA"){
 
-
-    mensagem +=
-        "🚚 *TIPO:* " +
-        encodeURIComponent(
-            tipo === "BALCAO"
-            ? "BALCÃO"
-            : tipo
-        ) +
-        "%0A";
-
-
-    /* ================= ENDEREÇO ================= */
-
-    if(tipo === "ENTREGA"){
-
-        mensagem +=
-            "📍 *ENDEREÇO:* " +
+        mensagem+=
+            "📍 *ENDEREÇO:* "+
             encodeURIComponent(
-                rua +
-                ", Nº " +
-                numero
-            ) +
+                rua+", Nº "+numero
+            )+
             "%0A";
 
         if(complemento){
 
-            mensagem +=
-                "🏠 *COMPLEMENTO:* " +
-                encodeURIComponent(
-                    complemento
-                ) +
+            mensagem+=
+                "🏠 *COMPLEMENTO:* "+
+                encodeURIComponent(complemento)+
                 "%0A";
 
         }
@@ -3338,227 +1771,110 @@ function finalizarPedido(){
     }
 
 
-    /* ================= ITENS ================= */
-
-    mensagem +=
-        "%0A🛒 *ITENS DO PEDIDO*%0A";
-
-    mensagem +=
+    mensagem+=
+        "%0A🛒 *ITENS DO PEDIDO*%0A"+
         "------------------------------%0A";
 
 
     carrinho.forEach(item=>{
 
-        const totalItem =
-            item.preco *
-            item.quantidade;
+        const totalItem=
+            item.preco*item.quantidade;
 
-        subtotal += totalItem;
+        subtotal+=totalItem;
 
-        mensagem +=
+        mensagem+=
             encodeURIComponent(
-                item.quantidade +
-                "x " +
-                item.nome +
-                " — " +
+                item.quantidade+
+                "x "+
+                item.nome+
+                " — "+
                 moeda(totalItem)
-            ) +
+            )+
             "%0A";
 
     });
 
 
-    /* ================= TAXA ================= */
+    let taxa=0;
 
-    let taxa = 0;
-
-    if(tipo === "ENTREGA"){
-
-        taxa =
-            taxas[rua] !== undefined
-            ? Number(taxas[rua])
-            : 0;
-
+    if(tipo==="ENTREGA"){
+        taxa=taxas[rua]||0;
     }
 
-
-    const total =
-        subtotal + taxa;
+    const total=subtotal+taxa;
 
 
-    /* ================= RESUMO ================= */
+    mensagem+=
+        "%0A💰 *SUBTOTAL:* "+
+        encodeURIComponent(moeda(subtotal))+
+        "%0A";
 
-    mensagem += "%0A";
+    mensagem+=
+        "🚚 *TAXA:* "+
+        encodeURIComponent(moeda(taxa))+
+        "%0A";
 
-    mensagem +=
-        "💰 *SUBTOTAL:* " +
-        encodeURIComponent(
-            moeda(subtotal)
-        ) +
+    mensagem+=
+        "💵 *TOTAL:* "+
+        encodeURIComponent(moeda(total))+
+        "%0A";
+
+    mensagem+=
+        "💳 *PAGAMENTO:* "+
+        encodeURIComponent(pagamento)+
         "%0A";
 
 
-    mensagem +=
-        "🚚 *TAXA:* " +
-        encodeURIComponent(
-            moeda(taxa)
-        ) +
-        "%0A";
+    if(pagamento==="DINHEIRO" && troco){
 
-
-    mensagem +=
-        "💵 *TOTAL:* " +
-        encodeURIComponent(
-            moeda(total)
-        ) +
-        "%0A";
-
-
-    mensagem +=
-        "💳 *PAGAMENTO:* " +
-        encodeURIComponent(
-            pagamento
-        ) +
-        "%0A";
-
-
-    /* ================= TROCO ================= */
-
-    if(
-        pagamento === "DINHEIRO" &&
-        troco
-    ){
-
-        mensagem +=
-            "💵 *TROCO PARA:* " +
+        mensagem+=
+            "💵 *TROCO PARA:* "+
             encodeURIComponent(
-                moeda(Number(troco))
-            ) +
+                moeda(parseFloat(troco))
+            )+
             "%0A";
 
     }
 
-
-    /* ================= OBSERVAÇÃO ================= */
 
     if(observacao){
 
-        mensagem +=
-            "%0A📝 *OBSERVAÇÃO:*%0A";
-
-        mensagem +=
-            encodeURIComponent(
-                observacao
-            ) +
+        mensagem+=
+            "%0A📝 *OBSERVAÇÃO:*%0A"+
+            encodeURIComponent(observacao)+
             "%0A";
 
     }
 
 
-    mensagem +=
-        "%0A==============================%0A";
-
-    mensagem +=
+    mensagem+=
+        "%0A==============================%0A"+
         "ND BURGS 🍔";
 
 
-    /* ================= WHATSAPP ================= */
-
-    const url =
-        "https://wa.me/" +
-        WHATSAPP +
-        "?text=" +
-        mensagem;
+    const whatsapp="5511963973846";
 
 
     window.open(
-        url,
+        "https://wa.me/"+
+        whatsapp+
+        "?text="+
+        mensagem,
         "_blank"
     );
 
 }
 
-
 /* ============================================================
-   INICIALIZAÇÃO
+   INICIAR
 ============================================================ */
-
-carregarCategorias();
 
 carregarRuas();
 
-renderizarProdutos();
-
 atualizarCarrinho();
 
-
-/* ============================================================
-   ATUALIZAR CATEGORIA AO ROLAR
-============================================================ */
-
-window.addEventListener("scroll",()=>{
-
-    const secoes =
-        document.querySelectorAll(".categoria");
-
-    let atual = "";
-
-    secoes.forEach(secao=>{
-
-        const topo =
-            secao.getBoundingClientRect().top;
-
-        if(topo <= 190){
-
-            atual = secao.id;
-
-        }
-
-    });
-
-    if(atual){
-
-        document
-            .querySelectorAll(".cat-btn")
-            .forEach(btn=>{
-
-                const texto =
-                    btn.innerText
-                        .replace(/^[^\wÀ-ÿ]+/,"")
-                        .trim()
-                        .toLowerCase();
-
-                const alvo =
-                    atual
-                        .replace("categoria-","")
-                        .replace(/-/g," ")
-                        .toLowerCase();
-
-                btn.classList.toggle(
-                    "ativo",
-                    texto === alvo
-                );
-
-            });
-
-    }
-
-});
-
-
-/* ============================================================
-   ESC
-============================================================ */
-
-document.addEventListener("keydown",event=>{
-
-    if(event.key === "Escape"){
-
-        fecharCarrinho();
-
-    }
-
-});
+alterarTipoPedido();
 
 </script>
 
