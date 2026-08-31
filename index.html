@@ -168,9 +168,15 @@ align-self:center;
 background:var(--accent);
 border:0;
 border-radius:10px;
-padding:10px 15px;
+width:45px;
+height:45px;
+display:flex;
+align-items:center;
+justify-content:center;
 font-weight:900;
-font-size:18px;
+font-size:28px;
+line-height:1;
+color:#111;
 cursor:pointer;
 flex-shrink:0;
 }
@@ -740,6 +746,7 @@ price:24.9,
 image:"https://i.ibb.co/XfBfGWKv/NUNES.png"
 },
 
+
 /* =========================
    ARTESANAIS
 ========================= */
@@ -785,6 +792,7 @@ cat:"ARTESANAL",
 price:20.9,
 image:"https://i.ibb.co/whY3stGx/GADEIA.jpg"
 },
+
 
 /* =========================
    COMBOS
@@ -909,6 +917,7 @@ price:96.8,
 image:"https://i.ibb.co/Kxp3JzWB/01-NDBURGS.png"
 },
 
+
 /* =========================
    AÇAÍ
 ========================= */
@@ -985,6 +994,7 @@ cat:"AÇAÍ",
 price:32,
 image:"https://i.ibb.co/x8jHXhzN/TENTA-O-DE-MORANGO.jpg"
 },
+
 
 /* =========================
    PASTÉIS
@@ -1140,6 +1150,7 @@ cat:"PASTEL",
 price:13
 },
 
+
 /* =========================
    PORÇÕES
 ========================= */
@@ -1248,6 +1259,7 @@ cat:"PORÇÕES",
 price:70,
 image:"https://i.ibb.co/gbm9wsGh/FRANGO-PEDA-OS-EMPANADO.png"
 },
+
 
 /* =========================
    MILKSHAKES
@@ -1379,6 +1391,7 @@ price:30,
 image:"https://i.ibb.co/ychZV7dy/milk-a-ai.jpg"
 },
 
+
 /* =========================
    SOBREMESAS
 ========================= */
@@ -1394,6 +1407,7 @@ name:"KITKAT",
 cat:"SOBREMESA",
 price:7
 },
+
 
 /* =========================
    BEBIDAS
@@ -1476,6 +1490,7 @@ name:"DOLLY 2 LITROS GUARANA",
 cat:"BEBIDAS",
 price:9
 },
+
 
 /* =========================
    ADICIONAIS
@@ -1604,7 +1619,7 @@ price:3
    CONFIGURAÇÕES
 ===================================================== */
 
-const cats=[
+const cats = [
 "TODOS",
 ...new Set(ITEMS.map(x=>x.cat))
 ];
@@ -1774,8 +1789,10 @@ ${BRL(x.price)}
 </div>
 
 <button
+type="button"
 class="add"
 onclick="addById('${safe(x.name)}')"
+aria-label="Adicionar ${x.name}"
 >
 +
 </button>
@@ -2108,6 +2125,7 @@ Quantidade
 <div class="qtyProduto">
 
 <button
+type="button"
 onclick="alterarQtdProduto(-1)"
 
 >
@@ -2119,6 +2137,7 @@ onclick="alterarQtdProduto(-1)"
 </b>
 
 <button
+type="button"
 onclick="alterarQtdProduto(1)"
 
 >
@@ -2130,6 +2149,7 @@ onclick="alterarQtdProduto(1)"
 </div>
 
 <button
+type="button"
 class="addCart"
 onclick="adicionarConfigurado()"
 
@@ -2373,6 +2393,7 @@ margin-top:5px;
 <div class="qty">
 
 <button
+type="button"
 onclick="change('${safe(key)}',-1)"
 
 >
@@ -2384,6 +2405,7 @@ ${x.qty}
 </b>
 
 <button
+type="button"
 onclick="change('${safe(key)}',1)"
 
 >
@@ -2665,4 +2687,3 @@ update();
 
 </body>
 </html>
-
