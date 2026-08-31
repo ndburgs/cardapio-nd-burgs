@@ -1,8 +1,8 @@
-```html
 <!doctype html>
 <html lang="pt-BR">
 
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -168,17 +168,35 @@ align-self:center;
 background:var(--accent);
 border:0;
 border-radius:10px;
-padding:10px 15px;
+width:46px;
+height:46px;
 font-weight:900;
-font-size:22px;
-line-height:1;
+font-size:0;
 cursor:pointer;
 flex-shrink:0;
-width:48px;
-height:44px;
-display:flex;
-align-items:center;
-justify-content:center;
+position:relative;
+}
+
+.add::before,
+.add::after{
+content:"";
+position:absolute;
+background:#111;
+border-radius:3px;
+}
+
+.add::before{
+width:20px;
+height:4px;
+left:13px;
+top:21px;
+}
+
+.add::after{
+width:4px;
+height:20px;
+left:21px;
+top:13px;
 }
 
 .cartbar{
@@ -269,11 +287,44 @@ background:#292930;
 color:white;
 border:0;
 border-radius:7px;
-width:32px;
-height:32px;
-font-size:21px;
-line-height:1;
+width:30px;
+height:30px;
+font-size:0;
 cursor:pointer;
+position:relative;
+}
+
+.qty button:first-child::before{
+content:"";
+position:absolute;
+width:14px;
+height:3px;
+background:white;
+left:8px;
+top:13px;
+border-radius:2px;
+}
+
+.qty button:last-child::before,
+.qty button:last-child::after{
+content:"";
+position:absolute;
+background:white;
+border-radius:2px;
+}
+
+.qty button:last-child::before{
+width:14px;
+height:3px;
+left:8px;
+top:13px;
+}
+
+.qty button:last-child::after{
+width:3px;
+height:14px;
+left:13px;
+top:8px;
 }
 
 input,
@@ -408,14 +459,46 @@ border:0;
 border-radius:10px;
 background:#292930;
 color:white;
-font-size:25px;
-line-height:1;
+font-size:0;
 cursor:pointer;
+position:relative;
 }
 
-.qtyProduto button:last-child{
+.qtyProduto button:first-child::before{
+content:"";
+position:absolute;
+width:18px;
+height:4px;
+background:white;
+border-radius:2px;
+left:12px;
+top:19px;
+}
+
+.qtyProduto .btnMais{
 background:var(--accent);
-color:#111;
+}
+
+.qtyProduto .btnMais::before,
+.qtyProduto .btnMais::after{
+content:"";
+position:absolute;
+background:#111;
+border-radius:2px;
+}
+
+.qtyProduto .btnMais::before{
+width:20px;
+height:4px;
+left:11px;
+top:19px;
+}
+
+.qtyProduto .btnMais::after{
+width:4px;
+height:20px;
+left:19px;
+top:11px;
 }
 
 .qtyProduto b{
@@ -434,6 +517,26 @@ color:#111;
 font-weight:900;
 font-size:16px;
 cursor:pointer;
+}
+
+.confirmacao{
+background:#101014;
+border:1px solid var(--line);
+border-radius:12px;
+padding:12px;
+margin-bottom:15px;
+font-size:13px;
+line-height:1.5;
+}
+
+.sucesso{
+text-align:center;
+padding:20px;
+}
+
+.sucesso h3{
+color:var(--accent);
+font-size:22px;
 }
 
 @media(max-width:650px){
@@ -475,6 +578,7 @@ height:95px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -497,6 +601,7 @@ placeholder="Buscar no cardápio..."
 
 </header>
 
+
 <main>
 
 <div id="cats" class="cats"></div>
@@ -504,6 +609,7 @@ placeholder="Buscar no cardápio..."
 <div id="menu"></div>
 
 </main>
+
 
 <div class="cartbar">
 
@@ -530,7 +636,10 @@ onclick="openCart()"
 
 </div>
 
-<!-- MODAL PRODUTO -->
+
+<!-- =====================================================
+     MODAL PRODUTO
+===================================================== -->
 
 <dialog id="produtoDlg">
 
@@ -549,7 +658,10 @@ onclick="produtoDlg.close()"
 
 </dialog>
 
-<!-- MODAL CARRINHO -->
+
+<!-- =====================================================
+     MODAL CARRINHO
+===================================================== -->
 
 <dialog id="dlg">
 
@@ -579,6 +691,7 @@ R$ 0,00
 
 </div>
 
+
 <label>Nome *</label>
 
 <input
@@ -586,6 +699,7 @@ id="nome"
 placeholder="Digite seu nome"
 autocomplete="name"
 >
+
 
 <label>WhatsApp *</label>
 
@@ -596,6 +710,7 @@ placeholder="(11) 99999-9999"
 autocomplete="tel"
 >
 
+
 <label>Endereço *</label>
 
 <textarea
@@ -603,6 +718,7 @@ id="end"
 rows="2"
 placeholder="Rua, avenida, bairro..."
 ></textarea>
+
 
 <label>Número *</label>
 
@@ -612,6 +728,7 @@ type="text"
 placeholder="Número da residência"
 >
 
+
 <label>Complemento</label>
 
 <input
@@ -619,6 +736,7 @@ id="complemento"
 type="text"
 placeholder="Casa, apartamento, referência..."
 >
+
 
 <label>Forma de pagamento *</label>
 
@@ -645,6 +763,7 @@ Cartão
 
 </select>
 
+
 <div
 id="trocoBox"
 class="trocoBox"
@@ -663,6 +782,7 @@ placeholder="Ex.: 50,00"
 
 </div>
 
+
 <label>Observação</label>
 
 <textarea
@@ -670,6 +790,7 @@ id="obs"
 rows="2"
 placeholder="Ex.: sem cebola, tocar campainha..."
 ></textarea>
+
 
 <button
 class="send"
@@ -682,6 +803,7 @@ onclick="finalizar()"
 
 </dialog>
 
+
 <script>
 
 /* =====================================================
@@ -690,7 +812,9 @@ onclick="finalizar()"
 
 const ITEMS = [
 
-/* TRADICIONAIS */
+/* =========================
+   TRADICIONAIS
+========================= */
 
 {
 name:"X BURGUER",
@@ -734,7 +858,10 @@ price:24.9,
 image:"https://i.ibb.co/XfBfGWKv/NUNES.png"
 },
 
-/* ARTESANAIS */
+
+/* =========================
+   ARTESANAIS
+========================= */
 
 {
 name:"BERENICE",
@@ -778,72 +905,78 @@ price:20.9,
 image:"https://i.ibb.co/whY3stGx/GADEIA.jpg"
 },
 
-/* COMBOS */
+
+/* =========================
+   COMBOS TRADICIONAIS
+========================= */
 
 {
 name:"01 ND BURGS",
-cat:"COMBO",
+cat:"COMBOS",
 price:50.9,
 image:"https://i.ibb.co/Kxp3JzWB/01-NDBURGS.png"
 },
 
 {
 name:"COMBO SÓ LOVE",
-cat:"COMBO",
+cat:"COMBOS",
 price:71.9,
 image:"https://i.ibb.co/p6dvBJR9/COMBO-S-LOVE.png"
 },
 
 {
 name:"COMBO 5 ESTRELAS",
-cat:"COMBO",
+cat:"COMBOS",
 price:45.9,
 image:"https://i.ibb.co/WpGzZmd8/5-ESTRELAS.png"
 },
 
 {
 name:"COMBO DIETA SÓ SEGUNDA",
-cat:"COMBO",
+cat:"COMBOS",
 price:27.9,
 image:"https://i.ibb.co/cK1vgHbF/COMBO-DIETA-SO-SEGUNDA.png"
 },
 
 {
 name:"COMBO MAIS VENDIDO",
-cat:"COMBO",
+cat:"COMBOS",
 price:20.9,
 image:"https://i.ibb.co/JjpPXKwW/COMBO-MAIS-VENDIDO-NOVO.png"
 },
 
 {
 name:"COMBO MOTOCA ND",
-cat:"COMBO",
+cat:"COMBOS",
 price:32.9,
 image:"https://i.ibb.co/MDk0L5kJ/MOTACA-ND.png"
 },
 
 {
 name:"COMBO DOCE",
-cat:"COMBO",
+cat:"COMBOS",
 price:32.9,
 image:"https://i.ibb.co/jZ9SNY6s/COMBO-DOCE.png"
 },
 
 {
 name:"COMBO GELADO",
-cat:"COMBO",
+cat:"COMBOS",
 price:40.9,
 image:"https://i.ibb.co/JjypJ3N4/COMBO-GELADO.png"
 },
 
 {
 name:"DATE COM NDBURGS",
-cat:"COMBO",
+cat:"COMBOS",
 price:70.9,
 image:"https://i.ibb.co/7t8m454n/DATE-COM-ND-BURGS.png"
 },
 
-/* COMBOS ARTESANAIS */
+
+/* =========================
+   COMBOS ARTESANAIS
+========================= */
 
 {
 name:"ARTESANAL COMBO SÓ LOVE",
@@ -901,7 +1034,10 @@ price:96.8,
 image:"https://i.ibb.co/Kxp3JzWB/01-NDBURGS.png"
 },
 
-/* AÇAÍ */
+
+/* =========================
+   AÇAÍ
+========================= */
 
 {
 name:"AÇAI 200ML",
@@ -976,7 +1112,10 @@ price:32,
 image:"https://i.ibb.co/x8jHXhzN/TENTA-O-DE-MORANGO.jpg"
 },
 
-/* PASTÉIS */
+
+/* =========================
+   PASTÉIS
+========================= */
 
 {
 name:"PASTEL DE CARNE",
@@ -1128,7 +1267,10 @@ cat:"PASTEL",
 price:13
 },
 
-/* PORÇÕES */
+
+/* =========================
+   PORÇÕES
+========================= */
 
 {
 name:"BATATA P",
@@ -1235,7 +1377,10 @@ price:70,
 image:"https://i.ibb.co/gbm9wsGh/FRANGO-PEDA-OS-EMPANADO.png"
 },
 
-/* MILKSHAKES */
+
+/* =========================
+   MILKSHAKES
+========================= */
 
 {
 name:"MILKSHAKE OVOMALTINE 300ML",
@@ -1363,7 +1508,10 @@ price:30,
 image:"https://i.ibb.co/ychZV7dy/milk-a-ai.jpg"
 },
 
-/* SOBREMESAS */
+
+/* =========================
+   SOBREMESAS
+========================= */
 
 {
 name:"SURPRESA DE UVA",
@@ -1377,7 +1525,10 @@ cat:"SOBREMESA",
 price:7
 },
 
-/* BEBIDAS */
+
+/* =========================
+   BEBIDAS
+========================= */
 
 {
 name:"COCA COLA LATA",
@@ -1457,7 +1608,10 @@ cat:"BEBIDAS",
 price:9
 },
 
-/* ADICIONAIS */
+
+/* =========================
+   ADICIONAIS
+========================= */
 
 {
 name:"FATIA QUEIJO CHEDDAR EXTRA",
@@ -1579,10 +1733,10 @@ price:3
 
 
 /* =====================================================
-   CONFIGURAÇÕES
+   CATEGORIAS
 ===================================================== */
 
-const cats = [
+const cats=[
 "TODOS",
 ...new Set(ITEMS.map(x=>x.cat))
 ];
@@ -1591,6 +1745,11 @@ let active="TODOS";
 let cart={};
 let produtoAtual=null;
 let qtdProduto=1;
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
 
 const catsEl=document.getElementById("cats");
 const menu=document.getElementById("menu");
@@ -1654,6 +1813,7 @@ ${c}
 
 }
 
+
 function setCat(c){
 
 active=c;
@@ -1673,9 +1833,13 @@ renderCats();
 const q=search.value.toLowerCase().trim();
 
 const filtered=ITEMS.filter(x=>
+
 (active==="TODOS" || x.cat===active)
+
 &&
+
 x.name.toLowerCase().includes(q)
+
 );
 
 const groups={};
@@ -1689,6 +1853,7 @@ groups[x.cat]=[];
 groups[x.cat].push(x);
 
 });
+
 
 menu.innerHTML=
 
@@ -1745,7 +1910,6 @@ class="add"
 onclick="addById('${safe(x.name)}')"
 aria-label="Adicionar ${x.name}"
 >
-&#43;
 </button>
 
 </div>
@@ -1898,7 +2062,9 @@ const cat=produto.cat.toUpperCase();
 
 if(
 cat==="TRADICIONAL" ||
-cat==="ARTESANAL"
+cat==="ARTESANAL" ||
+cat==="COMBOS" ||
+cat==="COMBOS ARTESANAIS"
 ){
 
 return "hamburguer";
@@ -1975,6 +2141,7 @@ const adicionais=ADDONS.filter(a=>
 
 let html="";
 
+
 if(produto.image){
 
 html+=`
@@ -1989,6 +2156,7 @@ onerror="this.style.display='none'"
 `;
 
 }
+
 
 html+=`
 
@@ -2010,12 +2178,13 @@ ${BRL(produto.price)}
 
 `;
 
+
 if(adicionais.length){
 
 html+=`
 
 <h3>
-&#43; Adicionais
+➕ Adicionais
 </h3>
 
 <div class="addonArea">
@@ -2041,8 +2210,8 @@ ${a.name}
 
 ${
 a.price>0
-?"&#43;"+BRL(a.price)
-:"GRÁTIS"
+? "+"+BRL(a.price)
+: "GRÁTIS"
 }
 
 </span>
@@ -2056,6 +2225,7 @@ a.price>0
 `;
 
 }
+
 
 html+=`
 
@@ -2079,7 +2249,6 @@ Quantidade
 onclick="alterarQtdProduto(-1)"
 aria-label="Diminuir quantidade"
 >
-&#8722;
 </button>
 
 <b id="produtoQtd">
@@ -2087,10 +2256,10 @@ aria-label="Diminuir quantidade"
 </b>
 
 <button
+class="btnMais"
 onclick="alterarQtdProduto(1)"
 aria-label="Aumentar quantidade"
 >
-&#43;
 </button>
 
 </div>
@@ -2133,7 +2302,7 @@ document.getElementById(
 
 
 /* =====================================================
-   ADICIONAR
+   ADICIONAR AO CARRINHO
 ===================================================== */
 
 function adicionarConfigurado(){
@@ -2181,6 +2350,7 @@ adicionais.map(a=>a.name).join(",")+
 "|" +
 obs;
 
+
 if(!cart[chave]){
 
 cart[chave]={
@@ -2198,6 +2368,7 @@ obs:obs
 };
 
 }
+
 
 cart[chave].qty+=qtdProduto;
 
@@ -2303,8 +2474,8 @@ font-size:12px;
 margin-top:5px;
 ">
 
-&#43;
-${x.addons.map(a=>a.name).join("<br>&#43; ")}
++
+${x.addons.map(a=>a.name).join("<br>+ ")}
 
 </div>
 `
@@ -2343,7 +2514,6 @@ margin-top:5px;
 onclick="change('${safe(key)}',-1)"
 aria-label="Diminuir"
 >
-&#8722;
 </button>
 
 <b>
@@ -2354,7 +2524,6 @@ ${x.qty}
 onclick="change('${safe(key)}',1)"
 aria-label="Aumentar"
 >
-&#43;
 </button>
 
 </div>
@@ -2366,6 +2535,7 @@ aria-label="Aumentar"
 ||
 
 '<div class="empty">Seu carrinho está vazio.</div>';
+
 
 const totalCarrinho=items.reduce(
 (s,[key,x])=>
@@ -2414,7 +2584,39 @@ document.getElementById(
 
 
 /* =====================================================
-   FINALIZAR
+   CONVERTER TROCO
+===================================================== */
+
+function valorNumerico(valor){
+
+if(!valor){
+
+return 0;
+
+}
+
+let texto=String(valor)
+.trim()
+.replace("R$","")
+.replace(/\s/g,"");
+
+if(texto.includes(",")){
+
+texto=texto.replace(/\./g,"");
+texto=texto.replace(",",".");
+}
+
+const numero=Number(texto);
+
+return Number.isFinite(numero)
+?numero
+:0;
+
+}
+
+
+/* =====================================================
+   FINALIZAR PEDIDO
 ===================================================== */
 
 function finalizar(){
@@ -2428,6 +2630,7 @@ alert(
 return;
 
 }
+
 
 const cliente=document.getElementById(
 "nome"
@@ -2460,6 +2663,7 @@ const troco=document.getElementById(
 const observacao=document.getElementById(
 "obs"
 ).value.trim();
+
 
 if(!cliente){
 
@@ -2510,7 +2714,80 @@ return;
 }
 
 
-/* WHATSAPP */
+/* =====================================================
+   TOTAL
+===================================================== */
+
+const totalPedido=Object.values(cart).reduce(
+(s,x)=>s+x.price*x.qty,
+0
+);
+
+
+/* =====================================================
+   VALIDAÇÃO DO TROCO
+===================================================== */
+
+if(pagamento==="Dinheiro"){
+
+const valorTroco=valorNumerico(troco);
+
+if(valorTroco<=0){
+
+alert(
+"Informe um valor válido para o troco."
+);
+
+return;
+
+}
+
+if(valorTroco<totalPedido){
+
+alert(
+"O valor informado para o troco é menor que o total do pedido."
+);
+
+return;
+
+}
+
+}
+
+
+/* =====================================================
+   CONFIRMAÇÃO
+===================================================== */
+
+let resumo="";
+
+Object.values(cart).forEach(x=>{
+
+resumo+=
+`${x.qty}x ${x.name} — ${BRL(x.price*x.qty)}\n`;
+
+});
+
+const confirmar=confirm(
+
+"CONFIRMAR PEDIDO?\n\n"+
+resumo+
+"\nTOTAL: "+BRL(totalPedido)+
+"\n\nPagamento: "+pagamento+
+"\n\nClique em OK para enviar o pedido."
+
+);
+
+if(!confirmar){
+
+return;
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
 
 const phone="5511963973846";
 
@@ -2518,6 +2795,7 @@ const linhas=Object.values(cart).map(x=>{
 
 let linha=
 `${x.qty}x ${x.name} — ${BRL(x.price*x.qty)}`;
+
 
 if(
 x.addons &&
@@ -2538,6 +2816,7 @@ a.price>0
 
 }
 
+
 if(x.obs){
 
 linha+=
@@ -2545,14 +2824,11 @@ linha+=
 
 }
 
+
 return linha;
 
 });
 
-const totalPedido=Object.values(cart).reduce(
-(s,x)=>s+x.price*x.qty,
-0
-);
 
 let mensagem=
 `🍔 *NOVO PEDIDO — ND BURGS*
@@ -2586,12 +2862,14 @@ ${linhas.join("\n\n")}
 💳 *PAGAMENTO*
 ${pagamento}`;
 
+
 if(pagamento==="Dinheiro"){
 
 mensagem+=
 `\n💵 *TROCO PARA: R$ ${troco}*`;
 
 }
+
 
 mensagem+=
 `
@@ -2603,8 +2881,47 @@ ${observacao||"Nenhuma"}
 
 *Pedido realizado pelo Cardápio Online ND BURGS* 🍔`;
 
+
 const url=
 `https://wa.me/${phone}?text=${encodeURIComponent(mensagem)}`;
+
+
+/* =====================================================
+   SALVAR DADOS ANTES DE ENVIAR
+===================================================== */
+
+try{
+
+localStorage.setItem(
+"ndburgs_ultimo_pedido",
+JSON.stringify({
+
+cliente,
+whatsapp,
+endereco,
+numero,
+complemento,
+pagamento,
+troco,
+observacao,
+total:totalPedido,
+data:new Date().toISOString()
+
+})
+);
+
+}catch(e){
+
+console.log(
+"Não foi possível salvar o pedido localmente."
+);
+
+}
+
+
+/* =====================================================
+   ENVIAR
+===================================================== */
 
 window.location.href=url;
 
@@ -2632,5 +2949,5 @@ update();
 </script>
 
 </body>
+
 </html>
-```
