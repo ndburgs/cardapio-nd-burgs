@@ -936,122 +936,104 @@ document.getElementById('troco').value='';
 
 function finalizar(){
 
-if(!Object.keys(cart).length){
+    if(!Object.keys(cart).length){
+        alert('Adicione pelo menos um produto ao carrinho.');
+        return;
+    }
 
-alert('Adicione pelo menos um produto ao carrinho.');
+    const cliente =
+        document.getElementById('nome').value.trim();
 
-return;
+    const whatsapp =
+        document.getElementById('whatsapp').value.trim();
 
-}
+    const endereco =
+        document.getElementById('end').value.trim();
 
+    const numero =
+        document.getElementById('numero').value.trim();
 
-const cliente =
-document.getElementById('nome').value.trim();
+    const complemento =
+        document.getElementById('complemento').value.trim();
 
-const whatsapp =
-document.getElementById('whatsapp').value.trim();
+    const pagamento =
+        document.getElementById('pag').value;
 
-const endereco =
-document.getElementById('end').value.trim();
+    const troco =
+        document.getElementById('troco').value.trim();
 
-const numero =
-document.getElementById('numero').value.trim();
-
-const complemento =
-document.getElementById('complemento').value.trim();
-
-const pagamento =
-document.getElementById('pag').value;
-
-const troco =
-document.getElementById('troco').value.trim();
-
-const observacao =
-document.getElementById('obs').value.trim();
+    const observacao =
+        document.getElementById('obs').value.trim();
 
 
-if(!cliente){
+    /* =========================
+       VALIDAÇÕES
+    ========================= */
 
-alert('Digite seu nome.');
+    if(!cliente){
+        alert('Digite seu nome.');
+        return;
+    }
 
-return;
+    if(!whatsapp){
+        alert('Digite seu WhatsApp.');
+        return;
+    }
 
-}
+    if(!endereco){
+        alert('Digite seu endereço.');
+        return;
+    }
 
+    if(!numero){
+        alert('Digite o número da residência.');
+        return;
+    }
 
-if(!whatsapp){
+    if(!pagamento){
+        alert('Escolha a forma de pagamento.');
+        return;
+    }
 
-alert('Digite seu WhatsApp.');
-
-return;
-
-}
-
-
-if(!endereco){
-
-alert('Digite seu endereço.');
-
-return;
-
-}
-
-
-if(!numero){
-
-alert('Digite o número da residência.');
-
-return;
-
-}
-
-
-if(!pagamento){
-
-alert('Escolha a forma de pagamento.');
-
-return;
-
-}
+    if(pagamento === 'Dinheiro' && !troco){
+        alert('Informe o valor para o troco.');
+        return;
+    }
 
 
-if(pagamento==='Dinheiro' && !troco){
+    /* =========================
+       WHATSAPP ND BURGS
+    ========================= */
 
-alert('Informe o valor para o troco.');
-
-return;
-
-}
+    const phone = '5511963973846';
 
 
-/*
-=================================
-WHATSAPP DA ND BURGS
-=================================
-*/
+    /* =========================
+       PRODUTOS
+    ========================= */
 
-const phone =
-'5511963973846';
+    const items = Object.values(cart);
 
-
-const items =
-Object.values(cart);
+    const linhas = items.map(x =>
+        `${x.qty}x ${x.name} — ${BRL(x.price * x.qty)}`
+    );
 
 
-const linhas =
-items.map(x=>
-`${x.qty}x ${x.name} — ${BRL(x.price*x.qty)}`
-);
+    /* =========================
+       TOTAL
+    ========================= */
+
+    const totalPedido = items.reduce(
+        (s,x) => s + (x.price * x.qty),
+        0
+    );
 
 
-const totalPedido =
-items.reduce(
-(s,x)=>s+x.price*x.qty,
-0
-);
+    /* =========================
+       MENSAGEM
+    ========================= */
 
-
-let mensagem =
+    let mensagem =
 `🍔 *NOVO PEDIDO — ND BURGS*
 
 ━━━━━━━━━━━━━━━━
@@ -1059,12 +1041,22 @@ let mensagem =
 👤 *CLIENTE*
 ${cliente}
 
-📱 *WHATSAPP*
+📱 *WHATSAPP DO CLIENTE*
 ${whatsapp}
 
 📍 *ENDEREÇO*
 ${endereco}
-Número: ${numero}${complemento ? `\nComplemento: ${complemento}` : ''}
+
+🔢 *NÚMERO*
+${numero}`;
+
+    if(complemento){
+        mensagem += `
+🏠 *COMPLEMENTO*
+${complemento}`;
+    }
+
+    mensagem += `
 
 ━━━━━━━━━━━━━━━━
 
@@ -1079,44 +1071,34 @@ ${linhas.join('\n')}
 💳 *PAGAMENTO*
 ${pagamento}`;
 
-if(pagamento==='Dinheiro'){
+    if(pagamento === 'Dinheiro'){
+        mensagem += `
 
-mensagem +=
-`\n💵 *TROCO PARA: R$ ${troco}*`;
+💵 *TROCO PARA*
+R$ ${troco}`;
+    }
 
-}
-
-mensagem +=
-`
+    mensagem += `
 
 📝 *OBSERVAÇÃO*
 ${observacao || 'Nenhuma'}
 
 ━━━━━━━━━━━━━━━━
 
-*Pedido realizado pelo Cardápio Online ND BURGS* 🍔`;
+🍔 *Pedido realizado pelo Cardápio Online ND BURGS*`;
 
 
-const url =
-`https://wa.me/${phone}?text=${encodeURIComponent(mensagem)}`;
+    /* =========================
+       ABRIR WHATSAPP
+    ========================= */
+
+    const url =
+        'https://wa.me/' +
+        phone +
+        '?text=' +
+        encodeURIComponent(mensagem);
 
 
-window.location.href=url;
+    window.open(url, '_blank');
 
 }
-
-
-search.addEventListener(
-'input',
-render
-);
-
-
-render();
-
-update();
-
-</script>
-
-</body>
-</html>
