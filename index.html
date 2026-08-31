@@ -1830,714 +1830,35 @@ onclick="limparCarrinho()"
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 
-/* ============================================================
-   TAXAS DE ENTREGA
+    /* ============================================================
+   SUPABASE - ND BURGS
    ============================================================ */
 
-const taxas = {
-
-    "AV ATLETICO": 9,
-    "AV LYONS": 5,
-    "AV MARABAS": 4,
-    "AV MARAMBAIA": 4,
-    "AV TORRE ALBERT MUNCK": 6,
-    "AVENIDA BRASIL": 5,
-    "AVENIDA PROFESSOR MANOEL JOSE PEDROSO": 7,
-    "BALCAO": 0,
-    "CONDOMINIO PARQUE REAL": 9,
-    "CONDOMINIO VALE VERDE": 10,
-    "ESTRADA DO ATALAIA": 6,
-    "ESTRADA DO MORRO GRANDE": 9,
-    "ESTRADA DO PADRE INACIO": 6,
-    "ESTRADA DOS FISCHER'S": 7,
-    "ESTRADA VELHA DA OLARIA": 5,
-    "MANDELINHA KENKIT": 5,
-    "MANDELINHA PARTE DE CIMA": 5,
-    "MANDELINHA PORTO ALEGRE": 5,
-    "POINT DO DIGO": 6,
-    "RETIRADA": 0,
-    "RUA 7": 6,
-    "RUA ACLIMACAO": 6,
-    "RUA ADOVEL QUINTINO": 6,
-    "RUA AGULHAS NEGRAS": 7,
-    "RUA ALAGOINHAS": 6,
-    "RUA ARCO DOURADO": 5,
-    "RUA ARCO VERDE": 5,
-    "RUA BELMONTE": 5,
-    "RUA BENEDITO MARIA DE JESUS": 5,
-    "RUA BRASILIA": 7,
-    "RUA BRUMADO": 6,
-    "RUA CAETETE": 6,
-    "RUA CAIAPO": 7,
-    "RUA CAIO GRACO": 5,
-    "RUA CALIL FILHO": 8,
-    "RUA CAMINHO EXISTENTE": 4,
-    "RUA CARMEN MIRANDA": 9,
-    "RUA CIRO MONTEIRO": 9,
-    "RUA COAPA": 6,
-    "RUA COMODORO": 5,
-    "RUA DAS AMEIXEIRAS": 3,
-    "RUA DAS BANANEIRAS": 3,
-    "RUA DOS COQUEIRAIS": 3,
-    "RUA DAS DAMASQUEIRAS": 3,
-    "RUA DAS MACIEIRAS": 3,
-    "RUA DAS MORANGUEIRAS": 3,
-    "RUA DESPORTIVA": 9,
-    "RUA DR APARECIDA J DOMINGUES": 4,
-    "RUA DR ODAIR PACHECO PEDROSO": 8,
-    "RUA ERICO VERISSIMO": 7,
-    "RUA ERIVELTON MARTINS": 7,
-    "RUA ESPLANADA": 5,
-    "RUA EXISTENTE": 4,
-    "RUA FELISBINO DE OLIVEIRA": 8,
-    "RUA FRANCISCO ALVES": 9,
-    "RUA FUGI": 8,
-    "RUA GRACIANO SOARES DE ARAUJO": 5,
-    "RUA INDUSQUIMICA": 5,
-    "RUA IPIRANGA": 6,
-    "RUA ISMENIA": 6,
-    "RUA ITABUNA": 6,
-    "RUA ITAGUAI": 6,
-    "RUA ITAPETI": 7,
-    "RUA ITARIRI": 4,
-    "RUA JACOBINA": 5,
-    "RUA JOAQUIM RUAS": 6,
-    "RUA JUQUITIBA": 4,
-    "RUA LAMARTINE BABO": 9,
-    "RUA LEVER": 6,
-    "RUA PADRE LUIZ MARTINE": 5,
-    "RUA MADRESSILVAS": 6,
-    "RUA MARIO ANDREATINI": 4,
-    "RUA METAL LEVER": 5,
-    "RUA MIL FOLHAS": 9,
-    "RUA MIRAMAR": 5,
-    "RUA MOÇAMBIQUE": 9,
-    "RUA NILO": 9,
-    "RUA NOGAM": 6,
-    "RUA NOVA ODESSA": 6,
-    "RUA NOVA OLINDA": 6,
-    "RUA NOVA PATRIA": 6,
-    "RUA NOVA SAO PAULO": 6,
-    "RUA ODETE": 6,
-    "RUA OMA": 9,
-    "RUA OTELO ZELONI": 7,
-    "RUA PACARAIMA": 8,
-    "RUA PALMAS": 9,
-    "RUA PARANA": 7,
-    "RUA PAULO SERGIO LEMOS": 7,
-    "RUA PENHA": 6,
-    "RUA PIRINEUS": 8,
-    "RUA PONTA GROSSA": 4,
-    "RUA PORTO ALEGRE": 5,
-    "RUA PROFESSOR ZOE PEREIRA BENIAMINO": 6,
-    "RUA REGISTRO": 4,
-    "RUA RIBEIRAO PIRES": 4,
-    "RUA RIO BRANCO": 5,
-    "RUA RIO CLARO": 5,
-    "RUA MARANHAO": 7,
-    "RUA SANTA MARIA IMACULADA": 5,
-    "RUA SANTA MATILDE": 6,
-    "RUA SANTO AGOSTINO": 7,
-    "RUA SAO BENEDITO": 7,
-    "RUA SAO CIPRIANO": 6,
-    "RUA SAO CRISTOVAO": 6,
-    "RUA SAO GEREMIAS": 6,
-    "RUA SAO PAULO": 6,
-    "RUA SAO PAULO DAS MISSOES": 7,
-    "RUA SAO SERAFIM": 6,
-    "RUA SERGIO CARDOSO": 6,
-    "RUA SILVA TELES": 9,
-    "RUA TIBERIO": 5,
-    "RUA TORQUARO NETO": 6,
-    "RUA UGANDA": 9,
-    "RUA VICENTE CELESTINO": 9,
-    "RUA VICENTE STRIFEZZI": 15,
-    "RUA VILA VERDE": 5,
-    "RUA VOTURAMA": 7,
-    "RUA WELCOME": 5,
-    "RUA ZIEMBINSKI": 7,
-    "VIELA DOS FISCHERS": 9,
-    "ESTRADA DAS GRAÇAS": 4,
-    "IFOOD": 0,
-    "RUA NOVA TRINDADE": 6,
-    "99FOOD": 0,
-    "RUA APENINOS": 12,
-    "RUA VERA CRUZ": 5,
-    "MERCADO LIVRE": 15,
-    "RUA SANTA QUITERIA": 6,
-    "RUA ITAPETININGA": 5,
-    "RUA MELGAXE": 9,
-    "RUA GETULIO VARGAS": 8,
-    "IDOMINEU ANTUNES CALDEIRA": 9,
-    "RUA PATATIVA": 7,
-    "RUA MOEMA": 6
-};
-
-
-/* ============================================================
-   CARRINHO
-   ============================================================ */
-
-let carrinho = [];
-
-
-/* ============================================================
-   FORMATAÇÃO
-   ============================================================ */
-
-function moeda(valor) {
-
-    return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    });
-
-}
-
-
-/* ============================================================
-   HORÁRIO DE FUNCIONAMENTO
-   ============================================================
-
-   TERÇA A SÁBADO:
-   18:00 até 00:30
-
-   DOMINGO:
-   18:00 até 00:00
-
-   SEGUNDA:
-   FECHADO
-
-   A lógica também considera corretamente o período
-   depois da meia-noite como continuação do dia anterior.
-   ============================================================ */
-
-function verificarHorario() {
-
-    const agora = new Date();
-
-    const dia = agora.getDay();
-
-    const hora = agora.getHours();
-
-    const minuto = agora.getMinutes();
-
-    const minutosAgora = hora * 60 + minuto;
-
-    let aberto = false;
-
-    /*
-       Domingo:
-       18:00 até 00:00.
-    */
-
-    if (dia === 0) {
-
-        if (minutosAgora >= 18 * 60) {
-
-            aberto = true;
-
-        }
-
-    }
-
-    /*
-       Terça a sábado:
-       18:00 até 00:30.
-
-       Depois da meia-noite:
-       quarta a domingo até 00:30 continuam
-       sendo o expediente iniciado no dia anterior.
-    */
-
-    else if (dia >= 2 && dia <= 6) {
-
-        if (minutosAgora >= 18 * 60) {
-
-            aberto = true;
-
-        }
-
-        else if (minutosAgora <= 30) {
-
-            /*
-               Terça 00:xx não é continuação de segunda,
-               portanto continua fechado.
-            */
-
-            if (dia >= 3) {
-
-                aberto = true;
-
-            }
-
-        }
-
-    }
-
-    /*
-       Segunda-feira:
-       fechado o dia inteiro.
-    */
-
-    else {
-
-        aberto = false;
-
-    }
-
-
-    const status = document.getElementById("statusHorario");
-
-    const bloqueio = document.getElementById("bloqueio");
-
-    const botao = document.getElementById("btnEnviar");
-
-
-    if (aberto) {
-
-        status.innerHTML = "🟢 ESTAMOS ABERTOS — PEDIDOS LIBERADOS";
-
-        status.className = "status-aberto";
-
-        bloqueio.style.display = "none";
-
-        botao.disabled = false;
-
-        botao.style.opacity = "1";
-
-    } else {
-
-        status.innerHTML = "🔴 ESTAMOS FECHADOS";
-
-        status.className = "status-fechado";
-
-        bloqueio.style.display = "flex";
-
-        botao.disabled = true;
-
-        botao.style.opacity = ".5";
-
-    }
-
-}
-
-
-/* ============================================================
-   ADICIONAR PRODUTO
-   ============================================================ */
-
-function adicionar(nome, preco) {
-
-    if (!verificarSePodePedir()) {
-        return;
-    }
-
-    const existente =
-        carrinho.find(item => item.nome === nome);
-
-    if (existente) {
-
-        existente.quantidade++;
-
-    } else {
-
-        carrinho.push({
-            nome: nome,
-            preco: preco,
-            quantidade: 1
-        });
-
-    }
-
-    atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   VERIFICAR HORÁRIO ANTES DO PEDIDO
-   ============================================================ */
-
-function verificarSePodePedir() {
-
-    const agora = new Date();
-
-    const dia = agora.getDay();
-
-    const hora = agora.getHours();
-
-    const minuto = agora.getMinutes();
-
-    const minutosAgora = hora * 60 + minuto;
-
-    let aberto = false;
-
-
-    if (dia === 0) {
-
-        if (minutosAgora >= 1080) {
-
-            aberto = true;
-
-        }
-
-    }
-
-    else if (dia >= 2 && dia <= 6) {
-
-        if (minutosAgora >= 1080) {
-
-            aberto = true;
-
-        } else if (minutosAgora <= 30 && dia >= 3) {
-
-            aberto = true;
-
-        }
-
-    }
-
-
-    if (!aberto) {
-
-        document.getElementById("bloqueio").style.display = "flex";
-
-        return false;
-
-    }
-
-    return true;
-
-}
-
-
-/* ============================================================
-   ALTERAR QUANTIDADE
-   ============================================================ */
-
-function alterarQuantidade(index, valor) {
-
-    carrinho[index].quantidade += valor;
-
-    if (carrinho[index].quantidade <= 0) {
-
-        carrinho.splice(index, 1);
-
-    }
-
-    atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   ATUALIZAR CARRINHO
-   ============================================================ */
-
-function atualizarCarrinho() {
-
-    const area =
-        document.getElementById("carrinhoItens");
-
-    area.innerHTML = "";
-
-    if (carrinho.length === 0) {
-
-        area.innerHTML = `
-            <div class="vazio">
-                Seu carrinho está vazio.
-            </div>
-        `;
-
-    }
-
-    let subtotal = 0;
-
-
-    carrinho.forEach((item, index) => {
-
-        const totalItem =
-            item.preco * item.quantidade;
-
-        subtotal += totalItem;
-
-        area.innerHTML += `
-
-            <div class="item-carrinho">
-
-                <div class="item-info">
-
-                    <strong>${item.nome}</strong>
-
-                    <small>
-                        ${moeda(item.preco)} cada
-                    </small>
-
-                </div>
-
-                <div class="controles">
-
-                    <button onclick="alterarQuantidade(${index}, -1)">
-                        −
-                    </button>
-
-                    <strong>
-                        ${item.quantidade}
-                    </strong>
-
-                    <button onclick="alterarQuantidade(${index}, 1)">
-                        +
-                    </button>
-
-                    <button
-                        class="remover"
-                        onclick="removerItem(${index})"
-                    >
-                        X
-                    </button>
-
-                </div>
-
-                <strong>
-                    ${moeda(totalItem)}
-                </strong>
-
-            </div>
-
-        `;
-
-    });
-
-
-    document.getElementById("subtotal").innerText =
-        moeda(subtotal);
-
-    calcularTaxa();
-
-}
-
-
-/* ============================================================
-   REMOVER ITEM
-   ============================================================ */
-
-function removerItem(index) {
-
-    carrinho.splice(index, 1);
-
-    atualizarCarrinho();
-
-}
-
-
-/* ============================================================
-   CALCULAR TAXA
-   ============================================================ */
-
-function calcularTaxa() {
-
-    const tipo =
-        document.getElementById("tipoPedido").value;
-
-    let taxa = 0;
-
-    if (tipo === "ENTREGA") {
-
-        const rua =
-            document.getElementById("rua").value;
-
-        if (rua && taxas[rua] !== undefined) {
-
-            taxa = taxas[rua];
-
-        }
-
-    }
-
-
-    const subtotal =
-        carrinho.reduce(
-            (soma, item) =>
-                soma + item.preco * item.quantidade,
-            0
-        );
-
-
-    const total =
-        subtotal + taxa;
-
-
-    document.getElementById("taxa").innerText =
-        moeda(taxa);
-
-    document.getElementById("total").innerText =
-        moeda(total);
-
-
-    const aviso =
-        document.getElementById("avisoTaxa");
-
-
-    const ruaAtual =
-        document.getElementById("rua").value;
-
-
-    if (tipo === "ENTREGA" && ruaAtual) {
-
-        aviso.style.display = "block";
-
-        aviso.innerHTML =
-            "🚚 Taxa para <strong>" +
-            ruaAtual +
-            "</strong>: <strong>" +
-            moeda(taxa) +
-            "</strong>";
-
-    } else {
-
-        aviso.style.display = "none";
-
-    }
-
-}
-
-
-/* ============================================================
-   ALTERAR TIPO DO PEDIDO
-   ============================================================ */
-
-function alterarTipoPedido() {
-
-    const tipo =
-        document.getElementById("tipoPedido").value;
-
-    const enderecoArea =
-        document.getElementById("enderecoArea");
-
-
-    if (tipo === "ENTREGA") {
-
-        enderecoArea.style.display = "block";
-
-    } else {
-
-        enderecoArea.style.display = "none";
-
-    }
-
-
-    calcularTaxa();
-
-}
-
-
-/* ============================================================
-   PAGAMENTO / TROCO
-   ============================================================ */
-
-document
-.getElementById("pagamento")
-.addEventListener("change", function() {
-
-    const trocoArea =
-        document.getElementById("trocoArea");
-
-
-    if (this.value === "DINHEIRO") {
-
-        trocoArea.style.display = "block";
-
-    } else {
-
-        trocoArea.style.display = "none";
-
-    }
-
-});
-
-
-/* ============================================================
-   PREENCHER LISTA DE RUAS
-   ============================================================ */
-
-function carregarRuas() {
-
-    const select =
-        document.getElementById("rua");
-
-
-    const ruas =
-        Object.keys(taxas)
-        .filter(rua =>
-            rua !== "BALCAO" &&
-            rua !== "RETIRADA" &&
-            rua !== "IFOOD" &&
-            rua !== "99FOOD"
-        )
-        .sort((a,b) =>
-            a.localeCompare(b, "pt-BR")
-        );
-
-
-    ruas.forEach(rua => {
-
-        const option =
-            document.createElement("option");
-
-        option.value = rua;
-
-        option.textContent =
-            rua + " — " + moeda(taxas[rua]);
-
-        select.appendChild(option);
-
-    });
-
-}
-
-
-/* ============================================================
-   LIMPAR CARRINHO
-   ============================================================ */
-
-function limparCarrinho() {
-
-    if (carrinho.length === 0) {
-
-        return;
-
-    }
-
-
-    if (!confirm(
-        "Deseja realmente limpar o carrinho?"
-    )) {
-
-        return;
-
-    }
-
-
-    carrinho = [];
-
-    atualizarCarrinho();
-
-}
+const SUPABASE_URL =
+    "https://zhjuthqgbuohmkotslev.supabase.co";
+
+const SUPABASE_KEY =
+    "COLE_AQUI_SUA_CHAVE_PUBLICAVEL";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 /* ============================================================
    FINALIZAR PEDIDO
+   SALVA NO SUPABASE E ENVIA PARA WHATSAPP
    ============================================================ */
 
-function finalizarPedido() {
+async function finalizarPedido() {
 
     if (!verificarSePodePedir()) {
-
         return;
-
     }
 
 
@@ -2587,6 +1908,10 @@ function finalizarPedido() {
     const observacao =
         document.getElementById("observacao").value.trim();
 
+
+    /* ========================================================
+       VALIDAÇÕES
+       ======================================================== */
 
     if (!nome) {
 
@@ -2641,91 +1966,36 @@ function finalizarPedido() {
     }
 
 
+    /* ========================================================
+       CALCULAR VALORES
+       ======================================================== */
+
     let subtotal = 0;
 
-    let mensagem = "";
+
+    const itensPedido =
+        carrinho.map(item => {
+
+            const totalItem =
+                item.preco * item.quantidade;
 
 
-    mensagem +=
-        "🍔 *NOVO PEDIDO - ND BURGS*%0A";
-
-    mensagem +=
-        "==============================%0A%0A";
+            subtotal += totalItem;
 
 
-    mensagem +=
-        "👤 *CLIENTE:* " +
-        encodeURIComponent(nome) +
-        "%0A";
+            return {
 
+                nome: item.nome,
 
-    mensagem +=
-        "📱 *TELEFONE:* " +
-        encodeURIComponent(telefone) +
-        "%0A";
+                quantidade: item.quantidade,
 
+                preco_unitario: item.preco,
 
-    mensagem +=
-        "🚚 *TIPO:* " +
-        encodeURIComponent(
-            tipo === "ENTREGA"
-            ? "DELIVERY"
-            : "RETIRADA"
-        ) +
-        "%0A";
+                total_item: totalItem
 
+            };
 
-    if (tipo === "ENTREGA") {
-
-        mensagem +=
-            "📍 *ENDEREÇO:* " +
-            encodeURIComponent(
-                rua + ", Nº " + numero
-            ) +
-            "%0A";
-
-
-        if (complemento) {
-
-            mensagem +=
-                "🏠 *COMPLEMENTO:* " +
-                encodeURIComponent(
-                    complemento
-                ) +
-                "%0A";
-
-        }
-
-    }
-
-
-    mensagem +=
-        "%0A🛒 *ITENS DO PEDIDO*%0A";
-
-    mensagem +=
-        "------------------------------%0A";
-
-
-    carrinho.forEach(item => {
-
-        const totalItem =
-            item.preco * item.quantidade;
-
-
-        subtotal += totalItem;
-
-
-        mensagem +=
-            encodeURIComponent(
-                item.quantidade +
-                "x " +
-                item.nome +
-                " — " +
-                moeda(totalItem)
-            ) +
-            "%0A";
-
-    });
+        });
 
 
     let taxa = 0;
@@ -2742,123 +2012,404 @@ function finalizarPedido() {
         subtotal + taxa;
 
 
-    mensagem += "%0A";
+    /* ========================================================
+       NÚMERO DO PEDIDO
+       ======================================================== */
+
+    const pedidoNumero =
+        "ND-" +
+        Date.now();
 
 
-    mensagem +=
-        "💰 *SUBTOTAL:* " +
-        encodeURIComponent(
-            moeda(subtotal)
-        ) +
-        "%0A";
+    /* ========================================================
+       DADOS COMPLETOS DO PEDIDO
+       ======================================================== */
+
+    const dadosPedido = {
+
+        cliente: {
+
+            nome: nome,
+
+            telefone: telefone
+
+        },
 
 
-    mensagem +=
-        "🚚 *TAXA:* " +
-        encodeURIComponent(
-            moeda(taxa)
-        ) +
-        "%0A";
+        pedido: {
+
+            tipo:
+                tipo === "ENTREGA"
+                    ? "DELIVERY"
+                    : "RETIRADA",
+
+            endereco:
+                tipo === "ENTREGA"
+                    ? {
+
+                        rua: rua,
+
+                        numero: numero,
+
+                        complemento: complemento
+
+                    }
+                    : null
+
+        },
 
 
-    mensagem +=
-        "💵 *TOTAL:* " +
-        encodeURIComponent(
-            moeda(total)
-        ) +
-        "%0A";
+        itens: itensPedido,
 
 
-    mensagem +=
-        "💳 *PAGAMENTO:* " +
-        encodeURIComponent(
-            pagamento
-        ) +
-        "%0A";
+        valores: {
+
+            subtotal: subtotal,
+
+            taxa_entrega: taxa,
+
+            total: total
+
+        },
 
 
-    if (
-        pagamento === "DINHEIRO" &&
-        troco
-    ) {
+        pagamento: {
 
-        mensagem +=
-            "💵 *TROCO PARA:* " +
-            encodeURIComponent(
-                moeda(
-                    parseFloat(troco)
-                )
-            ) +
-            "%0A";
+            forma: pagamento,
+
+            troco:
+                pagamento === "DINHEIRO" && troco
+                    ? parseFloat(troco)
+                    : null
+
+        },
+
+
+        observacao:
+            observacao || "",
+
+
+        criado_em:
+            new Date().toISOString()
+
+    };
+
+
+    /* ========================================================
+       BOTÃO / PROTEÇÃO CONTRA DUPLO CLIQUE
+       ======================================================== */
+
+    const botao =
+        document.getElementById("btnEnviar");
+
+
+    if (botao) {
+
+        botao.disabled = true;
+
+        botao.innerText =
+            "ENVIANDO PEDIDO...";
 
     }
 
 
-    if (observacao) {
+    try {
+
+        /* ====================================================
+           SALVAR NO SUPABASE
+           ==================================================== */
+
+        const { data, error } =
+            await supabaseClient
+                .from("pedidos")
+                .insert([
+
+                    {
+
+                        pedido_numero:
+                            pedidoNumero,
+
+                        dados:
+                            dadosPedido,
+
+                        status:
+                            "novo"
+
+                    }
+
+                ])
+                .select()
+                .single();
+
+
+        if (error) {
+
+            console.error(
+                "ERRO SUPABASE:",
+                error
+            );
+
+
+            alert(
+                "Não foi possível registrar o pedido.\n\n" +
+                "Tente novamente."
+            );
+
+
+            if (botao) {
+
+                botao.disabled = false;
+
+                botao.innerText =
+                    "ENVIAR PEDIDO";
+
+            }
+
+
+            return;
+
+        }
+
+
+        console.log(
+            "PEDIDO SALVO NO SUPABASE:",
+            data
+        );
+
+
+        /* ====================================================
+           MONTAR WHATSAPP
+           ==================================================== */
+
+        let mensagem = "";
+
 
         mensagem +=
-            "%0A📝 *OBSERVAÇÃO:*%0A";
+            "🍔 *NOVO PEDIDO - ND BURGS*%0A";
 
 
         mensagem +=
+            "==============================%0A%0A";
+
+
+        mensagem +=
+            "🔢 *PEDIDO:* " +
             encodeURIComponent(
-                observacao
+                pedidoNumero
             ) +
             "%0A";
 
+
+        mensagem +=
+            "👤 *CLIENTE:* " +
+            encodeURIComponent(nome) +
+            "%0A";
+
+
+        mensagem +=
+            "📱 *TELEFONE:* " +
+            encodeURIComponent(telefone) +
+            "%0A";
+
+
+        mensagem +=
+            "🚚 *TIPO:* " +
+            encodeURIComponent(
+                tipo === "ENTREGA"
+                    ? "DELIVERY"
+                    : "RETIRADA"
+            ) +
+            "%0A";
+
+
+        if (tipo === "ENTREGA") {
+
+            mensagem +=
+                "📍 *ENDEREÇO:* " +
+                encodeURIComponent(
+                    rua +
+                    ", Nº " +
+                    numero
+                ) +
+                "%0A";
+
+
+            if (complemento) {
+
+                mensagem +=
+                    "🏠 *COMPLEMENTO:* " +
+                    encodeURIComponent(
+                        complemento
+                    ) +
+                    "%0A";
+
+            }
+
+        }
+
+
+        mensagem +=
+            "%0A🛒 *ITENS DO PEDIDO*%0A";
+
+
+        mensagem +=
+            "------------------------------%0A";
+
+
+        carrinho.forEach(item => {
+
+            const totalItem =
+                item.preco *
+                item.quantidade;
+
+
+            mensagem +=
+                encodeURIComponent(
+
+                    item.quantidade +
+                    "x " +
+                    item.nome +
+                    " — " +
+                    moeda(totalItem)
+
+                ) +
+                "%0A";
+
+        });
+
+
+        mensagem += "%0A";
+
+
+        mensagem +=
+            "💰 *SUBTOTAL:* " +
+            encodeURIComponent(
+                moeda(subtotal)
+            ) +
+            "%0A";
+
+
+        mensagem +=
+            "🚚 *TAXA:* " +
+            encodeURIComponent(
+                moeda(taxa)
+            ) +
+            "%0A";
+
+
+        mensagem +=
+            "💵 *TOTAL:* " +
+            encodeURIComponent(
+                moeda(total)
+            ) +
+            "%0A";
+
+
+        mensagem +=
+            "💳 *PAGAMENTO:* " +
+            encodeURIComponent(
+                pagamento
+            ) +
+            "%0A";
+
+
+        if (
+            pagamento === "DINHEIRO" &&
+            troco
+        ) {
+
+            mensagem +=
+                "💵 *TROCO PARA:* " +
+                encodeURIComponent(
+                    moeda(
+                        parseFloat(troco)
+                    )
+                ) +
+                "%0A";
+
+        }
+
+
+        if (observacao) {
+
+            mensagem +=
+                "%0A📝 *OBSERVAÇÃO:*%0A";
+
+
+            mensagem +=
+                encodeURIComponent(
+                    observacao
+                ) +
+                "%0A";
+
+        }
+
+
+        mensagem +=
+            "%0A==============================%0A";
+
+
+        mensagem +=
+            "ND BURGS 🍔";
+
+
+        /* ====================================================
+           WHATSAPP
+           ==================================================== */
+
+        const whatsapp =
+            "5511963973846";
+
+
+        window.open(
+
+            "https://wa.me/" +
+            whatsapp +
+            "?text=" +
+            mensagem,
+
+            "_blank"
+
+        );
+
+
+        /* ====================================================
+           SUCESSO
+           ==================================================== */
+
+        console.log(
+            "Pedido enviado:",
+            pedidoNumero
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            "ERRO AO FINALIZAR PEDIDO:",
+            erro
+        );
+
+
+        alert(
+            "Ocorreu um erro ao registrar o pedido.\n\n" +
+            "Tente novamente."
+        );
+
+
+    } finally {
+
+        if (botao) {
+
+            botao.disabled = false;
+
+            botao.innerText =
+                "ENVIAR PEDIDO";
+
+        }
+
     }
-
-
-    mensagem +=
-        "%0A==============================%0A";
-
-    mensagem +=
-        "ND BURGS 🍔";
-
-
-    /*
-       WHATSAPP DA ND BURGS
-    */
-
-    const whatsapp =
-        "5511963973846";
-
-
-    window.open(
-        "https://wa.me/" +
-        whatsapp +
-        "?text=" +
-        mensagem,
-        "_blank"
-    );
 
 }
-
-
-/* ============================================================
-   INICIALIZAÇÃO
-   ============================================================ */
-
-carregarRuas();
-
-atualizarCarrinho();
-
-verificarHorario();
-
-
-/*
-   Atualiza o status automaticamente.
-   Assim, se a pessoa deixar a página aberta,
-   quando chegar no horário de fechar/abrir,
-   o site muda sozinho.
-*/
-
-setInterval(
-    verificarHorario,
-    30000
-);
-
-</script>
-
 </body>
 </html>
