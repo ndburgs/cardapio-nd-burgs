@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="pt-BR">
 
 <head>
@@ -168,17 +167,13 @@ align-self:center;
 background:var(--accent);
 border:0;
 border-radius:10px;
-width:45px;
-height:45px;
-display:flex;
-align-items:center;
-justify-content:center;
+padding:10px 15px;
 font-weight:900;
-font-size:28px;
+font-size:22px;
 line-height:1;
-color:#111;
 cursor:pointer;
 flex-shrink:0;
+color:#111;
 }
 
 .cartbar{
@@ -473,7 +468,6 @@ height:95px;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -490,7 +484,6 @@ ND<span>BURGS</span>
 id="search"
 class="search"
 placeholder="Buscar no cardápio..."
-
 >
 
 </div>
@@ -522,14 +515,14 @@ placeholder="Buscar no cardápio..."
 <button
 class="checkout"
 onclick="openCart()"
-
 >
+🛒 VER CARRINHO
+</button>
 
-🛒 VER CARRINHO </button>
+</div>
 
 </div>
 
-</div>
 
 <!-- MODAL PRODUTO -->
 
@@ -540,16 +533,16 @@ onclick="openCart()"
 <button
 class="close"
 onclick="produtoDlg.close()"
-
 >
-
-× </button>
+×
+</button>
 
 <div id="produtoConteudo"></div>
 
 </div>
 
 </dialog>
+
 
 <!-- MODAL CARRINHO -->
 
@@ -560,10 +553,9 @@ onclick="produtoDlg.close()"
 <button
 class="close"
 onclick="dlg.close()"
-
 >
-
-× </button>
+×
+</button>
 
 <h2>Seu pedido</h2>
 
@@ -588,7 +580,6 @@ R$ 0,00
 id="nome"
 placeholder="Digite seu nome"
 autocomplete="name"
-
 >
 
 <label>WhatsApp *</label>
@@ -598,7 +589,6 @@ id="whatsapp"
 type="tel"
 placeholder="(11) 99999-9999"
 autocomplete="tel"
-
 >
 
 <label>Endereço *</label>
@@ -615,7 +605,6 @@ placeholder="Rua, avenida, bairro..."
 id="numero"
 type="text"
 placeholder="Número da residência"
-
 >
 
 <label>Complemento</label>
@@ -624,7 +613,6 @@ placeholder="Número da residência"
 id="complemento"
 type="text"
 placeholder="Casa, apartamento, referência..."
-
 >
 
 <label>Forma de pagamento *</label>
@@ -632,7 +620,6 @@ placeholder="Casa, apartamento, referência..."
 <select
 id="pag"
 onchange="verTroco()"
-
 >
 
 <option value="">
@@ -667,7 +654,6 @@ id="troco"
 type="text"
 inputmode="decimal"
 placeholder="Ex.: 50,00"
-
 >
 
 </div>
@@ -683,14 +669,14 @@ placeholder="Ex.: sem cebola, tocar campainha..."
 <button
 class="send"
 onclick="finalizar()"
-
 >
-
-🟢 FINALIZAR PEDIDO </button>
+🟢 FINALIZAR PEDIDO
+</button>
 
 </div>
 
 </dialog>
+
 
 <script>
 
@@ -1789,13 +1775,11 @@ ${BRL(x.price)}
 </div>
 
 <button
-type="button"
 class="add"
-onclick="addById('${safe(x.name)}')"
+type="button"
 aria-label="Adicionar ${x.name}"
->
-+
-</button>
+onclick="addById('${safe(x.name)}')"
+>＋</button>
 
 </div>
 
@@ -1997,9 +1981,7 @@ i=>i.name===name
 );
 
 if(!produto){
-
 return;
-
 }
 
 abrirProduto(produto);
@@ -2127,10 +2109,9 @@ Quantidade
 <button
 type="button"
 onclick="alterarQtdProduto(-1)"
-
 >
-
-− </button>
+−
+</button>
 
 <b id="produtoQtd">
 1
@@ -2139,23 +2120,19 @@ onclick="alterarQtdProduto(-1)"
 <button
 type="button"
 onclick="alterarQtdProduto(1)"
-
 >
-
-*
-
+＋
 </button>
 
 </div>
 
 <button
-type="button"
 class="addCart"
+type="button"
 onclick="adicionarConfigurado()"
-
 >
-
-ADICIONAR AO CARRINHO </button>
+ADICIONAR AO CARRINHO
+</button>
 
 `;
 
@@ -2165,8 +2142,9 @@ produtoDlg.showModal();
 
 }
 
+
 /* =====================================================
-QUANTIDADE
+   QUANTIDADE
 ===================================================== */
 
 function alterarQtdProduto(valor){
@@ -2174,9 +2152,7 @@ function alterarQtdProduto(valor){
 qtdProduto+=valor;
 
 if(qtdProduto<1){
-
 qtdProduto=1;
-
 }
 
 document.getElementById(
@@ -2185,16 +2161,15 @@ document.getElementById(
 
 }
 
+
 /* =====================================================
-ADICIONAR
+   ADICIONAR
 ===================================================== */
 
 function adicionarConfigurado(){
 
 if(!produtoAtual){
-
 return;
-
 }
 
 const selecionados=[
@@ -2264,8 +2239,9 @@ update();
 
 }
 
+
 /* =====================================================
-ATUALIZAR
+   ATUALIZAR
 ===================================================== */
 
 function update(){
@@ -2289,24 +2265,21 @@ count.textContent=
 
 }
 
+
 /* =====================================================
-ALTERAR CARRINHO
+   ALTERAR CARRINHO
 ===================================================== */
 
 function change(key,d){
 
 if(!cart[key]){
-
 return;
-
 }
 
 cart[key].qty+=d;
 
 if(cart[key].qty<=0){
-
 delete cart[key];
-
 }
 
 update();
@@ -2315,8 +2288,9 @@ openCart();
 
 }
 
+
 /* =====================================================
-CARRINHO
+   CARRINHO
 ===================================================== */
 
 function openCart(){
@@ -2347,15 +2321,13 @@ x.addons.length
 ?
 
 `
-
 <div style="
 color:#ffc400;
 font-size:12px;
 margin-top:5px;
 ">
 
-*
-
++
 ${x.addons.map(a=>a.name).join("<br>+ ")}
 
 </div>
@@ -2371,7 +2343,6 @@ x.obs
 ?
 
 `
-
 <div style="
 color:#aaa;
 font-size:12px;
@@ -2395,10 +2366,9 @@ margin-top:5px;
 <button
 type="button"
 onclick="change('${safe(key)}',-1)"
-
 >
-
-− </button>
+−
+</button>
 
 <b>
 ${x.qty}
@@ -2407,11 +2377,8 @@ ${x.qty}
 <button
 type="button"
 onclick="change('${safe(key)}',1)"
-
 >
-
-*
-
+＋
 </button>
 
 </div>
@@ -2438,8 +2405,9 @@ dlg.showModal();
 
 }
 
+
 /* =====================================================
-TROCO
+   TROCO
 ===================================================== */
 
 function verTroco(){
@@ -2468,8 +2436,9 @@ document.getElementById(
 
 }
 
+
 /* =====================================================
-FINALIZAR
+   FINALIZAR
 ===================================================== */
 
 function finalizar(){
@@ -2564,8 +2533,9 @@ return;
 
 }
 
+
 /* =====================================================
-WHATSAPP
+   WHATSAPP
 ===================================================== */
 
 const phone="5511963973846";
@@ -2666,8 +2636,9 @@ window.location.href=url;
 
 }
 
+
 /* =====================================================
-BUSCA
+   BUSCA
 ===================================================== */
 
 search.addEventListener(
@@ -2675,8 +2646,9 @@ search.addEventListener(
 render
 );
 
+
 /* =====================================================
-INICIAR
+   INICIAR
 ===================================================== */
 
 render();
