@@ -2312,62 +2312,77 @@ calcularTaxa();
 
 function calcularTaxa(){
 
-const tipo =
-document.getElementById("tipoPedido").value;
+    const tipo =
+        document.getElementById("tipoPedido").value;
 
-let taxa = 0;
+    const selectRua =
+        document.getElementById("rua");
 
-if(tipo === "ENTREGA"){
+    const rua =
+        selectRua ? selectRua.value : "";
 
-const rua =
-document.getElementById("rua").value;
+    let taxa = 0;
 
-if(rua && taxas[rua] !== undefined){
 
-taxa = taxas[rua];
+    if(
+        tipo === "ENTREGA" &&
+        rua &&
+        taxas[rua] !== undefined
+    ){
+
+        taxa = taxas[rua];
+
+    }
+
+
+    const subtotal =
+        carrinho.reduce(
+            (soma,item) =>
+                soma + (item.preco * item.quantidade),
+            0
+        );
+
+
+    const total =
+        subtotal + taxa;
+
+
+    document.getElementById("taxa").innerText =
+        moeda(taxa);
+
+
+    document.getElementById("total").innerText =
+        moeda(total);
+
+
+    const aviso =
+        document.getElementById("avisoTaxa");
+
+
+    if(
+        tipo === "ENTREGA" &&
+        rua
+    ){
+
+        aviso.style.display =
+            "block";
+
+
+        aviso.innerHTML =
+            "🚚 Taxa para <strong>" +
+            rua +
+            "</strong>: <strong>" +
+            moeda(taxa) +
+            "</strong>";
+
+    }else{
+
+        aviso.style.display =
+            "none";
+
+    }
 
 }
-
-}
-
-const subtotal =
-carrinho.reduce(
-(soma,item)=>
-soma + item.preco * item.quantidade,
-0
-);
-
-const total =
-subtotal + taxa;
-
-document.getElementById("taxa").innerText =
-moeda(taxa);
-
-document.getElementById("total").innerText =
-moeda(total);
-
-const aviso =
-document.getElementById("avisoTaxa");
-
-if(tipo === "ENTREGA" && rua){
-
-aviso.style.display = "block";
-
-aviso.innerHTML =
-"🚚 Taxa para <strong>" +
-rua +
-"</strong>: <strong>" +
-moeda(taxa) +
-"</strong>";
-
-}else{
-
-aviso.style.display = "none";
-
-}
-
-}
-
 
 /* ============================================================
    TIPO DO PEDIDO
