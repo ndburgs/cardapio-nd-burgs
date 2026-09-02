@@ -2164,79 +2164,69 @@ calcularTaxa();
 }
 
 
+/* ============================================================
+   CALCULAR TAXA
+============================================================ */
+
 function calcularTaxa(){
 
-    const tipo =
-        document.getElementById("tipoPedido").value;
+const tipo =
+document.getElementById("tipoPedido").value;
 
-    const selectRua =
-        document.getElementById("rua");
+let taxa = 0;
 
-    const rua =
-        selectRua ? selectRua.value : "";
+if(tipo === "ENTREGA"){
 
-    let taxa = 0;
+const rua =
+document.getElementById("rua").value;
 
+if(rua && taxas[rua] !== undefined){
 
-    if(
-        tipo === "ENTREGA" &&
-        rua &&
-        taxas[rua] !== undefined
-    ){
-
-        taxa = taxas[rua];
-
-    }
-
-
-    const subtotal =
-        carrinho.reduce(
-            (soma,item) =>
-                soma + (item.preco * item.quantidade),
-            0
-        );
-
-
-    const total =
-        subtotal + taxa;
-
-
-    document.getElementById("taxa").innerText =
-        moeda(taxa);
-
-
-    document.getElementById("total").innerText =
-        moeda(total);
-
-
-    const aviso =
-        document.getElementById("avisoTaxa");
-
-
-    if(
-        tipo === "ENTREGA" &&
-        rua
-    ){
-
-        aviso.style.display =
-            "block";
-
-
-        aviso.innerHTML =
-            "🚚 Taxa para <strong>" +
-            rua +
-            "</strong>: <strong>" +
-            moeda(taxa) +
-            "</strong>";
-
-    }else{
-
-        aviso.style.display =
-            "none";
-
-    }
+taxa = taxas[rua];
 
 }
+
+}
+
+const subtotal =
+carrinho.reduce(
+(soma,item)=>
+soma + item.preco * item.quantidade,
+0
+);
+
+const total =
+subtotal + taxa;
+
+document.getElementById("taxa").innerText =
+moeda(taxa);
+
+document.getElementById("total").innerText =
+moeda(total);
+
+const aviso =
+document.getElementById("avisoTaxa");
+
+if(tipo === "ENTREGA" && rua){
+
+aviso.style.display = "block";
+
+aviso.innerHTML =
+"🚚 Taxa para <strong>" +
+rua +
+"</strong>: <strong>" +
+moeda(taxa) +
+"</strong>";
+
+}else{
+
+aviso.style.display = "none";
+
+}
+
+}
+
+
 /* ============================================================
    TIPO DO PEDIDO
 ============================================================ */
