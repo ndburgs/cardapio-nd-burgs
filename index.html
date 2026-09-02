@@ -35,7 +35,18 @@ h2{color:#f5c400;margin:25px 0 12px;border-bottom:1px solid #333;padding-bottom:
 .produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
 .produto{background:linear-gradient(145deg,#1c1c1c,#111);border:1px solid #333;border-radius:12px;padding:12px;box-shadow:0 3px 12px rgba(0,0,0,.35);overflow:hidden;transition:.2s}
 .produto:hover{transform:translateY(-2px);border-color:#f5c400}
-.produto-imagem{width:100%;height:180px;object-fit:contain;display:block;background:#111;border-radius:9px;margin-bottom:10px}
+
+/* IMAGENS AJUSTADAS */
+.produto-imagem{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    display:block;
+    background:#111;
+    border-radius:9px;
+    margin-bottom:10px;
+}
+
 .produto h3{color:#fff;margin-bottom:7px;font-size:18px}
 .produto p{color:#aaa;min-height:40px;font-size:13px;line-height:1.4}
 .preco{color:#f5c400;font-weight:bold;font-size:19px;margin:10px 0}
@@ -106,9 +117,7 @@ textarea{resize:vertical;min-height:80px}
 .categoria-btn{background:#181818;border:1px solid #333;color:#fff;border-radius:10px;padding:13px 10px;cursor:pointer;font-weight:bold}
 .categoria-btn:hover{border-color:#f5c400;color:#f5c400}
 
-/* =========================
-   INSTAGRAM NO RODAPÉ
-========================= */
+/* INSTAGRAM */
 footer{text-align:center;padding:20px 15px;color:#777;font-size:13px}
 .rodape-instagram{padding:30px 15px 25px}
 .instagram-destaque{width:100%;max-width:850px;margin:0 auto;padding:25px;border-radius:20px;background:linear-gradient(145deg,#181818,#0d0d0d);border:2px solid #f5c400;box-shadow:0 8px 30px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -138,7 +147,12 @@ body{padding-bottom:105px}
 .controles button{width:35px;height:35px}
 .produtos{grid-template-columns:repeat(2,1fr);gap:8px}
 .produto{padding:9px}
-.produto-imagem{height:125px}
+
+/* IMAGENS AJUSTADAS NO CELULAR */
+.produto-imagem{
+    height:160px;
+}
+
 .produto h3{font-size:14px}
 .produto p{font-size:11px;min-height:45px}
 .preco{font-size:16px}
@@ -343,14 +357,69 @@ Segunda-feira:
 <div class="categoria-titulo">🔥 COMBOS ARTESANAIS</div>
 <div class="produtos">
 
-<div class="produto"><h3>ARTESANAL COMBO SÓ LOVE</h3><p>Combo artesanal especial.</p><div class="preco">R$ 90,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO SÓ LOVE',90.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL COMBO 5 ESTRELAS</h3><p>Combo artesanal especial.</p><div class="preco">R$ 70,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO 5 ESTRELAS',70.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL COMBO MAIS VENDIDO</h3><p>Combo artesanal especial.</p><div class="preco">R$ 34,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO MAIS VENDIDO',34.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL COMBO DOCE</h3><p>Combo artesanal especial.</p><div class="preco">R$ 44,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO DOCE',44.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL COMBO GELADO</h3><p>Combo artesanal especial.</p><div class="preco">R$ 52,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO GELADO',52.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL DATE COM NDBURGS</h3><p>Combo artesanal especial.</p><div class="preco">R$ 91,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL DATE COM NDBURGS',91.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL MOTOCA ND</h3><p>Combo artesanal especial.</p><div class="preco">R$ 41,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL MOTOCA ND',41.80)">ADICIONAR</button></div>
-<div class="produto"><h3>ARTESANAL 01 ND BURGS</h3><p>Combo artesanal especial.</p><div class="preco">R$ 96,80</div><button class="btn btn-add" onclick="adicionar('ARTESANAL 01 ND BURGS',96.80)">ADICIONAR</button></div>
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png" alt="ARTESANAL COMBO SÓ LOVE">
+<h3>ARTESANAL COMBO SÓ LOVE</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 90,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO SÓ LOVE',90.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png" alt="ARTESANAL COMBO 5 ESTRELAS">
+<h3>ARTESANAL COMBO 5 ESTRELAS</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 70,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO 5 ESTRELAS',70.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png" alt="ARTESANAL COMBO MAIS VENDIDO">
+<h3>ARTESANAL COMBO MAIS VENDIDO</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 34,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO MAIS VENDIDO',34.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png" alt="ARTESANAL COMBO DOCE">
+<h3>ARTESANAL COMBO DOCE</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 44,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO DOCE',44.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png" alt="ARTESANAL COMBO GELADO">
+<h3>ARTESANAL COMBO GELADO</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 52,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL COMBO GELADO',52.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png" alt="ARTESANAL DATE COM NDBURGS">
+<h3>ARTESANAL DATE COM NDBURGS</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 91,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL DATE COM NDBURGS',91.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png" alt="ARTESANAL MOTOCA ND">
+<h3>ARTESANAL MOTOCA ND</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 41,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL MOTOCA ND',41.80)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png" alt="ARTESANAL 01 ND BURGS">
+<h3>ARTESANAL 01 ND BURGS</h3>
+<p>Combo artesanal especial.</p>
+<div class="preco">R$ 96,80</div>
+<button class="btn btn-add" onclick="adicionar('ARTESANAL 01 ND BURGS',96.80)">ADICIONAR</button>
+</div>
 
 </div>
 </section>
@@ -580,9 +649,6 @@ Segunda-feira:
 </div>
 </div>
 
-<!-- =========================
-     RODAPÉ
-========================= -->
 <footer class="rodape-instagram">
 
 <div class="instagram-destaque">
