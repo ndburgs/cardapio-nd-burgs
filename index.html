@@ -674,6 +674,65 @@ footer{
     color:#000;
 }
 
+/* =========================
+   SELEÇÃO DE SABOR
+========================= */
+
+.seletor-sabor{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+}
+
+.opcao-sabor{
+    position:relative;
+}
+
+.opcao-sabor input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.opcao-sabor label{
+    margin:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px;
+    border:1px solid #444;
+    border-radius:10px;
+    background:#0d0d0d;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.opcao-sabor label:hover{
+    border-color:#f5c400;
+}
+
+.opcao-sabor input:checked + label{
+    border-color:#f5c400;
+    background:#302900;
+    color:#f5c400;
+}
+
+.sabor-nome{
+    font-weight:bold;
+    color:#fff;
+}
+
+.opcao-sabor input:checked + label .sabor-nome{
+    color:#f5c400;
+}
+
+.sabor-preco{
+    font-weight:bold;
+    color:#f5c400;
+    white-space:nowrap;
+}
+
 @media(max-width:600px){
 
     .lista-acompanhamentos{
@@ -691,7 +750,9 @@ footer{
 }
 
 
-/* CARRINHO FIXO */
+/* =========================
+   CARRINHO FIXO
+========================= */
 
 body{
     padding-bottom:88px;
@@ -1314,149 +1375,59 @@ body{
      PASTÉIS
 ========================= -->
 
-<section class="categoria" id="pasteis">
+<section id="pasteis" class="categoria">
 
-<h2>🥟 PASTÉIS</h2>
-
-<div class="subcategoria">
-
-<h3>PASTÉIS SALGADOS</h3>
-
-<div class="produto">
-<span>PASTEL DE CARNE</span>
-<strong>R$ 11,00</strong>
+<div class="categoria-titulo">
+🥟 PASTÉIS
 </div>
 
-<div class="produto">
-<span>PASTEL DE CARNE COM QUEIJO</span>
-<strong>R$ 11,00</strong>
-</div>
+<div class="produtos">
+
+<!-- PASTÉIS SALGADOS -->
 
 <div class="produto">
-<span>PASTEL DE CARNE COM CHEDDAR</span>
-<strong>R$ 11,00</strong>
+
+<h3>🥟 PASTÉIS SALGADOS</h3>
+
+<p>
+Escolha o sabor do seu pastel salgado.
+</p>
+
+<div class="preco">
+A partir de R$ 11,00
 </div>
 
-<div class="produto">
-<span>PASTEL DE CARNE COM CATUPIRY</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE QUEIJO</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE FRANGO</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE FRANGO COM QUEIJO</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE FRANGO COM CATUPIRY</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE FRANGO COM CHEDDAR</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE BAURU</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE PIZZA</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE FRANGO COM QUEIJO E OVO</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE CARNE COM OVO</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE PRESUNTO COM QUEIJO</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL 3 QUEIJOS</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL ND</span>
-<strong>R$ 11,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL ESPECIAL</span>
-<strong>R$ 15,00</strong>
-</div>
+<button
+class="btn btn-add"
+onclick="abrirPersonalizacao('pasteisSalgados')"
+>
+ESCOLHER SABOR
+</button>
 
 </div>
 
 
-<div class="subcategoria">
-
-<h3>PASTÉIS DOCES</h3>
+<!-- PASTÉIS DOCES -->
 
 <div class="produto">
-<span>PASTEL A MODA CAROL</span>
-<strong>R$ 15,00</strong>
+
+<h3>🍫 PASTÉIS DOCES</h3>
+
+<p>
+Escolha o sabor do seu pastel doce.
+</p>
+
+<div class="preco">
+A partir de R$ 13,00
 </div>
 
-<div class="produto">
-<span>PASTEL DE NUTELLA COM BANANA</span>
-<strong>R$ 13,00</strong>
-</div>
+<button
+class="btn btn-add"
+onclick="abrirPersonalizacao('pasteisDoces')"
+>
+ESCOLHER SABOR
+</button>
 
-<div class="produto">
-<span>PASTEL DE DOCE DE LEITE COM BANANA</span>
-<strong>R$ 13,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE NINHO COM MORANGO</span>
-<strong>R$ 13,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE NINHO</span>
-<strong>R$ 13,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE KITKAT COM NINHO</span>
-<strong>R$ 13,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE NINHO COM OREO</span>
-<strong>R$ 13,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE NUTELLA COM MORANGO</span>
-<strong>R$ 13,00</strong>
-</div>
-
-<div class="produto">
-<span>PASTEL DE NUTELLA</span>
-<strong>R$ 13,00</strong>
 </div>
 
 </div>
@@ -2353,6 +2324,54 @@ tamanhos:[
 acompanhamentos:[]
 },
 
+/* =========================
+   PASTÉIS SALGADOS
+========================= */
+
+pasteisSalgados:{
+titulo:"PASTÉIS SALGADOS",
+
+sabores:[
+["PASTEL DE CARNE",11.00],
+["CARNE COM QUEIJO",11.00],
+["CARNE COM CHEDDAR",11.00],
+["CARNE COM CATUPIRY",11.00],
+["QUEIJO",11.00],
+["FRANGO",11.00],
+["FRANGO COM QUEIJO",11.00],
+["FRANGO COM CATUPIRY",11.00],
+["FRANGO COM CHEDDAR",11.00],
+["BAURU",11.00],
+["PIZZA",11.00],
+["FRANGO COM QUEIJO E OVO",11.00],
+["CARNE COM OVO",11.00],
+["PRESUNTO COM QUEIJO",11.00],
+["3 QUEIJOS",11.00],
+["PASTEL ND",11.00],
+["PASTEL ESPECIAL",15.00]
+]
+},
+
+/* =========================
+   PASTÉIS DOCES
+========================= */
+
+pasteisDoces:{
+titulo:"PASTÉIS DOCES",
+
+sabores:[
+["A MODA CAROL",15.00],
+["NUTELLA COM BANANA",13.00],
+["DOCE DE LEITE COM BANANA",13.00],
+["NINHO COM MORANGO",13.00],
+["NINHO",13.00],
+["KITKAT COM NINHO",13.00],
+["NINHO COM OREO",13.00],
+["NUTELLA COM MORANGO",13.00],
+["NUTELLA",13.00]
+]
+},
+
 milkOvomaltine:{
 titulo:"MILKSHAKE OVOMALTINE",
 tamanhos:[
@@ -2466,7 +2485,12 @@ acompanhamentos:[]
 };
 
 let produtoModalAtual = null;
+let saborModalAtual = null;
 
+
+/* ============================================================
+   ABRIR PERSONALIZAÇÃO
+============================================================ */
 
 function abrirPersonalizacao(chave){
 
@@ -2476,6 +2500,7 @@ produtosPersonalizaveis[chave];
 if(!produto) return;
 
 produtoModalAtual = produto;
+saborModalAtual = null;
 
 const modal =
 document.getElementById("modalPersonalizacao");
@@ -2487,9 +2512,104 @@ document.getElementById("modalTitulo").innerText =
 produto.titulo;
 
 
+/* ============================================================
+   PRODUTO COM SABORES
+============================================================ */
+
+if(
+produto.sabores &&
+produto.sabores.length
+){
+
+let html =
+`
+<div class="modal-secao" style="border-top:0;margin-top:0;padding-top:0;">
+
+<h3>🥟 ESCOLHA O SABOR</h3>
+
+<div class="seletor-sabor">
+`;
+
+
+produto.sabores.forEach((s,i)=>{
+
+html +=
+`
+<div class="opcao-sabor">
+
+<input
+type="radio"
+name="saborModal"
+id="sabor_${i}"
+value="${i}"
+onchange="atualizarTotalModal()"
+>
+
+<label for="sabor_${i}">
+
+<span class="sabor-nome">
+${s[0]}
+</span>
+
+<span class="sabor-preco">
+${moeda(s[1])}
+</span>
+
+</label>
+
+</div>
+`;
+
+});
+
+
+html +=
+`
+</div>
+</div>
+
+<div class="modal-total">
+
+<span>TOTAL</span>
+
+<strong id="modalTotal">
+R$ 0,00
+</strong>
+
+</div>
+
+<button
+class="btn btn-confirmar-personalizacao"
+onclick="confirmarPersonalizacao()"
+>
+✅ ADICIONAR AO CARRINHO
+</button>
+`;
+
+
+conteudo.innerHTML =
+html;
+
+modal.style.display =
+"flex";
+
+document.body.style.overflow =
+"hidden";
+
+return;
+
+}
+
+
+/* ============================================================
+   PRODUTOS COM TAMANHO
+============================================================ */
+
 let html =
 `<div class="modal-secao">
+
 <h3>📏 ESCOLHA O TAMANHO</h3>
+
 <div class="opcoes-tamanho">`;
 
 
@@ -2527,13 +2647,16 @@ produto.acompanhamentos.length
 
 html +=
 `<div class="modal-secao">
+
 <h3>🍓 ACOMPANHAMENTOS</h3>
+
 <div class="lista-acompanhamentos">`;
 
 
 produto.acompanhamentos.forEach((a,i)=>{
 
-const pago = a[1] > 0;
+const pago =
+a[1] > 0;
 
 html +=
 `<label class="opcao-acomp">
@@ -2546,10 +2669,13 @@ onchange="atualizarTotalModal()"
 >
 
 <span>
+
 ${a[0]}
+
 ${pago
 ? `<span class="preco-adicional">+ ${moeda(a[1])}</span>`
 : '<span>GRÁTIS</span>'}
+
 </span>
 
 </label>`;
@@ -2565,10 +2691,13 @@ html +=
 
 html +=
 `<div class="modal-total">
+
 <span>TOTAL</span>
+
 <strong id="modalTotal">
 ${moeda(produto.tamanhos[0][1])}
 </strong>
+
 </div>
 
 <button
@@ -2579,25 +2708,87 @@ onclick="confirmarPersonalizacao()"
 </button>`;
 
 
-conteudo.innerHTML = html;
+conteudo.innerHTML =
+html;
 
-modal.style.display = "flex";
+modal.style.display =
+"flex";
 
-document.body.style.overflow = "hidden";
+document.body.style.overflow =
+"hidden";
 
 }
 
 
+/* ============================================================
+   ATUALIZAR TOTAL DO MODAL
+============================================================ */
+
 function atualizarTotalModal(){
 
-if(!produtoModalAtual) return;
+if(!produtoModalAtual)
+return;
+
+
+/* =========================
+   PRODUTO COM SABOR
+========================= */
+
+if(
+produtoModalAtual.sabores &&
+produtoModalAtual.sabores.length
+){
+
+const saborSelecionado =
+document.querySelector(
+'input[name="saborModal"]:checked'
+);
+
+const totalElemento =
+document.getElementById("modalTotal");
+
+if(!totalElemento)
+return;
+
+if(!saborSelecionado){
+
+totalElemento.innerText =
+"R$ 0,00";
+
+return;
+
+}
+
+const sabor =
+produtoModalAtual.sabores[
+parseInt(
+saborSelecionado.value,
+10
+)
+];
+
+saborModalAtual =
+sabor;
+
+totalElemento.innerText =
+moeda(sabor[1]);
+
+return;
+
+}
+
+
+/* =========================
+   PRODUTO COM TAMANHO
+========================= */
 
 const tamanhoSelecionado =
 document.querySelector(
 'input[name="tamanhoModal"]:checked'
 );
 
-if(!tamanhoSelecionado) return;
+if(!tamanhoSelecionado)
+return;
 
 const tamanho =
 produtoModalAtual.tamanhos[
@@ -2631,29 +2822,111 @@ moeda(total);
 }
 
 
+/* ============================================================
+   FECHAR PERSONALIZAÇÃO
+============================================================ */
+
 function fecharPersonalizacao(){
 
 document.getElementById(
 "modalPersonalizacao"
-).style.display = "none";
+).style.display =
+"none";
 
-document.body.style.overflow = "";
+document.body.style.overflow =
+"";
 
-produtoModalAtual = null;
+produtoModalAtual =
+null;
+
+saborModalAtual =
+null;
 
 }
 
 
+/* ============================================================
+   CONFIRMAR PERSONALIZAÇÃO
+============================================================ */
+
 function confirmarPersonalizacao(){
 
-if(!produtoModalAtual) return;
+if(!produtoModalAtual)
+return;
+
+
+/* ============================================================
+   PRODUTO COM SABOR
+============================================================ */
+
+if(
+produtoModalAtual.sabores &&
+produtoModalAtual.sabores.length
+){
+
+const saborSelecionado =
+document.querySelector(
+'input[name="saborModal"]:checked'
+);
+
+if(!saborSelecionado){
+
+alert(
+"Escolha o sabor do pastel."
+);
+
+return;
+
+}
+
+const sabor =
+produtoModalAtual.sabores[
+parseInt(
+saborSelecionado.value,
+10
+)
+];
+
+carrinho.push({
+
+nome:
+produtoModalAtual.titulo +
+" - " +
+sabor[0],
+
+preco:
+sabor[1],
+
+quantidade:
+1,
+
+detalhes:[
+"Sabor: " +
+sabor[0]
+]
+
+});
+
+atualizarCarrinho();
+
+fecharPersonalizacao();
+
+return;
+
+}
+
+
+/* ============================================================
+   PRODUTO COM TAMANHO
+============================================================ */
 
 const tamanhoSelecionado =
 document.querySelector(
 'input[name="tamanhoModal"]:checked'
 );
 
-if(!tamanhoSelecionado) return;
+if(!tamanhoSelecionado)
+return;
 
 const tamanho =
 produtoModalAtual.tamanhos[
@@ -2680,7 +2953,8 @@ produtoModalAtual.acompanhamentos[
 parseInt(el.value,10)
 ];
 
-preco += acomp[1];
+preco +=
+acomp[1];
 
 detalhes.push(
 acomp[0] +
@@ -2701,13 +2975,17 @@ produtoModalAtual.titulo +
 " " +
 tamanho[0],
 
-preco:preco,
+preco:
+preco,
 
-quantidade:1,
+quantidade:
+1,
 
-detalhes:detalhes,
+detalhes:
+detalhes,
 
-tamanho:tamanho[0]
+tamanho:
+tamanho[0]
 
 });
 
@@ -2739,9 +3017,16 @@ existente.quantidade++;
 }else{
 
 carrinho.push({
-nome:nome,
-preco:preco,
-quantidade:1
+
+nome:
+nome,
+
+preco:
+preco,
+
+quantidade:
+1
+
 });
 
 }
@@ -2757,7 +3042,8 @@ atualizarCarrinho();
 
 function alterarQuantidade(index,valor){
 
-carrinho[index].quantidade += valor;
+carrinho[index].quantidade +=
+valor;
 
 if(
 carrinho[index].quantidade <= 0
@@ -2820,7 +3106,8 @@ const totalItem =
 item.preco *
 item.quantidade;
 
-subtotal += totalItem;
+subtotal +=
+totalItem;
 
 
 area.innerHTML +=
@@ -2944,7 +3231,8 @@ item.quantidade,
 
 
 const total =
-subtotal + taxa;
+subtotal +
+taxa;
 
 
 document.getElementById("taxa").innerText =
@@ -3146,8 +3434,11 @@ document.getElementById(id);
 if(elemento){
 
 elemento.scrollIntoView({
+
 behavior:"smooth",
+
 block:"start"
+
 });
 
 }
@@ -3475,7 +3766,8 @@ taxas[rua] || 0;
 
 
 const total =
-subtotal + taxa;
+subtotal +
+taxa;
 
 
 mensagem +=
@@ -3580,7 +3872,8 @@ function atualizarBarraCarrinho(){
 const q =
 carrinho.reduce(
 (t,i)=>
-t + i.quantidade,
+t +
+i.quantidade,
 0
 );
 
@@ -3799,4 +4092,3 @@ R$ 0,00
 
 </body>
 </html>
-
