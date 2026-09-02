@@ -3379,7 +3379,42 @@ return;
 
 if(!telefone){
 
-alert("Digite seu telefone.");
+alert(
+"📱 Digite seu telefone."
+);
+
+document.getElementById(
+"telefoneModal"
+).focus();
+
+return;
+
+}
+
+const telefoneNumeros =
+telefone.replace(/\D/g,"");
+
+if(telefoneNumeros.length<10){
+
+alert(
+"📱 TELEFONE INVÁLIDO\n\n"+
+"Digite um telefone válido com DDD."
+);
+
+document.getElementById(
+"telefoneModal"
+).focus();
+
+return;
+
+}
+
+if(telefoneNumeros.length>11){
+
+alert(
+"📱 TELEFONE INVÁLIDO\n\n"+
+"Confira o número informado."
+);
 
 document.getElementById(
 "telefoneModal"
