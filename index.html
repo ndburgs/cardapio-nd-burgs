@@ -106,9 +106,7 @@ textarea{resize:vertical;min-height:80px}
 .categoria-btn{background:#181818;border:1px solid #333;color:#fff;border-radius:10px;padding:13px 10px;cursor:pointer;font-weight:bold}
 .categoria-btn:hover{border-color:#f5c400;color:#f5c400}
 
-/* =========================
-   INSTAGRAM NO RODAPÉ
-========================= */
+/* INSTAGRAM */
 footer{text-align:center;padding:20px 15px;color:#777;font-size:13px}
 .rodape-instagram{padding:30px 15px 25px}
 .instagram-destaque{width:100%;max-width:850px;margin:0 auto;padding:25px;border-radius:20px;background:linear-gradient(145deg,#181818,#0d0d0d);border:2px solid #f5c400;box-shadow:0 8px 30px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -580,9 +578,6 @@ Segunda-feira:
 </div>
 </div>
 
-<!-- =========================
-     RODAPÉ
-========================= -->
 <footer class="rodape-instagram">
 
 <div class="instagram-destaque">
@@ -762,7 +757,42 @@ const taxas = {
 "RUA MOEMA":6
 };
 
+/* =========================
+   CARRINHO SALVO
+========================= */
+
+const CHAVE_CARRINHO = "ndburgs_carrinho";
+
 let carrinho=[];
+
+function salvarCarrinho(){
+try{
+localStorage.setItem(
+CHAVE_CARRINHO,
+JSON.stringify(carrinho)
+);
+}catch(e){}
+}
+
+function carregarCarrinhoSalvo(){
+try{
+
+const salvo=localStorage.getItem(CHAVE_CARRINHO);
+
+if(!salvo)return;
+
+const dados=JSON.parse(salvo);
+
+if(Array.isArray(dados)){
+carrinho=dados;
+}
+
+}catch(e){
+
+carrinho=[];
+
+}
+}
 
 function moeda(valor){
 return Number(valor).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
@@ -1269,6 +1299,9 @@ subtotal
 atualizarModalCarrinho();
 
 calcularTaxa();
+
+/* SALVA O CARRINHO AUTOMATICAMENTE */
+salvarCarrinho();
 }
 
 function atualizarCarrinhoFlutuante(quantidade,subtotal){
@@ -1524,6 +1557,11 @@ if(!confirm("Deseja realmente limpar o carrinho?"))
 return;
 
 carrinho=[];
+
+/* APAGA O CARRINHO SALVO */
+try{
+localStorage.removeItem(CHAVE_CARRINHO);
+}catch(e){}
 
 atualizarCarrinho();
 
@@ -1803,6 +1841,9 @@ mensagem,
 );
 }
 
+/* PRIMEIRO CARREGA O CARRINHO SALVO */
+carregarCarrinhoSalvo();
+
 carregarRuas();
 atualizarCarrinho();
 alterarTipoPedido();
@@ -1817,4 +1858,4 @@ verificarHorario,
 
 </body>
 </html>
-AA
+
