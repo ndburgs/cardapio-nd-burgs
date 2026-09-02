@@ -321,13 +321,9 @@ Volte durante nosso horário de atendimento.
 
 <br>
 
-Terça a sábado:
+Terça a domingo:
 <strong>18:00 às 00:30</strong>
 
-<br>
-
-Domingo:
-<strong>18:00 às 00:00</strong>
 
 <br>
 
@@ -355,13 +351,9 @@ Segunda-feira:
 
 <div class="horarios-linha">
 
-📅 Terça a sábado:
-<strong>18:00 às 12:00</strong>
+📅 Terça a domingo:
+<strong>18:00 às 00:30</strong>
 
-<br>
-
-📅 Domingo:
-<strong>18:00 às 12:00</strong>
 
 <br>
 
@@ -4047,76 +4039,54 @@ block:"start"
 
 function verificarHorario(){
 
-const agora=
-new Date();
+const agora = new Date();
+const dia = agora.getDay();
+const minutos = agora.getHours() * 60 + agora.getMinutes();
 
-const dia=
-agora.getDay();
+let aberto = false;
 
-const hora=
-agora.getHours()*
-60+
-agora.getMinutes();
+/*
+   HORÁRIO OFICIAL ND BURGS
+   TERÇA A DOMINGO: 18:00 ÀS 00:30
 
-let aberto=false;
+   getDay():
+   0 = Domingo
+   1 = Segunda
+   2 = Terça
+   3 = Quarta
+   4 = Quinta
+   5 = Sexta
+   6 = Sábado
+*/
 
-if(
-dia>=2 &&
-dia<=6
-){
-
-if(
-hora>=720 ||
-hora<720
-)
-aberto=true;
-
+// 18:00 até 23:59 — terça a domingo
+if(dia >= 2 && dia <= 6 && minutos >= 18 * 60){
+    aberto = true;
 }
 
-if(
-dia===0 &&
-hora>=720
-)
-aberto=true;
+if(dia === 0 && minutos >= 18 * 60){
+    aberto = true;
+}
 
-if(
-dia===1 &&
-hora<720
-)
-aberto=true;
+// 00:00 até 00:29 — continuação do atendimento da noite anterior.
+// Domingo 00:00 pertence ao sábado.
+// Segunda 00:00 pertence ao domingo.
+// Terça 00:00 NÃO abre, pois segunda-feira é fechada.
+if(minutos < 30 && dia !== 2){
+    aberto = true;
+}
 
-const bloqueio=
-document.getElementById(
-"bloqueioHorario"
-);
-
-const status=
-document.getElementById(
-"statusHorario"
-);
+const bloqueio = document.getElementById("bloqueioHorario");
+const status = document.getElementById("statusHorario");
 
 if(aberto){
-
-bloqueio.style.display=
-"none";
-
-status.className=
-"status-aberto";
-
-status.innerHTML=
-"🟢 ESTAMOS ABERTOS";
-
+    bloqueio.style.display = "none";
+    status.className = "status-aberto";
+    status.innerHTML = "🟢 ESTAMOS ABERTOS";
 }else{
-
-bloqueio.style.display=
-"flex";
-
-status.className=
-"status-fechado";
-
-status.innerHTML=
-"🔴 ESTAMOS FECHADOS";
-
+    bloqueio.style.display = "flex";
+    status.className = "status-fechado";
+    status.innerHTML = "🔴 ESTAMOS FECHADOS";
 }
 
 }
