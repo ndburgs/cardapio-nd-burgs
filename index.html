@@ -2138,8 +2138,24 @@ toast.classList.remove("mostrar");
 
 }
 
-function abrirPersonalizacao(chave){
+/* =========================
+   FECHAR MODAL DE PERSONALIZAÇÃO
+========================= */
+function fecharPersonalizacao(){
 
+const modal =
+document.getElementById("modalPersonalizacao");
+
+if(modal){
+modal.style.display="none";
+}
+
+document.body.style.overflow="";
+
+produtoModalAtual=null;
+}
+
+function abrirPersonalizacao(chave){
 if(chave==="pasteis"){
 
 const modal=
