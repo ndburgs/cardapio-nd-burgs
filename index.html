@@ -666,6 +666,22 @@ footer{
     .modal-box{padding:16px}
 }
 
+
+/* CARRINHO FIXO */
+body{padding-bottom:88px;}
+.barra-carrinho{position:fixed;left:0;right:0;bottom:0;z-index:9998;padding:10px;background:rgba(10,10,10,.97);border-top:1px solid #333;display:none;}
+.barra-carrinho button{width:100%;border:0;border-radius:12px;padding:16px;background:#f5c400;color:#000;font-weight:900;font-size:16px;cursor:pointer;}
+.modal-checkout{display:none;position:fixed;inset:0;z-index:99990;background:rgba(0,0,0,.88);overflow-y:auto;padding:15px;}
+.modal-checkout-box{max-width:760px;margin:10px auto 30px;background:#111;border:1px solid #444;border-radius:16px;padding:18px;}
+.modal-topo{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px;}
+.modal-topo h2{margin:0;color:#f5c400;border:0;}
+.btn-fechar-modal{width:42px;height:42px;border:0;border-radius:50%;background:#333;color:#fff;font-size:26px;cursor:pointer;}
+.modal-checkout .carrinho,.modal-checkout .formulario{margin-top:12px;}
+.btn-finalizar-etapa{width:100%;border:0;border-radius:10px;padding:16px;background:#f5c400;color:#000;font-size:16px;font-weight:900;cursor:pointer;margin-top:14px;}
+.btn-continuar-etapa{width:100%;border:0;border-radius:10px;padding:14px;background:#333;color:#fff;font-size:15px;font-weight:900;cursor:pointer;margin-top:10px;}
+.checkout-formulario{display:none;}
+.checkout-formulario.ativo{display:block;}
+
 </style>
 </head>
 
@@ -1619,7 +1635,7 @@ footer{
      CARRINHO
 ========================= -->
 
-<div class="carrinho">
+<div id="checkoutModal" class="modal-checkout"><div class="modal-checkout-box"><div class="modal-topo"><h2>🛒 SEU PEDIDO</h2><button class="btn-fechar-modal" onclick="fecharCheckout()">×</button></div><div id="etapaCarrinho" class="checkout-etapa ativo"><div class="carrinho">
 
 <h2>🛒 SEU CARRINHO</h2>
 
@@ -1652,12 +1668,15 @@ footer{
 
 </div>
 
+<button class="btn-finalizar-etapa" onclick="irParaFormulario()">FINALIZAR PEDIDO →</button>
+<button class="btn-continuar-etapa" onclick="fecharCheckout()">← CONTINUAR COMPRANDO</button>
+</div>
 
 <!-- =========================
      DADOS DO PEDIDO
 ========================= -->
 
-<div class="formulario">
+<div id="etapaFormulario" class="formulario checkout-formulario">
 
 <h2>📍 DADOS DO PEDIDO</h2>
 
@@ -1790,9 +1809,10 @@ onclick="limparCarrinho()"
 🗑️ LIMPAR CARRINHO
 </button>
 
-</div>
+<button class="btn-continuar-etapa" onclick="voltarParaCarrinho()">← VOLTAR AO CARRINHO</button>
 
 </div>
+</div></div>
 
 
 <!-- =========================
@@ -2489,136 +2509,24 @@ block:"start"
 ============================================================ */
 
 function verificarHorario(){
-
-const agora = new Date();
-
-const dia = agora.getDay();
-
-const hora =
-agora.getHours() * 60 +
-agora.getMinutes();
-
-
-/*
-
-DOMINGO = 0
-SEGUNDA = 1
-TERÇA = 2
-QUARTA = 3
-QUINTA = 4
-SEXTA = 5
-SÁBADO = 6
-
-*/
-
-let aberto = false;
-
-
-/*
-   TERÇA A SÁBADO
-   18:00 até 00:30
-
-   Também mantém aberto os primeiros
-   30 minutos do dia seguinte.
-*/
-
-if(
-dia >= 2 &&
-dia <= 6 &&
-hora >= 1080
-){
-
-aberto = true;
-
-}
-
-
-/*
-   DOMINGO
-   18:00 até 00:00
-*/
-
-if(
-dia === 0 &&
-hora >= 1080
-){
-
-aberto = true;
-
-}
-
-
-/*
-   MADRUGADA DE TERÇA A SÁBADO
-
-   Exemplo:
-   terça 18:00 → quarta 00:30
-
-   Portanto quarta-feira 00:15
-   ainda pertence ao expediente de terça.
-
-*/
-
-if(
-dia >= 3 &&
-dia <= 6 &&
-hora < 30
-){
-
-aberto = true;
-
-}
-
-
-/*
-   DOMINGO 00:00 NÃO É ABERTO
-   porque o expediente de sábado
-   terminou às 00:30 de domingo.
-
-   Segunda-feira também permanece fechado.
-*/
-
-if(dia === 1){
-
-aberto = false;
-
-}
-
-
-/*
-   BLOQUEIO
-*/
-
-const bloqueio =
-document.getElementById("bloqueioHorario");
-
-const status =
-document.getElementById("statusHorario");
-
+const agora=new Date();
+const dia=agora.getDay();
+const minutos=agora.getHours()*60+agora.getMinutes();
+let aberto=false;
+// Todos os dias: 18:00 até 06:00 do dia seguinte.
+if(minutos>=1080 || minutos<360) aberto=true;
+const bloqueio=document.getElementById("bloqueioHorario");
+const status=document.getElementById("statusHorario");
 if(aberto){
-
-bloqueio.style.display = "none";
-
-status.className =
-"status-aberto";
-
-status.innerHTML =
-"🟢 ESTAMOS ABERTOS";
-
+ bloqueio.style.display="none";
+ status.className="status-aberto";
+ status.innerHTML="🟢 ESTAMOS ABERTOS ATÉ ÀS 06:00";
 }else{
-
-bloqueio.style.display = "flex";
-
-status.className =
-"status-fechado";
-
-status.innerHTML =
-"🔴 ESTAMOS FECHADOS";
-
+ bloqueio.style.display="flex";
+ status.className="status-fechado";
+ status.innerHTML="🔴 ESTAMOS FECHADOS";
 }
-
 }
-
 
 /* ============================================================
    FINALIZAR PEDIDO
@@ -2913,6 +2821,37 @@ mensagem,
 }
 
 
+
+/* CARRINHO FIXO E CHECKOUT */
+function atualizarBarraCarrinho(){
+ const q=carrinho.reduce((t,i)=>t+i.quantidade,0);
+ const v=carrinho.reduce((t,i)=>t+i.preco*i.quantidade,0);
+ document.getElementById("barraQuantidade").innerText=q+(q===1?" ITEM":" ITENS");
+ document.getElementById("barraTotal").innerText=moeda(v);
+ document.getElementById("barraCarrinho").style.display=q>0?"block":"none";
+}
+function abrirCheckout(){
+ if(!carrinho.length){ alert("Adicione pelo menos um produto ao carrinho."); return; }
+ document.getElementById("checkoutModal").style.display="block";
+ document.getElementById("etapaCarrinho").style.display="block";
+ document.getElementById("etapaFormulario").classList.remove("ativo");
+ document.body.style.overflow="hidden";
+}
+function fecharCheckout(){document.getElementById("checkoutModal").style.display="none";document.body.style.overflow="";}
+function irParaFormulario(){
+ if(!carrinho.length){alert("Adicione pelo menos um produto ao carrinho.");return;}
+ document.getElementById("etapaCarrinho").style.display="none";
+ document.getElementById("etapaFormulario").classList.add("ativo");
+ document.getElementById("checkoutModal").scrollTop=0;
+}
+function voltarParaCarrinho(){
+ document.getElementById("etapaFormulario").classList.remove("ativo");
+ document.getElementById("etapaCarrinho").style.display="block";
+ document.getElementById("checkoutModal").scrollTop=0;
+}
+const atualizarCarrinhoBase=atualizarCarrinho;
+atualizarCarrinho=function(){atualizarCarrinhoBase();atualizarBarraCarrinho();};
+
 /* ============================================================
    INICIALIZAÇÃO
 ============================================================ */
@@ -2936,6 +2875,9 @@ verificarHorario,
 );
 
 </script>
+
+
+<div id="barraCarrinho" class="barra-carrinho"><button onclick="abrirCheckout()">🛒 <span id="barraQuantidade">0 ITENS</span> • <span id="barraTotal">R$ 0,00</span> → VER PEDIDO</button></div>
 
 </body>
 </html>
