@@ -2341,31 +2341,47 @@ tamanhoSelecionado.value,
 
 let total=tamanho[1];
 
+let acompanhamentosNormais=0;
+
 document.querySelectorAll(
 'input[name="acompModal"]:checked'
 ).forEach(el=>{
 
-total+=
+const acomp=
 produtoModalAtual.acompanhamentos[
 parseInt(el.value,10)
-][1];
+];
+
+const nome=
+acomp[0].toUpperCase();
+
+if(nome==="NUTELLA"){
+
+total+=5;
+
+}else if(
+nome==="CREME DE NINHO" ||
+nome==="KIT KAT"
+){
+
+total+=3;
+
+}else{
+
+acompanhamentosNormais++;
+
+if(acompanhamentosNormais>3){
+
+total+=3;
+
+}
+
+}
 
 });
 
 document.getElementById("modalTotal").innerText=
 moeda(total);
-
-}
-
-function fecharPersonalizacao(){
-
-document.getElementById(
-"modalPersonalizacao"
-).style.display="none";
-
-document.body.style.overflow="";
-
-produtoModalAtual=null;
 
 }
 
@@ -2392,6 +2408,8 @@ let preco=tamanho[1];
 
 const detalhes=[];
 
+let acompanhamentosNormais=0;
+
 document.querySelectorAll(
 'input[name="acompModal"]:checked'
 ).forEach(el=>{
@@ -2401,12 +2419,40 @@ produtoModalAtual.acompanhamentos[
 parseInt(el.value,10)
 ];
 
-preco+=acomp[1];
+const nome=
+acomp[0].toUpperCase();
+
+let valorAdicional=0;
+
+if(nome==="NUTELLA"){
+
+valorAdicional=5;
+
+}else if(
+nome==="CREME DE NINHO" ||
+nome==="KIT KAT"
+){
+
+valorAdicional=3;
+
+}else{
+
+acompanhamentosNormais++;
+
+if(acompanhamentosNormais>3){
+
+valorAdicional=3;
+
+}
+
+}
+
+preco+=valorAdicional;
 
 detalhes.push(
 acomp[0]+
-(acomp[1]>0?
-" ("+moeda(acomp[1])+")":
+(valorAdicional>0?
+" ("+moeda(valorAdicional)+")":
 "")
 );
 
@@ -2437,6 +2483,7 @@ mostrarToast(
 "✅ Adicionado ao carrinho"
 );
 
+}
 }
 
 function adicionar(nome,preco){
