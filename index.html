@@ -1832,6 +1832,13 @@ onclick="limparCarrinho()"
      AVATAR
 ========================= -->
 
+<div class="criador">
+
+<img
+id="avatarCriador"
+alt="Neeh Diiniz"
+>
+
 <div class="criador-texto">
 SITE CRIADO POR : <span>NEEH DIINIZ</span>
 </div>
@@ -2305,77 +2312,43 @@ calcularTaxa();
 
 function calcularTaxa(){
 
-    const tipo =
-        document.getElementById("tipoPedido").value;
-
-    const selectRua =
-        document.getElementById("rua");
-
-    const rua =
-        selectRua ? selectRua.value : "";
+    const tipo = document.getElementById("tipoPedido").value;
+    const selectRua = document.getElementById("rua");
+    const ruaSelecionada = selectRua ? selectRua.value : "";
 
     let taxa = 0;
 
-
-    if(
-        tipo === "ENTREGA" &&
-        rua &&
-        taxas[rua] !== undefined
-    ){
-
-        taxa = taxas[rua];
-
+    if(tipo === "ENTREGA" && ruaSelecionada && taxas[ruaSelecionada] !== undefined){
+        taxa = taxas[ruaSelecionada];
     }
 
+    const subtotal = carrinho.reduce(
+        (soma,item) => soma + item.preco * item.quantidade,
+        0
+    );
 
-    const subtotal =
-        carrinho.reduce(
-            (soma,item) =>
-                soma + (item.preco * item.quantidade),
-            0
-        );
+    const total = subtotal + taxa;
 
+    document.getElementById("taxa").innerText = moeda(taxa);
+    document.getElementById("total").innerText = moeda(total);
 
-    const total =
-        subtotal + taxa;
+    const aviso = document.getElementById("avisoTaxa");
 
-
-    document.getElementById("taxa").innerText =
-        moeda(taxa);
-
-
-    document.getElementById("total").innerText =
-        moeda(total);
-
-
-    const aviso =
-        document.getElementById("avisoTaxa");
-
-
-    if(
-        tipo === "ENTREGA" &&
-        rua
-    ){
-
-        aviso.style.display =
-            "block";
-
-
+    if(tipo === "ENTREGA" && ruaSelecionada){
+        aviso.style.display = "block";
         aviso.innerHTML =
             "🚚 Taxa para <strong>" +
-            rua +
+            ruaSelecionada +
             "</strong>: <strong>" +
             moeda(taxa) +
             "</strong>";
-
     }else{
-
-        aviso.style.display =
-            "none";
-
+        aviso.style.display = "none";
+        aviso.innerHTML = "";
     }
 
 }
+
 
 /* ============================================================
    TIPO DO PEDIDO
