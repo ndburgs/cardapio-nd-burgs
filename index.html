@@ -376,38 +376,6 @@ textarea{
     border-color:#f5c400;
     color:#f5c400;
 }
-
-/* =========================
-   AVATAR / CRIADOR
-========================= */
-
-.criador{
-    max-width:1100px;
-    margin:40px auto 10px;
-    padding:20px 15px;
-    text-align:center;
-}
-
-.criador img{
-    width:105px;
-    height:105px;
-    object-fit:contain;
-    display:block;
-    margin:0 auto 8px;
-    filter:drop-shadow(0 0 8px rgba(245,196,0,.45));
-}
-
-.criador-texto{
-    color:#fff;
-    font-size:15px;
-    font-weight:bold;
-    letter-spacing:.5px;
-}
-
-.criador-texto span{
-    color:#f5c400;
-}
-
 /* =========================
    FOOTER
 ========================= */
@@ -702,12 +670,12 @@ footer{
             <br>
 
             Terça a sábado:
-            <strong>18:00 às 00:30</strong>
+            <strong>18:00 às 10:00</strong>
 
             <br>
 
             Domingo:
-            <strong>18:00 às 00:00</strong>
+            <strong>18:00 às 10:00</strong>
 
             <br>
 
@@ -753,12 +721,12 @@ footer{
         <div class="horarios-linha">
 
             📅 Terça a sábado:
-            <strong>18:00 às 00:30</strong>
+            <strong>18:00 às 10:00</strong>
 
             <br>
 
             📅 Domingo:
-            <strong>18:00 às 00:00</strong>
+            <strong>18:00 às 10:00</strong>
 
             <br>
 
@@ -1131,7 +1099,7 @@ footer{
 <div class="categoria-titulo">🥤 AÇAÍ</div>
 <div class="produtos">
 
-<div class="produto"><h3>AÇAÍ</h3><p>Escolha o tamanho e seus acompanhamentos.</p><div class="preco">A partir de R$ 11,90</div><button class="btn btn-add" onclick="abrirPersonalizacao('acai')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/Kxj5h5Km/Chat-GPT-Image-28-07-2026-18-32-28.png" alt="AÇAÍ"><h3>AÇAÍ</h3><p>Escolha o tamanho e seus acompanhamentos.</p><div class="preco">A partir de R$ 11,90</div><button class="btn btn-add" onclick="abrirPersonalizacao('acai')">ESCOLHER</button></div>
 <div class="produto"><h3>CASADINHO</h3><p>Açaí casadinho.</p><div class="preco">R$ 11,90</div><button class="btn btn-add" onclick="abrirPersonalizacao('casadinho')">ESCOLHER</button></div>
 <div class="produto"><h3>AÇAÍ TRUFFADO</h3><p>Açaí truffado especial.</p><div class="preco">A partir de R$ 26,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('truffado')">ESCOLHER</button></div>
 <div class="produto"><h3>TENTAÇÃO DE MORANGO</h3><p>Açaí com combinação especial de morango.</p><div class="preco">A partir de R$ 18,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('tentacao')">ESCOLHER</button></div>
@@ -1151,6 +1119,7 @@ footer{
 <div class="produtos">
 
 <div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/5x68nMyh/Chat-GPT-Image-25-06-2026-23-28-35.png" alt="PASTÉIS">
 <h3>PASTÉIS</h3>
 <p>Escolha entre nossos sabores salgados e doces.</p>
 <div class="preco">A partir de R$ 11,00</div>
@@ -1180,12 +1149,12 @@ footer{
 <section id="milkshakes" class="categoria">
 <div class="categoria-titulo">🥤 MILKSHAKES</div>
 <div class="produtos">
-<div class="produto"><h3>OVOMALTINE</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkOvomaltine')">ESCOLHER</button></div>
-<div class="produto"><h3>OREO</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkOreo')">ESCOLHER</button></div>
-<div class="produto"><h3>PAÇOCA</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkPacoca')">ESCOLHER</button></div>
-<div class="produto"><h3>NESQUIK</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkNesquik')">ESCOLHER</button></div>
-<div class="produto"><h3>LEITE NINHO</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkNinho')">ESCOLHER</button></div>
-<div class="produto"><h3>DE AÇAÍ</h3><p>Milkshake de açaí.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkAcai')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/PZD2DtDq/MILKSHAKE-DE-OVOMALTINE.png" alt="MILKSHAKE OVOMALTINE"><h3>OVOMALTINE</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkOvomaltine')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/ZRbdHHVQ/oreo.jpg" alt="MILKSHAKE OREO"><h3>OREO</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkOreo')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/NnyTc0wK/pa-oca.jpg" alt="MILKSHAKE PAÇOCA"><h3>PAÇOCA</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkPacoca')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/1Ym81pQM/MILKSHAKE-MORANGO.png" alt="MILKSHAKE NESQUIK"><h3>NESQUIK</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkNesquik')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/NntDRB8q/leite-ninho.jpg" alt="MILKSHAKE LEITE NINHO"><h3>LEITE NINHO</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkNinho')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/WvRv23Y5/milk-a-ai.jpg" alt="MILKSHAKE DE AÇAÍ"><h3>DE AÇAÍ</h3><p>Milkshake de açaí.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkAcai')">ESCOLHER</button></div>
 </div></section>
 
 <!-- =========================
@@ -1201,6 +1170,7 @@ footer{
 <div class="produtos">
 
 <div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/ksyxPyr2/Chat-GPT-Image-26-06-2026-00-10-12.png" alt="KITKAT">
 <h3>KITKAT</h3>
 <p>Doce especial.</p>
 <div class="preco">R$ 7,00</div>
@@ -1208,6 +1178,7 @@ footer{
 </div>
 
 <div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/7x6dFWmm/Chat-GPT-Image-25-06-2026-23-14-20.png" alt="SURPRESA DE UVA">
 <h3>SURPRESA DE UVA</h3>
 <p>Sobremesa especial.</p>
 <div class="preco">R$ 12,00</div>
@@ -1640,24 +1611,6 @@ onclick="limparCarrinho()"
   </div>
 </div>
 
-<!-- =========================
-     AVATAR
-========================= -->
-
-<div class="criador">
-
-<img
-id="avatarCriador"
-alt="Neeh Diiniz"
->
-
-<div class="criador-texto">
-SITE CRIADO POR : <span>NEEH DIINIZ</span>
-</div>
-
-</div>
-
-
 <footer>
 
 ND BURGS © 2026<br>
@@ -1667,28 +1620,6 @@ Obrigado pela preferência ❤️
 
 
 <script>
-
-/* ============================================================
-   AVATAR
-   ============================================================ */
-
-/*
-   Avatar incorporado no próprio HTML.
-   Não depende de outro arquivo do GitHub.
-*/
-
-const avatarBase64 =
-"data:image/webp;base64,UklGRipaAABXRUJQVlA4WAoAAAAQAAAAPwEA3AAAQUxQSCkPAAABDAVt20gJf9h77q5HICImgD+t75wfuX7i4QN/qTnGECqXPeZ6";
-
-
-/*
-   Caso o navegador não consiga carregar a versão
-   incorporada acima, o espaço continua reservado.
-*/
-
-document.getElementById("avatarCriador").src = avatarBase64;
-
-
 /* ============================================================
    TAXAS DE ENTREGA
 ============================================================ */
@@ -1934,9 +1865,10 @@ const saboresPasteis = {
         ["PASTEL DE NINHO COM MORANGO",13],
         ["PASTEL DE NINHO",13],
         ["PASTEL DE KITKAT COM NINHO",13],
-        ["PASTEL DE NINHO COM OREO",13],
-        ["PASTEL DE NUTELLA COM MORANGO",13],
-        ["PASTEL DE NUTELLA",13]
+        ["PASTEL DE NINHO COM OREO",13,"https://i.ibb.co/Hp1JT71N/Chat-GPT-Image-25-06-2026-23-40-43.png"],
+        ["PASTEL DE NUTELLA COM MORANGO",13,"https://i.ibb.co/TMjs2Z7V/Chat-GPT-Image-25-06-2026-23-46-39.png"],
+        ["PASTEL DE NUTELLA",13,"https://i.ibb.co/5x68nMyh/Chat-GPT-Image-25-06-2026-23-28-35.png"],
+        ["PASTEL DUO NUTELLA COM CREME DE NINHO",13,"https://i.ibb.co/nM3ncdZ3/Chat-GPT-Image-25-06-2026-23-57-41.png"]
     ]
 };
 
@@ -2437,16 +2369,10 @@ block:"start"
 function verificarHorario(){
 
 const agora = new Date();
-
 const dia = agora.getDay();
-
-const hora =
-agora.getHours() * 60 +
-agora.getMinutes();
-
+const hora = agora.getHours() * 60 + agora.getMinutes();
 
 /*
-
 DOMINGO = 0
 SEGUNDA = 1
 TERÇA = 2
@@ -2455,85 +2381,41 @@ QUINTA = 4
 SEXTA = 5
 SÁBADO = 6
 
+HORÁRIO DE PEDIDOS:
+18:00 até 10:00 da manhã seguinte.
+
+IMPORTANTE:
+A madrugada até 10:00 pertence ao expediente
+que começou às 18:00 do dia anterior.
 */
 
 let aberto = false;
 
-
 /*
-   TERÇA A SÁBADO
-   18:00 até 00:30
-
-   Também mantém aberto os primeiros
-   30 minutos do dia seguinte.
+TERÇA A DOMINGO:
+- A partir das 18:00 abre.
+- Durante a madrugada continua aberto.
+- Fecha às 10:00 da manhã seguinte.
 */
-
-if(
-dia >= 2 &&
-dia <= 6 &&
-hora >= 1080
-){
-
-aberto = true;
-
+if(dia >= 2 && dia <= 6){
+    if(hora >= 1080 || hora < 600){
+        aberto = true;
+    }
 }
 
-
-/*
-   DOMINGO
-   18:00 até 00:00
-*/
-
-if(
-dia === 0 &&
-hora >= 1080
-){
-
-aberto = true;
-
+/* DOMINGO 18:00 continua aberto na madrugada de segunda até 10:00 */
+if(dia === 0 && hora >= 1080){
+    aberto = true;
 }
 
-
 /*
-   MADRUGADA DE TERÇA A SÁBADO
-
-   Exemplo:
-   terça 18:00 → quarta 00:30
-
-   Portanto quarta-feira 00:15
-   ainda pertence ao expediente de terça.
-
+SEGUNDA-FEIRA:
+De 00:00 até 09:59 é continuação do expediente de domingo.
+A partir das 10:00 fica fechado.
 */
-
-if(
-dia >= 3 &&
-dia <= 6 &&
-hora < 30
-){
-
-aberto = true;
-
+if(dia === 1 && hora < 600){
+    aberto = true;
 }
-
-
-/*
-   DOMINGO 00:00 NÃO É ABERTO
-   porque o expediente de sábado
-   terminou às 00:30 de domingo.
-
-   Segunda-feira também permanece fechado.
-*/
-
-if(dia === 1){
-
-aberto = false;
-
-}
-
-
-/*
-   BLOQUEIO
-*/
 
 const bloqueio =
 document.getElementById("bloqueioHorario");
@@ -2543,23 +2425,19 @@ document.getElementById("statusHorario");
 
 if(aberto){
 
-bloqueio.style.display = "none";
+    bloqueio.style.display = "none";
 
-status.className =
-"status-aberto";
+    status.className = "status-aberto";
 
-status.innerHTML =
-"🟢 ESTAMOS ABERTOS";
+    status.innerHTML = "🟢 ESTAMOS ABERTOS";
 
 }else{
 
-bloqueio.style.display = "flex";
+    bloqueio.style.display = "flex";
 
-status.className =
-"status-fechado";
+    status.className = "status-fechado";
 
-status.innerHTML =
-"🔴 ESTAMOS FECHADOS";
+    status.innerHTML = "🔴 ESTAMOS FECHADOS";
 
 }
 
