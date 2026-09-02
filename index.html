@@ -119,6 +119,7 @@ h2{
 
 .categoria{
     margin-top:20px;
+    scroll-margin-top:90px;
 }
 
 .categoria-titulo{
@@ -531,6 +532,7 @@ h2{
     border-radius:12px;
     padding:20px;
     margin-top:20px;
+    scroll-margin-top:90px;
 }
 
 label{
@@ -585,7 +587,7 @@ textarea{
 }
 
 /* =========================
-   BLOCO DE CATEGORIAS
+   MENU CATEGORIAS
 ========================= */
 
 .categoria-menu{
@@ -1046,184 +1048,59 @@ footer{
 
 <!-- =========================
      MENU DE CATEGORIAS
+     NOVA ORDEM
 ========================= -->
 
 <div class="categoria-menu">
 
+    <button class="categoria-btn" onclick="irPara('combos')">
+        📦 COMBOS
+    </button>
+
     <button class="categoria-btn" onclick="irPara('tradicionais')">
-        🍔 Tradicionais
+        🍔 TRADICIONAIS
     </button>
 
     <button class="categoria-btn" onclick="irPara('artesanais')">
-        🍔 Artesanais
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('combos')">
-        📦 Combos
+        🍔 ARTESANAIS
     </button>
 
     <button class="categoria-btn" onclick="irPara('combosArtesanais')">
-        🔥 Combos Artesanais
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('acai')">
-        🥤 Açaí
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('pasteis')">
-        🥟 Pastéis
+        🔥 COMBOS ARTESANAIS
     </button>
 
     <button class="categoria-btn" onclick="irPara('porcoes')">
-        🍟 Porções
+        🍟 PORÇÕES
+    </button>
+
+    <button class="categoria-btn" onclick="irPara('pasteis')">
+        🥟 PASTÉIS
+    </button>
+
+    <button class="categoria-btn" onclick="irPara('acai')">
+        🥤 AÇAÍ
     </button>
 
     <button class="categoria-btn" onclick="irPara('milkshakes')">
-        🥤 Milkshakes
-    </button>
-
-    <button class="categoria-btn" onclick="irPara('sobremesas')">
-        🍓 Sobremesas
+        🥤 MILKSHAKES
     </button>
 
     <button class="categoria-btn" onclick="irPara('bebidas')">
-        🥤 Bebidas
+        🥤 BEBIDAS
+    </button>
+
+    <button class="categoria-btn" onclick="irPara('sobremesas')">
+        🍓 SOBREMESAS
     </button>
 
     <button class="categoria-btn" onclick="irPara('adicionais')">
-        ➕ Adicionais
+        ➕ ADICIONAIS
     </button>
 
 </div>
 
 <!-- =========================
-     TRADICIONAIS
-========================= -->
-
-<section id="tradicionais" class="categoria">
-
-<div class="categoria-titulo">
-🍔 TRADICIONAIS
-</div>
-
-<div class="produtos">
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/ds9Qr0PD/BURGUER.jpg">
-<h3>X-BURGUER</h3>
-<p>Hambúrguer tradicional.</p>
-<div class="preco">R$ 10,90</div>
-<button class="btn btn-add" onclick="adicionar('X-BURGUER',10.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/k2KQwpjp/BACON.jpg">
-<h3>X-BACON</h3>
-<p>Hambúrguer tradicional com bacon.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('X-BACON',11.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/390n5BZv/SALADA.png">
-<h3>X-SALADA</h3>
-<p>Hambúrguer tradicional com salada.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('X-SALADA',11.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/NgWQv5Nm/EGG.png">
-<h3>X-EGG</h3>
-<p>Hambúrguer tradicional com ovo.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="adicionar('X-EGG',11.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/fGHQ9NrW/SELLIS.png">
-<h3>SELLIS</h3>
-<p>Hambúrguer tradicional especial ND BURGS.</p>
-<div class="preco">R$ 13,90</div>
-<button class="btn btn-add" onclick="adicionar('SELLIS',13.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Vszxw7h/NUNES.png">
-<h3>NUNES</h3>
-<p>Hambúrguer especial tradicional.</p>
-<div class="preco">R$ 24,90</div>
-<button class="btn btn-add" onclick="adicionar('NUNES',24.90)">ADICIONAR</button>
-</div>
-
-</div>
-</section>
-
-<!-- =========================
-     ARTESANAIS
-========================= -->
-
-<section id="artesanais" class="categoria">
-
-<div class="categoria-titulo">
-🍔 ARTESANAIS
-</div>
-
-<div class="produtos">
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/zW8gbZpK/BERENICE.jpg">
-<h3>BERENICE</h3>
-<p>Pão de brioche, carne artesanal, cheddar, maionese verde, alface e cebola roxa.</p>
-<div class="preco">R$ 22,90</div>
-<button class="btn btn-add" onclick="adicionar('BERENICE',22.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/tTWqZ9ST/PATAO.png">
-<h3>PATAO</h3>
-<p>Pão de brioche, carne artesanal, bacon, barbecue e onion rings.</p>
-<div class="preco">R$ 23,90</div>
-<button class="btn btn-add" onclick="adicionar('PATAO',23.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/d4pD5bNc/DINA.jpg">
-<h3>DINA</h3>
-<p>Pão de brioche, frango empanado, cheddar, maionese verde, alface e tomate.</p>
-<div class="preco">R$ 20,90</div>
-<button class="btn btn-add" onclick="adicionar('DINA',20.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/qLK7hWYs/GADEIA.jpg">
-<h3>GADEIA</h3>
-<p>Pão de hambúrguer, carne artesanal, maionese verde e queijo cheddar.</p>
-<div class="preco">R$ 20,90</div>
-<button class="btn btn-add" onclick="adicionar('GADEIA',20.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/ymQ7sFZn/GAROTINHO.png">
-<h3>GAROTINHO</h3>
-<p>Pão de brioche, carne artesanal, molho cheddar cremoso e bacon.</p>
-<div class="preco">R$ 22,90</div>
-<button class="btn btn-add" onclick="adicionar('GAROTINHO',22.90)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/0yTLwY4b/PEZAO.jpg">
-<h3>PÉZÃO</h3>
-<p>Pão de brioche dividido em 3, 2 carnes artesanais, maionese, cheddar, ovo, cebola, bacon, alface e tomate.</p>
-<div class="preco">R$ 32,90</div>
-<button class="btn btn-add" onclick="adicionar('PÉZÃO',32.90)">ADICIONAR</button>
-</div>
-
-</div>
-</section>
-
-<!-- =========================
-     COMBOS
+     1 - COMBOS
 ========================= -->
 
 <section id="combos" class="categoria">
@@ -1235,7 +1112,7 @@ footer{
 <div class="produtos">
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png">
+<img class="produto-imagem" src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png" alt="COMBO DOCE">
 <h3>COMBO DOCE</h3>
 <p>Combo especial ND BURGS.</p>
 <div class="preco">R$ 32,90</div>
@@ -1243,7 +1120,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png">
+<img class="produto-imagem" src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png" alt="COMBO GELADO">
 <h3>COMBO GELADO</h3>
 <p>Combo especial ND BURGS.</p>
 <div class="preco">R$ 40,90</div>
@@ -1251,7 +1128,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png">
+<img class="produto-imagem" src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png" alt="COMBO 5 ESTRELAS">
 <h3>COMBO 5 ESTRELAS</h3>
 <p>Combo especial ND BURGS.</p>
 <div class="preco">R$ 45,90</div>
@@ -1259,7 +1136,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/twFJ6Vwt/COMBO-DIETA-SO-SEGUNDA.png">
+<img class="produto-imagem" src="https://i.ibb.co/twFJ6Vwt/COMBO-DIETA-SO-SEGUNDA.png" alt="COMBO DIETA SÓ SEGUNDA">
 <h3>COMBO DIETA SÓ SEGUNDA</h3>
 <p>Coca lata + doce surpresa + pastel.</p>
 <div class="preco">R$ 27,90</div>
@@ -1267,7 +1144,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png">
+<img class="produto-imagem" src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png" alt="COMBO MAIS VENDIDO">
 <h3>COMBO MAIS VENDIDO</h3>
 <p>Um dos combos especiais da ND BURGS.</p>
 <div class="preco">R$ 20,90</div>
@@ -1275,7 +1152,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png">
+<img class="produto-imagem" src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png" alt="COMBO MOTOCA ND">
 <h3>COMBO MOTOCA ND</h3>
 <p>Combo especial ND BURGS.</p>
 <div class="preco">R$ 32,90</div>
@@ -1283,7 +1160,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png">
+<img class="produto-imagem" src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png" alt="COMBO SÓ LOVE">
 <h3>COMBO SÓ LOVE</h3>
 <p>Combo especial para compartilhar.</p>
 <div class="preco">R$ 71,90</div>
@@ -1291,7 +1168,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png">
+<img class="produto-imagem" src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png" alt="DATE COM NDBURGS">
 <h3>DATE COM NDBURGS</h3>
 <p>Combo especial para o seu date.</p>
 <div class="preco">R$ 70,90</div>
@@ -1299,7 +1176,7 @@ footer{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png">
+<img class="produto-imagem" src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png" alt="01 ND BURGS">
 <h3>01 ND BURGS</h3>
 <p>Combo especial.</p>
 <div class="preco">R$ 50,90</div>
@@ -1310,7 +1187,133 @@ footer{
 </section>
 
 <!-- =========================
-     COMBOS ARTESANAIS
+     2 - TRADICIONAIS
+========================= -->
+
+<section id="tradicionais" class="categoria">
+
+<div class="categoria-titulo">
+🍔 TRADICIONAIS
+</div>
+
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/ds9Qr0PD/BURGUER.jpg" alt="X-BURGUER">
+<h3>X-BURGUER</h3>
+<p>Hambúrguer tradicional.</p>
+<div class="preco">R$ 10,90</div>
+<button class="btn btn-add" onclick="adicionar('X-BURGUER',10.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/k2KQwpjp/BACON.jpg" alt="X-BACON">
+<h3>X-BACON</h3>
+<p>Hambúrguer tradicional com bacon.</p>
+<div class="preco">R$ 11,90</div>
+<button class="btn btn-add" onclick="adicionar('X-BACON',11.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/390n5BZv/SALADA.png" alt="X-SALADA">
+<h3>X-SALADA</h3>
+<p>Hambúrguer tradicional com salada.</p>
+<div class="preco">R$ 11,90</div>
+<button class="btn btn-add" onclick="adicionar('X-SALADA',11.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/NgWQv5Nm/EGG.png" alt="X-EGG">
+<h3>X-EGG</h3>
+<p>Hambúrguer tradicional com ovo.</p>
+<div class="preco">R$ 11,90</div>
+<button class="btn btn-add" onclick="adicionar('X-EGG',11.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/fGHQ9NrW/SELLIS.png" alt="SELLIS">
+<h3>SELLIS</h3>
+<p>Hambúrguer tradicional especial ND BURGS.</p>
+<div class="preco">R$ 13,90</div>
+<button class="btn btn-add" onclick="adicionar('SELLIS',13.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/Vszxw7h/NUNES.png" alt="NUNES">
+<h3>NUNES</h3>
+<p>Hambúrguer especial tradicional.</p>
+<div class="preco">R$ 24,90</div>
+<button class="btn btn-add" onclick="adicionar('NUNES',24.90)">ADICIONAR</button>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     3 - ARTESANAIS
+========================= -->
+
+<section id="artesanais" class="categoria">
+
+<div class="categoria-titulo">
+🍔 ARTESANAIS
+</div>
+
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/zW8gbZpK/BERENICE.jpg" alt="BERENICE">
+<h3>BERENICE</h3>
+<p>Pão de brioche, carne artesanal, cheddar, maionese verde, alface e cebola roxa.</p>
+<div class="preco">R$ 22,90</div>
+<button class="btn btn-add" onclick="adicionar('BERENICE',22.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/tTWqZ9ST/PATAO.png" alt="PATAO">
+<h3>PATAO</h3>
+<p>Pão de brioche, carne artesanal, bacon, barbecue e onion rings.</p>
+<div class="preco">R$ 23,90</div>
+<button class="btn btn-add" onclick="adicionar('PATAO',23.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/d4pD5bNc/DINA.jpg" alt="DINA">
+<h3>DINA</h3>
+<p>Pão de brioche, frango empanado, cheddar, maionese verde, alface e tomate.</p>
+<div class="preco">R$ 20,90</div>
+<button class="btn btn-add" onclick="adicionar('DINA',20.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/qLK7hWYs/GADEIA.jpg" alt="GADEIA">
+<h3>GADEIA</h3>
+<p>Pão de hambúrguer, carne artesanal, maionese verde e queijo cheddar.</p>
+<div class="preco">R$ 20,90</div>
+<button class="btn btn-add" onclick="adicionar('GADEIA',20.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/ymQ7sFZn/GAROTINHO.png" alt="GAROTINHO">
+<h3>GAROTINHO</h3>
+<p>Pão de brioche, carne artesanal, molho cheddar cremoso e bacon.</p>
+<div class="preco">R$ 22,90</div>
+<button class="btn btn-add" onclick="adicionar('GAROTINHO',22.90)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/0yTLwY4b/PEZAO.jpg" alt="PÉZÃO">
+<h3>PÉZÃO</h3>
+<p>Pão de brioche dividido em 3, 2 carnes artesanais, maionese, cheddar, ovo, cebola, bacon, alface e tomate.</p>
+<div class="preco">R$ 32,90</div>
+<button class="btn btn-add" onclick="adicionar('PÉZÃO',32.90)">ADICIONAR</button>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     4 - COMBOS ARTESANAIS
 ========================= -->
 
 <section id="combosArtesanais" class="categoria">
@@ -1381,7 +1384,85 @@ footer{
 </section>
 
 <!-- =========================
-     AÇAÍ
+     5 - PORÇÕES
+========================= -->
+
+<section id="porcoes" class="categoria">
+
+<div class="categoria-titulo">
+🍟 PORÇÕES
+</div>
+
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png" alt="BATATA">
+<h3>BATATA</h3>
+<p>Escolha o tamanho.</p>
+<div class="preco">A partir de R$ 6,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('batata')">ESCOLHER</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png" alt="BATATA COMPLETA">
+<h3>BATATA COMPLETA</h3>
+<p>Batata completa com cheddar e bacon.</p>
+<div class="preco">A partir de R$ 12,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('batataCompleta')">ESCOLHER</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png" alt="NUGGETS">
+<h3>NUGGETS</h3>
+<p>Escolha o tamanho.</p>
+<div class="preco">A partir de R$ 9,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('nuggets')">ESCOLHER</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png" alt="ANEL DE CEBOLA">
+<h3>ANEL DE CEBOLA</h3>
+<p>Escolha o tamanho.</p>
+<div class="preco">A partir de R$ 9,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('anelCebola')">ESCOLHER</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png" alt="FRANGO FRITO">
+<h3>FRANGO FRITO</h3>
+<p>Escolha o tamanho.</p>
+<div class="preco">A partir de R$ 15,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('frangoFrito')">ESCOLHER</button>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     6 - PASTÉIS
+========================= -->
+
+<section id="pasteis" class="categoria">
+
+<div class="categoria-titulo">
+🥟 PASTÉIS
+</div>
+
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/5x68nMyh/Chat-GPT-Image-25-06-2026-23-28-35.png" alt="PASTÉIS">
+<h3>PASTÉIS</h3>
+<p>Escolha entre nossos sabores salgados e doces.</p>
+<div class="preco">A partir de R$ 11,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('pasteis')">ESCOLHER SABOR</button>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     7 - AÇAÍ
 ========================= -->
 
 <section id="acai" class="categoria">
@@ -1425,85 +1506,7 @@ footer{
 </section>
 
 <!-- =========================
-     PASTÉIS
-========================= -->
-
-<section id="pasteis" class="categoria">
-
-<div class="categoria-titulo">
-🥟 PASTÉIS
-</div>
-
-<div class="produtos">
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/5x68nMyh/Chat-GPT-Image-25-06-2026-23-28-35.png" alt="PASTÉIS">
-<h3>PASTÉIS</h3>
-<p>Escolha entre nossos sabores salgados e doces.</p>
-<div class="preco">A partir de R$ 11,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('pasteis')">ESCOLHER SABOR</button>
-</div>
-
-</div>
-</section>
-
-<!-- =========================
-     PORÇÕES
-========================= -->
-
-<section id="porcoes" class="categoria">
-
-<div class="categoria-titulo">
-🍟 PORÇÕES
-</div>
-
-<div class="produtos">
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png">
-<h3>BATATA</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 6,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('batata')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png">
-<h3>BATATA COMPLETA</h3>
-<p>Batata completa com cheddar e bacon.</p>
-<div class="preco">A partir de R$ 12,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('batataCompleta')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png">
-<h3>NUGGETS</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 9,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('nuggets')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png">
-<h3>ANEL DE CEBOLA</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 9,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('anelCebola')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png">
-<h3>FRANGO FRITO</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('frangoFrito')">ESCOLHER</button>
-</div>
-
-</div>
-</section>
-
-<!-- =========================
-     MILKSHAKES
+     8 - MILKSHAKES
 ========================= -->
 
 <section id="milkshakes" class="categoria">
@@ -1566,38 +1569,7 @@ footer{
 </section>
 
 <!-- =========================
-     SOBREMESAS
-========================= -->
-
-<section id="sobremesas" class="categoria">
-
-<div class="categoria-titulo">
-🍓 SOBREMESAS
-</div>
-
-<div class="produtos">
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/ksyxPyr2/Chat-GPT-Image-26-06-2026-00-10-12.png" alt="KITKAT">
-<h3>KITKAT</h3>
-<p>Doce especial.</p>
-<div class="preco">R$ 7,00</div>
-<button class="btn btn-add" onclick="adicionar('KITKAT',7)">ADICIONAR</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/7x6dFWmm/Chat-GPT-Image-25-06-2026-23-14-20.png" alt="SURPRESA DE UVA">
-<h3>SURPRESA DE UVA</h3>
-<p>Sobremesa especial.</p>
-<div class="preco">R$ 12,00</div>
-<button class="btn btn-add" onclick="adicionar('SURPRESA DE UVA',12)">ADICIONAR</button>
-</div>
-
-</div>
-</section>
-
-<!-- =========================
-     BEBIDAS
+     9 - BEBIDAS
 ========================= -->
 
 <section id="bebidas" class="categoria">
@@ -1703,7 +1675,38 @@ footer{
 </section>
 
 <!-- =========================
-     ADICIONAIS
+     10 - SOBREMESAS
+========================= -->
+
+<section id="sobremesas" class="categoria">
+
+<div class="categoria-titulo">
+🍓 SOBREMESAS
+</div>
+
+<div class="produtos">
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/ksyxPyr2/Chat-GPT-Image-26-06-2026-00-10-12.png" alt="KITKAT">
+<h3>KITKAT</h3>
+<p>Doce especial.</p>
+<div class="preco">R$ 7,00</div>
+<button class="btn btn-add" onclick="adicionar('KITKAT',7)">ADICIONAR</button>
+</div>
+
+<div class="produto">
+<img class="produto-imagem" src="https://i.ibb.co/7x6dFWmm/Chat-GPT-Image-25-06-2026-23-14-20.png" alt="SURPRESA DE UVA">
+<h3>SURPRESA DE UVA</h3>
+<p>Sobremesa especial.</p>
+<div class="preco">R$ 12,00</div>
+<button class="btn btn-add" onclick="adicionar('SURPRESA DE UVA',12)">ADICIONAR</button>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     11 - ADICIONAIS
 ========================= -->
 
 <section id="adicionais" class="categoria">
@@ -3134,13 +3137,6 @@ function obterTaxaEntrega(){
     const selectRua =
         document.getElementById("rua");
 
-    /*
-       IMPORTANTE:
-       Aqui usamos .value.
-       Nunca usamos o elemento select diretamente.
-       Isso elimina o erro [object HTMLSelectElement].
-    */
-
     const ruaSelecionada =
         selectRua ? selectRua.value : "";
 
@@ -3190,11 +3186,6 @@ function atualizarAvisoTaxa(){
         return;
 
     }
-
-    /*
-       Pega o VALOR do select,
-       não o elemento HTML.
-    */
 
     const rua =
         selectRua.value;
@@ -3891,7 +3882,7 @@ function verificarHorario(){
 
     /*
        DOMINGO:
-       18:00 até madrugada
+       18:00 até 10:00
     */
 
     if(
@@ -3983,11 +3974,6 @@ function finalizarPedido(){
         document.getElementById(
             "tipoPedido"
         ).value;
-
-    /*
-       IMPORTANTE:
-       .value pega o texto/valor selecionado.
-    */
 
     const rua =
         document.getElementById(
@@ -4171,12 +4157,6 @@ function finalizarPedido(){
 
     if(tipo === "ENTREGA"){
 
-        /*
-           Novamente:
-           rua é o valor selecionado,
-           então taxas[rua] retorna o número.
-        */
-
         taxa =
             taxas[rua] !== undefined
             ?
@@ -4254,10 +4234,6 @@ function finalizarPedido(){
 
     mensagem +=
         "ND BURGS 🍔";
-
-    /*
-       WHATSAPP DA ND BURGS
-    */
 
     const whatsapp =
         "5511963973846";
