@@ -3419,6 +3419,40 @@ return;
 
 }
 
+if(tipo==="ENTREGA"){
+
+const subtotalMinimo=11.90;
+
+const subtotalAtual=
+carrinho.reduce(
+(soma,item)=>
+soma+
+(item.preco*item.quantidade),
+0
+);
+
+if(subtotalAtual<subtotalMinimo){
+
+const falta=
+subtotalMinimo-subtotalAtual;
+
+alert(
+"🏍️ PEDIDO MÍNIMO PARA DELIVERY\n\n"+
+"Para delivery, o pedido mínimo é "+
+moeda(subtotalMinimo)+".\n\n"+
+"Seu pedido está em "+
+moeda(subtotalAtual)+".\n"+
+"Faltam "+
+moeda(falta)+
+" para poder finalizar."
+);
+
+return;
+
+}
+
+}
+   
 if(!pagamento){
 
 alert(
