@@ -558,7 +558,8 @@ Segunda-feira:
 <div class="linha total-modal"><span>TOTAL</span><strong id="totalCarrinhoModal">R$ 0,00</strong></div>
 </div>
 
-<button class="btn btn-continuar-pedido" onclick="irParaCheckout()">CONTINUAR PEDIDO</button>
+<button class="btn btn-continuar-pedido" onclick="irParaCheckout()">❤️ CONTINUAR COMPRANDO</button>
+<button class="btn btn-whatsapp" onclick="irParaFinalizarPedido()">📲 FINALIZAR PEDIDO</button>
 
 </div>
 </div>
@@ -1437,6 +1438,26 @@ const checkout=document.getElementById("checkout");
 if(checkout){
 
 checkout.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+},150);
+}
+
+    function irParaFinalizarPedido(){
+
+fecharCarrinho();
+
+setTimeout(()=>{
+
+const formulario=document.querySelector(".formulario");
+
+if(formulario){
+
+formulario.scrollIntoView({
 behavior:"smooth",
 block:"start"
 });
