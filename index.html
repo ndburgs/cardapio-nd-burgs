@@ -378,7 +378,7 @@ textarea{
 }
 
 /* =========================
-   CRIADOR
+   AVATAR / CRIADOR
 ========================= */
 
 .criador{
@@ -386,6 +386,15 @@ textarea{
     margin:40px auto 10px;
     padding:20px 15px;
     text-align:center;
+}
+
+.criador img{
+    width:105px;
+    height:105px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 8px;
+    filter:drop-shadow(0 0 8px rgba(245,196,0,.45));
 }
 
 .criador-texto{
@@ -526,7 +535,6 @@ footer{
 /* =========================
    PERSONALIZAÇÃO DE PRODUTOS
 ========================= */
-
 .modal-personalizacao{
     position:fixed;
     inset:0;
@@ -537,7 +545,6 @@ footer{
     justify-content:center;
     padding:15px;
 }
-
 .modal-box{
     width:100%;
     max-width:560px;
@@ -549,7 +556,6 @@ footer{
     padding:20px;
     box-shadow:0 0 40px rgba(245,196,0,.2);
 }
-
 .modal-topo{
     display:flex;
     align-items:center;
@@ -557,13 +563,11 @@ footer{
     gap:10px;
     margin-bottom:15px;
 }
-
 .modal-topo h2{
     margin:0;
     border:0;
     padding:0;
 }
-
 .modal-fechar{
     width:38px;
     height:38px;
@@ -574,35 +578,29 @@ footer{
     font-size:20px;
     cursor:pointer;
 }
-
 .modal-secao{
     margin-top:18px;
     padding-top:15px;
     border-top:1px solid #333;
 }
-
 .modal-secao h3{
     color:#f5c400;
     margin-bottom:10px;
     font-size:17px;
 }
-
 .opcoes-tamanho{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:8px;
 }
-
 .opcao-tamanho{
     position:relative;
 }
-
 .opcao-tamanho input{
     position:absolute;
     opacity:0;
     pointer-events:none;
 }
-
 .opcao-tamanho label{
     margin:0;
     display:block;
@@ -614,19 +612,16 @@ footer{
     cursor:pointer;
     font-weight:bold;
 }
-
 .opcao-tamanho input:checked + label{
     border-color:#f5c400;
     background:#302900;
     color:#f5c400;
 }
-
 .lista-acompanhamentos{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:8px;
 }
-
 .opcao-acomp{
     display:flex;
     align-items:center;
@@ -637,21 +632,17 @@ footer{
     background:#0d0d0d;
     cursor:pointer;
 }
-
 .opcao-acomp input{
     width:auto;
     margin:0;
 }
-
 .opcao-acomp span{
     font-size:13px;
 }
-
 .preco-adicional{
     color:#f5c400;
     font-weight:bold;
 }
-
 .modal-total{
     display:flex;
     justify-content:space-between;
@@ -663,206 +654,16 @@ footer{
     border:1px solid #333;
     font-size:19px;
 }
-
-.modal-total strong:last-child{
-    color:#f5c400;
-}
-
+.modal-total strong:last-child{color:#f5c400}
 .btn-confirmar-personalizacao{
     margin-top:12px;
     background:#f5c400;
     color:#000;
 }
-
-/* =========================
-   SELEÇÃO DE SABOR
-========================= */
-
-.seletor-sabor{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:8px;
-}
-
-.opcao-sabor{
-    position:relative;
-}
-
-.opcao-sabor input{
-    position:absolute;
-    opacity:0;
-    pointer-events:none;
-}
-
-.opcao-sabor label{
-    margin:0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:14px;
-    border:1px solid #444;
-    border-radius:10px;
-    background:#0d0d0d;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.opcao-sabor label:hover{
-    border-color:#f5c400;
-}
-
-.opcao-sabor input:checked + label{
-    border-color:#f5c400;
-    background:#302900;
-    color:#f5c400;
-}
-
-.sabor-nome{
-    font-weight:bold;
-    color:#fff;
-}
-
-.opcao-sabor input:checked + label .sabor-nome{
-    color:#f5c400;
-}
-
-.sabor-preco{
-    font-weight:bold;
-    color:#f5c400;
-    white-space:nowrap;
-}
-
 @media(max-width:600px){
-
-    .lista-acompanhamentos{
-        grid-template-columns:1fr;
-    }
-
-    .opcoes-tamanho{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .modal-box{
-        padding:16px;
-    }
-
-}
-
-
-/* =========================
-   CARRINHO FIXO
-========================= */
-
-body{
-    padding-bottom:88px;
-}
-
-.barra-carrinho{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:9998;
-    padding:10px;
-    background:rgba(10,10,10,.97);
-    border-top:1px solid #333;
-    display:none;
-}
-
-.barra-carrinho button{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:16px;
-    background:#f5c400;
-    color:#000;
-    font-weight:900;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.modal-checkout{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:99990;
-    background:rgba(0,0,0,.88);
-    overflow-y:auto;
-    padding:15px;
-}
-
-.modal-checkout-box{
-    max-width:760px;
-    margin:10px auto 30px;
-    background:#111;
-    border:1px solid #444;
-    border-radius:16px;
-    padding:18px;
-}
-
-.modal-topo{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:12px;
-}
-
-.modal-topo h2{
-    margin:0;
-    color:#f5c400;
-    border:0;
-}
-
-.btn-fechar-modal{
-    width:42px;
-    height:42px;
-    border:0;
-    border-radius:50%;
-    background:#333;
-    color:#fff;
-    font-size:26px;
-    cursor:pointer;
-}
-
-.modal-checkout .carrinho,
-.modal-checkout .formulario{
-    margin-top:12px;
-}
-
-.btn-finalizar-etapa{
-    width:100%;
-    border:0;
-    border-radius:10px;
-    padding:16px;
-    background:#f5c400;
-    color:#000;
-    font-size:16px;
-    font-weight:900;
-    cursor:pointer;
-    margin-top:14px;
-}
-
-.btn-continuar-etapa{
-    width:100%;
-    border:0;
-    border-radius:10px;
-    padding:14px;
-    background:#333;
-    color:#fff;
-    font-size:15px;
-    font-weight:900;
-    cursor:pointer;
-    margin-top:10px;
-}
-
-.checkout-formulario{
-    display:none;
-}
-
-.checkout-formulario.ativo{
-    display:block;
+    .lista-acompanhamentos{grid-template-columns:1fr}
+    .opcoes-tamanho{grid-template-columns:repeat(3,1fr)}
+    .modal-box{padding:16px}
 }
 
 </style>
@@ -975,6 +776,7 @@ body{
 
 <div class="container">
 
+
 <h1>🍔 FAÇA SEU PEDIDO</h1>
 
 
@@ -985,47 +787,47 @@ body{
 <div class="categoria-menu">
 
     <button class="categoria-btn" onclick="irPara('tradicionais')">
-        🍔 TRADICIONAIS
+        🍔 Tradicionais
     </button>
 
     <button class="categoria-btn" onclick="irPara('artesanais')">
-        🍔 ARTESANAIS
+        🍔 Artesanais
     </button>
 
     <button class="categoria-btn" onclick="irPara('combos')">
-        📦 COMBOS TRADICIONAIS
+        📦 Combos
     </button>
 
     <button class="categoria-btn" onclick="irPara('combosArtesanais')">
-        🔥 COMBOS ARTESANAIS
+        🔥 Combos Artesanais
     </button>
 
     <button class="categoria-btn" onclick="irPara('acai')">
-        🥤 AÇAÍ
+        🥤 Açaí
     </button>
 
     <button class="categoria-btn" onclick="irPara('pasteis')">
-        🥟 PASTÉIS
+        🥟 Pastéis
     </button>
 
     <button class="categoria-btn" onclick="irPara('porcoes')">
-        🍟 PORÇÕES
+        🍟 Porções
     </button>
 
     <button class="categoria-btn" onclick="irPara('milkshakes')">
-        🥤 MILKSHAKES
+        🥤 Milkshakes
     </button>
 
     <button class="categoria-btn" onclick="irPara('sobremesas')">
-        🍓 SOBREMESAS
+        🍓 Sobremesas
     </button>
 
     <button class="categoria-btn" onclick="irPara('bebidas')">
-        🥤 BEBIDAS
+        🥤 Bebidas
     </button>
 
     <button class="categoria-btn" onclick="irPara('adicionais')">
-        ➕ ADICIONAIS
+        ➕ Adicionais
     </button>
 
 </div>
@@ -1042,6 +844,9 @@ body{
 </div>
 
 <div class="produtos">
+
+<script>
+</script>
 
 <div class="produto">
 <img class="produto-imagem" src="https://i.ibb.co/ds9Qr0PD/BURGUER.jpg">
@@ -1236,7 +1041,7 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/xSzfm1DQ/01-NDBURGS.png">
+<img class="produto-imagem" src="https://i.ibb.co/2355cwJJ/01-NDBURGS.png">
 <h3>01 ND BURGS</h3>
 <p>Combo especial.</p>
 <div class="preco">R$ 50,90</div>
@@ -1260,7 +1065,6 @@ body{
 <div class="produtos">
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/QR0388c/COMBO-S-LOVE.png">
 <h3>ARTESANAL COMBO SÓ LOVE</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 90,80</div>
@@ -1268,7 +1072,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/5WM7335K/5-ESTRELAS.png">
 <h3>ARTESANAL COMBO 5 ESTRELAS</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 70,80</div>
@@ -1276,7 +1079,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/HLNHv9tt/COMBO-MAIS-VENDIDO-NOVO.png">
 <h3>ARTESANAL COMBO MAIS VENDIDO</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 34,80</div>
@@ -1284,7 +1086,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/wNQqzkSf/COMBO-DOCE.png">
 <h3>ARTESANAL COMBO DOCE</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 44,80</div>
@@ -1292,7 +1093,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/cSLMFXtL/COMBO-GELADO.png">
 <h3>ARTESANAL COMBO GELADO</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 52,80</div>
@@ -1300,7 +1100,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/23CmpQqn/DATE-COM-ND-BURGS.png">
 <h3>ARTESANAL DATE COM NDBURGS</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 91,80</div>
@@ -1308,7 +1107,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/PvJqcwzb/MOTACA-ND.png">
 <h3>ARTESANAL MOTOCA ND</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 41,80</div>
@@ -1316,7 +1114,6 @@ body{
 </div>
 
 <div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/xSzfm1DQ/01-NDBURGS.png">
 <h3>ARTESANAL 01 ND BURGS</h3>
 <p>Combo artesanal especial.</p>
 <div class="preco">R$ 96,80</div>
@@ -1330,46 +1127,16 @@ body{
 <!-- =========================
      AÇAÍ
 ========================= -->
-
 <section id="acai" class="categoria">
-
-<div class="categoria-titulo">
-🥤 AÇAÍ
-</div>
-
+<div class="categoria-titulo">🥤 AÇAÍ</div>
 <div class="produtos">
 
-<div class="produto">
-<h3>AÇAÍ</h3>
-<p>Escolha o tamanho e seus acompanhamentos.</p>
-<div class="preco">A partir de R$ 11,90</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('acai')">ESCOLHER</button>
-</div>
+<div class="produto"><h3>AÇAÍ</h3><p>Escolha o tamanho e seus acompanhamentos.</p><div class="preco">A partir de R$ 11,90</div><button class="btn btn-add" onclick="abrirPersonalizacao('acai')">ESCOLHER</button></div>
+<div class="produto"><h3>CASADINHO</h3><p>Açaí casadinho.</p><div class="preco">R$ 11,90</div><button class="btn btn-add" onclick="abrirPersonalizacao('casadinho')">ESCOLHER</button></div>
+<div class="produto"><h3>AÇAÍ TRUFFADO</h3><p>Açaí truffado especial.</p><div class="preco">A partir de R$ 26,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('truffado')">ESCOLHER</button></div>
+<div class="produto"><h3>TENTAÇÃO DE MORANGO</h3><p>Açaí com combinação especial de morango.</p><div class="preco">A partir de R$ 18,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('tentacao')">ESCOLHER</button></div>
 
-<div class="produto">
-<h3>CASADINHO</h3>
-<p>Açaí casadinho.</p>
-<div class="preco">R$ 11,90</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('casadinho')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>AÇAÍ TRUFFADO</h3>
-<p>Açaí truffado especial.</p>
-<div class="preco">A partir de R$ 26,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('truffado')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>TENTAÇÃO DE MORANGO</h3>
-<p>Açaí com combinação especial de morango.</p>
-<div class="preco">A partir de R$ 18,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('tentacao')">ESCOLHER</button>
-</div>
-
-</div>
-</section>
-
+</div></section>
 
 <!-- =========================
      PASTÉIS
@@ -1383,171 +1150,43 @@ body{
 
 <div class="produtos">
 
-<!-- PASTÉIS SALGADOS -->
-
 <div class="produto">
-
-<h3>🥟 PASTÉIS SALGADOS</h3>
-
-<p>
-Escolha o sabor do seu pastel salgado.
-</p>
-
-<div class="preco">
-A partir de R$ 11,00
-</div>
-
-<button
-class="btn btn-add"
-onclick="abrirPersonalizacao('pasteisSalgados')"
->
-ESCOLHER SABOR
-</button>
-
-</div>
-
-
-<!-- PASTÉIS DOCES -->
-
-<div class="produto">
-
-<h3>🍫 PASTÉIS DOCES</h3>
-
-<p>
-Escolha o sabor do seu pastel doce.
-</p>
-
-<div class="preco">
-A partir de R$ 13,00
-</div>
-
-<button
-class="btn btn-add"
-onclick="abrirPersonalizacao('pasteisDoces')"
->
-ESCOLHER SABOR
-</button>
-
+<h3>PASTÉIS</h3>
+<p>Escolha entre nossos sabores salgados e doces.</p>
+<div class="preco">A partir de R$ 11,00</div>
+<button class="btn btn-add" onclick="abrirPersonalizacao('pasteis')">ESCOLHER SABOR</button>
 </div>
 
 </div>
-
 </section>
 
 
 <!-- =========================
      PORÇÕES
 ========================= -->
-
 <section id="porcoes" class="categoria">
-
-<div class="categoria-titulo">
-🍟 PORÇÕES
-</div>
-
+<div class="categoria-titulo">🍟 PORÇÕES</div>
 <div class="produtos">
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png">
-<h3>BATATA</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 6,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('batata')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png">
-<h3>BATATA COMPLETA</h3>
-<p>Batata completa com cheddar e bacon.</p>
-<div class="preco">A partir de R$ 12,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('batataCompleta')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png">
-<h3>NUGGETS</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 9,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('nuggets')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png">
-<h3>ANEL DE CEBOLA</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 9,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('anelCebola')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png">
-<h3>FRANGO FRITO</h3>
-<p>Escolha o tamanho.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('frangoFrito')">ESCOLHER</button>
-</div>
-
-</div>
-</section>
-
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/JT71z1Y/BATATA.png"><h3>BATATA</h3><p>Escolha o tamanho.</p><div class="preco">A partir de R$ 6,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('batata')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/v4QS3vVp/BATATA-COM-CHEDDAR-E-BACON.png"><h3>BATATA COMPLETA</h3><p>Batata completa com cheddar e bacon.</p><div class="preco">A partir de R$ 12,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('batataCompleta')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/39SVqYJP/NUGGETS.png"><h3>NUGGETS</h3><p>Escolha o tamanho.</p><div class="preco">A partir de R$ 9,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('nuggets')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/Pz0W4RKj/ONION-RINGS.png"><h3>ANEL DE CEBOLA</h3><p>Escolha o tamanho.</p><div class="preco">A partir de R$ 9,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('anelCebola')">ESCOLHER</button></div>
+<div class="produto"><img class="produto-imagem" src="https://i.ibb.co/Fb7LHQXC/FRANGO-PEDA-OS-EMPANADO.png"><h3>FRANGO FRITO</h3><p>Escolha o tamanho.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('frangoFrito')">ESCOLHER</button></div>
+</div></section>
 
 <!-- =========================
      MILKSHAKES
 ========================= -->
-
 <section id="milkshakes" class="categoria">
-
-<div class="categoria-titulo">
-🥤 MILKSHAKES
-</div>
-
+<div class="categoria-titulo">🥤 MILKSHAKES</div>
 <div class="produtos">
-
-<div class="produto">
-<h3>OVOMALTINE</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('milkOvomaltine')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>OREO</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('milkOreo')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>PAÇOCA</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('milkPacoca')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>NESQUIK</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('milkNesquik')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>LEITE NINHO</h3>
-<p>Milkshake cremoso.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('milkNinho')">ESCOLHER</button>
-</div>
-
-<div class="produto">
-<h3>DE AÇAÍ</h3>
-<p>Milkshake de açaí.</p>
-<div class="preco">A partir de R$ 15,00</div>
-<button class="btn btn-add" onclick="abrirPersonalizacao('milkAcai')">ESCOLHER</button>
-</div>
-
-</div>
-</section>
-
+<div class="produto"><h3>OVOMALTINE</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkOvomaltine')">ESCOLHER</button></div>
+<div class="produto"><h3>OREO</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkOreo')">ESCOLHER</button></div>
+<div class="produto"><h3>PAÇOCA</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkPacoca')">ESCOLHER</button></div>
+<div class="produto"><h3>NESQUIK</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkNesquik')">ESCOLHER</button></div>
+<div class="produto"><h3>LEITE NINHO</h3><p>Milkshake cremoso.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkNinho')">ESCOLHER</button></div>
+<div class="produto"><h3>DE AÇAÍ</h3><p>Milkshake de açaí.</p><div class="preco">A partir de R$ 15,00</div><button class="btn btn-add" onclick="abrirPersonalizacao('milkAcai')">ESCOLHER</button></div>
+</div></section>
 
 <!-- =========================
      SOBREMESAS
@@ -1804,37 +1443,15 @@ ESCOLHER SABOR
      CARRINHO
 ========================= -->
 
-<div id="checkoutModal" class="modal-checkout">
-
-<div class="modal-checkout-box">
-
-<div class="modal-topo">
-
-<h2>🛒 SEU PEDIDO</h2>
-
-<button
-class="btn-fechar-modal"
-onclick="fecharCheckout()"
->
-×
-</button>
-
-</div>
-
-<div
-id="etapaCarrinho"
-class="checkout-etapa ativo"
->
-
 <div class="carrinho">
 
 <h2>🛒 SEU CARRINHO</h2>
 
 <div id="carrinhoItens">
 
-<div class="vazio">
-Seu carrinho está vazio.
-</div>
+    <div class="vazio">
+        Seu carrinho está vazio.
+    </div>
 
 </div>
 
@@ -1859,31 +1476,12 @@ Seu carrinho está vazio.
 
 </div>
 
-<button
-class="btn-finalizar-etapa"
-onclick="irParaFormulario()"
->
-FINALIZAR PEDIDO →
-</button>
-
-<button
-class="btn-continuar-etapa"
-onclick="fecharCheckout()"
->
-← CONTINUAR COMPRANDO
-</button>
-
-</div>
-
 
 <!-- =========================
      DADOS DO PEDIDO
 ========================= -->
 
-<div
-id="etapaFormulario"
-class="formulario checkout-formulario"
->
+<div class="formulario">
 
 <h2>📍 DADOS DO PEDIDO</h2>
 
@@ -1895,6 +1493,7 @@ id="nome"
 placeholder="Digite seu nome"
 >
 
+
 <label>Telefone</label>
 
 <input
@@ -1903,12 +1502,10 @@ id="telefone"
 placeholder="Digite seu telefone"
 >
 
+
 <label>Tipo do pedido</label>
 
-<select
-id="tipoPedido"
-onchange="alterarTipoPedido()"
->
+<select id="tipoPedido" onchange="alterarTipoPedido()">
 
 <option value="ENTREGA">
 🚚 DELIVERY
@@ -1925,16 +1522,14 @@ onchange="alterarTipoPedido()"
 
 <label>Rua</label>
 
-<select
-id="rua"
-onchange="calcularTaxa()"
->
+<select id="rua" onchange="calcularTaxa()">
 
 <option value="">
 Selecione sua rua
 </option>
 
 </select>
+
 
 <label>Número</label>
 
@@ -1944,6 +1539,7 @@ id="numero"
 placeholder="Número da residência"
 >
 
+
 <label>Complemento</label>
 
 <input
@@ -1952,10 +1548,8 @@ id="complemento"
 placeholder="Apartamento, casa, bloco..."
 >
 
-<div
-id="avisoTaxa"
-class="aviso-taxa"
-></div>
+
+<div id="avisoTaxa" class="aviso-taxa"></div>
 
 </div>
 
@@ -1980,13 +1574,18 @@ DINHEIRO
 CARTÃO
 </option>
 
+<option value="IFOOD">
+IFOOD
+</option>
+
+<option value="99FOOD">
+99FOOD
+</option>
+
 </select>
 
 
-<div
-id="trocoArea"
-style="display:none;"
->
+<div id="trocoArea" style="display:none;">
 
 <label>Troco para quanto?</label>
 
@@ -2023,57 +1622,34 @@ onclick="limparCarrinho()"
 🗑️ LIMPAR CARRINHO
 </button>
 
-<button
-class="btn-continuar-etapa"
-onclick="voltarParaCarrinho()"
->
-← VOLTAR AO CARRINHO
-</button>
-
 </div>
 
-</div>
 </div>
 
 
 <!-- =========================
      MODAL DE PERSONALIZAÇÃO
 ========================= -->
-
-<div
-id="modalPersonalizacao"
-class="modal-personalizacao"
->
-
-<div class="modal-box">
-
-<div class="modal-topo">
-
-<h2 id="modalTitulo">
-Personalizar
-</h2>
-
-<button
-class="modal-fechar"
-onclick="fecharPersonalizacao()"
->
-×
-</button>
-
+<div id="modalPersonalizacao" class="modal-personalizacao">
+  <div class="modal-box">
+    <div class="modal-topo">
+      <h2 id="modalTitulo">Personalizar</h2>
+      <button class="modal-fechar" onclick="fecharPersonalizacao()">×</button>
+    </div>
+    <div id="modalConteudo"></div>
+  </div>
 </div>
-
-<div id="modalConteudo"></div>
-
-</div>
-
-</div>
-
 
 <!-- =========================
-     CRIADOR
+     AVATAR
 ========================= -->
 
 <div class="criador">
+
+<img
+id="avatarCriador"
+alt="Neeh Diiniz"
+>
 
 <div class="criador-texto">
 SITE CRIADO POR : <span>NEEH DIINIZ</span>
@@ -2091,6 +1667,27 @@ Obrigado pela preferência ❤️
 
 
 <script>
+
+/* ============================================================
+   AVATAR
+   ============================================================ */
+
+/*
+   Avatar incorporado no próprio HTML.
+   Não depende de outro arquivo do GitHub.
+*/
+
+const avatarBase64 =
+"data:image/webp;base64,UklGRipaAABXRUJQVlA4WAoAAAAQAAAAPwEA3AAAQUxQSCkPAAABDAVt20gJf9h77q5HICImgD+t75wfuX7i4QN/qTnGECqXPeZ6";
+
+
+/*
+   Caso o navegador não consiga carregar a versão
+   incorporada acima, o espaço continua reservado.
+*/
+
+document.getElementById("avatarCriador").src = avatarBase64;
+
 
 /* ============================================================
    TAXAS DE ENTREGA
@@ -2263,778 +1860,261 @@ currency:"BRL"
 ============================================================ */
 
 const produtosPersonalizaveis = {
+    acai: {
+        titulo: "AÇAÍ",
+        tamanhos: [
+            ["200ML",11.90], ["300ML",15.00], ["400ML",18.00], ["700ML",32.00]
+        ],
+        acompanhamentos: [
+            ["CALDA DE MORANGO",0],["CALDA DE CHOCOLATE",0],["LEITE CONDENSADO",0],
+            ["PAÇOCA",0],["OREO",0],["CONFETE",0],["OVOMALTINE",0],["NESQUIK",0],
+            ["NUTELLA",5],["SUCRILHOS",0],["GRANOLA",0],["MORANGO",0],["MANGA",0],
+            ["BANANA",0],["LEITE EM PÓ",0],["KIT KAT",3],["CHOCOBALL",0],
+            ["DOCE DE LEITE",0],["CREME DE NINHO",3],["KIWI",0]
+        ]
+    },
+    casadinho: {
+        titulo: "CASADINHO",
+        tamanhos: [["200ML",11.90]],
+        acompanhamentos: []
+    },
+    truffado: {
+        titulo: "AÇAÍ TRUFFADO",
+        tamanhos: [["300ML",26.00],["400ML",29.00],["700ML",43.00]],
+        acompanhamentos: []
+    },
+    tentacao: {
+        titulo: "TENTAÇÃO DE MORANGO",
+        tamanhos: [["300ML",18.00],["400ML",18.00],["700ML",32.00]],
+        acompanhamentos: []
+    },
 
-acai:{
-titulo:"AÇAÍ",
-tamanhos:[
-["200ML",11.90],
-["300ML",15.00],
-["400ML",18.00],
-["700ML",32.00]
-],
-acompanhamentos:[
-["CALDA DE MORANGO",0],
-["CALDA DE CHOCOLATE",0],
-["LEITE CONDENSADO",0],
-["PAÇOCA",0],
-["OREO",0],
-["CONFETE",0],
-["OVOMALTINE",0],
-["NESQUIK",0],
-["NUTELLA",5],
-["SUCRILHOS",0],
-["GRANOLA",0],
-["MORANGO",0],
-["MANGA",0],
-["BANANA",0],
-["LEITE EM PÓ",0],
-["KIT KAT",3],
-["CHOCOBALL",0],
-["DOCE DE LEITE",0],
-["CREME DE NINHO",3],
-["KIWI",0]
-]
-},
+    milkOvomaltine:{titulo:"MILKSHAKE OVOMALTINE", tamanhos:[["300ML",15],["400ML",18],["700ML",30]], acompanhamentos:[]},
+    milkOreo:{titulo:"MILKSHAKE OREO", tamanhos:[["300ML",15],["400ML",18],["700ML",30]], acompanhamentos:[]},
+    milkPacoca:{titulo:"MILKSHAKE PAÇOCA", tamanhos:[["300ML",15],["400ML",18],["700ML",30]], acompanhamentos:[]},
+    milkNesquik:{titulo:"MILKSHAKE NESQUIK", tamanhos:[["300ML",15],["400ML",18],["700ML",30]], acompanhamentos:[]},
+    milkNinho:{titulo:"MILKSHAKE LEITE NINHO", tamanhos:[["300ML",15],["400ML",18],["700ML",30]], acompanhamentos:[]},
+    milkAcai:{titulo:"MILKSHAKE DE AÇAÍ", tamanhos:[["300ML",15],["400ML",18],["700ML",30]], acompanhamentos:[]},
 
-casadinho:{
-titulo:"CASADINHO",
-tamanhos:[
-["200ML",11.90]
-],
-acompanhamentos:[]
-},
+    batata:{titulo:"BATATA", tamanhos:[["P",6],["M",15],["G",32]], acompanhamentos:[]},
+    batataCompleta:{titulo:"BATATA COMPLETA", tamanhos:[["P",12],["M",21],["G",57]], acompanhamentos:[]},
+    nuggets:{titulo:"NUGGETS", tamanhos:[["P",9],["M",16],["G",55]], acompanhamentos:[]},
+    anelCebola:{titulo:"ANEL DE CEBOLA", tamanhos:[["P",9],["M",16],["G",55]], acompanhamentos:[]},
+    frangoFrito:{titulo:"FRANGO FRITO", tamanhos:[["P",15],["M",27],["G",70]], acompanhamentos:[]}
+};
 
-truffado:{
-titulo:"AÇAÍ TRUFFADO",
-tamanhos:[
-["300ML",26.00],
-["400ML",29.00],
-["700ML",43.00]
-],
-acompanhamentos:[]
-},
+/* ============================================================
+   SABORES DE PASTÉIS
+============================================================ */
 
-tentacao:{
-titulo:"TENTAÇÃO DE MORANGO",
-tamanhos:[
-["300ML",18.00],
-["400ML",18.00],
-["700ML",32.00]
-],
-acompanhamentos:[]
-},
-
-/* =========================
-   PASTÉIS SALGADOS
-========================= */
-
-pasteisSalgados:{
-titulo:"PASTÉIS SALGADOS",
-
-sabores:[
-["PASTEL DE CARNE",11.00],
-["CARNE COM QUEIJO",11.00],
-["CARNE COM CHEDDAR",11.00],
-["CARNE COM CATUPIRY",11.00],
-["QUEIJO",11.00],
-["FRANGO",11.00],
-["FRANGO COM QUEIJO",11.00],
-["FRANGO COM CATUPIRY",11.00],
-["FRANGO COM CHEDDAR",11.00],
-["BAURU",11.00],
-["PIZZA",11.00],
-["FRANGO COM QUEIJO E OVO",11.00],
-["CARNE COM OVO",11.00],
-["PRESUNTO COM QUEIJO",11.00],
-["3 QUEIJOS",11.00],
-["PASTEL ND",11.00],
-["PASTEL ESPECIAL",15.00]
-]
-},
-
-/* =========================
-   PASTÉIS DOCES
-========================= */
-
-pasteisDoces:{
-titulo:"PASTÉIS DOCES",
-
-sabores:[
-["A MODA CAROL",15.00],
-["NUTELLA COM BANANA",13.00],
-["DOCE DE LEITE COM BANANA",13.00],
-["NINHO COM MORANGO",13.00],
-["NINHO",13.00],
-["KITKAT COM NINHO",13.00],
-["NINHO COM OREO",13.00],
-["NUTELLA COM MORANGO",13.00],
-["NUTELLA",13.00]
-]
-},
-
-milkOvomaltine:{
-titulo:"MILKSHAKE OVOMALTINE",
-tamanhos:[
-["300ML",15],
-["400ML",18],
-["700ML",30]
-],
-acompanhamentos:[]
-},
-
-milkOreo:{
-titulo:"MILKSHAKE OREO",
-tamanhos:[
-["300ML",15],
-["400ML",18],
-["700ML",30]
-],
-acompanhamentos:[]
-},
-
-milkPacoca:{
-titulo:"MILKSHAKE PAÇOCA",
-tamanhos:[
-["300ML",15],
-["400ML",18],
-["700ML",30]
-],
-acompanhamentos:[]
-},
-
-milkNesquik:{
-titulo:"MILKSHAKE NESQUIK",
-tamanhos:[
-["300ML",15],
-["400ML",18],
-["700ML",30]
-],
-acompanhamentos:[]
-},
-
-milkNinho:{
-titulo:"MILKSHAKE LEITE NINHO",
-tamanhos:[
-["300ML",15],
-["400ML",18],
-["700ML",30]
-],
-acompanhamentos:[]
-},
-
-milkAcai:{
-titulo:"MILKSHAKE DE AÇAÍ",
-tamanhos:[
-["300ML",15],
-["400ML",18],
-["700ML",30]
-],
-acompanhamentos:[]
-},
-
-batata:{
-titulo:"BATATA",
-tamanhos:[
-["P",6],
-["M",15],
-["G",32]
-],
-acompanhamentos:[]
-},
-
-batataCompleta:{
-titulo:"BATATA COMPLETA",
-tamanhos:[
-["P",12],
-["M",21],
-["G",57]
-],
-acompanhamentos:[]
-},
-
-nuggets:{
-titulo:"NUGGETS",
-tamanhos:[
-["P",9],
-["M",16],
-["G",55]
-],
-acompanhamentos:[]
-},
-
-anelCebola:{
-titulo:"ANEL DE CEBOLA",
-tamanhos:[
-["P",9],
-["M",16],
-["G",55]
-],
-acompanhamentos:[]
-},
-
-frangoFrito:{
-titulo:"FRANGO FRITO",
-tamanhos:[
-["P",15],
-["M",27],
-["G",70]
-],
-acompanhamentos:[]
-}
-
+const saboresPasteis = {
+    salgados: [
+        ["PASTEL DE CARNE",11],
+        ["PASTEL DE CARNE COM QUEIJO",11],
+        ["PASTEL DE CARNE COM CHEDDAR",11],
+        ["PASTEL DE CARNE COM CATUPIRY",11],
+        ["PASTEL DE QUEIJO",11],
+        ["PASTEL DE FRANGO",11],
+        ["PASTEL DE FRANGO COM QUEIJO",11],
+        ["PASTEL DE FRANGO COM CATUPIRY",11],
+        ["PASTEL DE FRANGO COM CHEDDAR",11],
+        ["PASTEL DE BAURU",11],
+        ["PASTEL DE PIZZA",11],
+        ["PASTEL DE FRANGO COM QUEIJO E OVO",11],
+        ["PASTEL DE CARNE COM OVO",11],
+        ["PASTEL DE PRESUNTO COM QUEIJO",11],
+        ["PASTEL 3 QUEIJOS",11],
+        ["PASTEL ND",11],
+        ["PASTEL ESPECIAL",15]
+    ],
+    doces: [
+        ["PASTEL A MODA CAROL",15],
+        ["PASTEL DE NUTELLA COM BANANA",13],
+        ["PASTEL DE DOCE DE LEITE COM BANANA",13],
+        ["PASTEL DE NINHO COM MORANGO",13],
+        ["PASTEL DE NINHO",13],
+        ["PASTEL DE KITKAT COM NINHO",13],
+        ["PASTEL DE NINHO COM OREO",13],
+        ["PASTEL DE NUTELLA COM MORANGO",13],
+        ["PASTEL DE NUTELLA",13]
+    ]
 };
 
 let produtoModalAtual = null;
-let saborModalAtual = null;
-
-
-/* ============================================================
-   ABRIR PERSONALIZAÇÃO
-============================================================ */
 
 function abrirPersonalizacao(chave){
 
-const produto =
-produtosPersonalizaveis[chave];
+    /* PASTÉIS: escolha do sabor dentro da categoria */
+    if(chave === "pasteis"){
+        const modal = document.getElementById("modalPersonalizacao");
+        const conteudo = document.getElementById("modalConteudo");
+        document.getElementById("modalTitulo").innerText = "🥟 ESCOLHA SEU PASTEL";
+        produtoModalAtual = {tipo:"pasteis"};
 
-if(!produto) return;
+        let html = `
+        <div class="modal-secao" style="margin-top:0;padding-top:0;border-top:0">
+            <h3>🥟 PASTÉIS SALGADOS</h3>
+            <div class="lista-acompanhamentos">`;
 
-produtoModalAtual = produto;
-saborModalAtual = null;
+        saboresPasteis.salgados.forEach((p,i)=>{
+            html += `<label class="opcao-acomp" style="justify-content:space-between">
+                <span style="display:flex;align-items:center;gap:8px">
+                    <input type="radio" name="pastelModal" value="salgados|${i}" onchange="atualizarTotalModalPastel()">
+                    <span>${p[0]}</span>
+                </span>
+                <strong class="preco-adicional">${moeda(p[1])}</strong>
+            </label>`;
+        });
 
-const modal =
-document.getElementById("modalPersonalizacao");
+        html += `</div></div>
+        <div class="modal-secao">
+            <h3>🍫 PASTÉIS DOCES</h3>
+            <div class="lista-acompanhamentos">`;
 
-const conteudo =
-document.getElementById("modalConteudo");
+        saboresPasteis.doces.forEach((p,i)=>{
+            html += `<label class="opcao-acomp" style="justify-content:space-between">
+                <span style="display:flex;align-items:center;gap:8px">
+                    <input type="radio" name="pastelModal" value="doces|${i}" onchange="atualizarTotalModalPastel()">
+                    <span>${p[0]}</span>
+                </span>
+                <strong class="preco-adicional">${moeda(p[1])}</strong>
+            </label>`;
+        });
 
-document.getElementById("modalTitulo").innerText =
-produto.titulo;
+        html += `</div></div>
+        <div class="modal-total"><span>TOTAL</span><strong id="modalTotal">ESCOLHA UM SABOR</strong></div>
+        <button class="btn btn-confirmar-personalizacao" onclick="confirmarPersonalizacaoPastel()">✅ ADICIONAR AO CARRINHO</button>`;
 
+        conteudo.innerHTML = html;
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        return;
+    }
 
-/* ============================================================
-   PRODUTO COM SABORES
-============================================================ */
+    const produto = produtosPersonalizaveis[chave];
+    if(!produto) return;
 
-if(
-produto.sabores &&
-produto.sabores.length
-){
+    produtoModalAtual = produto;
+    const modal = document.getElementById("modalPersonalizacao");
+    const conteudo = document.getElementById("modalConteudo");
+    document.getElementById("modalTitulo").innerText = produto.titulo;
 
-let html =
-`
-<div class="modal-secao" style="border-top:0;margin-top:0;padding-top:0;">
+    let html = `<div class="modal-secao"><h3>📏 ESCOLHA O TAMANHO</h3><div class="opcoes-tamanho">`;
+    produto.tamanhos.forEach((t,i)=>{
+        html += `<div class="opcao-tamanho">
+            <input type="radio" name="tamanhoModal" id="tam_${i}" value="${i}" ${i===0?'checked':''} onchange="atualizarTotalModal()">
+            <label for="tam_${i}">${t[0]}<br>${moeda(t[1])}</label>
+        </div>`;
+    });
+    html += `</div></div>`;
 
-<h3>🥟 ESCOLHA O SABOR</h3>
+    if(produto.acompanhamentos && produto.acompanhamentos.length){
+        html += `<div class="modal-secao"><h3>🍓 ACOMPANHAMENTOS</h3><div class="lista-acompanhamentos">`;
+        produto.acompanhamentos.forEach((a,i)=>{
+            const pago = a[1] > 0;
+            html += `<label class="opcao-acomp">
+                <input type="checkbox" name="acompModal" value="${i}" onchange="atualizarTotalModal()">
+                <span>${a[0]} ${pago ? `<span class="preco-adicional">+ ${moeda(a[1])}</span>` : '<span>GRÁTIS</span>'}</span>
+            </label>`;
+        });
+        html += `</div></div>`;
+    }
 
-<div class="seletor-sabor">
-`;
+    html += `<div class="modal-total"><span>TOTAL</span><strong id="modalTotal">${moeda(produto.tamanhos[0][1])}</strong></div>
+        <button class="btn btn-confirmar-personalizacao" onclick="confirmarPersonalizacao()">✅ ADICIONAR AO CARRINHO</button>`;
 
-
-produto.sabores.forEach((s,i)=>{
-
-html +=
-`
-<div class="opcao-sabor">
-
-<input
-type="radio"
-name="saborModal"
-id="sabor_${i}"
-value="${i}"
-onchange="atualizarTotalModal()"
->
-
-<label for="sabor_${i}">
-
-<span class="sabor-nome">
-${s[0]}
-</span>
-
-<span class="sabor-preco">
-${moeda(s[1])}
-</span>
-
-</label>
-
-</div>
-`;
-
-});
-
-
-html +=
-`
-</div>
-</div>
-
-<div class="modal-total">
-
-<span>TOTAL</span>
-
-<strong id="modalTotal">
-R$ 0,00
-</strong>
-
-</div>
-
-<button
-class="btn btn-confirmar-personalizacao"
-onclick="confirmarPersonalizacao()"
->
-✅ ADICIONAR AO CARRINHO
-</button>
-`;
-
-
-conteudo.innerHTML =
-html;
-
-modal.style.display =
-"flex";
-
-document.body.style.overflow =
-"hidden";
-
-return;
-
+    conteudo.innerHTML = html;
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
 }
 
+function atualizarTotalModalPastel(){
+    const selecionado = document.querySelector('input[name="pastelModal"]:checked');
+    const total = document.getElementById("modalTotal");
+    if(!selecionado){
+        total.innerText = "ESCOLHA UM SABOR";
+        return;
+    }
 
-/* ============================================================
-   PRODUTOS COM TAMANHO
-============================================================ */
-
-let html =
-`<div class="modal-secao">
-
-<h3>📏 ESCOLHA O TAMANHO</h3>
-
-<div class="opcoes-tamanho">`;
-
-
-produto.tamanhos.forEach((t,i)=>{
-
-html +=
-`<div class="opcao-tamanho">
-
-<input
-type="radio"
-name="tamanhoModal"
-id="tam_${i}"
-value="${i}"
-${i===0?'checked':''}
-onchange="atualizarTotalModal()"
->
-
-<label for="tam_${i}">
-${t[0]}<br>${moeda(t[1])}
-</label>
-
-</div>`;
-
-});
-
-
-html +=
-`</div></div>`;
-
-
-if(
-produto.acompanhamentos &&
-produto.acompanhamentos.length
-){
-
-html +=
-`<div class="modal-secao">
-
-<h3>🍓 ACOMPANHAMENTOS</h3>
-
-<div class="lista-acompanhamentos">`;
-
-
-produto.acompanhamentos.forEach((a,i)=>{
-
-const pago =
-a[1] > 0;
-
-html +=
-`<label class="opcao-acomp">
-
-<input
-type="checkbox"
-name="acompModal"
-value="${i}"
-onchange="atualizarTotalModal()"
->
-
-<span>
-
-${a[0]}
-
-${pago
-? `<span class="preco-adicional">+ ${moeda(a[1])}</span>`
-: '<span>GRÁTIS</span>'}
-
-</span>
-
-</label>`;
-
-});
-
-
-html +=
-`</div></div>`;
-
+    const partes = selecionado.value.split("|");
+    const lista = saboresPasteis[partes[0]];
+    const pastel = lista[parseInt(partes[1],10)];
+    total.innerText = moeda(pastel[1]);
 }
 
+function confirmarPersonalizacaoPastel(){
+    const selecionado = document.querySelector('input[name="pastelModal"]:checked');
+    if(!selecionado){
+        alert("Escolha o sabor do pastel.");
+        return;
+    }
 
-html +=
-`<div class="modal-total">
+    const partes = selecionado.value.split("|");
+    const lista = saboresPasteis[partes[0]];
+    const pastel = lista[parseInt(partes[1],10)];
 
-<span>TOTAL</span>
-
-<strong id="modalTotal">
-${moeda(produto.tamanhos[0][1])}
-</strong>
-
-</div>
-
-<button
-class="btn btn-confirmar-personalizacao"
-onclick="confirmarPersonalizacao()"
->
-✅ ADICIONAR AO CARRINHO
-</button>`;
-
-
-conteudo.innerHTML =
-html;
-
-modal.style.display =
-"flex";
-
-document.body.style.overflow =
-"hidden";
-
+    adicionar(pastel[0], pastel[1]);
+    fecharPersonalizacao();
 }
-
-
-/* ============================================================
-   ATUALIZAR TOTAL DO MODAL
-============================================================ */
 
 function atualizarTotalModal(){
-
-if(!produtoModalAtual)
-return;
-
-
-/* =========================
-   PRODUTO COM SABOR
-========================= */
-
-if(
-produtoModalAtual.sabores &&
-produtoModalAtual.sabores.length
-){
-
-const saborSelecionado =
-document.querySelector(
-'input[name="saborModal"]:checked'
-);
-
-const totalElemento =
-document.getElementById("modalTotal");
-
-if(!totalElemento)
-return;
-
-if(!saborSelecionado){
-
-totalElemento.innerText =
-"R$ 0,00";
-
-return;
-
+    if(!produtoModalAtual) return;
+    const tamanhoSelecionado = document.querySelector('input[name="tamanhoModal"]:checked');
+    if(!tamanhoSelecionado) return;
+    const tamanho = produtoModalAtual.tamanhos[parseInt(tamanhoSelecionado.value,10)];
+    let total = tamanho[1];
+    document.querySelectorAll('input[name="acompModal"]:checked').forEach(el=>{
+        total += produtoModalAtual.acompanhamentos[parseInt(el.value,10)][1];
+    });
+    document.getElementById("modalTotal").innerText = moeda(total);
 }
-
-const sabor =
-produtoModalAtual.sabores[
-parseInt(
-saborSelecionado.value,
-10
-)
-];
-
-saborModalAtual =
-sabor;
-
-totalElemento.innerText =
-moeda(sabor[1]);
-
-return;
-
-}
-
-
-/* =========================
-   PRODUTO COM TAMANHO
-========================= */
-
-const tamanhoSelecionado =
-document.querySelector(
-'input[name="tamanhoModal"]:checked'
-);
-
-if(!tamanhoSelecionado)
-return;
-
-const tamanho =
-produtoModalAtual.tamanhos[
-parseInt(
-tamanhoSelecionado.value,
-10
-)
-];
-
-let total =
-tamanho[1];
-
-
-document
-.querySelectorAll(
-'input[name="acompModal"]:checked'
-)
-.forEach(el=>{
-
-total +=
-produtoModalAtual.acompanhamentos[
-parseInt(el.value,10)
-][1];
-
-});
-
-
-document.getElementById("modalTotal").innerText =
-moeda(total);
-
-}
-
-
-/* ============================================================
-   FECHAR PERSONALIZAÇÃO
-============================================================ */
 
 function fecharPersonalizacao(){
-
-document.getElementById(
-"modalPersonalizacao"
-).style.display =
-"none";
-
-document.body.style.overflow =
-"";
-
-produtoModalAtual =
-null;
-
-saborModalAtual =
-null;
-
+    document.getElementById("modalPersonalizacao").style.display = "none";
+    document.body.style.overflow = "";
+    produtoModalAtual = null;
 }
-
-
-/* ============================================================
-   CONFIRMAR PERSONALIZAÇÃO
-============================================================ */
 
 function confirmarPersonalizacao(){
+    if(!produtoModalAtual) return;
+    const tamanhoSelecionado = document.querySelector('input[name="tamanhoModal"]:checked');
+    if(!tamanhoSelecionado) return;
 
-if(!produtoModalAtual)
-return;
+    const tamanho = produtoModalAtual.tamanhos[parseInt(tamanhoSelecionado.value,10)];
+    let preco = tamanho[1];
+    const detalhes = [];
 
+    document.querySelectorAll('input[name="acompModal"]:checked').forEach(el=>{
+        const acomp = produtoModalAtual.acompanhamentos[parseInt(el.value,10)];
+        preco += acomp[1];
+        detalhes.push(acomp[0] + (acomp[1] > 0 ? " (" + moeda(acomp[1]) + ")" : ""));
+    });
 
-/* ============================================================
-   PRODUTO COM SABOR
-============================================================ */
+    carrinho.push({
+        nome: produtoModalAtual.titulo + " " + tamanho[0],
+        preco: preco,
+        quantidade: 1,
+        detalhes: detalhes,
+        tamanho: tamanho[0]
+    });
 
-if(
-produtoModalAtual.sabores &&
-produtoModalAtual.sabores.length
-){
-
-const saborSelecionado =
-document.querySelector(
-'input[name="saborModal"]:checked'
-);
-
-if(!saborSelecionado){
-
-alert(
-"Escolha o sabor do pastel."
-);
-
-return;
-
+    atualizarCarrinho();
+    fecharPersonalizacao();
 }
-
-const sabor =
-produtoModalAtual.sabores[
-parseInt(
-saborSelecionado.value,
-10
-)
-];
-
-carrinho.push({
-
-nome:
-produtoModalAtual.titulo +
-" - " +
-sabor[0],
-
-preco:
-sabor[1],
-
-quantidade:
-1,
-
-detalhes:[
-"Sabor: " +
-sabor[0]
-]
-
-});
-
-atualizarCarrinho();
-
-fecharPersonalizacao();
-
-return;
-
-}
-
-
-/* ============================================================
-   PRODUTO COM TAMANHO
-============================================================ */
-
-const tamanhoSelecionado =
-document.querySelector(
-'input[name="tamanhoModal"]:checked'
-);
-
-if(!tamanhoSelecionado)
-return;
-
-const tamanho =
-produtoModalAtual.tamanhos[
-parseInt(
-tamanhoSelecionado.value,
-10
-)
-];
-
-let preco =
-tamanho[1];
-
-const detalhes = [];
-
-
-document
-.querySelectorAll(
-'input[name="acompModal"]:checked'
-)
-.forEach(el=>{
-
-const acomp =
-produtoModalAtual.acompanhamentos[
-parseInt(el.value,10)
-];
-
-preco +=
-acomp[1];
-
-detalhes.push(
-acomp[0] +
-(
-acomp[1] > 0
-? " (" + moeda(acomp[1]) + ")"
-: ""
-)
-);
-
-});
-
-
-carrinho.push({
-
-nome:
-produtoModalAtual.titulo +
-" " +
-tamanho[0],
-
-preco:
-preco,
-
-quantidade:
-1,
-
-detalhes:
-detalhes,
-
-tamanho:
-tamanho[0]
-
-});
-
-
-atualizarCarrinho();
-
-fecharPersonalizacao();
-
-}
-
 
 /* ============================================================
    ADICIONAR PRODUTO SIMPLES
 ============================================================ */
 
 function adicionar(nome,preco){
-
-const existente =
-carrinho.find(
-item =>
-item.nome === nome &&
-!item.detalhes
-);
-
-if(existente){
-
-existente.quantidade++;
-
-}else{
-
-carrinho.push({
-
-nome:
-nome,
-
-preco:
-preco,
-
-quantidade:
-1
-
-});
-
+    const existente = carrinho.find(item => item.nome === nome && !item.detalhes);
+    if(existente){
+        existente.quantidade++;
+    }else{
+        carrinho.push({nome:nome,preco:preco,quantidade:1});
+    }
+    atualizarCarrinho();
 }
-
-atualizarCarrinho();
-
-}
-
 
 /* ============================================================
    ALTERAR QUANTIDADE
@@ -3042,12 +2122,9 @@ atualizarCarrinho();
 
 function alterarQuantidade(index,valor){
 
-carrinho[index].quantidade +=
-valor;
+carrinho[index].quantidade += valor;
 
-if(
-carrinho[index].quantidade <= 0
-){
+if(carrinho[index].quantidade <= 0){
 
 carrinho.splice(index,1);
 
@@ -3078,12 +2155,9 @@ atualizarCarrinho();
 function atualizarCarrinho(){
 
 const area =
-document.getElementById(
-"carrinhoItens"
-);
+document.getElementById("carrinhoItens");
 
 area.innerHTML = "";
-
 
 if(carrinho.length === 0){
 
@@ -3096,19 +2170,14 @@ Seu carrinho está vazio.
 
 }
 
-
 let subtotal = 0;
-
 
 carrinho.forEach((item,index)=>{
 
 const totalItem =
-item.preco *
-item.quantidade;
+item.preco * item.quantidade;
 
-subtotal +=
-totalItem;
-
+subtotal += totalItem;
 
 area.innerHTML +=
 `
@@ -3116,35 +2185,16 @@ area.innerHTML +=
 
 <div class="item-info">
 
-<strong>
-${item.nome}
-</strong>
+<strong>${item.nome}</strong>
 
-<small>
-${moeda(item.preco)} cada
-</small>
-
-${
-item.detalhes &&
-item.detalhes.length
-?
-`<small
-style="display:block;color:#f5c400;margin-top:5px;line-height:1.5"
->
-↳ ${item.detalhes.join(", ")}
-</small>`
-:
-""
-}
+<small>${moeda(item.preco)} cada</small>
+${item.detalhes && item.detalhes.length ? `<small style="display:block;color:#f5c400;margin-top:5px;line-height:1.5">↳ ${item.detalhes.join(", ")}</small>` : ""}
 
 </div>
 
-
 <div class="controles">
 
-<button
-onclick="alterarQuantidade(${index},-1)"
->
+<button onclick="alterarQuantidade(${index},-1)">
 −
 </button>
 
@@ -3152,9 +2202,7 @@ onclick="alterarQuantidade(${index},-1)"
 ${item.quantidade}
 </strong>
 
-<button
-onclick="alterarQuantidade(${index},1)"
->
+<button onclick="alterarQuantidade(${index},1)">
 +
 </button>
 
@@ -3167,7 +2215,6 @@ X
 
 </div>
 
-
 <strong>
 ${moeda(totalItem)}
 </strong>
@@ -3176,7 +2223,6 @@ ${moeda(totalItem)}
 `;
 
 });
-
 
 document.getElementById("subtotal").innerText =
 moeda(subtotal);
@@ -3193,47 +2239,32 @@ calcularTaxa();
 function calcularTaxa(){
 
 const tipo =
-document.getElementById(
-"tipoPedido"
-).value;
-
-const selectRua =
-document.getElementById("rua");
-
-const ruaSelecionada =
-selectRua
-? selectRua.value
-: "";
+document.getElementById("tipoPedido").value;
 
 let taxa = 0;
 
+if(tipo === "ENTREGA"){
 
-if(
-tipo === "ENTREGA" &&
-ruaSelecionada &&
-taxas[ruaSelecionada] !== undefined
-){
+const rua =
+document.getElementById("rua").value;
 
-taxa =
-taxas[ruaSelecionada];
+if(rua && taxas[rua] !== undefined){
+
+taxa = taxas[rua];
 
 }
 
+}
 
 const subtotal =
 carrinho.reduce(
 (soma,item)=>
-soma +
-item.preco *
-item.quantidade,
+soma + item.preco * item.quantidade,
 0
 );
 
-
 const total =
-subtotal +
-taxa;
-
+subtotal + taxa;
 
 document.getElementById("taxa").innerText =
 moeda(taxa);
@@ -3241,33 +2272,23 @@ moeda(taxa);
 document.getElementById("total").innerText =
 moeda(total);
 
-
 const aviso =
 document.getElementById("avisoTaxa");
 
+if(tipo === "ENTREGA" && rua){
 
-if(
-tipo === "ENTREGA" &&
-ruaSelecionada
-){
-
-aviso.style.display =
-"block";
+aviso.style.display = "block";
 
 aviso.innerHTML =
 "🚚 Taxa para <strong>" +
-ruaSelecionada +
+rua +
 "</strong>: <strong>" +
 moeda(taxa) +
 "</strong>";
 
 }else{
 
-aviso.style.display =
-"none";
-
-aviso.innerHTML =
-"";
+aviso.style.display = "none";
 
 }
 
@@ -3281,25 +2302,18 @@ aviso.innerHTML =
 function alterarTipoPedido(){
 
 const tipo =
-document.getElementById(
-"tipoPedido"
-).value;
+document.getElementById("tipoPedido").value;
 
 const enderecoArea =
-document.getElementById(
-"enderecoArea"
-);
-
+document.getElementById("enderecoArea");
 
 if(tipo === "ENTREGA"){
 
-enderecoArea.style.display =
-"block";
+enderecoArea.style.display = "block";
 
 }else{
 
-enderecoArea.style.display =
-"none";
+enderecoArea.style.display = "none";
 
 }
 
@@ -3314,30 +2328,22 @@ calcularTaxa();
 
 document
 .getElementById("pagamento")
-.addEventListener(
-"change",
-function(){
+.addEventListener("change",function(){
 
 const trocoArea =
-document.getElementById(
-"trocoArea"
-);
-
+document.getElementById("trocoArea");
 
 if(this.value === "DINHEIRO"){
 
-trocoArea.style.display =
-"block";
+trocoArea.style.display = "block";
 
 }else{
 
-trocoArea.style.display =
-"none";
+trocoArea.style.display = "none";
 
 }
 
-}
-);
+});
 
 
 /* ============================================================
@@ -3349,39 +2355,27 @@ function carregarRuas(){
 const select =
 document.getElementById("rua");
 
-
 const ruas =
 Object.keys(taxas)
-.filter(
-rua =>
+.filter(rua =>
 rua !== "BALCAO" &&
 rua !== "RETIRADA" &&
 rua !== "IFOOD" &&
 rua !== "99FOOD"
 )
-.sort(
-(a,b)=>
-a.localeCompare(
-b,
-"pt-BR"
-)
+.sort((a,b)=>
+a.localeCompare(b,"pt-BR")
 );
-
 
 ruas.forEach(rua=>{
 
 const option =
-document.createElement(
-"option"
-);
+document.createElement("option");
 
-option.value =
-rua;
+option.value = rua;
 
 option.textContent =
-rua +
-" — " +
-moeda(taxas[rua]);
+rua + " — " + moeda(taxas[rua]);
 
 select.appendChild(option);
 
@@ -3402,17 +2396,11 @@ return;
 
 }
 
-
-if(
-!confirm(
-"Deseja realmente limpar o carrinho?"
-)
-){
+if(!confirm("Deseja realmente limpar o carrinho?")){
 
 return;
 
 }
-
 
 carrinho = [];
 
@@ -3430,15 +2418,11 @@ function irPara(id){
 const elemento =
 document.getElementById(id);
 
-
 if(elemento){
 
 elemento.scrollIntoView({
-
 behavior:"smooth",
-
 block:"start"
-
 });
 
 }
@@ -3452,27 +2436,42 @@ block:"start"
 
 function verificarHorario(){
 
-const agora =
-new Date();
+const agora = new Date();
 
-const dia =
-agora.getDay();
+const dia = agora.getDay();
 
-const minutos =
+const hora =
 agora.getHours() * 60 +
 agora.getMinutes();
+
+
+/*
+
+DOMINGO = 0
+SEGUNDA = 1
+TERÇA = 2
+QUARTA = 3
+QUINTA = 4
+SEXTA = 5
+SÁBADO = 6
+
+*/
 
 let aberto = false;
 
 
 /*
-   Todos os dias:
-   18:00 até 06:00 do dia seguinte.
+   TERÇA A SÁBADO
+   18:00 até 00:30
+
+   Também mantém aberto os primeiros
+   30 minutos do dia seguinte.
 */
 
 if(
-minutos >= 1080 ||
-minutos < 360
+dia >= 2 &&
+dia <= 6 &&
+hora >= 1080
 ){
 
 aberto = true;
@@ -3480,32 +2479,81 @@ aberto = true;
 }
 
 
+/*
+   DOMINGO
+   18:00 até 00:00
+*/
+
+if(
+dia === 0 &&
+hora >= 1080
+){
+
+aberto = true;
+
+}
+
+
+/*
+   MADRUGADA DE TERÇA A SÁBADO
+
+   Exemplo:
+   terça 18:00 → quarta 00:30
+
+   Portanto quarta-feira 00:15
+   ainda pertence ao expediente de terça.
+
+*/
+
+if(
+dia >= 3 &&
+dia <= 6 &&
+hora < 30
+){
+
+aberto = true;
+
+}
+
+
+/*
+   DOMINGO 00:00 NÃO É ABERTO
+   porque o expediente de sábado
+   terminou às 00:30 de domingo.
+
+   Segunda-feira também permanece fechado.
+*/
+
+if(dia === 1){
+
+aberto = false;
+
+}
+
+
+/*
+   BLOQUEIO
+*/
+
 const bloqueio =
-document.getElementById(
-"bloqueioHorario"
-);
+document.getElementById("bloqueioHorario");
 
 const status =
-document.getElementById(
-"statusHorario"
-);
-
+document.getElementById("statusHorario");
 
 if(aberto){
 
-bloqueio.style.display =
-"none";
+bloqueio.style.display = "none";
 
 status.className =
 "status-aberto";
 
 status.innerHTML =
-"🟢 ESTAMOS ABERTOS ATÉ ÀS 06:00";
+"🟢 ESTAMOS ABERTOS";
 
 }else{
 
-bloqueio.style.display =
-"flex";
+bloqueio.style.display = "flex";
 
 status.className =
 "status-fechado";
@@ -3534,66 +2582,46 @@ return;
 
 }
 
-
 const nome =
-document.getElementById(
-"nome"
-).value.trim();
-
+document.getElementById("nome")
+.value.trim();
 
 const telefone =
-document.getElementById(
-"telefone"
-).value.trim();
-
+document.getElementById("telefone")
+.value.trim();
 
 const tipo =
-document.getElementById(
-"tipoPedido"
-).value;
-
+document.getElementById("tipoPedido")
+.value;
 
 const rua =
-document.getElementById(
-"rua"
-).value;
-
+document.getElementById("rua")
+.value;
 
 const numero =
-document.getElementById(
-"numero"
-).value.trim();
-
+document.getElementById("numero")
+.value.trim();
 
 const complemento =
-document.getElementById(
-"complemento"
-).value.trim();
-
+document.getElementById("complemento")
+.value.trim();
 
 const pagamento =
-document.getElementById(
-"pagamento"
-).value;
-
+document.getElementById("pagamento")
+.value;
 
 const troco =
-document.getElementById(
-"troco"
-).value;
-
+document.getElementById("troco")
+.value;
 
 const observacao =
-document.getElementById(
-"observacao"
-).value.trim();
+document.getElementById("observacao")
+.value.trim();
 
 
 if(!nome){
 
-alert(
-"Digite seu nome."
-);
+alert("Digite seu nome.");
 
 return;
 
@@ -3602,9 +2630,7 @@ return;
 
 if(!telefone){
 
-alert(
-"Digite seu telefone."
-);
+alert("Digite seu telefone.");
 
 return;
 
@@ -3615,14 +2641,11 @@ if(tipo === "ENTREGA"){
 
 if(!rua){
 
-alert(
-"Selecione sua rua."
-);
+alert("Selecione sua rua.");
 
 return;
 
 }
-
 
 if(!numero){
 
@@ -3651,7 +2674,6 @@ return;
 let subtotal = 0;
 
 let mensagem = "";
-
 
 mensagem +=
 "🍔 *NOVO PEDIDO - ND BURGS*%0A";
@@ -3698,9 +2720,7 @@ if(complemento){
 
 mensagem +=
 "🏠 *COMPLEMENTO:* " +
-encodeURIComponent(
-complemento
-) +
+encodeURIComponent(complemento) +
 "%0A";
 
 }
@@ -3721,10 +2741,7 @@ const totalItem =
 item.preco *
 item.quantidade;
 
-
-subtotal +=
-totalItem;
-
+subtotal += totalItem;
 
 mensagem +=
 encodeURIComponent(
@@ -3736,19 +2753,8 @@ moeda(totalItem)
 ) +
 "%0A";
 
-
-if(
-item.detalhes &&
-item.detalhes.length
-){
-
-mensagem +=
-encodeURIComponent(
-"   ↳ " +
-item.detalhes.join(", ")
-) +
-"%0A";
-
+if(item.detalhes && item.detalhes.length){
+    mensagem += encodeURIComponent("   ↳ " + item.detalhes.join(", ")) + "%0A";
 }
 
 });
@@ -3756,22 +2762,18 @@ item.detalhes.join(", ")
 
 let taxa = 0;
 
-
 if(tipo === "ENTREGA"){
 
-taxa =
-taxas[rua] || 0;
+taxa = taxas[rua] || 0;
 
 }
 
 
 const total =
-subtotal +
-taxa;
+subtotal + taxa;
 
 
-mensagem +=
-"%0A";
+mensagem += "%0A";
 
 
 mensagem +=
@@ -3800,9 +2802,7 @@ moeda(total)
 
 mensagem +=
 "💳 *PAGAMENTO:* " +
-encodeURIComponent(
-pagamento
-) +
+encodeURIComponent(pagamento) +
 "%0A";
 
 
@@ -3814,9 +2814,7 @@ troco
 mensagem +=
 "💵 *TROCO PARA:* " +
 encodeURIComponent(
-moeda(
-parseFloat(troco)
-)
+moeda(parseFloat(troco))
 ) +
 "%0A";
 
@@ -3829,9 +2827,7 @@ mensagem +=
 "%0A📝 *OBSERVAÇÃO:*%0A";
 
 mensagem +=
-encodeURIComponent(
-observacao
-) +
+encodeURIComponent(observacao) +
 "%0A";
 
 }
@@ -3864,180 +2860,6 @@ mensagem,
 
 
 /* ============================================================
-   CARRINHO FIXO E CHECKOUT
-============================================================ */
-
-function atualizarBarraCarrinho(){
-
-const q =
-carrinho.reduce(
-(t,i)=>
-t +
-i.quantidade,
-0
-);
-
-
-const v =
-carrinho.reduce(
-(t,i)=>
-t +
-i.preco *
-i.quantidade,
-0
-);
-
-
-document.getElementById(
-"barraQuantidade"
-).innerText =
-q +
-(
-q === 1
-? " ITEM"
-: " ITENS"
-);
-
-
-document.getElementById(
-"barraTotal"
-).innerText =
-moeda(v);
-
-
-document.getElementById(
-"barraCarrinho"
-).style.display =
-q > 0
-? "block"
-: "none";
-
-}
-
-
-function abrirCheckout(){
-
-if(!carrinho.length){
-
-alert(
-"Adicione pelo menos um produto ao carrinho."
-);
-
-return;
-
-}
-
-
-document.getElementById(
-"checkoutModal"
-).style.display =
-"block";
-
-
-document.getElementById(
-"etapaCarrinho"
-).style.display =
-"block";
-
-
-document.getElementById(
-"etapaFormulario"
-).classList.remove(
-"ativo"
-);
-
-
-document.body.style.overflow =
-"hidden";
-
-}
-
-
-function fecharCheckout(){
-
-document.getElementById(
-"checkoutModal"
-).style.display =
-"none";
-
-document.body.style.overflow =
-"";
-
-}
-
-
-function irParaFormulario(){
-
-if(!carrinho.length){
-
-alert(
-"Adicione pelo menos um produto ao carrinho."
-);
-
-return;
-
-}
-
-
-document.getElementById(
-"etapaCarrinho"
-).style.display =
-"none";
-
-
-document.getElementById(
-"etapaFormulario"
-).classList.add(
-"ativo"
-);
-
-
-document.getElementById(
-"checkoutModal"
-).scrollTop =
-0;
-
-}
-
-
-function voltarParaCarrinho(){
-
-document.getElementById(
-"etapaFormulario"
-).classList.remove(
-"ativo"
-);
-
-
-document.getElementById(
-"etapaCarrinho"
-).style.display =
-"block";
-
-
-document.getElementById(
-"checkoutModal"
-).scrollTop =
-0;
-
-}
-
-
-const atualizarCarrinhoBase =
-atualizarCarrinho;
-
-
-atualizarCarrinho =
-function(){
-
-atualizarCarrinhoBase();
-
-atualizarBarraCarrinho();
-
-};
-
-
-/* ============================================================
    INICIALIZAÇÃO
 ============================================================ */
 
@@ -4060,35 +2882,6 @@ verificarHorario,
 );
 
 </script>
-
-
-<div
-id="barraCarrinho"
-class="barra-carrinho"
->
-
-<button
-onclick="abrirCheckout()"
->
-
-🛒
-
-<span id="barraQuantidade">
-0 ITENS
-</span>
-
-•
-
-<span id="barraTotal">
-R$ 0,00
-</span>
-
-→ VER PEDIDO
-
-</button>
-
-</div>
-
 
 </body>
 </html>
