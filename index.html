@@ -3503,12 +3503,14 @@ return;
 }
 
 if(
-pagamento==="DINHEIRO" &&
-!troco
+pagamento==="DINHEIRO"
 ){
 
+if(!troco){
+
 alert(
-"Informe o valor para o troco."
+"💵 INFORME O VALOR DO TROCO\n\n"+
+"Digite quanto você irá pagar em dinheiro."
 );
 
 document.getElementById(
@@ -3516,6 +3518,54 @@ document.getElementById(
 ).focus();
 
 return;
+
+}
+
+const valorTroco=
+parseFloat(troco);
+
+const subtotalAtual=
+carrinho.reduce(
+(soma,item)=>
+soma+
+(item.preco*item.quantidade),
+0
+);
+
+let taxaAtual=0;
+
+if(tipo==="ENTREGA"){
+
+taxaAtual=
+Number(
+taxas[rua]||0
+);
+
+}
+
+const totalAtual=
+subtotalAtual+taxaAtual;
+
+if(
+isNaN(valorTroco) ||
+valorTroco<=totalAtual
+){
+
+alert(
+"💵 VALOR PARA TROCO INVÁLIDO\n\n"+
+"Total do pedido: "+
+moeda(totalAtual)+
+"\n\n"+
+"Você precisa informar um valor igual ou maior que o total."
+);
+
+document.getElementById(
+"trocoModal"
+).focus();
+
+return;
+
+}
 
 }
 
