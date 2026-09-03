@@ -472,6 +472,13 @@ input:focus,select:focus,textarea:focus{transform:translateY(-1px);box-shadow:0 
 @keyframes ndCartOpen{50%{transform:scale(1.045)}}@keyframes ndAddedFlash{50%{box-shadow:0 0 0 4px rgba(85,230,255,.12)}}
 @media(max-width:600px){.nd-upsell{right:12px;bottom:82px}.nd-upsell-items{grid-template-columns:1fr 1fr}.nd-quick button{width:32px;height:32px}}
 </style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#09070f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ND BURGS">
 </head>
 <body>
 <div id="bloqueioHorario">
@@ -5393,9 +5400,6 @@ function iniciar(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();
 })();
 </script>
-</body>
-</html>
-
 <style id="nd-r8-css">
 /* ================= RODADA 8 — CLIENTE RECORRENTE ================= */
 :root{--r8-purple:#8b5cf6;--r8-cyan:#22d3ee}
@@ -5478,3 +5482,66 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 new MutationObserver(()=>{qa('.produto').forEach(addFavButton)}).observe(document.body,{childList:true,subtree:true});
 })();
 </script>
+<style id="nd-r9-css">
+/* ================= RODADA 9 — PWA / EXPERIÊNCIA DE APP ================= */
+:root{--r9-purple:#8b5cf6;--r9-cyan:#22d3ee;--r9-panel:#0f0c16}
+#ndR9AppBanner{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:100020;padding:13px 14px;border:1px solid rgba(34,211,238,.28);border-radius:20px;background:rgba(12,9,18,.97);box-shadow:0 20px 60px rgba(0,0,0,.5);backdrop-filter:blur(18px);align-items:center;gap:12px}
+#ndR9AppBanner.show{display:flex;animation:ndR9Up .28s ease both}
+.nd-r9-icon{width:42px;height:42px;border-radius:13px;object-fit:cover;flex:0 0 auto;border:1px solid rgba(255,255,255,.12)}
+.nd-r9-copy{min-width:0;flex:1}.nd-r9-copy strong{display:block;font-size:12px}.nd-r9-copy small{display:block;color:#a09baa;font-size:9px;line-height:1.35;margin-top:3px}
+.nd-r9-install{border:0;border-radius:12px;padding:10px 12px;background:linear-gradient(135deg,var(--r9-purple),var(--r9-cyan));color:#fff;font-weight:950;font-size:10px;white-space:nowrap;cursor:pointer}.nd-r9-close{border:0;background:transparent;color:#aaa;font-size:18px;cursor:pointer;padding:4px}
+#ndR9Offline{display:none;position:fixed;top:76px;left:50%;transform:translateX(-50%);z-index:100019;padding:8px 12px;border-radius:999px;background:#21131b;border:1px solid rgba(239,68,68,.3);color:#ffd8df;font-size:10px;font-weight:900;box-shadow:0 10px 35px rgba(0,0,0,.35)}
+#ndR9Offline.show{display:block;animation:ndR9Down .22s ease both}
+#ndR9Top{display:none;position:fixed;right:15px;bottom:88px;z-index:9999;width:44px;height:44px;border-radius:50%;border:1px solid rgba(34,211,238,.24);background:rgba(12,10,18,.9);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(12px)}
+#ndR9Top.show{display:grid;place-items:center}
+.nd-r9-app-pulse{animation:ndR9Pulse .55s ease}
+@keyframes ndR9Up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes ndR9Down{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes ndR9Pulse{50%{transform:scale(1.08);box-shadow:0 0 28px rgba(34,211,238,.22)}}
+@media(max-width:700px){#ndR9AppBanner{bottom:8px;left:8px;right:8px}.nd-r9-copy small{font-size:8px}}
+@media(prefers-reduced-motion:reduce){#ndR9AppBanner,#ndR9Offline{animation:none}.nd-r9-app-pulse{animation:none}}
+</style>
+<script id="nd-r9-pwa-app">
+/* ================= RODADA 9 — PWA / EXPERIÊNCIA DE APP ================= */
+(function(){
+'use strict';
+const q=s=>document.querySelector(s);
+let deferredPrompt=null;
+function makeBanner(){
+ if(q('#ndR9AppBanner'))return;
+ const b=document.createElement('div');b.id='ndR9AppBanner';b.innerHTML='<img class="nd-r9-icon" src="https://i.ibb.co/5gsVbBcb/corretooo.jpg" alt="ND BURGS"><div class="nd-r9-copy"><strong>📲 Instale a ND BURGS no celular</strong><small>Tenha acesso rápido pelo ícone do seu celular e uma experiência de app.</small></div><button class="nd-r9-install" type="button">INSTALAR</button><button class="nd-r9-close" type="button" aria-label="Fechar">×</button>';
+ document.body.appendChild(b);
+ b.querySelector('.nd-r9-install').addEventListener('click',async()=>{
+   if(deferredPrompt){deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;b.classList.remove('show')}
+   else {alert('No iPhone: use Compartilhar → Adicionar à Tela de Início. No Android/Chrome: abra o menu ⋮ e escolha Instalar aplicativo ou Adicionar à tela inicial.')}
+ });
+ b.querySelector('.nd-r9-close').addEventListener('click',()=>{b.classList.remove('show');try{sessionStorage.setItem('ndburgs_r9_install_dismissed','1')}catch(e){}});
+}
+function showInstall(){try{if(sessionStorage.getItem('ndburgs_r9_install_dismissed')==='1')return}catch(e){}makeBanner();q('#ndR9AppBanner').classList.add('show')}
+function installEvents(){
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;showInstall()});
+ window.addEventListener('appinstalled',()=>{deferredPrompt=null;const b=q('#ndR9AppBanner');if(b)b.classList.remove('show')});
+}
+function network(){
+ let el=q('#ndR9Offline');if(!el){el=document.createElement('div');el.id='ndR9Offline';el.textContent='⚠️ SEM INTERNET — SEU CARRINHO CONTINUA SALVO';document.body.appendChild(el)}
+ const sync=()=>{el.classList.toggle('show',!navigator.onLine)};window.addEventListener('online',sync);window.addEventListener('offline',sync);sync();
+}
+function topButton(){
+ const b=document.createElement('button');b.id='ndR9Top';b.type='button';b.setAttribute('aria-label','Voltar ao topo');b.textContent='↑';document.body.appendChild(b);
+ const update=()=>b.classList.toggle('show',window.scrollY>500);window.addEventListener('scroll',update,{passive:true});update();b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+function serviceWorker(){
+ if(!('serviceWorker' in navigator))return;
+ if(location.protocol==='https:'||location.hostname==='localhost')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+}
+function polish(){
+ document.documentElement.classList.add('nd-r9-ready');
+ const main=q('main')||q('.products-column');if(main)main.setAttribute('role','main');
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){try{if(typeof verificarHorario==='function')verificarHorario()}catch(e){}}});
+}
+function init(){makeBanner();installEvents();network();topButton();serviceWorker();polish();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
+</body>
+</html>
