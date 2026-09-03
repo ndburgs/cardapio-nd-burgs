@@ -297,6 +297,22 @@ padding:15px 10px;
 font-size:14px;
 }
 }
+
+/* =========================
+   PESQUISA DE PRODUTOS
+========================= */
+.pesquisa-produtos{max-width:1100px;margin:14px auto 22px;padding:0 12px}
+.pesquisa-wrap{display:flex;align-items:center;gap:10px;background:#151515;border:1px solid #333;border-radius:14px;padding:10px 13px;box-shadow:0 5px 18px rgba(0,0,0,.25);transition:.2s ease}
+.pesquisa-wrap:focus-within{border-color:#f5c400;box-shadow:0 0 0 2px rgba(245,196,0,.12),0 5px 18px rgba(0,0,0,.3)}
+.pesquisa-icone{font-size:21px;line-height:1}
+.pesquisa-input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-size:16px;font-weight:600}
+.pesquisa-input::placeholder{color:#999}
+.pesquisa-limpar{display:none;width:30px;height:30px;flex:0 0 30px;border:0;border-radius:50%;background:#2a2a2a;color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.pesquisa-limpar:hover{background:#f5c400;color:#000}
+.resultado-pesquisa{display:none;margin-top:9px;text-align:center;color:#aaa;font-size:13px}
+.resultado-pesquisa strong{color:#f5c400}
+@media(max-width:600px){.pesquisa-produtos{margin:10px auto 17px;padding:0 8px}.pesquisa-wrap{border-radius:12px;padding:9px 11px}.pesquisa-input{font-size:15px}}
+
 </style>
 </head>
 
@@ -418,6 +434,16 @@ Segunda-feira:
 ➕ ADICIONAIS
 </button>
 
+</div>
+
+<!-- PESQUISA DE PRODUTOS -->
+<div class="pesquisa-produtos" id="areaPesquisaProdutos">
+  <div class="pesquisa-wrap">
+    <span class="pesquisa-icone">🔎</span>
+    <input type="search" id="pesquisaProdutos" class="pesquisa-input" placeholder="Buscar produto..." autocomplete="off" aria-label="Buscar produto">
+    <button type="button" id="limparPesquisa" class="pesquisa-limpar" aria-label="Limpar pesquisa" title="Limpar pesquisa">×</button>
+  </div>
+  <div id="resultadoPesquisa" class="resultado-pesquisa"></div>
 </div>
 
 <section id="combos" class="categoria">
@@ -4011,6 +4037,54 @@ fecharCarrinho();
 }
 
 /* =========================
+   PESQUISA DE PRODUTOS
+========================= */
+function normalizarTextoPesquisa(texto){
+  return String(texto||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+}
+function pesquisarProdutos(){
+  const campo=document.getElementById("pesquisaProdutos");
+  const limpar=document.getElementById("limparPesquisa");
+  const resultado=document.getElementById("resultadoPesquisa");
+  const categorias=document.querySelectorAll("section.categoria");
+  const termo=normalizarTextoPesquisa(campo?campo.value:"");
+  let encontrados=0;
+  if(limpar) limpar.style.display=termo?"block":"none";
+  categorias.forEach(categoria=>{
+    const produtos=categoria.querySelectorAll(".produto");
+    let encontradosNaCategoria=0;
+    produtos.forEach(produto=>{
+      if(!termo){produto.style.display="";return;}
+      const nome=produto.querySelector("h3")?.innerText||"";
+      const descricao=produto.querySelector("p")?.innerText||"";
+      const imagem=produto.querySelector("img")?.alt||"";
+      const texto=normalizarTextoPesquisa(nome+" "+descricao+" "+imagem);
+      const encontrou=texto.includes(termo);
+      produto.style.display=encontrou?"":"none";
+      if(encontrou){encontradosNaCategoria++;encontrados++;}
+    });
+    categoria.style.display=termo?(encontradosNaCategoria?"":"none"):"";
+  });
+  if(resultado){
+    if(termo){resultado.style.display="block";resultado.innerHTML=encontrados?`<strong>${encontrados}</strong> produto(s) encontrado(s)`:"Nenhum produto encontrado. Tente outro nome.";}
+    else{resultado.style.display="none";resultado.innerHTML="";}
+  }
+}
+function limparPesquisaProdutos(){
+  const campo=document.getElementById("pesquisaProdutos");
+  if(campo){campo.value="";campo.focus();}
+  pesquisarProdutos();
+}
+function iniciarPesquisaProdutos(){
+  const campo=document.getElementById("pesquisaProdutos");
+  const limpar=document.getElementById("limparPesquisa");
+  if(!campo)return;
+  campo.addEventListener("input",pesquisarProdutos);
+  campo.addEventListener("search",pesquisarProdutos);
+  if(limpar)limpar.addEventListener("click",limparPesquisaProdutos);
+}
+
+/* =========================
    NAVEGAÇÃO
 ========================= */
 
@@ -4393,6 +4467,8 @@ mensagem,
    INICIALIZAÇÃO
 ========================= */
 
+iniciarPesquisaProdutos();
+
 carregarCarrinhoSalvo();
 
 carregarRuas();
@@ -4414,3 +4490,4 @@ verificarHorario,
 
 </body>
 </html>
+aa
