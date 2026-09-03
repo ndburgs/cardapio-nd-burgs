@@ -334,6 +334,25 @@ font-size:14px;
 .resultado-pesquisa strong{color:#f5c400}
 @media(max-width:600px){.pesquisa-produtos{margin:10px auto 17px;padding:0 8px}.pesquisa-wrap{border-radius:12px;padding:9px 11px}.pesquisa-input{font-size:15px}}
 
+
+/* ===== RODADA 2 — UX AVANCADA ===== */
+@keyframes ndCounterPop{0%{transform:scale(1)}45%{transform:scale(1.28)}100%{transform:scale(1)}}
+@keyframes ndMoneyPop{0%{opacity:.65;transform:translateY(2px)}100%{opacity:1;transform:none}}
+@keyframes ndToastIn{from{opacity:0;transform:translate(-50%,15px) scale(.96)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+.cart-counter-pop{animation:ndCounterPop .38s cubic-bezier(.2,.8,.2,1)}
+.cart-total-pop{animation:ndMoneyPop .28s ease}
+.pesquisa-vazio{padding:18px;border:1px dashed rgba(155,108,255,.35);border-radius:14px;background:rgba(155,108,255,.06);text-align:center;color:#bcb9c8;margin-top:10px}
+.pesquisa-vazio strong{display:block;color:#fff;font-size:15px;margin-bottom:5px}
+.categoria-btn.ativo{border-color:#55e6ff!important;background:linear-gradient(135deg,rgba(85,230,255,.14),rgba(155,108,255,.14))!important;color:#fff!important;box-shadow:0 0 0 1px rgba(85,230,255,.08),0 8px 24px rgba(0,0,0,.18)}
+.btn-voltar-topo{position:fixed;right:22px;bottom:105px;width:46px;height:46px;border:1px solid rgba(85,230,255,.35);border-radius:50%;background:rgba(8,8,14,.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;cursor:pointer;z-index:1150;opacity:0;visibility:hidden;transform:translateY(12px);transition:.25s;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.btn-voltar-topo.visivel{opacity:1;visibility:visible;transform:none}
+.minimo-entrega{display:none;margin:10px 0 2px;padding:11px 12px;border-radius:12px;background:rgba(255,193,7,.06);border:1px solid rgba(255,193,7,.2);font-size:12px;color:#c9c5d2}
+.minimo-entrega strong{color:#fff}.minimo-barra{height:6px;border-radius:99px;background:#1b1b25;overflow:hidden;margin-top:8px}.minimo-progresso{height:100%;width:0;background:linear-gradient(90deg,#9b6cff,#55e6ff);transition:width .35s ease}
+.telefone-ok{border-color:rgba(109,255,176,.55)!important;box-shadow:0 0 0 3px rgba(109,255,176,.06)}
+.telefone-erro{border-color:rgba(255,91,91,.65)!important;box-shadow:0 0 0 3px rgba(255,91,91,.06)}
+.telefone-ajuda{font-size:11px;color:#9b97a7;margin:-5px 0 10px}
+@media(max-width:760px){.btn-voltar-topo{right:15px;bottom:92px;width:42px;height:42px}.minimo-entrega{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.cart-counter-pop,.cart-total-pop{animation:none}.btn-voltar-topo,.minimo-progresso{transition:none}}
 </style>
 <style id="nova-identidade-ndburgs">
 :root{--primary:#7c3aed;--primary2:#a855f7;--accent:#22d3ee;--bg:#07060b;--surface:#11101a;--surface2:#171522;--text:#f7f7fb;--muted:#aaa6bb;--line:rgba(168,85,247,.22);--shadow:0 18px 50px rgba(0,0,0,.45)}
@@ -514,7 +533,7 @@ Domingo:
 <input aria-label="Buscar produto" autocomplete="off" class="pesquisa-input" id="pesquisaProdutos" placeholder="Buscar produto..." type="search"/>
 <button aria-label="Limpar pesquisa" class="pesquisa-limpar" id="limparPesquisa" title="Limpar pesquisa" type="button">×</button>
 </div>
-<div class="resultado-pesquisa" id="resultadoPesquisa"></div>
+<div class="resultado-pesquisa" id="resultadoPesquisa"></div><div id="pesquisaVazio" class="pesquisa-vazio" style="display:none"><strong>🔎 Nenhum produto encontrado</strong><span>Tente outro nome ou limpe a busca para ver todo o cardápio.</span></div>
 </div><section class="categoria" id="combos">
 <div class="categoria-titulo">
 ❤️ COMBOS
@@ -1093,6 +1112,7 @@ ADICIONAR
 <span>Subtotal</span>
 <strong id="subtotal">R$ 0,00</strong>
 </div>
+<div id="minimoEntrega" class="minimo-entrega"><strong>🛵 Pedido mínimo para delivery</strong><div id="minimoTexto">Faltam R$ 11,90</div><div class="minimo-barra"><div id="minimoProgresso" class="minimo-progresso"></div></div></div>
 <div class="linha">
 <span>Taxa de entrega</span>
 <strong id="taxa">R$ 0,00</strong>
@@ -2434,6 +2454,25 @@ document.getElementById(
 "subtotal"
 ).innerText=
 moeda(subtotal);
+
+// Indicador de pedido minimo para delivery
+const minimoBox=document.getElementById("minimoEntrega");
+const minimoTexto=document.getElementById("minimoTexto");
+const minimoBarra=document.getElementById("minimoProgresso");
+const minimo=11.90;
+const tipoAtual=document.getElementById("tipoPedidoModal")?.value || document.getElementById("tipoPedido")?.value || "ENTREGA";
+if(minimoBox && minimoTexto && minimoBarra){
+  if(tipoAtual==="ENTREGA"){
+    minimoBox.style.display="block";
+    const faltam=Math.max(0,minimo-subtotal);
+    minimoTexto.innerText=faltam>0 ? `Faltam ${moeda(faltam)} para liberar o delivery.` : "✅ Pedido mínimo atingido! Você já pode finalizar.";
+    minimoBarra.style.width=Math.min(100,(subtotal/minimo)*100)+"%";
+  }else{ minimoBox.style.display="none"; }
+}
+
+const totalFloat=document.getElementById("totalCarrinhoFlutuante");
+const contador=document.getElementById("contadorCarrinho");
+[contador,totalFloat].forEach(el=>{if(el){el.classList.remove("cart-counter-pop","cart-total-pop");void el.offsetWidth;el.classList.add(el===contador?"cart-counter-pop":"cart-total-pop");}});
 
 atualizarCarrinhoFlutuante(
 quantidadeTotal,
@@ -4145,6 +4184,10 @@ resultado.innerHTML="";
 
 }
 
+
+const vazio=document.getElementById("pesquisaVazio");
+if(vazio){ vazio.style.display=(termo && encontrados===0)?"block":"none"; }
+
 }
 
 
@@ -4776,5 +4819,58 @@ setInterval(verificarHorario,30000);
   });
 })();
 </script>
-</body>
+<button id="btnVoltarTopo" class="btn-voltar-topo" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+<script>
+/* ===== RODADA 2 — MICRO UX ===== */
+(function(){
+  const MINIMO=11.90;
+  function formatarTelefone(v){
+    let d=(v||'').replace(/\D/g,'').slice(0,11);
+    if(d.length<=2)return d;
+    if(d.length<=7)return '('+d.slice(0,2)+') '+d.slice(2);
+    if(d.length<=11)return '('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7);
+    return d;
+  }
+  function validarTelefoneVisual(){
+    const el=document.getElementById('telefoneModal'); if(!el)return;
+    const n=el.value.replace(/\D/g,'');
+    el.classList.remove('telefone-ok','telefone-erro');
+    if(!n){return;}
+    if(n.length===10||n.length===11) el.classList.add('telefone-ok'); else el.classList.add('telefone-erro');
+  }
+  function setup(){
+    const tel=document.getElementById('telefoneModal');
+    if(tel){
+      tel.setAttribute('inputmode','numeric');
+      tel.addEventListener('input',function(){this.value=formatarTelefone(this.value);validarTelefoneVisual();});
+    }
+    const topo=document.getElementById('btnVoltarTopo');
+    if(topo){
+      window.addEventListener('scroll',()=>topo.classList.toggle('visivel',window.scrollY>550),{passive:true});
+      topo.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    }
+    // Atualiza minimo quando troca entre delivery e retirada no modal.
+    const tipo=document.getElementById('tipoPedidoModal');
+    if(tipo) tipo.addEventListener('change',()=>setTimeout(()=>{try{atualizarCarrinho()}catch(e){}},0));
+    // Ativo nas categorias por rolagem.
+    const secoes=[...document.querySelectorAll('section.categoria[id]')];
+    const botoes=[...document.querySelectorAll('.categoria-btn')];
+    const map=new Map(botoes.map(b=>[(b.getAttribute('onclick')||'').match(/irPara\('([^']+)'\)/)?.[1],b]));
+    if('IntersectionObserver' in window){
+      const obs=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            botoes.forEach(b=>b.classList.remove('ativo'));
+            const b=map.get(entry.target.id); if(b)b.classList.add('ativo');
+          }
+        });
+      },{rootMargin:'-20% 0px -65% 0px',threshold:0});
+      secoes.forEach(sec=>obs.observe(sec));
+    }
+    // Reforça o estado inicial e melhora acessibilidade dos botões.
+    botoes.forEach(b=>b.setAttribute('type','button'));
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
+})();
+</script></body>
 </html>
