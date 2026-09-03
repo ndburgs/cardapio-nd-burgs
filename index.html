@@ -375,7 +375,21 @@ header{position:sticky!important;top:0!important;z-index:1000!important;backgrou
 .carrinho-flutuante{z-index:1100!important}.modal-carrinho,.modal-sugestao-compra,.modal-finalizar,.modal-personalizacao{z-index:2000!important}
 @media(max-width:1050px){.app-layout{grid-template-columns:180px minmax(0,1fr)}.order-column{grid-column:1/-1;position:static}.order-column #checkout{max-height:none}.products-column #areaPesquisaProdutos{top:88px}.side-nav{top:88px}}
 @media(max-width:760px){header{padding:10px 12px!important}.brand-copy span,.status-pill{display:none}.topbar-inner{gap:8px}.brand-lockup .logo{width:46px!important;height:46px!important}.brand-copy strong{font-size:18px}.top-cart-btn{padding:10px 12px!important;font-size:11px}.horarios{margin:10px 12px!important}.app-container{padding:0 12px 90px!important}.order-hero{padding:18px 0 14px;display:block}.hero-copy h1{font-size:36px!important}.hero-badge{display:inline-block;margin-top:14px}.app-layout{display:block}.side-nav{position:sticky;top:68px;z-index:40;margin-bottom:12px;padding:9px;border-radius:15px}.side-title{display:none}.side-nav .categoria-menu{display:flex!important;flex-direction:row!important;overflow-x:auto!important;gap:6px!important;padding:0!important;scrollbar-width:none}.side-nav .categoria-menu::-webkit-scrollbar{display:none}.side-nav .categoria-btn{width:auto!important;min-width:max-content!important;white-space:nowrap!important;padding:9px 11px!important;font-size:10px!important;background:#111119!important}.side-help{display:none}.products-column #areaPesquisaProdutos{position:relative!important;top:auto!important}.products-column .categoria{padding:13px!important;border-radius:16px!important}.order-column{margin-top:16px;border-radius:16px}.mobile-cart-action{display:block!important;position:fixed;left:12px;right:12px;bottom:12px;z-index:1200;border:1px solid rgba(155,108,255,.35)!important;background:linear-gradient(135deg,#8b5cf6,#22d3ee)!important;color:#fff!important;border-radius:15px!important;padding:15px!important;font-weight:950!important;box-shadow:0 12px 35px rgba(0,0,0,.45)!important}.top-actions{margin-left:auto}}
-</style></head>
+</style>
+<style>
+/* ===== MELHORIAS DE USABILIDADE ===== */
+.formulario{display:none!important}
+.form-section-label{display:none!important}
+.endereco-busca-wrap{position:relative;width:100%}
+.endereco-sugestoes{position:absolute;z-index:9999;left:0;right:0;top:100%;max-height:260px;overflow-y:auto;background:#171321;border:1px solid rgba(180,120,255,.45);border-radius:0 0 14px 14px;box-shadow:0 16px 35px rgba(0,0,0,.45);display:none}
+.endereco-sugestao{padding:13px 15px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.06);color:#fff}
+.endereco-sugestao:last-child{border-bottom:0}
+.endereco-sugestao:hover,.endereco-sugestao.ativo{background:rgba(155,89,255,.18)}
+.endereco-sugestao small{display:block;opacity:.65;margin-top:3px}
+.pesquisa-produtos .pesquisa-input{display:block!important;pointer-events:auto!important;position:relative!important;z-index:10!important}
+.produto.oculto-pesquisa{display:none!important}
+</style>
+</head>
 <body>
 <div id="bloqueioHorario">
 <div class="bloqueio-box">
@@ -1053,7 +1067,7 @@ ADICIONAR
 <strong id="total">R$ 0,00</strong>
 </div>
 </div>
-</div><div class="form-section-label">FINALIZAÇÃO</div><div class="formulario">
+</div><div class="form-section-label" style="display:none">FINALIZAÇÃO</div><div class="formulario" style="display:none">
 <h2>📍 DADOS DO PEDIDO</h2>
 <label>Nome</label>
 <input id="nome" placeholder="Digite seu nome" type="text"/>
@@ -1070,10 +1084,9 @@ ADICIONAR
 </select>
 <div id="enderecoArea">
 <label>Rua</label>
-<div class="campo-endereco-pesquisa">
-<input autocomplete="off" id="rua" list="listaRuas" onchange="calcularTaxa()" oninput="calcularTaxa()" placeholder="Digite para pesquisar sua rua..." type="text"/>
-<datalist id="listaRuas">
-</datalist>
+<div class="endereco-busca-wrap campo-endereco-pesquisa">
+<input autocomplete="off" id="rua" list="listaRuas" oninput="calcularTaxa()" onchange="calcularTaxa()" placeholder="Digite o nome da sua rua..." type="text"/>
+<datalist id="listaRuas"></datalist>
 </div>
 <label>Número</label>
 <input id="numero" placeholder="Número da residência" type="text"/>
@@ -1212,10 +1225,10 @@ Tipo do pedido
 <label>
 Rua
 </label>
-<div class="campo-endereco-pesquisa">
-<input autocomplete="off" id="ruaModal" list="listaRuasModal" onchange="calcularTaxaModal()" oninput="calcularTaxaModal()" placeholder="Digite para pesquisar sua rua..." type="text"/>
-<datalist id="listaRuasModal">
-</datalist>
+<div class="endereco-busca-wrap campo-endereco-pesquisa">
+<input autocomplete="off" id="ruaModal" list="listaRuasModal" onfocus="mostrarSugestoesEndereco()" oninput="pesquisarEnderecoModal()" onchange="calcularTaxaModal()" placeholder="Digite o nome da sua rua..." type="text"/>
+<datalist id="listaRuasModal"></datalist>
+<div id="sugestoesEnderecoModal" class="endereco-sugestoes"></div>
 </div>
 <label>
 Número
@@ -3369,7 +3382,7 @@ if(tipo==="ENTREGA"){
 if(!rua){
 
 alert(
-"Selecione sua rua."
+"Digite e selecione sua rua."
 );
 
 document.getElementById(
@@ -3378,6 +3391,15 @@ document.getElementById(
 
 return;
 
+}
+
+const ruaValida=Object.prototype.hasOwnProperty.call(taxas,rua);
+
+if(!ruaValida){
+
+alert("Selecione uma rua da lista para calcular a taxa de entrega.");
+document.getElementById("ruaModal").focus();
+return;
 }
 
 if(!numero){
@@ -4145,6 +4167,78 @@ limparPesquisaProdutos
 
 
 /* =========================
+   BUSCA DE ENDEREÇO NO MODAL
+========================= */
+function pesquisarEnderecoModal(){
+  const input=document.getElementById("ruaModal");
+  const box=document.getElementById("sugestoesEnderecoModal");
+  if(!input||!box)return;
+  const termo=normalizarTextoPesquisa(input.value);
+  const ruas=Object.keys(taxas).filter(r=>!['BALCAO','RETIRADA','IFOOD','99FOOD'].includes(r)).sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  const lista=termo ? ruas.filter(r=>normalizarTextoPesquisa(r).includes(termo)).slice(0,12) : ruas.slice(0,12);
+  box.innerHTML='';
+  if(!lista.length){
+    box.innerHTML='<div class="endereco-sugestao">Nenhuma rua encontrada.<small>Confira a escrita ou tente outro nome.</small></div>';
+    box.style.display='block';
+    return;
+  }
+  lista.forEach(rua=>{
+    const item=document.createElement('div');
+    item.className='endereco-sugestao';
+    item.innerHTML='<strong>'+rua+'</strong><small>Taxa de entrega: '+moeda(Number(taxas[rua]||0))+'</small>';
+    item.addEventListener('mousedown',function(e){
+      e.preventDefault();
+      input.value=rua;
+      box.style.display='none';
+      calcularTaxaModal();
+    });
+    box.appendChild(item);
+  });
+  box.style.display='block';
+}
+function mostrarSugestoesEndereco(){
+  pesquisarEnderecoModal();
+}
+function fecharSugestoesEndereco(){
+  const box=document.getElementById('sugestoesEnderecoModal');
+  if(box)box.style.display='none';
+}
+function validarRuaSelecionada(inputId){
+  const input=document.getElementById(inputId);
+  if(!input)return false;
+  const valor=input.value.trim();
+  return valor!=='' && Object.prototype.hasOwnProperty.call(taxas,valor);
+}
+
+/* Busca de produtos reforçada: nome, descrição e alt da imagem, sem depender de CSS externo. */
+function pesquisarProdutos(){
+  const campo=document.getElementById('pesquisaProdutos');
+  const limpar=document.getElementById('limparPesquisa');
+  const resultado=document.getElementById('resultadoPesquisa');
+  const categorias=document.querySelectorAll('section.categoria');
+  const termo=normalizarTextoPesquisa(campo?campo.value:'');
+  let encontrados=0;
+  if(limpar)limpar.style.display=termo?'block':'none';
+  categorias.forEach(categoria=>{
+    let naCategoria=0;
+    categoria.querySelectorAll('.produto').forEach(produto=>{
+      const nome=produto.querySelector('h3')?.textContent||'';
+      const descricao=produto.querySelector('p')?.textContent||'';
+      const imagem=produto.querySelector('img')?.alt||'';
+      const texto=normalizarTextoPesquisa(nome+' '+descricao+' '+imagem);
+      const ok=!termo||texto.includes(termo);
+      produto.classList.toggle('oculto-pesquisa',!ok);
+      if(ok){naCategoria++;encontrados++;}
+    });
+    categoria.style.display=termo?(naCategoria?'':'none'):'';
+  });
+  if(resultado){
+    resultado.style.display=termo?'block':'none';
+    resultado.innerHTML=termo?(encontrados?'<strong>'+encontrados+'</strong> produto(s) encontrado(s)':'Nenhum produto encontrado. Tente outro nome.') : '';
+  }
+}
+
+/* =========================
    NAVEGAÇÃO
 ========================= */
 
@@ -4596,6 +4690,17 @@ document.addEventListener("keydown",function(event){
   fecharSugestaoCompra();
   fecharModalFinalizar();
 });
+
+document.addEventListener('click',function(event){
+  const wrap=document.querySelector('.endereco-busca-wrap');
+  if(wrap && !wrap.contains(event.target)) fecharSugestoesEndereco();
+});
+
+const campoBuscaProdutos=document.getElementById('pesquisaProdutos');
+if(campoBuscaProdutos){
+  campoBuscaProdutos.addEventListener('keyup',pesquisarProdutos);
+  campoBuscaProdutos.addEventListener('change',pesquisarProdutos);
+}
 
 setInterval(verificarHorario,30000);
 
