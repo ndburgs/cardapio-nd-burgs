@@ -3399,24 +3399,18 @@ alterarPagamentoModal();
    RUAS DO MODAL
 ========================= */
 
-function carregarRuasModal(){
+/* =========================
+   CARREGAR RUAS
+========================= */
+
+function carregarRuas(){
 
 const select=
 document.getElementById(
-"listaRuasModal"
+"listaRuas"
 );
 
 if(!select)return;
-
-const input=
-document.getElementById(
-"ruaModal"
-);
-
-const valorAtual=
-input ?
-input.value :
-"";
 
 select.innerHTML="";
 
@@ -3457,10 +3451,6 @@ option
 );
 
 });
-
-if(input)
-input.value=
-valorAtual;
 
 }
 
