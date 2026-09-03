@@ -5290,5 +5290,191 @@ setInterval(verificarHorario,30000);
 })();
 </script>
 
+<style id="nd-r7-css">
+/* ================= RODADA 7 — AUDITORIA / CONFIABILIDADE ================= */
+:root{--r7-purple:#8b5cf6;--r7-cyan:#22d3ee;--r7-green:#22c55e;--r7-red:#ef4444}
+#ndR7Notice{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100001;display:flex;align-items:center;gap:10px;max-width:min(92vw,460px);padding:12px 16px;border:1px solid rgba(139,92,246,.45);border-radius:16px;background:rgba(12,10,20,.96);box-shadow:0 18px 50px rgba(0,0,0,.45);backdrop-filter:blur(16px);font-weight:700;font-size:13px;transition:.25s ease}
+#ndR7Notice.show{opacity:1;transform:translate(-50%,0)}
+#ndR7Notice.ok{border-color:rgba(34,197,94,.45)}
+#ndR7Notice.warn{border-color:rgba(239,68,68,.5)}
+.nd-r7-disabled{opacity:.55!important;filter:grayscale(.15);cursor:not-allowed!important}
+.nd-r7-image-error{display:flex!important;align-items:center;justify-content:center;background:linear-gradient(135deg,#15121e,#0d0d12)!important;color:#aaa;font-weight:800;font-size:12px;text-align:center;padding:12px}
+.nd-r7-saving{position:relative;overflow:hidden}
+.nd-r7-saving:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.08) 45%,transparent 70%);transform:translateX(-100%);animation:ndR7Shimmer 1s ease-in-out infinite}
+@keyframes ndR7Shimmer{to{transform:translateX(100%)}}
+@media(max-width:600px){#ndR7Notice{bottom:82px;font-size:12px;padding:11px 13px}}
+@media(prefers-reduced-motion:reduce){#ndR7Notice{transition:none}.nd-r7-saving:after{animation:none}}
+</style>
+<script id="nd-r7-auditoria">
+/* ================= RODADA 7 — AUDITORIA / CONFIABILIDADE ================= */
+(function(){
+'use strict';
+const MINIMO=11.90;
+const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+let noticeTimer=null, envioTravado=false;
+function cart(){try{if(typeof carrinho!=='undefined'&&Array.isArray(carrinho))return carrinho}catch(e){}return []}
+function subtotal(){try{return typeof calcularSubtotal==='function'?Number(calcularSubtotal()||0):cart().reduce((s,i)=>s+Number(i.preco||0)*Number(i.quantidade||0),0)}catch(e){return 0}}
+function money(v){return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function notify(msg,type='ok'){
+ let el=q('#ndR7Notice');
+ if(!el){el=document.createElement('div');el.id='ndR7Notice';document.body.appendChild(el)}
+ el.className='';el.id='ndR7Notice';el.classList.add(type==='warn'?'warn':'ok');el.textContent=msg;void el.offsetWidth;el.classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>el.classList.remove('show'),2600)
+}
+function estaAberto(){try{return typeof verificarHorario==='function'?!!verificarHorario():true}catch(e){return true}}
+function atualizarBotoesFechamento(){
+ const aberto=estaAberto();
+ qa('.btn-add,.nd-quick-plus,.nd-quick-minus').forEach(btn=>{btn.classList.toggle('nd-r7-disabled',!aberto);btn.setAttribute('aria-disabled',String(!aberto))});
+ const status=q('#statusHorario');
+ if(status && !aberto && !status.textContent.trim()) status.innerHTML='<span class="status-fechado">🔴 PEDIDOS FECHADOS NO MOMENTO</span>';
+}
+function instalarBloqueioClique(){
+ document.addEventListener('click',function(e){
+   const btn=e.target.closest('.btn-add,.nd-quick-plus,.nd-quick-minus');
+   if(!btn)return;
+   if(!estaAberto()){e.preventDefault();e.stopImmediatePropagation();notify('🔒 Estamos fechados no momento. Confira o horário de atendimento.','warn')}
+ },true);
+}
+function protegerEnvio(){
+ const alvo=document.getElementById('checkoutConfirmar');
+ if(!alvo)return;
+ alvo.addEventListener('click',function(e){
+   if(envioTravado){e.preventDefault();e.stopImmediatePropagation();return}
+   if(!estaAberto()){e.preventDefault();e.stopImmediatePropagation();notify('🔒 Pedidos fechados no momento.','warn');return}
+   envioTravado=true;alvo.classList.add('nd-r7-saving');alvo.setAttribute('aria-disabled','true');alvo.textContent='ENVIANDO PEDIDO...';
+   setTimeout(()=>{envioTravado=false;alvo.classList.remove('nd-r7-saving');alvo.removeAttribute('aria-disabled');if(document.body.contains(alvo))alvo.textContent='ENVIAR PEDIDO PELO WHATSAPP ↗'},3500)
+ },true);
+}
+function validarCarrinhoPersistido(){
+ try{
+   const raw=localStorage.getItem(typeof CHAVE_CARRINHO!=='undefined'?CHAVE_CARRINHO:'carrinho');
+   if(!raw)return;
+   const data=JSON.parse(raw);
+   if(!Array.isArray(data)) throw new Error('formato');
+   const limpo=data.filter(i=>i&&typeof i.nome==='string'&&Number.isFinite(Number(i.preco))&&Number(i.preco)>=0&&Number(i.quantidade)>0);
+   if(limpo.length!==data.length){
+     if(typeof salvarCarrinho==='function'){try{carrinho=limpo;salvarCarrinho()}catch(e){}}
+     notify('🛠️ Corrigimos automaticamente um item inválido do carrinho.','warn');
+   }
+ }catch(e){
+   try{localStorage.removeItem(typeof CHAVE_CARRINHO!=='undefined'?CHAVE_CARRINHO:'carrinho')}catch(x){}
+ }
+}
+function corrigirImagens(){
+ qa('img').forEach(img=>{
+   if(img.dataset.r7Bound)return;img.dataset.r7Bound='1';
+   img.loading=img.loading||'lazy';img.decoding='async';
+   img.addEventListener('error',function(){
+     if(this.dataset.r7Error)return;this.dataset.r7Error='1';
+     const box=document.createElement('div');box.className='produto-imagem nd-r7-image-error';box.textContent='IMAGEM INDISPONÍVEL';
+     this.replaceWith(box);
+   },{once:true});
+ });
+}
+function melhorarAcessibilidade(){
+ qa('button').forEach(b=>{if(!b.getAttribute('type'))b.setAttribute('type','button')});
+ qa('input,select,textarea').forEach(el=>{if(!el.getAttribute('autocomplete'))el.setAttribute('autocomplete','off')});
+ const busca=q('#pesquisaProdutos');if(busca)busca.setAttribute('aria-label','Pesquisar produtos');
+ const cartBtn=q('#carrinhoFlutuante');if(cartBtn)cartBtn.setAttribute('aria-label','Abrir carrinho');
+}
+function monitorarCarrinho(){
+ let ultimo='';
+ setInterval(()=>{
+   const atual=cart().map(i=>`${i.nome}:${i.quantidade}`).join('|')+'|'+subtotal().toFixed(2);
+   if(atual!==ultimo){ultimo=atual;try{if(typeof salvarCarrinho==='function')salvarCarrinho()}catch(e){}}
+ },900);
+}
+function iniciar(){
+ validarCarrinhoPersistido();corrigirImagens();melhorarAcessibilidade();instalarBloqueioClique();protegerEnvio();atualizarBotoesFechamento();monitorarCarrinho();
+ setInterval(()=>{try{if(typeof verificarHorario==='function')verificarHorario()}catch(e){}atualizarBotoesFechamento()},30000);
+ window.addEventListener('online',()=>notify('🟢 Conexão restabelecida.'));
+ window.addEventListener('offline',()=>notify('⚠️ Você está sem internet. O carrinho continua salvo neste aparelho.','warn'));
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){validarCarrinhoPersistido();corrigirImagens();atualizarBotoesFechamento()}});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();
+})();
+</script>
 </body>
 </html>
+
+<style id="nd-r8-css">
+/* ================= RODADA 8 — CLIENTE RECORRENTE ================= */
+:root{--r8-purple:#8b5cf6;--r8-cyan:#22d3ee}
+#ndR8Hub{margin:12px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.nd-r8-box{border:1px solid rgba(139,92,246,.24);background:linear-gradient(145deg,rgba(139,92,246,.10),rgba(34,211,238,.05));border-radius:18px;padding:12px;min-height:82px}
+.nd-r8-title{font-size:12px;font-weight:900;letter-spacing:.4px;margin-bottom:8px}
+.nd-r8-list{display:flex;gap:7px;flex-wrap:wrap}
+.nd-r8-chip{border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.24);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800;cursor:pointer;transition:.2s}
+.nd-r8-chip:hover{transform:translateY(-1px);border-color:rgba(34,211,238,.45)}
+.nd-r8-empty{font-size:11px;opacity:.58}
+.nd-r8-fav{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(8,8,12,.78);color:#fff;font-size:18px;display:grid;place-items:center;z-index:4;cursor:pointer;transition:.2s;backdrop-filter:blur(8px)}
+.nd-r8-fav:hover{transform:scale(1.08)}
+.nd-r8-fav.ativo{border-color:rgba(34,211,238,.55);box-shadow:0 0 18px rgba(34,211,238,.18)}
+.nd-r8-fav-pulse{animation:ndR8Fav .35s ease}
+@keyframes ndR8Fav{50%{transform:scale(1.22)}100%{transform:scale(1)}}
+#ndR8Welcome{display:none;margin:0 0 14px;padding:13px 15px;border-radius:18px;border:1px solid rgba(34,211,238,.25);background:linear-gradient(135deg,rgba(34,211,238,.09),rgba(139,92,246,.08));font-size:13px;font-weight:800}
+#ndR8History{margin-top:10px}
+.nd-r8-reorder{width:100%;margin-top:9px;border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.09);color:#fff;border-radius:12px;padding:9px;font-weight:900;cursor:pointer}
+@media(max-width:700px){#ndR8Hub{grid-template-columns:1fr}.nd-r8-box{min-height:auto}}
+</style>
+<script id="nd-r8-cliente-recorrente">
+/* ================= RODADA 8 — CLIENTE RECORRENTE ================= */
+(function(){
+'use strict';
+const FAV_KEY='ndburgs_favoritos_v1', HIST_KEY='ndburgs_pedidos_v1', MAX_HIST=5;
+const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+function safeGet(k,f){try{const x=JSON.parse(localStorage.getItem(k)||'null');return x??f}catch(e){return f}}
+function safeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
+function money(v){return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function favoritos(){const a=safeGet(FAV_KEY,[]);return Array.isArray(a)?a.filter(x=>typeof x==='string'):[]}
+function salvarFavs(a){safeSet(FAV_KEY,[...new Set(a)].slice(0,60))}
+function isFav(nome){return favoritos().some(x=>norm(x)===norm(nome))}
+function toast(msg){
+ let el=q('#ndR8Toast');if(!el){el=document.createElement('div');el.id='ndR8Toast';Object.assign(el.style,{position:'fixed',left:'50%',bottom:'92px',transform:'translate(-50%,15px)',opacity:'0',zIndex:'100005',padding:'12px 16px',borderRadius:'15px',background:'rgba(10,9,15,.96)',border:'1px solid rgba(34,211,238,.3)',boxShadow:'0 15px 45px rgba(0,0,0,.4)',fontWeight:'800',fontSize:'13px',transition:'.22s ease',pointerEvents:'none',whiteSpace:'nowrap',maxWidth:'90vw',overflow:'hidden',textOverflow:'ellipsis'});document.body.appendChild(el)}
+ el.textContent=msg;el.style.opacity='1';el.style.transform='translate(-50%,0)';clearTimeout(el._t);el._t=setTimeout(()=>{el.style.opacity='0';el.style.transform='translate(-50%,15px)'},2200)
+}
+function addFavButton(card){
+ if(card.querySelector('.nd-r8-fav'))return;
+ const h=card.querySelector('h3');if(!h)return;const nome=h.textContent.trim();
+ const b=document.createElement('button');b.type='button';b.className='nd-r8-fav'+(isFav(nome)?' ativo':'');b.setAttribute('aria-label',isFav(nome)?'Remover dos favoritos':'Adicionar aos favoritos');b.textContent=isFav(nome)?'♥':'♡';
+ b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();let a=favoritos();const idx=a.findIndex(x=>norm(x)===norm(nome));if(idx>=0){a.splice(idx,1);b.classList.remove('ativo');b.textContent='♡';b.setAttribute('aria-label','Adicionar aos favoritos');toast('♡ Removido dos favoritos')}else{a.unshift(nome);b.classList.add('ativo','nd-r8-fav-pulse');b.textContent='♥';b.setAttribute('aria-label','Remover dos favoritos');toast('♥ Adicionado aos favoritos');setTimeout(()=>b.classList.remove('nd-r8-fav-pulse'),400)}salvarFavs(a);renderHub()});
+ card.style.position='relative';card.appendChild(b)
+}
+function encontrarProduto(nome){
+ const cards=qa('.produto');return cards.find(c=>norm(c.querySelector('h3')?.textContent)===norm(nome))||null
+}
+function scrollProduto(nome){const c=encontrarProduto(nome);if(c){c.scrollIntoView({behavior:'smooth',block:'center'});c.animate([{transform:'scale(1)'},{transform:'scale(1.025)'},{transform:'scale(1)'}],450);return true}return false}
+function renderHub(){
+ let hub=q('#ndR8Hub');if(!hub){const area=q('#areaPesquisaProdutos');if(!area)return;hub=document.createElement('div');hub.id='ndR8Hub';area.insertAdjacentElement('afterend',hub)}
+ const fav=favoritos();const hist=safeGet(HIST_KEY,[]);let html='<div class="nd-r8-box"><div class="nd-r8-title">♥ MEUS FAVORITOS</div><div class="nd-r8-list">';
+ if(fav.length) html+=fav.slice(0,5).map(n=>`<button type="button" class="nd-r8-chip" data-r8-scroll="${encodeURIComponent(n)}">♥ ${n}</button>`).join(''); else html+='<span class="nd-r8-empty">Toque no ♡ dos produtos para salvar aqui.</span>';
+ html+='</div></div><div class="nd-r8-box" id="ndR8History"><div class="nd-r8-title">↻ PEDIR NOVAMENTE</div><div class="nd-r8-list">';
+ if(hist.length) html+=hist.slice(0,3).map((p,i)=>`<button type="button" class="nd-r8-chip" data-r8-reorder="${i}">↻ ${p.label||'Pedido '+(i+1)} · ${money(p.total)}</button>`).join(''); else html+='<span class="nd-r8-empty">Depois do seu primeiro pedido, ele aparecerá aqui.</span>';
+ html+='</div></div>';hub.innerHTML=html;
+ hub.querySelectorAll('[data-r8-scroll]').forEach(b=>b.addEventListener('click',()=>scrollProduto(decodeURIComponent(b.dataset.r8Scroll))));
+ hub.querySelectorAll('[data-r8-reorder]').forEach(b=>b.addEventListener('click',()=>reorder(Number(b.dataset.r8Reorder))));
+}
+function reorder(i){
+ const hist=safeGet(HIST_KEY,[]),p=hist[i];if(!p||!Array.isArray(p.items))return;
+ let adicionados=0; p.items.forEach(item=>{const card=encontrarProduto(item.nome);if(card){const btn=card.querySelector('.btn-add');if(btn){btn.click();adicionados++}}});
+ toast(adicionados?`↻ ${adicionados} item(ns) do pedido adicionados ao carrinho`:'Alguns itens não estão mais disponíveis no cardápio.');
+ if(adicionados){setTimeout(()=>{if(typeof atualizarCarrinho==='function')atualizarCarrinho()},150)}
+}
+function salvarPedidoHistorico(){
+ try{
+  const c=typeof carrinho!=='undefined'&&Array.isArray(carrinho)?c:[];if(!c.length)return;
+  const items=c.map(i=>({nome:String(i.nome||''),preco:Number(i.preco||0),quantidade:Number(i.quantidade||1)})).filter(i=>i.nome);
+  const total=items.reduce((s,i)=>s+i.preco*i.quantidade,0);
+  const hist=safeGet(HIST_KEY,[]);hist.unshift({label:new Date().toLocaleDateString('pt-BR'),total,items});safeSet(HIST_KEY,hist.slice(0,MAX_HIST));renderHub();
+ }catch(e){}
+}
+function bindHistory(){const fn=window.finalizarPedidoModal;if(typeof fn!=='function'||fn.__r8)return;function wrapped(){salvarPedidoHistorico();return fn.apply(this,arguments)}wrapped.__r8=true;window.finalizarPedidoModal=wrapped}
+function welcome(){
+ let el=q('#ndR8Welcome');if(!el){const area=q('#areaPesquisaProdutos');if(!area)return;el=document.createElement('div');el.id='ndR8Welcome';area.insertAdjacentElement('afterend',el)}
+ const hist=safeGet(HIST_KEY,[]),fav=favoritos();if(hist.length||fav.length){el.style.display='block';el.textContent=hist.length?'👋 BOM TE VER DE NOVO! Seu pedido está mais rápido por aqui.':'👋 SEUS FAVORITOS ESTÃO SALVOS!';}else el.style.display='none';
+}
+function init(){qa('.produto').forEach(addFavButton);renderHub();welcome();bindHistory();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+new MutationObserver(()=>{qa('.produto').forEach(addFavButton)}).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
