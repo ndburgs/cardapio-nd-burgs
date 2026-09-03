@@ -358,8 +358,14 @@ Volte durante nosso horário de atendimento.
 
 <br>
 
-Terça a domingo:
+Terça a sábado:
 <strong>18:00 às 00:30</strong>
+
+
+<br>
+
+Domingo:
+<strong>18:00 às 00:00</strong>
 
 
 <br>
@@ -388,8 +394,14 @@ Segunda-feira:
 
 <div class="horarios-linha">
 
-📅 Terça a domingo:
+📅 Terça a sábado:
 <strong>18:00 às 00:30</strong>
+
+
+<br>
+
+📅 Domingo:
+<strong>18:00 às 00:00</strong>
 
 
 <br>
@@ -1920,7 +1932,9 @@ CHAVE_CARRINHO,
 JSON.stringify(carrinho)
 );
 
-}catch(e){}
+}catch(e){
+console.error("Erro ao salvar carrinho:",e);
+}
 
 }
 
@@ -1928,22 +1942,32 @@ function carregarCarrinhoSalvo(){
 
 try{
 
-const salvo=
-localStorage.getItem(CHAVE_CARRINHO);
+const salvo=localStorage.getItem(CHAVE_CARRINHO);
 
-if(!salvo)return;
-
-const dados=
-JSON.parse(salvo);
-
-if(Array.isArray(dados)){
-carrinho=dados;
+if(!salvo){
+  carrinho=[];
+  return;
 }
 
+const dados=JSON.parse(salvo);
+
+if(!Array.isArray(dados)){
+  carrinho=[];
+  return;
+}
+
+carrinho=dados
+.filter(item=>item && typeof item.nome==="string" && Number.isFinite(Number(item.preco)) && Number(item.quantidade)>0)
+.map(item=>({
+  ...item,
+  preco:Number(item.preco),
+  quantidade:Number(item.quantidade),
+  detalhes:Array.isArray(item.detalhes)?item.detalhes:[]
+}));
+
 }catch(e){
-
+console.error("Erro ao carregar carrinho salvo:",e);
 carrinho=[];
-
 }
 
 }
@@ -2610,14 +2634,17 @@ carrinho.splice(index,1);
 
 }
 
+salvarCarrinho();
 atualizarCarrinho();
 
 }
 
 function removerItem(index){
 
-carrinho.splice(index,1);
+if(!carrinho[index])return;
 
+carrinho.splice(index,1);
+salvarCarrinho();
 atualizarCarrinho();
 
 }
@@ -2825,8 +2852,6 @@ subtotal
 atualizarModalCarrinho();
 
 calcularTaxa();
-
-salvarCarrinho();
 
 }
 
@@ -3449,6 +3474,34 @@ moeda(taxas[rua]);
 select.appendChild(
 option
 );
+
+});
+
+}
+
+
+function carregarRuasModal(){
+
+const lista=document.getElementById("listaRuasModal");
+
+if(!lista)return;
+
+lista.innerHTML="";
+
+Object.keys(taxas)
+.filter(rua=>
+rua!=="BALCAO" &&
+rua!=="RETIRADA" &&
+rua!=="IFOOD" &&
+rua!=="99FOOD"
+)
+.sort((a,b)=>a.localeCompare(b,"pt-BR"))
+.forEach(rua=>{
+
+const option=document.createElement("option");
+option.value=rua;
+option.label=rua+" — "+moeda(taxas[rua]);
+lista.appendChild(option);
 
 });
 
@@ -4263,62 +4316,6 @@ trocoArea.style.display=
 
 
 /* =========================
-   CARREGAR RUAS
-========================= */
-
-function carregarRuas(){
-
-const select=
-document.getElementById(
-"listaRuas"
-);
-
-const ruas=
-Object.keys(taxas)
-.filter(
-rua=>
-rua!=="BALCAO" &&
-rua!=="RETIRADA" &&
-rua!=="IFOOD" &&
-rua!=="99FOOD"
-)
-.sort(
-(a,b)=>
-a.localeCompare(
-b,
-"pt-BR"
-)
-);
-
-ruas.forEach(rua=>{
-
-const option=
-document.createElement(
-"option"
-);
-
-option.value=
-rua;
-
-option.textContent=
-rua+
-" — "+
-moeda(taxas[rua]);
-
-select.appendChild(
-option
-);
-
-});
-
-if(input)
-input.value=
-valorAtual;
-
-}
-
-
-/* =========================
    LIMPAR CARRINHO
 ========================= */
 
@@ -4598,106 +4595,49 @@ block:"start"
 
 function verificarHorario(){
 
-const agora=
-new Date();
-
-const dia=
-agora.getDay();
-
-const minutos=
-agora.getHours()*
-60+
-agora.getMinutes();
+const agora=new Date();
+const dia=agora.getDay();
+const minutos=agora.getHours()*60+agora.getMinutes();
 
 let aberto=false;
 
 /*
-   HORÁRIO OFICIAL ND BURGS
-   TERÇA A DOMINGO: 18:00 ÀS 00:30
+   HORÁRIO OFICIAL
+   TERÇA A SÁBADO: 18:00 ÀS 00:30
+   DOMINGO: 18:00 ÀS 00:00
+   SEGUNDA: FECHADO
 
-   getDay():
-   0 = Domingo
-   1 = Segunda
-   2 = Terça
-   3 = Quarta
-   4 = Quinta
-   5 = Sexta
-   6 = Sábado
+   A madrugada pertence ao atendimento iniciado no dia anterior.
 */
 
-
-/* 18:00 até 23:59 — terça a domingo */
-
-if(
-dia>=2 &&
-dia<=6 &&
-minutos>=18*60
-){
-
-aberto=true;
-
+if(dia>=2 && dia<=6 && minutos>=18*60){
+  aberto=true;
 }
 
-if(
-dia===0 &&
-minutos>=18*60
-){
-
-aberto=true;
-
+if(dia===0 && minutos>=18*60){
+  aberto=true;
 }
 
-
-/*
-   00:00 até 00:29 — continuação
-   do atendimento da noite anterior.
-   Domingo 00:00 pertence ao sábado.
-   Segunda 00:00 pertence ao domingo.
-   Terça 00:00 NÃO abre,
-   pois segunda-feira é fechada.
-*/
-
-if(
-minutos<30 &&
-dia!==2
-){
-
-aberto=true;
-
+/* Continuação da noite anterior: quarta a domingo 00:00–00:29.
+   Segunda 00:00–00:00 não existe, pois domingo encerra exatamente às 00:00.
+   Terça 00:00–00:29 também permanece fechado. */
+if(minutos<30 && ((dia>=3 && dia<=6) || dia===0)){
+  aberto=true;
 }
 
-const bloqueio=
-document.getElementById(
-"bloqueioHorario"
-);
+const bloqueio=document.getElementById("bloqueioHorario");
+const status=document.getElementById("statusHorario");
 
-const status=
-document.getElementById(
-"statusHorario"
-);
+if(!bloqueio || !status)return;
 
 if(aberto){
-
-bloqueio.style.display=
-"none";
-
-status.className=
-"status-aberto";
-
-status.innerHTML=
-"🟢 ESTAMOS ABERTOS";
-
+  bloqueio.style.display="none";
+  status.className="status-aberto";
+  status.innerHTML="🟢 ESTAMOS ABERTOS";
 }else{
-
-bloqueio.style.display=
-"flex";
-
-status.className=
-"status-fechado";
-
-status.innerHTML=
-"🔴 ESTAMOS FECHADOS";
-
+  bloqueio.style.display="flex";
+  status.className="status-fechado";
+  status.innerHTML="🔴 ESTAMOS FECHADOS";
 }
 
 }
@@ -5026,11 +4966,9 @@ iniciarPesquisaProdutos();
 carregarCarrinhoSalvo();
 
 carregarRuas();
-
 carregarRuasModal();
 
 atualizarCarrinho();
-
 alterarTipoPedido();
 
 verificarHorario();
