@@ -5727,5 +5727,42 @@ input:focus,select:focus,textarea:focus{border-color:var(--nd-gold)!important;bo
 })();
 </script>
 
+
+<script id="nd-hard-fix-whatsapp">
+(function(){
+  function instalar(){
+    const antigo=document.getElementById('checkoutConfirmar');
+    if(!antigo || antigo.dataset.ndHardFixed) return;
+
+    /* Clona o botão para remover os bloqueadores antigos de clique */
+    const novo=antigo.cloneNode(true);
+    novo.dataset.ndHardFixed='1';
+    novo.disabled=false;
+    novo.removeAttribute('aria-disabled');
+    novo.textContent='📲 ENVIAR PEDIDO PELO WHATSAPP';
+    antigo.replaceWith(novo);
+
+    novo.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      try{
+        if(typeof window.finalizarPedidoModal==='function'){
+          window.finalizarPedidoModal();
+        }else{
+          alert('⚠️ A função de envio não foi carregada. Recarregue a página e tente novamente.');
+        }
+      }catch(err){
+        console.error(err);
+        alert('⚠️ Erro ao abrir o WhatsApp: '+err.message);
+      }
+    }, true);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', instalar);
+  else instalar();
+  setTimeout(instalar,800);
+  setTimeout(instalar,1800);
+})();
+</script>
+
 </body>
 </html>
