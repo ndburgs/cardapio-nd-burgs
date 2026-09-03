@@ -105,23 +105,6 @@ font-size:18px
 background:#124fa8;
 }
 
-
-/* MODAL SUGESTAO DE COMPRA */
-.modal-sugestao-compra{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:100006;display:none;align-items:center;justify-content:center;padding:16px}
-.modal-sugestao-compra.ativo{display:flex}
-.painel-sugestao-compra{position:relative;width:100%;max-width:560px;max-height:90vh;overflow:auto;background:#151515;border:2px solid #f5c400;border-radius:20px;padding:24px;box-shadow:0 10px 50px rgba(0,0,0,.8)}
-.fechar-sugestao-compra{position:absolute;right:12px;top:10px;width:38px;height:38px;border:0;border-radius:50%;background:#8b0000;color:#fff;font-size:24px;cursor:pointer}
-.sugestao-titulo{text-align:center;color:#f5c400;font-size:22px;font-weight:900;padding:0 38px 8px}
-.sugestao-subtitulo{text-align:center;color:#aaa;font-size:14px;margin-bottom:18px}
-.lista-sugestoes-compra{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.item-sugestao-compra{background:#202020;border:1px solid #333;border-radius:14px;padding:12px;text-align:center}
-.item-sugestao-compra img{width:100%;height:105px;object-fit:contain;border-radius:10px;background:#111}
-.item-sugestao-compra strong{display:block;color:#fff;font-size:14px;margin:9px 0 5px;min-height:34px}
-.item-sugestao-compra span{display:block;color:#f5c400;font-weight:900;margin-bottom:9px}
-.btn-add-sugestao{width:100%;border:0;border-radius:8px;background:#f5c400;color:#000;font-weight:900;padding:9px;cursor:pointer}
-.btn-sugestao-continuar{width:100%;margin-top:15px;border:1px solid #555;border-radius:9px;background:#292929;color:#fff;padding:12px;font-weight:bold;cursor:pointer}
-@media(max-width:600px){.lista-sugestoes-compra{grid-template-columns:1fr}.item-sugestao-compra{display:grid;grid-template-columns:90px 1fr;grid-template-rows:auto auto auto;gap:3px 10px;text-align:left}.item-sugestao-compra img{grid-row:1/4;height:90px}.item-sugestao-compra strong{min-height:0;margin:4px 0}.item-sugestao-compra span{margin:0}.btn-add-sugestao{align-self:center}}
-
 /* TOAST */
 .toast-carrinho{position:fixed;left:50%;top:80px;transform:translate(-50%,-20px);background:#25D366;color:#fff;font-weight:bold;padding:11px 18px;border-radius:30px;z-index:100005;opacity:0;pointer-events:none;transition:.25s ease;box-shadow:0 5px 20px rgba(0,0,0,.5)}
 .toast-carrinho.mostrar{opacity:1;transform:translate(-50%,0)}
@@ -314,26 +297,6 @@ padding:15px 10px;
 font-size:14px;
 }
 }
-
-/* =========================
-   PESQUISA DE PRODUTOS
-========================= */
-.campo-endereco-pesquisa{position:relative;width:100%;margin-bottom:12px;}
-.campo-endereco-pesquisa input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:8px;border:1px solid #555;background:#171717;color:#fff;font-size:15px;outline:none;}
-.campo-endereco-pesquisa input:focus{border-color:#f5c400;box-shadow:0 0 0 2px rgba(245,196,0,.12);}
-.campo-endereco-pesquisa input::placeholder{color:#999;}
-.pesquisa-produtos{max-width:1100px;margin:14px auto 22px;padding:0 12px}
-.pesquisa-wrap{display:flex;align-items:center;gap:10px;background:#151515;border:1px solid #333;border-radius:14px;padding:10px 13px;box-shadow:0 5px 18px rgba(0,0,0,.25);transition:.2s ease}
-.pesquisa-wrap:focus-within{border-color:#f5c400;box-shadow:0 0 0 2px rgba(245,196,0,.12),0 5px 18px rgba(0,0,0,.3)}
-.pesquisa-icone{font-size:21px;line-height:1}
-.pesquisa-input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-size:16px;font-weight:600}
-.pesquisa-input::placeholder{color:#999}
-.pesquisa-limpar{display:none;width:30px;height:30px;flex:0 0 30px;border:0;border-radius:50%;background:#2a2a2a;color:#fff;font-size:22px;line-height:1;cursor:pointer}
-.pesquisa-limpar:hover{background:#f5c400;color:#000}
-.resultado-pesquisa{display:none;margin-top:9px;text-align:center;color:#aaa;font-size:13px}
-.resultado-pesquisa strong{color:#f5c400}
-@media(max-width:600px){.pesquisa-produtos{margin:10px auto 17px;padding:0 8px}.pesquisa-wrap{border-radius:12px;padding:9px 11px}.pesquisa-input{font-size:15px}}
-
 </style>
 </head>
 
@@ -360,10 +323,11 @@ Volte durante nosso horário de atendimento.
 
 Terça a sábado:
 <strong>18:00 às 00:30</strong>
+
 <br>
+
 Domingo:
 <strong>18:00 às 00:00</strong>
-
 
 <br>
 
@@ -393,10 +357,11 @@ Segunda-feira:
 
 📅 Terça a sábado:
 <strong>18:00 às 00:30</strong>
-<br>
-Domingo:
-<strong>18:00 às 00:00</strong>
 
+<br>
+
+📅 Domingo:
+<strong>18:00 às 00:00</strong>
 
 <br>
 
@@ -461,16 +426,6 @@ Domingo:
 ➕ ADICIONAIS
 </button>
 
-</div>
-
-<!-- PESQUISA DE PRODUTOS -->
-<div class="pesquisa-produtos" id="areaPesquisaProdutos">
-  <div class="pesquisa-wrap">
-    <span class="pesquisa-icone">🔎</span>
-    <input type="search" id="pesquisaProdutos" class="pesquisa-input" placeholder="Buscar produto..." autocomplete="off" aria-label="Buscar produto">
-    <button type="button" id="limparPesquisa" class="pesquisa-limpar" aria-label="Limpar pesquisa" title="Limpar pesquisa">×</button>
-  </div>
-  <div id="resultadoPesquisa" class="resultado-pesquisa"></div>
 </div>
 
 <section id="combos" class="categoria">
@@ -1265,19 +1220,13 @@ ADICIONAR
 
 <label>Rua</label>
 
-<div class="campo-endereco-pesquisa">
-<input
-type="text"
-id="rua"
-list="listaRuas"
-autocomplete="off"
-placeholder="Digite para pesquisar sua rua..."
-oninput="calcularTaxa()"
-onchange="calcularTaxa()"
->
-<datalist id="listaRuas">
-</datalist>
-</div>
+<select id="rua" onchange="calcularTaxa()">
+
+<option value="">
+Selecione sua rua
+</option>
+
+</select>
 
 <label>Número</label>
 
@@ -1468,18 +1417,6 @@ onclick="irParaFinalizarPedido()"
 </div>
 </div>
 
-
-<!-- MODAL SUGESTAO DE COMPRA -->
-<div id="modalSugestaoCompra" class="modal-sugestao-compra" onclick="fecharSugestaoCompra(event)">
-  <div class="painel-sugestao-compra" onclick="event.stopPropagation()">
-    <button type="button" class="fechar-sugestao-compra" onclick="fecharSugestaoCompra()">×</button>
-    <div class="sugestao-titulo">😍 QUE TAL COMPLETAR SEU PEDIDO?</div>
-    <div class="sugestao-subtitulo">Olha essas opções que podem combinar com o que você escolheu:</div>
-    <div id="listaSugestoesCompra" class="lista-sugestoes-compra"></div>
-    <button type="button" class="btn-sugestao-continuar" onclick="fecharSugestaoCompra()">CONTINUAR ESCOLHENDO</button>
-  </div>
-</div>
-
 <!-- MODAL FINALIZAR PEDIDO -->
 
 <div
@@ -1553,19 +1490,16 @@ onchange="alterarTipoPedidoModal()"
 Rua
 </label>
 
-<div class="campo-endereco-pesquisa">
-<input
-type="text"
+<select
 id="ruaModal"
-list="listaRuasModal"
-autocomplete="off"
-placeholder="Digite para pesquisar sua rua..."
-oninput="calcularTaxaModal()"
 onchange="calcularTaxaModal()"
 >
-<datalist id="listaRuasModal">
-</datalist>
-</div>
+
+<option value="">
+Selecione sua rua
+</option>
+
+</select>
 
 <label>
 Número
@@ -1701,7 +1635,6 @@ class="toast-carrinho"
 <div
 id="modalPersonalizacao"
 class="modal-personalizacao"
-onclick="if(event.target===this) fecharPersonalizacao(event)"
 >
 
 <div class="modal-box">
@@ -1713,11 +1646,8 @@ Personalizar
 </h2>
 
 <button
-type="button"
 class="modal-fechar"
-onclick="event.preventDefault(); event.stopPropagation(); fecharPersonalizacao(event)"
-aria-label="Fechar"
-title="Fechar"
+onclick="fecharPersonalizacao()"
 >
 ×
 </button>
@@ -2211,19 +2141,13 @@ toast.classList.remove("mostrar");
 /* =========================
    FECHAR MODAL DE PERSONALIZAÇÃO
 ========================= */
-function fecharPersonalizacao(event){
-
-if(event){
-event.preventDefault();
-event.stopPropagation();
-}
+function fecharPersonalizacao(){
 
 const modal =
 document.getElementById("modalPersonalizacao");
 
 if(modal){
 modal.style.display="none";
-modal.classList.remove("ativo");
 }
 
 document.body.style.overflow="";
@@ -3053,258 +2977,30 @@ moeda(total);
 
 function irParaCheckout(){
 
-/* Não desce a página: primeiro mostra sugestões de compra. */
 fecharCarrinho();
-abrirSugestoesCompra();
 
-}
+setTimeout(()=>{
 
-function abrirSugestoesCompra(){
-
-const modal=
+const checkout=
 document.getElementById(
-"modalSugestaoCompra"
+"checkout"
 );
 
-const lista=
-document.getElementById(
-"listaSugestoesCompra"
-);
+if(checkout){
 
-if(!modal || !lista)return;
+checkout.scrollIntoView({
 
+behavior:"smooth",
 
-/* =========================
-   PEGAR TODOS OS PRODUTOS
-========================= */
-
-const cards=[
-  ...document.querySelectorAll(
-    "section.categoria .produto"
-  )
-];
-
-
-/* =========================
-   NÃO SUGERIR O QUE JÁ ESTÁ
-   NO CARRINHO
-========================= */
-
-const nomesCarrinho=
-new Set(
-  carrinho.map(
-    item=>
-      normalizarTextoPesquisa(
-        item.nome || ""
-      )
-  )
-);
-
-
-const disponiveis=
-cards.filter(card=>{
-
-const nome=
-card.querySelector("h3")
-?.innerText
-?.trim() || "";
-
-return(
-nome &&
-!nomesCarrinho.has(
-normalizarTextoPesquisa(nome)
-)
-);
+block:"start"
 
 });
 
-
-/* =========================
-   EMBARALHAR OS PRODUTOS
-========================= */
-
-const embaralhados=
-[...disponiveis];
-
-for(
-let i=embaralhados.length-1;
-i>0;
-i--
-){
-
-const j=
-Math.floor(
-Math.random()*(i+1)
-);
-
-[
-embaralhados[i],
-embaralhados[j]
-]=[
-embaralhados[j],
-embaralhados[i]
-];
-
 }
 
-
-/* =========================
-   PEGAR 3 ALEATÓRIOS
-========================= */
-
-const selecionados=
-embaralhados.slice(0,3);
-
-
-/* =========================
-   MONTAR SUGESTÕES
-========================= */
-
-lista.innerHTML=
-selecionados.map(card=>{
-
-const nome=
-card.querySelector("h3")
-?.innerText
-?.trim() ||
-"Produto";
-
-const img=
-card.querySelector("img")
-?.getAttribute("src") ||
-"";
-
-const precoEl=
-card.querySelector(".preco");
-
-const preco=
-precoEl?.innerText?.trim() ||
-"";
-
-
-return `
-<div class="item-sugestao-compra">
-
-<img
-src="${img}"
-alt="${nome.replace(
-/"/g,
-'&quot;'
-)}"
->
-
-<strong>
-${nome}
-</strong>
-
-<span>
-${preco}
-</span>
-
-<button
-type="button"
-class="btn-add-sugestao"
-onclick="adicionarSugestao(this)"
->
-ADICIONAR
-</button>
-
-</div>
-`;
-
-}).join("");
-
-
-/* =========================
-   CASO NÃO TENHA MAIS PRODUTOS
-========================= */
-
-if(!selecionados.length){
-
-lista.innerHTML=
-'<div style="grid-column:1/-1;text-align:center;color:#aaa;padding:20px">Seu carrinho já está bem completo! 😍</div>';
+},150);
 
 }
-
-
-/* =========================
-   ABRIR MODAL
-========================= */
-
-modal.classList.add("ativo");
-
-document.body.style.overflow=
-"hidden";
-
-}
-
-
-function adicionarSugestao(botao){
-
-const item=
-botao.closest(
-".item-sugestao-compra"
-);
-
-const nome=
-item
-?.querySelector("strong")
-?.innerText
-?.trim();
-
-if(!nome)return;
-
-fecharSugestaoCompra();
-
-const cards=[
-  ...document.querySelectorAll(
-    "section.categoria .produto"
-  )
-];
-
-const card=
-cards.find(
-c=>
-normalizarTextoPesquisa(
-c.querySelector("h3")
-?.innerText || ""
-)===
-normalizarTextoPesquisa(nome)
-);
-
-const add=
-card?.querySelector(
-".btn-add"
-);
-
-if(add){
-add.click();
-}
-
-}
-
-
-function fecharSugestaoCompra(event){
-
-if(
-event &&
-event.target &&
-event.target.id!=="modalSugestaoCompra"
-)
-return;
-
-const modal=
-document.getElementById(
-"modalSugestaoCompra"
-);
-
-if(modal)
-modal.classList.remove("ativo");
-
-document.body.style.overflow="";
-
-}
-
 
 /* =========================
    ABRIR MODAL FINALIZAÇÃO
@@ -3334,7 +3030,6 @@ document.body.style.overflow=
 
 }
 
-
 /* =========================
    FECHAR MODAL FINALIZAÇÃO
 ========================= */
@@ -3362,7 +3057,6 @@ modal.classList.remove("ativo");
 document.body.style.overflow="";
 
 }
-
 
 /* =========================
    COPIAR DADOS EXISTENTES
@@ -3410,25 +3104,24 @@ alterarPagamentoModal();
 
 }
 
-
 /* =========================
    RUAS DO MODAL
 ========================= */
 
-/* =========================
-   CARREGAR RUAS
-========================= */
-
-function carregarRuas(){
+function carregarRuasModal(){
 
 const select=
 document.getElementById(
-"listaRuas"
+"ruaModal"
 );
 
 if(!select)return;
 
-select.innerHTML="";
+const valorAtual=
+select.value;
+
+select.innerHTML=
+'<option value="">Selecione sua rua</option>';
 
 const ruas=
 Object.keys(taxas)
@@ -3454,22 +3147,28 @@ document.createElement(
 "option"
 );
 
-option.value=
-rua;
+option.value=rua;
 
 option.textContent=
 rua+
 " — "+
 moeda(taxas[rua]);
 
-select.appendChild(
-option
-);
+select.appendChild(option);
 
 });
 
+if(
+valorAtual &&
+taxas[valorAtual]!==undefined
+){
+
+select.value=
+valorAtual;
+
 }
 
+}
 
 /* =========================
    TIPO PEDIDO MODAL
@@ -3502,7 +3201,6 @@ enderecoArea.style.display=
 calcularTaxaModal();
 
 }
-
 
 /* =========================
    TAXA MODAL
@@ -3570,7 +3268,6 @@ return taxa;
 
 }
 
-
 /* =========================
    PAGAMENTO MODAL
 ========================= */
@@ -3603,7 +3300,6 @@ area.style.display=
 
 }
 
-
 /* =========================
    RESUMO MODAL
 ========================= */
@@ -3633,9 +3329,7 @@ tipoElemento.value==="ENTREGA"
 
 taxa=
 Number(
-taxas[
-ruaElemento.value
-]||0
+taxas[ruaElemento.value]||0
 );
 
 }
@@ -3671,7 +3365,6 @@ totalEl.innerText=
 moeda(total);
 
 }
-
 
 /* =========================
    FINALIZAR PELO MODAL
@@ -3736,9 +3429,7 @@ document.getElementById(
 
 if(!nome){
 
-alert(
-"Digite seu nome."
-);
+alert("Digite seu nome.");
 
 document.getElementById(
 "nomeModal"
@@ -3762,15 +3453,10 @@ return;
 
 }
 
-const telefoneNumeros=
-telefone.replace(
-/\D/g,
-""
-);
+const telefoneNumeros =
+telefone.replace(/\D/g,"");
 
-if(
-telefoneNumeros.length<10
-){
+if(telefoneNumeros.length<10){
 
 alert(
 "📱 TELEFONE INVÁLIDO\n\n"+
@@ -3785,9 +3471,7 @@ return;
 
 }
 
-if(
-telefoneNumeros.length>11
-){
+if(telefoneNumeros.length>11){
 
 alert(
 "📱 TELEFONE INVÁLIDO\n\n"+
@@ -3806,9 +3490,7 @@ if(tipo==="ENTREGA"){
 
 if(!rua){
 
-alert(
-"Selecione sua rua."
-);
+alert("Selecione sua rua.");
 
 document.getElementById(
 "ruaModal"
@@ -3836,8 +3518,7 @@ return;
 
 if(tipo==="ENTREGA"){
 
-const subtotalMinimo=
-11.90;
+const subtotalMinimo=11.90;
 
 const subtotalAtual=
 carrinho.reduce(
@@ -3847,23 +3528,17 @@ soma+
 0
 );
 
-if(
-subtotalAtual<
-subtotalMinimo
-){
+if(subtotalAtual<subtotalMinimo){
 
 const falta=
-subtotalMinimo-
-subtotalAtual;
+subtotalMinimo-subtotalAtual;
 
 alert(
 "🏍️ PEDIDO MÍNIMO PARA DELIVERY\n\n"+
 "Para delivery, o pedido mínimo é "+
-moeda(subtotalMinimo)+
-".\n\n"+
+moeda(subtotalMinimo)+".\n\n"+
 "Seu pedido está em "+
-moeda(subtotalAtual)+
-".\n"+
+moeda(subtotalAtual)+".\n"+
 "Faltam "+
 moeda(falta)+
 " para poder finalizar."
@@ -3874,7 +3549,7 @@ return;
 }
 
 }
-
+   
 if(!pagamento){
 
 alert(
@@ -3921,9 +3596,7 @@ soma+
 
 let taxaAtual=0;
 
-if(
-tipo==="ENTREGA"
-){
+if(tipo==="ENTREGA"){
 
 taxaAtual=
 Number(
@@ -3933,8 +3606,7 @@ taxas[rua]||0
 }
 
 const totalAtual=
-subtotalAtual+
-taxaAtual;
+subtotalAtual+taxaAtual;
 
 if(
 isNaN(valorTroco) ||
@@ -3988,9 +3660,7 @@ tipo==="ENTREGA"?
 )+
 "%0A";
 
-if(
-tipo==="ENTREGA"
-){
+if(tipo==="ENTREGA"){
 
 mensagem+=
 "📍 *ENDEREÇO:* "+
@@ -4047,9 +3717,7 @@ item.detalhes.length
 mensagem+=
 encodeURIComponent(
 "   ↳ "+
-item.detalhes.join(
-", "
-)
+item.detalhes.join(", ")
 )+
 "%0A";
 
@@ -4059,9 +3727,7 @@ item.detalhes.join(
 
 let taxa=0;
 
-if(
-tipo==="ENTREGA"
-){
+if(tipo==="ENTREGA"){
 
 taxa=
 taxas[rua]!==undefined
@@ -4073,8 +3739,7 @@ Number(taxas[rua])
 }
 
 const total=
-subtotal+
-taxa;
+subtotal+taxa;
 
 mensagem+=
 "%0A";
@@ -4155,7 +3820,6 @@ mensagem,
 
 }
 
-
 /* =========================
    TAXA FORMULÁRIO ORIGINAL
 ========================= */
@@ -4194,8 +3858,7 @@ const subtotal=
 calcularSubtotal();
 
 const total=
-subtotal+
-taxa;
+subtotal+taxa;
 
 document.getElementById(
 "taxa"
@@ -4212,8 +3875,7 @@ atualizarAvisoTaxa();
 atualizarCarrinhoFlutuante(
 carrinho.reduce(
 (soma,item)=>
-soma+
-item.quantidade,
+soma+item.quantidade,
 0
 ),
 subtotal
@@ -4222,7 +3884,6 @@ subtotal
 atualizarModalCarrinho();
 
 }
-
 
 /* =========================
    ALTERAR TIPO PEDIDO
@@ -4251,7 +3912,6 @@ calcularTaxa();
 
 }
 
-
 /* =========================
    PAGAMENTO ORIGINAL
 ========================= */
@@ -4277,7 +3937,6 @@ trocoArea.style.display=
 }
 );
 
-
 /* =========================
    CARREGAR RUAS
 ========================= */
@@ -4286,7 +3945,7 @@ function carregarRuas(){
 
 const select=
 document.getElementById(
-"listaRuas"
+"rua"
 );
 
 const ruas=
@@ -4321,18 +3980,11 @@ rua+
 " — "+
 moeda(taxas[rua]);
 
-select.appendChild(
-option
-);
+select.appendChild(option);
 
 });
 
-if(input)
-input.value=
-valorAtual;
-
 }
-
 
 /* =========================
    LIMPAR CARRINHO
@@ -4366,222 +4018,6 @@ fecharCarrinho();
 
 }
 
-
-/* =========================
-   PESQUISA DE PRODUTOS
-========================= */
-
-function normalizarTextoPesquisa(texto){
-
-return String(
-texto||""
-)
-.normalize("NFD")
-.replace(
-/[\u0300-\u036f]/g,
-""
-)
-.toLowerCase()
-.trim();
-
-}
-
-
-function pesquisarProdutos(){
-
-const campo=
-document.getElementById(
-"pesquisaProdutos"
-);
-
-const limpar=
-document.getElementById(
-"limparPesquisa"
-);
-
-const resultado=
-document.getElementById(
-"resultadoPesquisa"
-);
-
-const categorias=
-document.querySelectorAll(
-"section.categoria"
-);
-
-const termo=
-normalizarTextoPesquisa(
-campo?
-campo.value:
-""
-);
-
-let encontrados=0;
-
-if(limpar)
-limpar.style.display=
-termo?
-"block":
-"none";
-
-categorias.forEach(
-categoria=>{
-
-const produtos=
-categoria.querySelectorAll(
-".produto"
-);
-
-let encontradosNaCategoria=0;
-
-produtos.forEach(
-produto=>{
-
-if(!termo){
-
-produto.style.display=
-"";
-
-return;
-
-}
-
-const nome=
-produto.querySelector(
-"h3"
-)?.innerText||
-"";
-
-const descricao=
-produto.querySelector(
-"p"
-)?.innerText||
-"";
-
-const imagem=
-produto.querySelector(
-"img"
-)?.alt||
-"";
-
-const texto=
-normalizarTextoPesquisa(
-nome+
-" "+
-descricao+
-" "+
-imagem
-);
-
-const encontrou=
-texto.includes(termo);
-
-produto.style.display=
-encontrou?
-"":
-"none";
-
-if(encontrou){
-
-encontradosNaCategoria++;
-encontrados++;
-
-}
-
-}
-);
-
-categoria.style.display=
-termo?
-(
-encontradosNaCategoria?
-"":
-"none"
-):
-"";
-
-}
-);
-
-if(resultado){
-
-if(termo){
-
-resultado.style.display=
-"block";
-
-resultado.innerHTML=
-encontrados?
-`<strong>${encontrados}</strong> produto(s) encontrado(s)`:
-"Nenhum produto encontrado. Tente outro nome.";
-
-}else{
-
-resultado.style.display=
-"none";
-
-resultado.innerHTML="";
-
-}
-
-}
-
-}
-
-
-function limparPesquisaProdutos(){
-
-const campo=
-document.getElementById(
-"pesquisaProdutos"
-);
-
-if(campo){
-
-campo.value="";
-
-campo.focus();
-
-}
-
-pesquisarProdutos();
-
-}
-
-
-function iniciarPesquisaProdutos(){
-
-const campo=
-document.getElementById(
-"pesquisaProdutos"
-);
-
-const limpar=
-document.getElementById(
-"limparPesquisa"
-);
-
-if(!campo)return;
-
-campo.addEventListener(
-"input",
-pesquisarProdutos
-);
-
-campo.addEventListener(
-"search",
-pesquisarProdutos
-);
-
-if(limpar)
-limpar.addEventListener(
-"click",
-limparPesquisaProdutos
-);
-
-}
-
-
 /* =========================
    NAVEGAÇÃO
 ========================= */
@@ -4589,9 +4025,7 @@ limparPesquisaProdutos
 function irPara(id){
 
 const elemento=
-document.getElementById(
-id
-);
+document.getElementById(id);
 
 if(elemento){
 
@@ -4607,7 +4041,6 @@ block:"start"
 
 }
 
-
 /* =========================
    HORÁRIO
 ========================= */
@@ -4620,58 +4053,33 @@ new Date();
 const dia=
 agora.getDay();
 
-const minutos=
+const hora=
 agora.getHours()*
 60+
 agora.getMinutes();
 
 let aberto=false;
 
-/*
-   HORÁRIO OFICIAL ND BURGS
-   TERÇA A SÁBADO: 18:00 ÀS 00:30
-   DOMINGO: 18:00 ÀS 00:00
+// Terça a sábado: 18:00 até 00:30 do dia seguinte.
+// Domingo: 18:00 até 00:00.
+// Segunda-feira: fechado.
 
-   getDay():
-   0 = Domingo
-   1 = Segunda
-   2 = Terça
-   3 = Quarta
-   4 = Quinta
-   5 = Sexta
-   6 = Sábado
-*/
+const inicioNoite = 18 * 60; // 18:00
+const limiteMadrugada = 30;  // 00:30
 
-/* 18:00 até 23:59 — terça a sábado */
+// Período da noite: terça a sábado e domingo, a partir das 18:00.
 if(
-dia>=2 &&
-dia<=6 &&
-minutos>=18*60
+(dia===0 || (dia>=2 && dia<=6)) &&
+hora>=inicioNoite
 ){
 aberto=true;
 }
 
-/* Domingo: 18:00 até 23:59 */
+// Madrugada até 00:30 somente quando o dia anterior foi terça a sábado.
+// Isso corresponde a quarta, quinta, sexta, sábado e domingo.
 if(
-dia===0 &&
-minutos>=18*60
-){
-aberto=true;
-}
-
-/*
-   00:00 até 00:29 — continuação do atendimento
-   da noite anterior.
-   Domingo 00:00 pertence ao sábado.
-   Quarta a domingo 00:00 podem estar dentro do
-   atendimento iniciado na noite anterior.
-   Segunda 00:00 NÃO abre, pois o atendimento de domingo
-   termina exatamente às 00:00.
-*/
-if(
-minutos<30 &&
-dia!==1 &&
-dia!==2
+(dia===0 || (dia>=3 && dia<=6)) &&
+hora<limiteMadrugada
 ){
 aberto=true;
 }
@@ -4711,7 +4119,6 @@ status.innerHTML=
 }
 
 }
-
 
 /* =========================
    FINALIZAR FORMULÁRIO ORIGINAL
@@ -4776,9 +4183,7 @@ document.getElementById(
 
 if(!nome){
 
-alert(
-"Digite seu nome."
-);
+alert("Digite seu nome.");
 
 return;
 
@@ -4786,9 +4191,7 @@ return;
 
 if(!telefone){
 
-alert(
-"Digite seu telefone."
-);
+alert("Digite seu telefone.");
 
 return;
 
@@ -4798,9 +4201,7 @@ if(tipo==="ENTREGA"){
 
 if(!rua){
 
-alert(
-"Selecione sua rua."
-);
+alert("Selecione sua rua.");
 
 return;
 
@@ -4857,9 +4258,7 @@ tipo==="ENTREGA"?
 )+
 "%0A";
 
-if(
-tipo==="ENTREGA"
-){
+if(tipo==="ENTREGA"){
 
 mensagem+=
 "📍 *ENDEREÇO:* "+
@@ -4889,8 +4288,7 @@ mensagem+=
 mensagem+=
 "------------------------------%0A";
 
-carrinho.forEach(
-item=>{
+carrinho.forEach(item=>{
 
 const totalItem=
 item.preco*
@@ -4917,22 +4315,17 @@ item.detalhes.length
 mensagem+=
 encodeURIComponent(
 "   ↳ "+
-item.detalhes.join(
-", "
-)
+item.detalhes.join(", ")
 )+
 "%0A";
 
 }
 
-}
-);
+});
 
 let taxa=0;
 
-if(
-tipo==="ENTREGA"
-){
+if(tipo==="ENTREGA"){
 
 taxa=
 taxas[rua]!==undefined
@@ -4944,8 +4337,7 @@ Number(taxas[rua])
 }
 
 const total=
-subtotal+
-taxa;
+subtotal+taxa;
 
 mensagem+=
 "%0A";
@@ -5026,12 +4418,9 @@ mensagem,
 
 }
 
-
 /* =========================
    INICIALIZAÇÃO
 ========================= */
-
-iniciarPesquisaProdutos();
 
 carregarCarrinhoSalvo();
 
@@ -5053,5 +4442,4 @@ verificarHorario,
 </script>
 
 </body>
-
 </html>
