@@ -443,6 +443,11 @@ input:focus,select:focus,textarea:focus{transform:translateY(-1px);box-shadow:0 
 /* Respeita acessibilidade */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
+
+<style id="nd-checkout-etapas">
+.checkout-steps{display:flex;align-items:center;gap:7px;margin:4px 0 22px;padding:8px 4px}.checkout-step{display:flex;align-items:center;gap:6px;color:#686574;white-space:nowrap}.checkout-step span{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.12);font-size:11px;font-weight:950}.checkout-step small{font-size:8px;font-weight:900;letter-spacing:.08em}.checkout-step.ativo{color:#fff}.checkout-step.ativo span{background:linear-gradient(135deg,#9b6cff,#55e6ff);border-color:transparent;box-shadow:0 0 18px rgba(155,108,255,.25)}.checkout-step.concluido span{background:rgba(109,255,176,.12);border-color:rgba(109,255,176,.35);color:#6dffb0}.checkout-line{height:1px;flex:1;background:rgba(255,255,255,.08);min-width:8px}.checkout-etapa{display:none;animation:checkoutIn .25s ease both}.checkout-etapa.ativa{display:block}.etapa-titulo{display:flex;align-items:center;gap:11px;margin-bottom:17px;padding:13px;border:1px solid rgba(155,108,255,.15);background:rgba(155,108,255,.045);border-radius:15px}.etapa-titulo>span{font-size:24px}.etapa-titulo strong{display:block;font-size:13px;letter-spacing:.04em}.etapa-titulo small{display:block;color:#8f8b9c;font-size:11px;margin-top:3px}.checkout-aviso{margin-top:12px;color:#777486;font-size:10px;line-height:1.5}.checkout-navegacao{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px}.checkout-btn{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 15px;font-weight:900;font-size:11px;cursor:pointer}.checkout-btn.voltar{background:#191721;color:#bbb}.checkout-btn.avancar{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;flex:1;max-width:240px}.checkout-contador{font-size:10px;color:#777486;font-weight:800}.checkout-confirmar{display:none;width:100%;margin-top:10px}.checkout-confirmar.visivel{display:block}.confirmacao-resumo{background:#0b0a10;border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:14px}.confirmacao-linha{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}.confirmacao-linha:last-child{border-bottom:0}.confirmacao-linha span{color:#888493}.confirmacao-linha strong{text-align:right;color:#fff;max-width:62%;word-break:break-word}.confirmacao-itens{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)}.confirmacao-item{font-size:11px;color:#d8d5df;padding:4px 0}.confirmacao-item b{color:#c084fc}.checkout-etapa label{margin-top:14px}.checkout-etapa input,.checkout-etapa select,.checkout-etapa textarea{margin-bottom:2px}@keyframes checkoutIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.checkout-steps{gap:3px;margin-bottom:16px}.checkout-step{justify-content:center}.checkout-step small{display:none}.checkout-step span{width:28px;height:28px}.checkout-line{min-width:5px}.checkout-navegacao{position:sticky;bottom:0;background:linear-gradient(180deg,transparent,#0d0c12 25%);padding-top:14px}.checkout-btn{padding:11px 12px}.checkout-contador{min-width:45px;text-align:center}.etapa-titulo{padding:11px}}
+</style>
 </head>
 <body>
 <div id="bloqueioHorario">
@@ -1250,101 +1255,84 @@ R$ 0,00
 <div class="modal-finalizar" id="modalFinalizar" onclick="fecharModalFinalizar(event)">
 <div class="painel-finalizar" onclick="event.stopPropagation()">
 <div class="cabecalho-finalizar">
-<h2>
-📍 DADOS DO PEDIDO
-</h2>
-<button class="btn-fechar-finalizar" onclick="fecharModalFinalizar()">
-×
-</button>
+<h2>📍 FINALIZAR PEDIDO</h2>
+<button class="btn-fechar-finalizar" onclick="fecharModalFinalizar()" type="button">×</button>
 </div>
-<label>
-Nome
-</label>
-<input id="nomeModal" placeholder="Digite seu nome" type="text"/>
-<label>
-Telefone
-</label>
-<input id="telefoneModal" placeholder="Digite seu telefone" type="tel"/>
-<label>
-Tipo do pedido
-</label>
-<select id="tipoPedidoModal" onchange="alterarTipoPedidoModal()">
-<option value="ENTREGA">
-🏍️ DELIVERY
-</option>
-<option value="RETIRADA">
-🏪 RETIRADA
-</option>
-</select>
-<div id="enderecoAreaModal">
-<label>
-Rua
-</label>
-<div class="endereco-busca-wrap campo-endereco-pesquisa">
-<input autocomplete="off" id="ruaModal" list="listaRuasModal" onfocus="mostrarSugestoesEndereco()" oninput="pesquisarEnderecoModal()" onchange="calcularTaxaModal()" placeholder="Digite o nome da sua rua..." type="text"/>
-<datalist id="listaRuasModal"></datalist>
-<div id="sugestoesEnderecoModal" class="endereco-sugestoes"></div>
+
+<div class="checkout-steps" aria-label="Etapas do pedido">
+  <div class="checkout-step ativo" data-step="1"><span>1</span><small>DADOS</small></div>
+  <div class="checkout-line"></div>
+  <div class="checkout-step" data-step="2"><span>2</span><small>ENTREGA</small></div>
+  <div class="checkout-line"></div>
+  <div class="checkout-step" data-step="3"><span>3</span><small>PAGAMENTO</small></div>
+  <div class="checkout-line"></div>
+  <div class="checkout-step" data-step="4"><span>4</span><small>CONFIRMAR</small></div>
 </div>
-<label>
-Número
-</label>
-<input id="numeroModal" placeholder="Número da residência" type="text"/>
-<label>
-Complemento
-</label>
-<input id="complementoModal" placeholder="Apartamento, casa, bloco..." type="text"/>
-<div class="aviso-taxa" id="avisoTaxaModal"></div>
+
+<div class="checkout-etapa ativa" data-checkout-step="1">
+  <div class="etapa-titulo"><span>👤</span><div><strong>SEUS DADOS</strong><small>Informe como podemos identificar seu pedido.</small></div></div>
+  <label>Nome</label>
+  <input id="nomeModal" placeholder="Digite seu nome" type="text" autocomplete="name"/>
+  <label>Telefone</label>
+  <input id="telefoneModal" placeholder="(11) 99999-9999" type="tel" autocomplete="tel"/>
+  <div class="checkout-aviso">🔒 Seus dados são usados somente para processar este pedido.</div>
 </div>
-<label>
-Forma de pagamento
-</label>
-<select id="pagamentoModal" onchange="alterarPagamentoModal()">
-<option value="">
-Selecione
-</option>
-<option value="PIX">
-PIX
-</option>
-<option value="DINHEIRO">
-DINHEIRO
-</option>
-<option value="CARTÃO">
-CARTÃO
-</option>
-</select>
-<div id="trocoAreaModal" style="display:none;">
-<label>
-Troco para quanto?
-</label>
-<input id="trocoModal" placeholder="Ex: 50" step="0.01" type="number"/>
+
+<div class="checkout-etapa" data-checkout-step="2">
+  <div class="etapa-titulo"><span>🏍️</span><div><strong>COMO VOCÊ VAI RECEBER?</strong><small>Escolha delivery ou retirada.</small></div></div>
+  <label>Tipo do pedido</label>
+  <select id="tipoPedidoModal" onchange="alterarTipoPedidoModal()">
+    <option value="ENTREGA">🏍️ DELIVERY</option>
+    <option value="RETIRADA">🏪 RETIRADA</option>
+  </select>
+  <div id="enderecoAreaModal">
+    <label>Rua</label>
+    <div class="endereco-busca-wrap campo-endereco-pesquisa">
+      <input autocomplete="off" id="ruaModal" list="listaRuasModal" onfocus="mostrarSugestoesEndereco()" oninput="pesquisarEnderecoModal()" onchange="calcularTaxaModal()" placeholder="Digite o nome da sua rua..." type="text"/>
+      <datalist id="listaRuasModal"></datalist>
+      <div id="sugestoesEnderecoModal" class="endereco-sugestoes"></div>
+    </div>
+    <label>Número</label>
+    <input id="numeroModal" placeholder="Número da residência" type="text" autocomplete="address-line2"/>
+    <label>Complemento</label>
+    <input id="complementoModal" placeholder="Apartamento, casa, bloco..." type="text" autocomplete="address-line2"/>
+    <div class="aviso-taxa" id="avisoTaxaModal"></div>
+  </div>
 </div>
-<label>
-Observação
-</label>
-<textarea id="observacaoModal" placeholder="Ex: Sem cebola, tocar campainha..."></textarea>
-<div class="resumo-modal" style="margin-top:18px;">
-<div class="linha">
-<span>Subtotal</span>
-<strong id="subtotalFinalizarModal">
-R$ 0,00
-</strong>
+
+<div class="checkout-etapa" data-checkout-step="3">
+  <div class="etapa-titulo"><span>💳</span><div><strong>FORMA DE PAGAMENTO</strong><small>Escolha como deseja pagar.</small></div></div>
+  <label>Forma de pagamento</label>
+  <select id="pagamentoModal" onchange="alterarPagamentoModal()">
+    <option value="">Selecione</option>
+    <option value="PIX">PIX</option>
+    <option value="DINHEIRO">DINHEIRO</option>
+    <option value="CARTÃO">CARTÃO</option>
+  </select>
+  <div id="trocoAreaModal" style="display:none;">
+    <label>Troco para quanto?</label>
+    <input id="trocoModal" placeholder="Ex: 50" step="0.01" type="number" inputmode="decimal"/>
+  </div>
+  <label>Observação</label>
+  <textarea id="observacaoModal" placeholder="Ex: Sem cebola, tocar campainha..."></textarea>
 </div>
-<div class="linha">
-<span>Taxa de entrega</span>
-<strong id="taxaFinalizarModal">
-R$ 0,00
-</strong>
+
+<div class="checkout-etapa" data-checkout-step="4">
+  <div class="etapa-titulo"><span>✅</span><div><strong>CONFIRA SEU PEDIDO</strong><small>Revise tudo antes de enviar para o WhatsApp.</small></div></div>
+  <div class="confirmacao-resumo" id="confirmacaoResumo"></div>
+  <div class="resumo-modal">
+    <div class="linha"><span>Subtotal</span><strong id="subtotalFinalizarModal">R$ 0,00</strong></div>
+    <div class="linha"><span>Taxa de entrega</span><strong id="taxaFinalizarModal">R$ 0,00</strong></div>
+    <div class="linha total-modal"><span>TOTAL</span><strong id="totalFinalizarModal">R$ 0,00</strong></div>
+  </div>
 </div>
-<div class="linha total-modal">
-<span>TOTAL</span>
-<strong id="totalFinalizarModal">
-R$ 0,00
-</strong>
+
+<div class="checkout-navegacao">
+  <button id="checkoutVoltar" class="checkout-btn voltar" type="button" onclick="checkoutVoltarEtapa()">← VOLTAR</button>
+  <div class="checkout-contador" id="checkoutContador">1 de 4</div>
+  <button id="checkoutAvancar" class="checkout-btn avancar" type="button" onclick="checkoutAvancarEtapa()">CONTINUAR →</button>
 </div>
-</div>
-<button class="btn btn-finalizar-modal" onclick="finalizarPedidoModal()">
-📲 CLIQUE PARA CONFIRMAR PEDIDO 
-</button>
+<button id="checkoutConfirmar" class="btn btn-finalizar-modal checkout-confirmar" onclick="finalizarPedidoModal()" type="button">📲 ENVIAR PEDIDO PELO WHATSAPP</button>
 </div>
 </div>
 <div class="toast-carrinho" id="toastCarrinho">
@@ -4872,5 +4860,87 @@ setInterval(verificarHorario,30000);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
 })();
-</script></body>
+</script>
+<script id="nd-checkout-etapas-js">
+(function(){
+  let etapaAtual=1;
+  const TOTAL=4;
+  function qs(s){return document.querySelector(s)}
+  function qsa(s){return [...document.querySelectorAll(s)]}
+  function setEtapa(n){
+    etapaAtual=Math.max(1,Math.min(TOTAL,n));
+    qsa('[data-checkout-step]').forEach(el=>el.classList.toggle('ativa',Number(el.dataset.checkoutStep)===etapaAtual));
+    qsa('.checkout-step').forEach(el=>{const n2=Number(el.dataset.step);el.classList.toggle('ativo',n2===etapaAtual);el.classList.toggle('concluido',n2<etapaAtual)});
+    const voltar=qs('#checkoutVoltar'), avancar=qs('#checkoutAvancar'), confirmar=qs('#checkoutConfirmar'), contador=qs('#checkoutContador');
+    if(voltar) voltar.style.visibility=etapaAtual===1?'hidden':'visible';
+    if(avancar){avancar.style.display=etapaAtual===TOTAL?'none':'block';avancar.textContent=etapaAtual===TOTAL-1?'REVISAR PEDIDO →':'CONTINUAR →'}
+    if(confirmar) confirmar.classList.toggle('visivel',etapaAtual===TOTAL);
+    if(contador) contador.textContent=etapaAtual+' de '+TOTAL;
+    if(etapaAtual===TOTAL) preencherConfirmacao();
+    const painel=qs('.painel-finalizar'); if(painel) painel.scrollTop=0;
+  }
+  function validaEtapa(n){
+    const nome=qs('#nomeModal'), tel=qs('#telefoneModal');
+    if(n===1){
+      if(!nome.value.trim()){alert('Digite seu nome.');nome.focus();return false}
+      const d=tel.value.replace(/\D/g,'');
+      if(d.length<10||d.length>11){alert('📱 Digite um telefone válido com DDD.');tel.focus();return false}
+    }
+    if(n===2){
+      const tipo=qs('#tipoPedidoModal').value;
+      if(tipo==='ENTREGA'){
+        const rua=qs('#ruaModal'), num=qs('#numeroModal');
+        if(!rua.value.trim()){alert('Digite e selecione sua rua.');rua.focus();return false}
+        if(!Object.prototype.hasOwnProperty.call(taxas,rua.value)){alert('Selecione uma rua da lista para calcular a taxa de entrega.');rua.focus();return false}
+        if(!num.value.trim()){alert('Digite o número do endereço.');num.focus();return false}
+        const subtotal=calcularSubtotal();
+        if(subtotal<11.90){alert('🏍️ PEDIDO MÍNIMO PARA DELIVERY\n\nFaltam '+moeda(11.90-subtotal)+' para atingir R$ 11,90.');return false}
+      }
+    }
+    if(n===3){
+      const pag=qs('#pagamentoModal');
+      if(!pag.value){alert('Selecione a forma de pagamento.');pag.focus();return false}
+      if(pag.value==='DINHEIRO'){
+        const troco=Number(qs('#trocoModal').value||0);
+        const subtotal=calcularSubtotal(); const taxa=qs('#tipoPedidoModal').value==='ENTREGA'?Number(taxas[qs('#ruaModal').value]||0):0;
+        if(!troco||troco<=subtotal+taxa){alert('💵 Informe um valor para troco maior que o total do pedido.');qs('#trocoModal').focus();return false}
+      }
+    }
+    return true;
+  }
+  function preencherConfirmacao(){
+    const el=qs('#confirmacaoResumo'); if(!el)return;
+    const tipo=qs('#tipoPedidoModal').value; const rua=qs('#ruaModal').value; const num=qs('#numeroModal').value;
+    const endereco=tipo==='ENTREGA'?(rua+', Nº '+num+(qs('#complementoModal').value.trim()?' — '+qs('#complementoModal').value.trim():'')):'Retirada no local';
+    const pag=qs('#pagamentoModal').value||'Não informado';
+    let html='<div class="confirmacao-linha"><span>Cliente</span><strong>'+esc(qs('#nomeModal').value)+'</strong></div>';
+    html+='<div class="confirmacao-linha"><span>Telefone</span><strong>'+esc(qs('#telefoneModal').value)+'</strong></div>';
+    html+='<div class="confirmacao-linha"><span>Recebimento</span><strong>'+esc(tipo==='ENTREGA'?'Delivery':'Retirada')+'</strong></div>';
+    html+='<div class="confirmacao-linha"><span>Endereço</span><strong>'+esc(endereco)+'</strong></div>';
+    html+='<div class="confirmacao-linha"><span>Pagamento</span><strong>'+esc(pag)+(pag==='DINHEIRO'?' • Troco para '+esc(qs('#trocoModal').value):'')+'</strong></div>';
+    html+='<div class="confirmacao-itens"><div style="font-size:10px;color:#8d8998;font-weight:900;letter-spacing:.1em;margin-bottom:5px">ITENS DO PEDIDO</div>';
+    carrinho.forEach(i=>{html+='<div class="confirmacao-item"><b>'+i.quantidade+'x</b> '+esc(i.nome)+' — '+moeda(i.preco*i.quantidade)+(i.detalhes&&i.detalhes.length?' <span style="color:#777">('+esc(i.detalhes.join(', '))+')</span>':'')+'</div>'});
+    html+='</div>'; el.innerHTML=html; atualizarResumoFinalizarModal();
+  }
+  function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+  window.checkoutAvancarEtapa=function(){if(!validaEtapa(etapaAtual))return;setEtapa(etapaAtual+1)};
+  window.checkoutVoltarEtapa=function(){setEtapa(etapaAtual-1)};
+  window.ndResetCheckout=function(){setEtapa(1)};
+  const original=window.irParaFinalizarPedido;
+  if(typeof original==='function'){
+    window.irParaFinalizarPedido=function(){original();setTimeout(()=>setEtapa(1),30)};
+  }
+  const originalTipo=window.alterarTipoPedidoModal;
+  if(typeof originalTipo==='function'){
+    window.alterarTipoPedidoModal=function(){originalTipo();if(etapaAtual===4)preencherConfirmacao()};
+  }
+  const originalPag=window.alterarPagamentoModal;
+  if(typeof originalPag==='function'){
+    window.alterarPagamentoModal=function(){originalPag();if(etapaAtual===4)preencherConfirmacao()};
+  }
+  ['nomeModal','telefoneModal','ruaModal','numeroModal','complementoModal','pagamentoModal','trocoModal','observacaoModal'].forEach(id=>{const el=qs('#'+id);if(el)el.addEventListener('input',()=>{if(etapaAtual===4)preencherConfirmacao()})});
+  setEtapa(1);
+})();
+</script>
+</body>
 </html>
