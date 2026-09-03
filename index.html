@@ -361,7 +361,6 @@ Volte durante nosso horário de atendimento.
 Terça a sábado:
 <strong>18:00 às 00:30</strong>
 
-
 <br>
 
 Domingo:
@@ -397,10 +396,9 @@ Segunda-feira:
 📅 Terça a sábado:
 <strong>18:00 às 00:30</strong>
 
-
 <br>
 
-📅 Domingo:
+Domingo:
 <strong>18:00 às 00:00</strong>
 
 
@@ -1945,29 +1943,50 @@ try{
 const salvo=localStorage.getItem(CHAVE_CARRINHO);
 
 if(!salvo){
-  carrinho=[];
-  return;
+carrinho=[];
+return;
 }
 
 const dados=JSON.parse(salvo);
 
 if(!Array.isArray(dados)){
-  carrinho=[];
-  return;
+carrinho=[];
+localStorage.removeItem(CHAVE_CARRINHO);
+return;
 }
 
 carrinho=dados
-.filter(item=>item && typeof item.nome==="string" && Number.isFinite(Number(item.preco)) && Number(item.quantidade)>0)
+.filter(item=>
+item &&
+typeof item.nome==="string" &&
+item.nome.trim() &&
+Number.isFinite(Number(item.preco)) &&
+Number(item.preco)>=0 &&
+Number.isFinite(Number(item.quantidade)) &&
+Number(item.quantidade)>0
+)
 .map(item=>({
-  ...item,
-  preco:Number(item.preco),
-  quantidade:Number(item.quantidade),
-  detalhes:Array.isArray(item.detalhes)?item.detalhes:[]
+
+...item,
+
+preco:Number(item.preco),
+
+quantidade:Math.max(1,Math.floor(Number(item.quantidade))),
+
+detalhes:Array.isArray(item.detalhes)?item.detalhes.filter(Boolean):[]
+
 }));
 
+/* Regrava uma versão limpa do carrinho */
+salvarCarrinho();
+
 }catch(e){
+
 console.error("Erro ao carregar carrinho salvo:",e);
 carrinho=[];
+
+try{localStorage.removeItem(CHAVE_CARRINHO);}catch(erro){}
+
 }
 
 }
@@ -2387,35 +2406,23 @@ moeda(pastel[1]);
 
 function confirmarPersonalizacaoPastel(){
 
-const selecionado=
-document.querySelector(
-'input[name="pastelModal"]:checked'
-);
+const selecionado=document.querySelector('input[name="pastelModal"]:checked');
 
 if(!selecionado){
-
 alert("Escolha o sabor do pastel.");
-
 return;
-
 }
 
-const partes=
-selecionado.value.split("|");
+const partes=selecionado.value.split("|");
+const lista=saboresPasteis[partes[0]];
+const pastel=lista ? lista[parseInt(partes[1],10)] : null;
 
-const lista=
-saboresPasteis[partes[0]];
+if(!pastel){
+alert("Não foi possível identificar o sabor escolhido.");
+return;
+}
 
-const pastel=
-lista[
-parseInt(partes[1],10)
-];
-
-adicionar(
-pastel[0],
-pastel[1]
-);
-
+adicionar(pastel[0],Number(pastel[1]));
 fecharPersonalizacao();
 
 }
@@ -2494,78 +2501,51 @@ document.querySelector(
 'input[name="tamanhoModal"]:checked'
 );
 
-if(!tamanhoSelecionado)return;
+if(!tamanhoSelecionado){
+alert("Escolha um tamanho.");
+return;
+}
 
 const tamanho=
 produtoModalAtual.tamanhos[
-parseInt(
-tamanhoSelecionado.value,
-10
-)
+parseInt(tamanhoSelecionado.value,10)
 ];
 
-let preco=tamanho[1];
+if(!tamanho)return;
 
+let preco=Number(tamanho[1]);
 const detalhes=[];
-
 let acompanhamentosNormais=0;
 
 document.querySelectorAll(
 'input[name="acompModal"]:checked'
 ).forEach(el=>{
 
-const acomp=
-produtoModalAtual.acompanhamentos[
-parseInt(el.value,10)
-];
+const acomp=produtoModalAtual.acompanhamentos[parseInt(el.value,10)];
+if(!acomp)return;
 
-const nome=
-acomp[0].toUpperCase();
-
+const nome=String(acomp[0]).toUpperCase();
 let valorAdicional=0;
 
 if(nome==="NUTELLA"){
-
 valorAdicional=5;
-
-}else if(
-nome==="CREME DE NINHO" ||
-nome==="KIT KAT"
-){
-
+}else if(nome==="CREME DE NINHO" || nome==="KIT KAT"){
 valorAdicional=3;
-
 }else{
-
 acompanhamentosNormais++;
-
-if(acompanhamentosNormais>3){
-
-valorAdicional=3;
-
-}
-
+if(acompanhamentosNormais>3)valorAdicional=3;
 }
 
 preco+=valorAdicional;
-
-detalhes.push(
-acomp[0]+
-(valorAdicional>0?
-" ("+moeda(valorAdicional)+")":
-"")
-);
+detalhes.push(acomp[0]+(valorAdicional>0?" ("+moeda(valorAdicional)+")":""));
 
 });
 
 carrinho.push({
 
-nome:
-produtoModalAtual.titulo+
-" "+
-tamanho[0],
+nome:produtoModalAtual.titulo+" "+tamanho[0],
 
-preco:preco,
+preco:Number(preco),
 
 quantidade:1,
 
@@ -2575,13 +2555,14 @@ tamanho:tamanho[0]
 
 });
 
+/* SALVA IMEDIATAMENTE */
+salvarCarrinho();
+
 atualizarCarrinho();
 
 fecharPersonalizacao();
 
-mostrarToast(
-"✅ Adicionado ao carrinho"
-);
+mostrarToast("✅ Adicionado ao carrinho");
 
 }
 
@@ -2591,26 +2572,31 @@ const existente=
 carrinho.find(
 item=>
 item.nome===nome &&
-!item.detalhes
+(!item.detalhes || item.detalhes.length===0)
 );
 
 if(existente){
 
-existente.quantidade++;
+existente.quantidade=Number(existente.quantidade||0)+1;
 
 }else{
 
 carrinho.push({
 
-nome:nome,
+nome:String(nome),
 
-preco:preco,
+preco:Number(preco),
 
-quantidade:1
+quantidade:1,
+
+detalhes:[]
 
 });
 
 }
+
+/* SALVA IMEDIATAMENTE */
+salvarCarrinho();
 
 atualizarCarrinho();
 
@@ -2624,17 +2610,21 @@ function alterarQuantidade(index,valor){
 
 if(!carrinho[index])return;
 
-carrinho[index].quantidade+=valor;
+const novaQuantidade=Number(carrinho[index].quantidade||0)+Number(valor);
 
-if(
-carrinho[index].quantidade<=0
-){
+if(novaQuantidade<=0){
 
 carrinho.splice(index,1);
 
+}else{
+
+carrinho[index].quantidade=novaQuantidade;
+
 }
 
+/* SALVA TODA ALTERAÇÃO */
 salvarCarrinho();
+
 atualizarCarrinho();
 
 }
@@ -2644,7 +2634,10 @@ function removerItem(index){
 if(!carrinho[index])return;
 
 carrinho.splice(index,1);
+
+/* SALVA TODA ALTERAÇÃO */
 salvarCarrinho();
+
 atualizarCarrinho();
 
 }
@@ -2852,6 +2845,8 @@ subtotal
 atualizarModalCarrinho();
 
 calcularTaxa();
+
+salvarCarrinho();
 
 }
 
@@ -3480,34 +3475,6 @@ option
 }
 
 
-function carregarRuasModal(){
-
-const lista=document.getElementById("listaRuasModal");
-
-if(!lista)return;
-
-lista.innerHTML="";
-
-Object.keys(taxas)
-.filter(rua=>
-rua!=="BALCAO" &&
-rua!=="RETIRADA" &&
-rua!=="IFOOD" &&
-rua!=="99FOOD"
-)
-.sort((a,b)=>a.localeCompare(b,"pt-BR"))
-.forEach(rua=>{
-
-const option=document.createElement("option");
-option.value=rua;
-option.label=rua+" — "+moeda(taxas[rua]);
-lista.appendChild(option);
-
-});
-
-}
-
-
 /* =========================
    TIPO PEDIDO MODAL
 ========================= */
@@ -3715,6 +3682,14 @@ moeda(total);
 ========================= */
 
 function finalizarPedidoModal(){
+
+if(!verificarHorario()){
+
+alert("🔒 A ND BURGS está fechada no momento. Confira nosso horário de atendimento.");
+return;
+
+}
+
 
 if(carrinho.length===0){
 
@@ -4316,6 +4291,62 @@ trocoArea.style.display=
 
 
 /* =========================
+   CARREGAR RUAS
+========================= */
+
+function carregarRuas(){
+
+const select=
+document.getElementById(
+"listaRuas"
+);
+
+const ruas=
+Object.keys(taxas)
+.filter(
+rua=>
+rua!=="BALCAO" &&
+rua!=="RETIRADA" &&
+rua!=="IFOOD" &&
+rua!=="99FOOD"
+)
+.sort(
+(a,b)=>
+a.localeCompare(
+b,
+"pt-BR"
+)
+);
+
+ruas.forEach(rua=>{
+
+const option=
+document.createElement(
+"option"
+);
+
+option.value=
+rua;
+
+option.textContent=
+rua+
+" — "+
+moeda(taxas[rua]);
+
+select.appendChild(
+option
+);
+
+});
+
+if(input)
+input.value=
+valorAtual;
+
+}
+
+
+/* =========================
    LIMPAR CARRINHO
 ========================= */
 
@@ -4602,25 +4633,28 @@ const minutos=agora.getHours()*60+agora.getMinutes();
 let aberto=false;
 
 /*
-   HORÁRIO OFICIAL
-   TERÇA A SÁBADO: 18:00 ÀS 00:30
-   DOMINGO: 18:00 ÀS 00:00
-   SEGUNDA: FECHADO
+ TERÇA A SÁBADO: 18:00 às 00:30
+ DOMINGO: 18:00 às 00:00
+ SEGUNDA: FECHADO
 
-   A madrugada pertence ao atendimento iniciado no dia anterior.
+ A madrugada é continuação da noite anterior:
+ quarta 00:00-00:29 = terça à noite
+ quinta 00:00-00:29 = quarta à noite
+ sexta 00:00-00:29 = quinta à noite
+ sábado 00:00-00:29 = sexta à noite
+ domingo 00:00-00:29 = sábado à noite
 */
 
-if(dia>=2 && dia<=6 && minutos>=18*60){
+/* Atendimento iniciado no próprio dia */
+if(dia>=2 && dia<=6 && minutos>=1080){
   aberto=true;
 }
 
-if(dia===0 && minutos>=18*60){
+if(dia===0 && minutos>=1080){
   aberto=true;
 }
 
-/* Continuação da noite anterior: quarta a domingo 00:00–00:29.
-   Segunda 00:00–00:00 não existe, pois domingo encerra exatamente às 00:00.
-   Terça 00:00–00:29 também permanece fechado. */
+/* Continuação da noite anterior até 00:30 */
 if(minutos<30 && ((dia>=3 && dia<=6) || dia===0)){
   aberto=true;
 }
@@ -4628,17 +4662,23 @@ if(minutos<30 && ((dia>=3 && dia<=6) || dia===0)){
 const bloqueio=document.getElementById("bloqueioHorario");
 const status=document.getElementById("statusHorario");
 
-if(!bloqueio || !status)return;
+if(!bloqueio || !status)return aberto;
 
 if(aberto){
+
   bloqueio.style.display="none";
   status.className="status-aberto";
   status.innerHTML="🟢 ESTAMOS ABERTOS";
+
 }else{
+
   bloqueio.style.display="flex";
   status.className="status-fechado";
   status.innerHTML="🔴 ESTAMOS FECHADOS";
+
 }
+
+return aberto;
 
 }
 
@@ -4648,6 +4688,14 @@ if(aberto){
 ========================= */
 
 function finalizarPedido(){
+
+if(!verificarHorario()){
+
+alert("🔒 A ND BURGS está fechada no momento. Confira nosso horário de atendimento.");
+return;
+
+}
+
 
 if(carrinho.length===0){
 
@@ -4961,22 +5009,45 @@ mensagem,
    INICIALIZAÇÃO
 ========================= */
 
-iniciarPesquisaProdutos();
-
 carregarCarrinhoSalvo();
 
 carregarRuas();
+
 carregarRuasModal();
 
 atualizarCarrinho();
+
 alterarTipoPedido();
+
+iniciarPesquisaProdutos();
 
 verificarHorario();
 
-setInterval(
-verificarHorario,
-30000
-);
+/* Mantém o carrinho atualizado se a página voltar do cache */
+window.addEventListener("pageshow",function(){
+  carregarCarrinhoSalvo();
+  atualizarCarrinho();
+  verificarHorario();
+});
+
+/* Se outra aba/janela alterar o carrinho, atualiza esta página */
+window.addEventListener("storage",function(event){
+  if(event.key===CHAVE_CARRINHO){
+    carregarCarrinhoSalvo();
+    atualizarCarrinho();
+  }
+});
+
+/* ESC fecha qualquer modal aberto */
+document.addEventListener("keydown",function(event){
+  if(event.key!=="Escape")return;
+  fecharPersonalizacao();
+  fecharCarrinho();
+  fecharSugestaoCompra();
+  fecharModalFinalizar();
+});
+
+setInterval(verificarHorario,30000);
 
 </script>
 
