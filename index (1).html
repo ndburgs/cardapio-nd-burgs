@@ -479,6 +479,37 @@ input:focus,select:focus,textarea:focus{transform:translateY(-1px);box-shadow:0 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ND BURGS">
+
+<!-- ND BURGS REFORMA VISUAL 2026 -->
+<style id="nd-reforma-2026">
+:root{--nd-bg:#080808;--nd-card:#111;--nd-card2:#171717;--nd-accent:#f5c400;--nd-text:#fff;--nd-muted:#aaa;--nd-green:#25d366}
+body{background:radial-gradient(circle at top,#1c1710 0,#090909 42%,#050505 100%)!important;color:var(--nd-text)!important}
+header{position:sticky!important;top:0;z-index:999;backdrop-filter:blur(14px);background:rgba(8,8,8,.88)!important;border-bottom:1px solid rgba(245,196,0,.18)}
+.topbar-inner{max-width:1200px!important;margin:auto;padding:12px 18px!important}
+.logo{border-radius:18px!important;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.status-pill{background:rgba(37,211,102,.12)!important;border:1px solid rgba(37,211,102,.3)!important}
+.top-cart-btn{border-radius:16px!important;background:linear-gradient(135deg,#f5c400,#ff9f00)!important;color:#111!important;font-weight:900!important;box-shadow:0 10px 30px rgba(245,196,0,.2)}
+.order-hero{border:1px solid rgba(245,196,0,.18)!important;border-radius:26px!important;background:linear-gradient(135deg,rgba(245,196,0,.13),rgba(255,255,255,.03))!important;box-shadow:0 25px 70px rgba(0,0,0,.3)!important}
+.hero-kicker{color:var(--nd-accent)!important;font-weight:900!important;letter-spacing:1.5px}.hero-copy h1{font-size:clamp(2rem,6vw,4rem)!important;line-height:.95!important}.hero-badge{border-radius:18px!important;background:#141414!important;border:1px solid rgba(245,196,0,.22)!important}
+.categoria,.category-btn,.cat-btn{border-radius:14px!important;transition:.22s transform,.22s background!important}.categoria:hover,.category-btn:hover,.cat-btn:hover{transform:translateY(-2px)}
+.produto,.product-card,.item-card{border-radius:22px!important;overflow:hidden!important;background:linear-gradient(180deg,#171717,#0e0e0e)!important;border:1px solid rgba(255,255,255,.08)!important;box-shadow:0 12px 30px rgba(0,0,0,.22)!important;transition:.22s transform,.22s box-shadow!important}.produto:hover,.product-card:hover,.item-card:hover{transform:translateY(-4px);box-shadow:0 20px 45px rgba(0,0,0,.4)!important}
+.produto img,.product-card img,.item-card img{transition:.35s transform!important}.produto:hover img,.product-card:hover img,.item-card:hover img{transform:scale(1.045)}
+button,.btn,.adicionar,.btn-add{min-height:46px;border-radius:14px!important;font-weight:800!important}.adicionar,.btn-add{background:linear-gradient(135deg,#f5c400,#ff9f00)!important;color:#111!important}
+input,select,textarea{border-radius:14px!important;border:1px solid rgba(255,255,255,.13)!important;background:#121212!important;color:#fff!important;padding:14px!important}input:focus,select:focus,textarea:focus{outline:2px solid rgba(245,196,0,.45)!important}
+.painel-finalizar,.checkout-modal,.modal-content{border-radius:26px!important;background:#101010!important;border:1px solid rgba(245,196,0,.18)!important}
+#checkoutConfirmar{background:linear-gradient(135deg,#25d366,#128c7e)!important;color:white!important;box-shadow:0 15px 35px rgba(37,211,102,.2)!important}
+#carrinho,.carrinho{border-radius:24px 24px 0 0!important}.floating-cart,.carrinho-flutuante{box-shadow:0 16px 45px rgba(0,0,0,.5)!important}
+@media(max-width:700px){.brand-copy span,.status-pill{display:none!important}.topbar-inner{padding:9px 12px!important}.top-cart-btn{font-size:.78rem!important;padding:10px 12px!important}.order-hero{margin:12px!important;padding:22px 18px!important;border-radius:22px!important}.hero-badge{margin-top:14px!important}.container{padding-left:12px!important;padding-right:12px!important}.produto,.product-card,.item-card{border-radius:18px!important}button{min-height:48px!important}}
+</style>
+<script>
+(function(){
+ document.addEventListener('DOMContentLoaded',function(){
+  const btn=document.querySelector('.top-cart-btn'); if(btn){const upd=()=>{const c=window.carrinho||[]; const n=c.reduce((a,i)=>a+(Number(i.quantidade)||1),0); btn.innerHTML='🛒 CARRINHO'+(n?' ('+n+')':'')}; setInterval(upd,700); upd()}
+  document.querySelectorAll('img').forEach(i=>i.loading='lazy');
+ });
+})();
+</script>
+
 </head>
 <body>
 <div id="bloqueioHorario">
