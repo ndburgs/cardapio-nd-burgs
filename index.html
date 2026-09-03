@@ -3044,56 +3044,251 @@ abrirSugestoesCompra();
 }
 
 function abrirSugestoesCompra(){
-  const modal=document.getElementById("modalSugestaoCompra");
-  const lista=document.getElementById("listaSugestoesCompra");
-  if(!modal || !lista)return;
 
-  const cards=[...document.querySelectorAll("section.categoria .produto")];
-  const nomesCarrinho=new Set(carrinho.map(item=>normalizarTextoPesquisa(item.nome||"")));
-  const disponiveis=cards.filter(card=>{
-    const nome=card.querySelector("h3")?.innerText?.trim()||"";
-    return nome && !nomesCarrinho.has(normalizarTextoPesquisa(nome));
-  });
+const modal=
+document.getElementById(
+"modalSugestaoCompra"
+);
 
-  /* Escolhe até 3 produtos que o cliente ainda não colocou no carrinho. */
-  const embaralhados=[...disponiveis].sort(()=>Math.random()-.5).slice(0,3);
-  lista.innerHTML=embaralhados.map(card=>{
-    const nome=card.querySelector("h3")?.innerText?.trim()||"Produto";
-    const img=card.querySelector("img")?.getAttribute("src")||"";
-    const precoEl=card.querySelector(".preco");
-    const preco=precoEl?.innerText?.trim()||"";
-    return `<div class="item-sugestao-compra">
-      <img src="${img}" alt="${nome.replace(/"/g,'&quot;')}">
-      <strong>${nome}</strong>
-      <span>${preco}</span>
-      <button type="button" class="btn-add-sugestao" onclick="adicionarSugestao(this)">ADICIONAR</button>
-    </div>`;
-  }).join("");
+const lista=
+document.getElementById(
+"listaSugestoesCompra"
+);
 
-  if(!embaralhados.length){
-    lista.innerHTML='<div style="grid-column:1/-1;text-align:center;color:#aaa;padding:20px">Seu carrinho já está bem completo! 😍</div>';
-  }
-  modal.classList.add("ativo");
-  document.body.style.overflow="hidden";
+if(!modal || !lista)return;
+
+
+/* =========================
+   PEGAR TODOS OS PRODUTOS
+========================= */
+
+const cards=[
+  ...document.querySelectorAll(
+    "section.categoria .produto"
+  )
+];
+
+
+/* =========================
+   NÃO SUGERIR O QUE JÁ ESTÁ
+   NO CARRINHO
+========================= */
+
+const nomesCarrinho=
+new Set(
+  carrinho.map(
+    item=>
+      normalizarTextoPesquisa(
+        item.nome || ""
+      )
+  )
+);
+
+
+const disponiveis=
+cards.filter(card=>{
+
+const nome=
+card.querySelector("h3")
+?.innerText
+?.trim() || "";
+
+return(
+nome &&
+!nomesCarrinho.has(
+normalizarTextoPesquisa(nome)
+)
+);
+
+});
+
+
+/* =========================
+   EMBARALHAR OS PRODUTOS
+========================= */
+
+const embaralhados=
+[...disponiveis];
+
+for(
+let i=embaralhados.length-1;
+i>0;
+i--
+){
+
+const j=
+Math.floor(
+Math.random()*(i+1)
+);
+
+[
+embaralhados[i],
+embaralhados[j]
+]=[
+embaralhados[j],
+embaralhados[i]
+];
+
 }
+
+
+/* =========================
+   PEGAR 3 ALEATÓRIOS
+========================= */
+
+const selecionados=
+embaralhados.slice(0,3);
+
+
+/* =========================
+   MONTAR SUGESTÕES
+========================= */
+
+lista.innerHTML=
+selecionados.map(card=>{
+
+const nome=
+card.querySelector("h3")
+?.innerText
+?.trim() ||
+"Produto";
+
+const img=
+card.querySelector("img")
+?.getAttribute("src") ||
+"";
+
+const precoEl=
+card.querySelector(".preco");
+
+const preco=
+precoEl?.innerText?.trim() ||
+"";
+
+
+return `
+<div class="item-sugestao-compra">
+
+<img
+src="${img}"
+alt="${nome.replace(
+/"/g,
+'&quot;'
+)}"
+>
+
+<strong>
+${nome}
+</strong>
+
+<span>
+${preco}
+</span>
+
+<button
+type="button"
+class="btn-add-sugestao"
+onclick="adicionarSugestao(this)"
+>
+ADICIONAR
+</button>
+
+</div>
+`;
+
+}).join("");
+
+
+/* =========================
+   CASO NÃO TENHA MAIS PRODUTOS
+========================= */
+
+if(!selecionados.length){
+
+lista.innerHTML=
+'<div style="grid-column:1/-1;text-align:center;color:#aaa;padding:20px">Seu carrinho já está bem completo! 😍</div>';
+
+}
+
+
+/* =========================
+   ABRIR MODAL
+========================= */
+
+modal.classList.add("ativo");
+
+document.body.style.overflow=
+"hidden";
+
+}
+
 
 function adicionarSugestao(botao){
-  const item=botao.closest(".item-sugestao-compra");
-  const nome=item?.querySelector("strong")?.innerText?.trim();
-  if(!nome)return;
-  fecharSugestaoCompra();
-  const cards=[...document.querySelectorAll("section.categoria .produto")];
-  const card=cards.find(c=>normalizarTextoPesquisa(c.querySelector("h3")?.innerText||"")===normalizarTextoPesquisa(nome));
-  const add=card?.querySelector(".btn-add");
-  if(add){ add.click(); }
+
+const item=
+botao.closest(
+".item-sugestao-compra"
+);
+
+const nome=
+item
+?.querySelector("strong")
+?.innerText
+?.trim();
+
+if(!nome)return;
+
+fecharSugestaoCompra();
+
+const cards=[
+  ...document.querySelectorAll(
+    "section.categoria .produto"
+  )
+];
+
+const card=
+cards.find(
+c=>
+normalizarTextoPesquisa(
+c.querySelector("h3")
+?.innerText || ""
+)===
+normalizarTextoPesquisa(nome)
+);
+
+const add=
+card?.querySelector(
+".btn-add"
+);
+
+if(add){
+add.click();
 }
 
-function fecharSugestaoCompra(event){
-  if(event && event.target && event.target.id!=="modalSugestaoCompra")return;
-  const modal=document.getElementById("modalSugestaoCompra");
-  if(modal)modal.classList.remove("ativo");
-  document.body.style.overflow="";
 }
+
+
+function fecharSugestaoCompra(event){
+
+if(
+event &&
+event.target &&
+event.target.id!=="modalSugestaoCompra"
+)
+return;
+
+const modal=
+document.getElementById(
+"modalSugestaoCompra"
+);
+
+if(modal)
+modal.classList.remove("ativo");
+
+document.body.style.overflow="";
+
+}
+
 
 /* =========================
    ABRIR MODAL FINALIZAÇÃO
@@ -3123,6 +3318,7 @@ document.body.style.overflow=
 
 }
 
+
 /* =========================
    FECHAR MODAL FINALIZAÇÃO
 ========================= */
@@ -3150,6 +3346,7 @@ modal.classList.remove("ativo");
 document.body.style.overflow="";
 
 }
+
 
 /* =========================
    COPIAR DADOS EXISTENTES
@@ -3197,6 +3394,7 @@ alterarPagamentoModal();
 
 }
 
+
 /* =========================
    RUAS DO MODAL
 ========================= */
@@ -3215,7 +3413,10 @@ document.getElementById(
 "ruaModal"
 );
 
-const valorAtual=input ? input.value : "";
+const valorAtual=
+input ?
+input.value :
+"";
 
 select.innerHTML="";
 
@@ -3243,20 +3444,26 @@ document.createElement(
 "option"
 );
 
-option.value=rua;
+option.value=
+rua;
 
 option.textContent=
 rua+
 " — "+
 moeda(taxas[rua]);
 
-select.appendChild(option);
+select.appendChild(
+option
+);
 
 });
 
-if(input) input.value=valorAtual;
+if(input)
+input.value=
+valorAtual;
 
 }
+
 
 /* =========================
    TIPO PEDIDO MODAL
@@ -3289,6 +3496,7 @@ enderecoArea.style.display=
 calcularTaxaModal();
 
 }
+
 
 /* =========================
    TAXA MODAL
@@ -3356,6 +3564,7 @@ return taxa;
 
 }
 
+
 /* =========================
    PAGAMENTO MODAL
 ========================= */
@@ -3388,6 +3597,7 @@ area.style.display=
 
 }
 
+
 /* =========================
    RESUMO MODAL
 ========================= */
@@ -3417,7 +3627,9 @@ tipoElemento.value==="ENTREGA"
 
 taxa=
 Number(
-taxas[ruaElemento.value]||0
+taxas[
+ruaElemento.value
+]||0
 );
 
 }
@@ -3453,6 +3665,7 @@ totalEl.innerText=
 moeda(total);
 
 }
+
 
 /* =========================
    FINALIZAR PELO MODAL
@@ -3517,7 +3730,9 @@ document.getElementById(
 
 if(!nome){
 
-alert("Digite seu nome.");
+alert(
+"Digite seu nome."
+);
 
 document.getElementById(
 "nomeModal"
@@ -3541,10 +3756,15 @@ return;
 
 }
 
-const telefoneNumeros =
-telefone.replace(/\D/g,"");
+const telefoneNumeros=
+telefone.replace(
+/\D/g,
+""
+);
 
-if(telefoneNumeros.length<10){
+if(
+telefoneNumeros.length<10
+){
 
 alert(
 "📱 TELEFONE INVÁLIDO\n\n"+
@@ -3559,7 +3779,9 @@ return;
 
 }
 
-if(telefoneNumeros.length>11){
+if(
+telefoneNumeros.length>11
+){
 
 alert(
 "📱 TELEFONE INVÁLIDO\n\n"+
@@ -3578,7 +3800,9 @@ if(tipo==="ENTREGA"){
 
 if(!rua){
 
-alert("Selecione sua rua.");
+alert(
+"Selecione sua rua."
+);
 
 document.getElementById(
 "ruaModal"
@@ -3606,7 +3830,8 @@ return;
 
 if(tipo==="ENTREGA"){
 
-const subtotalMinimo=11.90;
+const subtotalMinimo=
+11.90;
 
 const subtotalAtual=
 carrinho.reduce(
@@ -3616,17 +3841,23 @@ soma+
 0
 );
 
-if(subtotalAtual<subtotalMinimo){
+if(
+subtotalAtual<
+subtotalMinimo
+){
 
 const falta=
-subtotalMinimo-subtotalAtual;
+subtotalMinimo-
+subtotalAtual;
 
 alert(
 "🏍️ PEDIDO MÍNIMO PARA DELIVERY\n\n"+
 "Para delivery, o pedido mínimo é "+
-moeda(subtotalMinimo)+".\n\n"+
+moeda(subtotalMinimo)+
+".\n\n"+
 "Seu pedido está em "+
-moeda(subtotalAtual)+".\n"+
+moeda(subtotalAtual)+
+".\n"+
 "Faltam "+
 moeda(falta)+
 " para poder finalizar."
@@ -3637,7 +3868,7 @@ return;
 }
 
 }
-   
+
 if(!pagamento){
 
 alert(
@@ -3684,7 +3915,9 @@ soma+
 
 let taxaAtual=0;
 
-if(tipo==="ENTREGA"){
+if(
+tipo==="ENTREGA"
+){
 
 taxaAtual=
 Number(
@@ -3694,7 +3927,8 @@ taxas[rua]||0
 }
 
 const totalAtual=
-subtotalAtual+taxaAtual;
+subtotalAtual+
+taxaAtual;
 
 if(
 isNaN(valorTroco) ||
@@ -3748,7 +3982,9 @@ tipo==="ENTREGA"?
 )+
 "%0A";
 
-if(tipo==="ENTREGA"){
+if(
+tipo==="ENTREGA"
+){
 
 mensagem+=
 "📍 *ENDEREÇO:* "+
@@ -3805,7 +4041,9 @@ item.detalhes.length
 mensagem+=
 encodeURIComponent(
 "   ↳ "+
-item.detalhes.join(", ")
+item.detalhes.join(
+", "
+)
 )+
 "%0A";
 
@@ -3815,7 +4053,9 @@ item.detalhes.join(", ")
 
 let taxa=0;
 
-if(tipo==="ENTREGA"){
+if(
+tipo==="ENTREGA"
+){
 
 taxa=
 taxas[rua]!==undefined
@@ -3827,7 +4067,8 @@ Number(taxas[rua])
 }
 
 const total=
-subtotal+taxa;
+subtotal+
+taxa;
 
 mensagem+=
 "%0A";
@@ -3908,6 +4149,7 @@ mensagem,
 
 }
 
+
 /* =========================
    TAXA FORMULÁRIO ORIGINAL
 ========================= */
@@ -3946,7 +4188,8 @@ const subtotal=
 calcularSubtotal();
 
 const total=
-subtotal+taxa;
+subtotal+
+taxa;
 
 document.getElementById(
 "taxa"
@@ -3963,7 +4206,8 @@ atualizarAvisoTaxa();
 atualizarCarrinhoFlutuante(
 carrinho.reduce(
 (soma,item)=>
-soma+item.quantidade,
+soma+
+item.quantidade,
 0
 ),
 subtotal
@@ -3972,6 +4216,7 @@ subtotal
 atualizarModalCarrinho();
 
 }
+
 
 /* =========================
    ALTERAR TIPO PEDIDO
@@ -4000,6 +4245,7 @@ calcularTaxa();
 
 }
 
+
 /* =========================
    PAGAMENTO ORIGINAL
 ========================= */
@@ -4024,6 +4270,7 @@ trocoArea.style.display=
 
 }
 );
+
 
 /* =========================
    CARREGAR RUAS
@@ -4068,13 +4315,18 @@ rua+
 " — "+
 moeda(taxas[rua]);
 
-select.appendChild(option);
+select.appendChild(
+option
+);
 
 });
 
-if(input) input.value=valorAtual;
+if(input)
+input.value=
+valorAtual;
 
 }
+
 
 /* =========================
    LIMPAR CARRINHO
@@ -4108,53 +4360,221 @@ fecharCarrinho();
 
 }
 
+
 /* =========================
    PESQUISA DE PRODUTOS
 ========================= */
+
 function normalizarTextoPesquisa(texto){
-  return String(texto||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+
+return String(
+texto||""
+)
+.normalize("NFD")
+.replace(
+/[\u0300-\u036f]/g,
+""
+)
+.toLowerCase()
+.trim();
+
 }
+
+
 function pesquisarProdutos(){
-  const campo=document.getElementById("pesquisaProdutos");
-  const limpar=document.getElementById("limparPesquisa");
-  const resultado=document.getElementById("resultadoPesquisa");
-  const categorias=document.querySelectorAll("section.categoria");
-  const termo=normalizarTextoPesquisa(campo?campo.value:"");
-  let encontrados=0;
-  if(limpar) limpar.style.display=termo?"block":"none";
-  categorias.forEach(categoria=>{
-    const produtos=categoria.querySelectorAll(".produto");
-    let encontradosNaCategoria=0;
-    produtos.forEach(produto=>{
-      if(!termo){produto.style.display="";return;}
-      const nome=produto.querySelector("h3")?.innerText||"";
-      const descricao=produto.querySelector("p")?.innerText||"";
-      const imagem=produto.querySelector("img")?.alt||"";
-      const texto=normalizarTextoPesquisa(nome+" "+descricao+" "+imagem);
-      const encontrou=texto.includes(termo);
-      produto.style.display=encontrou?"":"none";
-      if(encontrou){encontradosNaCategoria++;encontrados++;}
-    });
-    categoria.style.display=termo?(encontradosNaCategoria?"":"none"):"";
-  });
-  if(resultado){
-    if(termo){resultado.style.display="block";resultado.innerHTML=encontrados?`<strong>${encontrados}</strong> produto(s) encontrado(s)`:"Nenhum produto encontrado. Tente outro nome.";}
-    else{resultado.style.display="none";resultado.innerHTML="";}
-  }
+
+const campo=
+document.getElementById(
+"pesquisaProdutos"
+);
+
+const limpar=
+document.getElementById(
+"limparPesquisa"
+);
+
+const resultado=
+document.getElementById(
+"resultadoPesquisa"
+);
+
+const categorias=
+document.querySelectorAll(
+"section.categoria"
+);
+
+const termo=
+normalizarTextoPesquisa(
+campo?
+campo.value:
+""
+);
+
+let encontrados=0;
+
+if(limpar)
+limpar.style.display=
+termo?
+"block":
+"none";
+
+categorias.forEach(
+categoria=>{
+
+const produtos=
+categoria.querySelectorAll(
+".produto"
+);
+
+let encontradosNaCategoria=0;
+
+produtos.forEach(
+produto=>{
+
+if(!termo){
+
+produto.style.display=
+"";
+
+return;
+
 }
+
+const nome=
+produto.querySelector(
+"h3"
+)?.innerText||
+"";
+
+const descricao=
+produto.querySelector(
+"p"
+)?.innerText||
+"";
+
+const imagem=
+produto.querySelector(
+"img"
+)?.alt||
+"";
+
+const texto=
+normalizarTextoPesquisa(
+nome+
+" "+
+descricao+
+" "+
+imagem
+);
+
+const encontrou=
+texto.includes(termo);
+
+produto.style.display=
+encontrou?
+"":
+"none";
+
+if(encontrou){
+
+encontradosNaCategoria++;
+encontrados++;
+
+}
+
+}
+);
+
+categoria.style.display=
+termo?
+(
+encontradosNaCategoria?
+"":
+"none"
+):
+"";
+
+}
+);
+
+if(resultado){
+
+if(termo){
+
+resultado.style.display=
+"block";
+
+resultado.innerHTML=
+encontrados?
+`<strong>${encontrados}</strong> produto(s) encontrado(s)`:
+"Nenhum produto encontrado. Tente outro nome.";
+
+}else{
+
+resultado.style.display=
+"none";
+
+resultado.innerHTML="";
+
+}
+
+}
+
+}
+
+
 function limparPesquisaProdutos(){
-  const campo=document.getElementById("pesquisaProdutos");
-  if(campo){campo.value="";campo.focus();}
-  pesquisarProdutos();
+
+const campo=
+document.getElementById(
+"pesquisaProdutos"
+);
+
+if(campo){
+
+campo.value="";
+
+campo.focus();
+
 }
+
+pesquisarProdutos();
+
+}
+
+
 function iniciarPesquisaProdutos(){
-  const campo=document.getElementById("pesquisaProdutos");
-  const limpar=document.getElementById("limparPesquisa");
-  if(!campo)return;
-  campo.addEventListener("input",pesquisarProdutos);
-  campo.addEventListener("search",pesquisarProdutos);
-  if(limpar)limpar.addEventListener("click",limparPesquisaProdutos);
+
+const campo=
+document.getElementById(
+"pesquisaProdutos"
+);
+
+const limpar=
+document.getElementById(
+"limparPesquisa"
+);
+
+if(!campo)return;
+
+campo.addEventListener(
+"input",
+pesquisarProdutos
+);
+
+campo.addEventListener(
+"search",
+pesquisarProdutos
+);
+
+if(limpar)
+limpar.addEventListener(
+"click",
+limparPesquisaProdutos
+);
+
 }
+
 
 /* =========================
    NAVEGAÇÃO
@@ -4163,7 +4583,9 @@ function iniciarPesquisaProdutos(){
 function irPara(id){
 
 const elemento=
-document.getElementById(id);
+document.getElementById(
+id
+);
 
 if(elemento){
 
@@ -4179,17 +4601,25 @@ block:"start"
 
 }
 
+
 /* =========================
    HORÁRIO
 ========================= */
 
 function verificarHorario(){
 
-const agora = new Date();
-const dia = agora.getDay();
-const minutos = agora.getHours() * 60 + agora.getMinutes();
+const agora=
+new Date();
 
-let aberto = false;
+const dia=
+agora.getDay();
+
+const minutos=
+agora.getHours()*
+60+
+agora.getMinutes();
+
+let aberto=false;
 
 /*
    HORÁRIO OFICIAL ND BURGS
@@ -4205,37 +4635,83 @@ let aberto = false;
    6 = Sábado
 */
 
-// 18:00 até 23:59 — terça a domingo
-if(dia >= 2 && dia <= 6 && minutos >= 18 * 60){
-    aberto = true;
+
+/* 18:00 até 23:59 — terça a domingo */
+
+if(
+dia>=2 &&
+dia<=6 &&
+minutos>=18*60
+){
+
+aberto=true;
+
 }
 
-if(dia === 0 && minutos >= 18 * 60){
-    aberto = true;
+if(
+dia===0 &&
+minutos>=18*60
+){
+
+aberto=true;
+
 }
 
-// 00:00 até 00:29 — continuação do atendimento da noite anterior.
-// Domingo 00:00 pertence ao sábado.
-// Segunda 00:00 pertence ao domingo.
-// Terça 00:00 NÃO abre, pois segunda-feira é fechada.
-if(minutos < 30 && dia !== 2){
-    aberto = true;
+
+/*
+   00:00 até 00:29 — continuação
+   do atendimento da noite anterior.
+   Domingo 00:00 pertence ao sábado.
+   Segunda 00:00 pertence ao domingo.
+   Terça 00:00 NÃO abre,
+   pois segunda-feira é fechada.
+*/
+
+if(
+minutos<30 &&
+dia!==2
+){
+
+aberto=true;
+
 }
 
-const bloqueio = document.getElementById("bloqueioHorario");
-const status = document.getElementById("statusHorario");
+const bloqueio=
+document.getElementById(
+"bloqueioHorario"
+);
+
+const status=
+document.getElementById(
+"statusHorario"
+);
 
 if(aberto){
-    bloqueio.style.display = "none";
-    status.className = "status-aberto";
-    status.innerHTML = "🟢 ESTAMOS ABERTOS";
+
+bloqueio.style.display=
+"none";
+
+status.className=
+"status-aberto";
+
+status.innerHTML=
+"🟢 ESTAMOS ABERTOS";
+
 }else{
-    bloqueio.style.display = "flex";
-    status.className = "status-fechado";
-    status.innerHTML = "🔴 ESTAMOS FECHADOS";
+
+bloqueio.style.display=
+"flex";
+
+status.className=
+"status-fechado";
+
+status.innerHTML=
+"🔴 ESTAMOS FECHADOS";
+
 }
 
 }
+
 
 /* =========================
    FINALIZAR FORMULÁRIO ORIGINAL
@@ -4300,7 +4776,9 @@ document.getElementById(
 
 if(!nome){
 
-alert("Digite seu nome.");
+alert(
+"Digite seu nome."
+);
 
 return;
 
@@ -4308,7 +4786,9 @@ return;
 
 if(!telefone){
 
-alert("Digite seu telefone.");
+alert(
+"Digite seu telefone."
+);
 
 return;
 
@@ -4318,7 +4798,9 @@ if(tipo==="ENTREGA"){
 
 if(!rua){
 
-alert("Selecione sua rua.");
+alert(
+"Selecione sua rua."
+);
 
 return;
 
@@ -4375,7 +4857,9 @@ tipo==="ENTREGA"?
 )+
 "%0A";
 
-if(tipo==="ENTREGA"){
+if(
+tipo==="ENTREGA"
+){
 
 mensagem+=
 "📍 *ENDEREÇO:* "+
@@ -4405,7 +4889,8 @@ mensagem+=
 mensagem+=
 "------------------------------%0A";
 
-carrinho.forEach(item=>{
+carrinho.forEach(
+item=>{
 
 const totalItem=
 item.preco*
@@ -4432,17 +4917,22 @@ item.detalhes.length
 mensagem+=
 encodeURIComponent(
 "   ↳ "+
-item.detalhes.join(", ")
+item.detalhes.join(
+", "
+)
 )+
 "%0A";
 
 }
 
-});
+}
+);
 
 let taxa=0;
 
-if(tipo==="ENTREGA"){
+if(
+tipo==="ENTREGA"
+){
 
 taxa=
 taxas[rua]!==undefined
@@ -4454,7 +4944,8 @@ Number(taxas[rua])
 }
 
 const total=
-subtotal+taxa;
+subtotal+
+taxa;
 
 mensagem+=
 "%0A";
@@ -4535,6 +5026,7 @@ mensagem,
 
 }
 
+
 /* =========================
    INICIALIZAÇÃO
 ========================= */
@@ -4561,4 +5053,5 @@ verificarHorario,
 </script>
 
 </body>
+
 </html>
