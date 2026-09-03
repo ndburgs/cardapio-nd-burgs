@@ -389,6 +389,41 @@ header{position:sticky!important;top:0!important;z-index:1000!important;backgrou
 .pesquisa-produtos .pesquisa-input{display:block!important;pointer-events:auto!important;position:relative!important;z-index:10!important}
 .produto.oculto-pesquisa{display:none!important}
 </style>
+<style id="nd-animations-improvements">
+/* ===== MICRO-INTERAÇÕES / ANIMAÇÕES ND BURGS ===== */
+:root{--nd-ease:cubic-bezier(.2,.8,.2,1)}
+html{scroll-behavior:smooth}
+button,.btn,.categoria-btn,.produto,.pesquisa-wrap,input,select,textarea{transition:transform .18s var(--nd-ease),box-shadow .22s var(--nd-ease),border-color .22s,background .22s,opacity .22s}
+button:not(:disabled):active,.btn:not(:disabled):active{transform:scale(.96)}
+.btn-add{position:relative;overflow:hidden}
+.btn-add::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--rx,50%) var(--ry,50%),rgba(255,255,255,.35) 0,rgba(255,255,255,0) 42%);opacity:0;transform:scale(.2);transition:opacity .35s,transform .45s}
+.btn-add.ripple::after{opacity:1;transform:scale(2.4)}
+.produto{transform:translateZ(0);will-change:transform}
+.produto:hover{transform:translateY(-5px);box-shadow:0 16px 35px rgba(0,0,0,.24)}
+.produto .produto-imagem{transition:transform .4s var(--nd-ease),filter .3s}
+.produto:hover .produto-imagem{transform:scale(1.035)}
+.categoria-btn:hover{transform:translateX(4px)}
+.categoria-btn.ativo{transform:translateX(5px);box-shadow:0 8px 22px rgba(120,70,255,.2)}
+.pesquisa-wrap:focus-within{transform:translateY(-2px);box-shadow:0 0 0 3px rgba(120,80,255,.15),0 12px 28px rgba(0,0,0,.18)}
+input:focus,select:focus,textarea:focus{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(120,80,255,.14)}
+.modal-finalizar.ativo,.modal-carrinho.ativo,.modal-personalizacao.ativo{animation:ndFadeIn .22s ease both}
+.modal-finalizar.ativo .painel-finalizar,.modal-carrinho.ativo .painel-carrinho,.modal-personalizacao.ativo .painel-personalizacao{animation:ndPanelIn .32s var(--nd-ease) both}
+@keyframes ndFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes ndPanelIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes ndPop{0%{transform:scale(1)}45%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes ndCart{0%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}70%{transform:translateY(1px)}}
+.nd-added{animation:ndPop .42s var(--nd-ease)}
+#carrinhoFlutuante.ativo.nd-cart-pulse{animation:ndCart .55s var(--nd-ease)}
+.nd-product-in{animation:ndProductIn .35s var(--nd-ease) both}
+@keyframes ndProductIn{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+.endereco-sugestoes{animation:ndFadeIn .18s ease both}
+.endereco-sugestao{cursor:pointer;transition:background .18s,transform .18s;padding:10px 12px;border-radius:10px}
+.endereco-sugestao:hover{transform:translateX(3px)}
+/* Feedback visual para seleção de entrega/pagamento */
+#tipoPedidoModal,#pagamentoModal{cursor:pointer}
+/* Respeita acessibilidade */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
 <div id="bloqueioHorario">
@@ -4704,6 +4739,42 @@ if(campoBuscaProdutos){
 
 setInterval(verificarHorario,30000);
 
+</script>
+<script id="nd-interacoes">
+(function(){
+  function pulse(el, cls){if(!el)return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); setTimeout(()=>el.classList.remove(cls),700)}
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest('.btn-add');
+    if(btn){
+      const r=btn.getBoundingClientRect();
+      btn.style.setProperty('--rx',((e.clientX-r.left)/r.width*100)+'%');
+      btn.style.setProperty('--ry',((e.clientY-r.top)/r.height*100)+'%');
+      pulse(btn,'ripple');
+      setTimeout(()=>{ const cart=document.getElementById('carrinhoFlutuante'); pulse(cart,'nd-cart-pulse'); },60);
+    }
+    const cat=e.target.closest('.categoria-btn');
+    if(cat){document.querySelectorAll('.categoria-btn').forEach(x=>x.classList.remove('ativo'));cat.classList.add('ativo')}
+  });
+  const search=document.getElementById('pesquisaProdutos');
+  if(search){
+    let timer;
+    search.addEventListener('input',function(){
+      clearTimeout(timer); timer=setTimeout(()=>{
+        if(typeof pesquisarProdutos==='function') pesquisarProdutos();
+        document.querySelectorAll('.produto').forEach((p,i)=>{
+          const hidden=getComputedStyle(p).display==='none';
+          p.classList.remove('nd-product-in');
+          if(!hidden && search.value.trim()){setTimeout(()=>p.classList.add('nd-product-in'),Math.min(i*18,180));}
+        });
+      },80);
+    });
+    search.addEventListener('keydown',function(e){if(e.key==='Escape'){search.value='';if(typeof limparPesquisaProdutos==='function')limparPesquisaProdutos();search.blur()}});
+  }
+  document.addEventListener('click',function(e){
+    const item=e.target.closest('.endereco-sugestao');
+    if(item){pulse(item,'nd-added')}
+  });
+})();
 </script>
 </body>
 </html>
