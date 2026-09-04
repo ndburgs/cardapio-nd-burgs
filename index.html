@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- ND BURGS: controle de versão para evitar conteúdo antigo em cache -->
+<meta name="nd-site-version" content="20260903-01">
+<script>
+(function () {
+  const ND_SITE_VERSION = "20260903-01";
+  const KEY = "ndburgs_site_version";
+  try {
+    const old = localStorage.getItem(KEY);
+    if (old && old !== ND_SITE_VERSION) {
+      localStorage.setItem(KEY, ND_SITE_VERSION);
+      // Recarrega uma única vez quando a versão do site mudar.
+      const u = new URL(window.location.href);
+      u.searchParams.set("_ndv", ND_SITE_VERSION);
+      window.location.replace(u.toString());
+      return;
+    }
+    localStorage.setItem(KEY, ND_SITE_VERSION);
+  } catch (e) {}
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ND BURGS | Faça seu pedido</title>
@@ -4991,3 +5012,4 @@ window.addEventListener('DOMContentLoaded',()=>{
 
 </body>
 </html>
+<!-- ND BURGS VERSION: 20260903-01 -->
